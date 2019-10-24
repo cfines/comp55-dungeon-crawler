@@ -1,12 +1,19 @@
 package projectFiles;
 
-import com.sun.glass.ui.Timer;
+import java.util.Timer; 
 
 public class Stats {
 	private int HP_cur, HP_tot;
 	private Timer atkTimer;
 	private int baseDamage;
 	private int coordX, coordY;
+	
+	Stats () {
+		HP_cur = HP_tot = 1;
+		atkTimer = new Timer(); //add arguments to Timer later
+		baseDamage = 1;
+		coordX = coordY = 1;
+	}
 	
 	public int getHP_cur() {
 		return HP_cur;
