@@ -15,6 +15,15 @@ public class Stats {
 		coordX = coordY = 1;
 	}
 	
+	Stats(int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, int input_x, int input_y) {
+		HP_cur = input_HP_cur;
+		HP_tot = input_HP_tot;
+		atkTimer = new Timer(); //add method later 
+		baseDamage = input_dmg;
+		coordX = input_x;
+		coordY = input_y;
+	}
+	
 	public int getHP_cur() {
 		return HP_cur;
 	}
