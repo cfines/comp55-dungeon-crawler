@@ -8,5 +8,41 @@ public class Stats {
 	private int baseDamage;
 	private int coordX, coordY;
 	
+	public int getHP_cur() {
+		return HP_cur;
+	}
+	public void setHP_cur(int hP_cur) {
+		HP_cur = hP_cur;
+	}
+	public int getHP_tot() {
+		return HP_tot;
+	}
+	public void setHP_tot(int hP_tot) {
+		HP_tot = hP_tot;
+	}
+	public Timer getAtkTimer() {
+		return atkTimer;
+	}
+	public void setAtkTimer(Timer atkTimer) {
+		this.atkTimer = atkTimer;
+	}
+	public int getBaseDamage() {
+		return baseDamage;
+	}
+	public void setBaseDamage(int baseDamage) {
+		this.baseDamage = baseDamage;
+	}
+	public int getCoordX() {
+		return coordX;
+	}
+	public void setCoordX(int coordX) {
+		this.coordX = coordX;
+	}
+	public int getCoordY() {
+		return coordY;
+	}
+	public void setCoordY(int coordY) {
+		this.coordY = coordY;
+	}
 	
 }
