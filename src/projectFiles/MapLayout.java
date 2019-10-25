@@ -21,19 +21,41 @@ public class MapLayout {
 		entryID = "";
 	}
 	
-	
-	
-	public void main(){
-		String entryID = "E1";
-		
-		
-		// based on the mapLayout, this for loop 
-		for(int i = 1; i >= entryAmountofTest; i++) {
+	// based on the mapLayout, this for loop 
+	public void entryAmount() {
+		for(int i = 0; i >= entryAmountofTest; i++) {
 			entryAmount.add("E" + 1);
 		}
+	}
+	
+	public void main(){
 		
+		entryAmount();
+			
 		// the key of these HashMaps will be the gRect ID the player  
 		//  will enter and will return the gRect ID the player will exit out of
-		mapHashTest.put("", ""); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(1), entryAmount.get(0)); 
+		mapHashTest.put(entryAmount.get(2), entryAmount.get(3)); 
+		mapHashTest.put(entryAmount.get(3), entryAmount.get(2)); 
+		mapHashTest.put(entryAmount.get(3), entryAmount.get(4)); 
+		/*mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); */
+		
+	
+		String test = entryAmount.get(0);
+		mapHashTest.get(test);
+		System.out.println("User enters E1, the HashMap should spit out where the user will pop out from which shoudl be E2. Does it?:    "
+				+ test);
 	}
+	
 }
