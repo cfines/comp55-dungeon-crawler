@@ -6,6 +6,7 @@ package projectFiles;
 import java.util.ArrayList;
 
 public class Map {
+	//instance variables
 	private MapLayout type;
 	private ArrayList<Room> roomList;
 	private Room curRoom;
