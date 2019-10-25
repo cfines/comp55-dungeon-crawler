@@ -8,9 +8,12 @@ import java.util.ArrayList;
 public class Map {
 	private MapLayout type;
 	private ArrayList<Room> roomList;
+	private Room curRoom;
 	
 	public Map()
 	{
 		
 	}
+	
+	
 }
