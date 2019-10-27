@@ -14,7 +14,6 @@ public class User {
 	private int atkSpeedStat;
 	
 	//Weapon Inventory variables
-	private int arrSize;
 	private int arrEquiped;
 	private ArrayList<Weapon> weapons;
 	
@@ -30,9 +29,8 @@ public class User {
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
-		arrSize = 3;
 		arrEquiped = 0;
-		weapons = new ArrayList<>(arrSize);
+		setupWeapons();
 		
 		numConsumable = 0;
 		hasKey = false;
@@ -47,13 +45,103 @@ public class User {
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
-		arrSize = 3;
 		arrEquiped = 0;
-		weapons = new ArrayList<>(arrSize);
+		setupWeapons();
 		
 		numConsumable = 0;
 		hasKey = false;
 		
+	}
+
+	//GETTERS AND SETTERS//
+	
+	public Stats getUserStats() {
+		return userStats;
+	}
+
+	public void setUserStats(Stats userStats) {
+		this.userStats = userStats;
+	}
+
+	public int getMoveSpeedStat() {
+		return moveSpeedStat;
+	}
+
+	public void setMoveSpeedStat(int moveSpeedStat) {
+		this.moveSpeedStat = moveSpeedStat;
+	}
+
+	public double getPowerStat() {
+		return powerStat;
+	}
+
+	public void setPowerStat(double powerStat) {
+		this.powerStat = powerStat;
+	}
+
+	public int getAtkSpeedStat() {
+		return atkSpeedStat;
+	}
+
+	public void setAtkSpeedStat(int atkSpeedStat) {
+		this.atkSpeedStat = atkSpeedStat;
+	}
+
+	public ArrayList<Weapon> getWeapons() {
+		return weapons;
+	}
+
+	public int getNumConsumable() {
+		return numConsumable;
+	}
+
+	public void setNumConsumable(int numConsumable) {
+		this.numConsumable = numConsumable;
+	}
+
+	public boolean getHasKey() {
+		return hasKey;
+	}
+
+	public void setHasKey(boolean hasKey) {
+		this.hasKey = hasKey;
+	}
+	
+	/////////////////////////////////////////
+	
+	//Creation of weapons and storing them in weapons array
+	public void setupWeapons() {
+		
+		Weapon fireWeapon = new Weapon(ElementType.FIRE);
+		Weapon waterWeapon = new Weapon(ElementType.WATER);
+		Weapon earthWeapon = new Weapon(ElementType.EARTH);
+		
+		weapons.add(fireWeapon);
+		weapons.add(waterWeapon);
+		weapons.add(earthWeapon);
+		
+	}
+	
+	//Cycle of weapons for quickslot
+	public Weapon cycleWeapon() {
+		
+		//Loop back to beginning of weapons array if applicable
+		if(arrEquiped == 2) {
+			arrEquiped = 0;
+		} else {
+			arrEquiped++;
+		}
+		
+		return weapons.get(arrEquiped);
+		
+	}
+	
+	public void moveX(int move) {
+		userStats.setCoordX(userStats.getCoordX() + move); 
+	}
+	
+	public void moveY(int move) {
+		userStats.setCoordY(userStats.getCoordY() + move);
 	}
 	
 }
