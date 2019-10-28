@@ -41,7 +41,7 @@ public class User {
 			int input_dmg, int input_x, int input_y){
 		
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
-		moveSpeedStat = 1;
+		moveSpeedStat = 7;
 		powerStat = 1;
 		atkSpeedStat = 1;
 		

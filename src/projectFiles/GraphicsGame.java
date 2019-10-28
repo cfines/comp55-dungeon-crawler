@@ -6,18 +6,21 @@ import java.awt.event.*;
 import acm.graphics.*;
 import acm.program.*;
 
-public class GraphicsGame extends GraphicsProgram {
+public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
 	public char pressedKey;
 	
 	public User testUser;
+	public GImage userRep;
 	public Enemy testEnemy;
+	public GImage enemyRep;
 	public Map testMap;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		requestFocus();
 	}
 	
 	public void run() {
@@ -32,43 +35,42 @@ public class GraphicsGame extends GraphicsProgram {
 		
 	}
 	
-	public void KeyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {
 		
-		pressedKey = e.getKeyChar();
+		int pressedKey = e.getKeyCode();
 		
-		switch(pressedKey) {
-		case 'w':
-			
-			testUser.moveX(1);
-			break;
-		
-		case 's':
-			
-			testUser.moveX(-1);
-			break;
-		
-		case 'd':
+		if(pressedKey == KeyEvent.VK_W) {
 			
 			testUser.moveY(1);
-			break;
-		
-		case 'a':
+			userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
+
+		} else if (pressedKey == KeyEvent.VK_S){
+
+			testUser.moveY(-1);
+			userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
+
+		} else if (pressedKey == KeyEvent.VK_D) {
 			
 			testUser.moveX(1);
-			break;
-			
-		default: break;
+			userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
 		
+		} else if (pressedKey == KeyEvent.VK_A) {
+			
+			testUser.moveX(-1);
+			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
+			
 		}
 		
 	}
 
 	public void testDraw() {
 		
-		GRect userRep = new GRect(300, 300, 25, 50);
+		userRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/Rogue%20(Sample%20User).gif", 300, 300);
+		userRep.setSize(75, 75);
 		add(userRep);
 		
-		GImage enemyRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/ghost_enemy.gif", 500, 300);
+		enemyRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/ghost_enemy.gif", 500, 300);
+		enemyRep.setSize(75, 75);
 		add(enemyRep);
 		
 	}
