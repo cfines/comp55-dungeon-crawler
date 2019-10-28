@@ -8,8 +8,8 @@ import acm.program.*;
 
 public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
-	public static final int WINDOW_WIDTH = 800;
-	public static final int WINDOW_HEIGHT = 600;
+	public static final int WINDOW_WIDTH = 1155;
+	public static final int WINDOW_HEIGHT = 650;
 	public char pressedKey;
 	
 	public User testUser;
