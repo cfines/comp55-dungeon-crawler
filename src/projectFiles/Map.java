@@ -9,8 +9,8 @@ public class Map {
 	private MapLayout type;
 	private ArrayList<Room> roomList;
 	private Room curRoom;
-	
 	//instance variables
+	
 	
 	public Map()
 	{
