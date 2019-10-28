@@ -11,7 +11,7 @@ public enum roomLayout {
 			case room_Gun: return "room_Gun";
 			case room_RevGun: return "room_RevGun";
 			case room_UpsideGun: return "room_UpsideGun";
-			case room_RevUpsideGun: return "room_UpsideGun";
+			case room_RevUpsideGun: return "room_RevUpsideGun";
 		}
 		return "n/a";
 	}
