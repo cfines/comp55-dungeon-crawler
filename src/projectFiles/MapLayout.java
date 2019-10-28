@@ -13,7 +13,7 @@ public class MapLayout {
 	private HashMap <String, String> mapHashEspeciallyThisOne;
 	
 	private HashMap <String, String> mapHashTest;
-	private int entryAmountofTest = 8;
+	private int entryAmountofTest = 4;
 	public ArrayList<String> entryAmount;
 	
 	MapLayout(){
@@ -42,18 +42,7 @@ public class MapLayout {
 		getMapHash().put(entryAmount.get(1), entryAmount.get(0)); 
 		getMapHash().put(entryAmount.get(2), entryAmount.get(3)); 
 		getMapHash().put(entryAmount.get(3), entryAmount.get(2)); 
-		getMapHash().put(entryAmount.get(3), entryAmount.get(4)); 
-		/*mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
-		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); */
+		getMapHash().put(entryAmount.get(3), entryAmount.get(4));
 		
 	
 		String test = entryAmount.get(0);

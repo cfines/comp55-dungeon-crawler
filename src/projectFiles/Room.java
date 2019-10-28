@@ -23,4 +23,6 @@ public class Room {
 	public void createNumObsticles(int amount) {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
+	
+	
 }
