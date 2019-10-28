@@ -41,22 +41,22 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		
 		if(pressedKey == KeyEvent.VK_W) {
 			
-			testUser.moveY(1);
+			testUser.moveY(testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
 
 		} else if (pressedKey == KeyEvent.VK_S){
 
-			testUser.moveY(-1);
+			testUser.moveY(-testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
 
 		} else if (pressedKey == KeyEvent.VK_D) {
 			
-			testUser.moveX(1);
+			testUser.moveX(testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
 		
 		} else if (pressedKey == KeyEvent.VK_A) {
 			
-			testUser.moveX(-1);
+			testUser.moveX(-testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
 			
 		}
