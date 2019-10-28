@@ -21,7 +21,14 @@ public class MapLayout {
 		entryID = "";
 	}
 	
+	// returns mapHashTest with hard coded values for the sake of testing 
+	// will be changed later
 	public HashMap<String, String> getMapHash() {
+		mapHashTest.put(entryAmount.get(0), entryAmount.get(1)); 
+		mapHashTest.put(entryAmount.get(1), entryAmount.get(0)); 
+		mapHashTest.put(entryAmount.get(2), entryAmount.get(3)); 
+		mapHashTest.put(entryAmount.get(3), entryAmount.get(2)); 
+		mapHashTest.put(entryAmount.get(3), entryAmount.get(4));
 		return mapHashTest;
 	}
 	
