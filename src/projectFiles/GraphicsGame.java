@@ -65,11 +65,11 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
 	public void testDraw() {
 		
-		userRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/Rogue%20(Sample%20User).gif", 300, 300);
+		userRep = new GImage("Rogue (Sample User).gif", 300, 300);
 		userRep.setSize(75, 75);
 		add(userRep);
 		
-		enemyRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/ghost_enemy.gif", 500, 300);
+		enemyRep = new GImage("ghost_enemy.gif", 500, 300);
 		enemyRep.setSize(75, 75);
 		add(enemyRep);
 		
