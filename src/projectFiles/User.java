@@ -46,6 +46,7 @@ public class User {
 		atkSpeedStat = 1;
 		
 		arrEquiped = 0;
+		weapons = new ArrayList<>();
 		setupWeapons();
 		
 		numConsumable = 0;

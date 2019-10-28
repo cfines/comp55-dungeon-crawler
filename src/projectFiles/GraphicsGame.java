@@ -2,6 +2,8 @@ package projectFiles;
 
 import java.awt.*;
 import java.awt.event.*;
+
+import acm.graphics.*;
 import acm.program.*;
 
 public class GraphicsGame extends GraphicsProgram {
@@ -16,7 +18,6 @@ public class GraphicsGame extends GraphicsProgram {
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		requestFocus();
 	}
 	
 	public void run() {
@@ -27,7 +28,7 @@ public class GraphicsGame extends GraphicsProgram {
 		testEnemy = new Enemy(5, 5, 5, 1, 500, 300, ElementType.FIRE);
 		testMap = new Map();
 		
-		
+		testDraw();
 		
 	}
 	
@@ -56,10 +57,20 @@ public class GraphicsGame extends GraphicsProgram {
 			testUser.moveX(1);
 			break;
 			
-		default:
+		default: break;
+		
 		}
 		
 	}
 
+	public void testDraw() {
+		
+		GRect userRep = new GRect(300, 300, 25, 50);
+		add(userRep);
+		
+		GImage enemyRep = new GImage("file:///C:/Users/Jordan/git/group-project-stacked_overflow/media/ghost_enemy.gif", 500, 300);
+		add(enemyRep);
+		
+	}
 	
 }
