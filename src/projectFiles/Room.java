@@ -19,7 +19,7 @@ public class Room {
 	public void createNumEntries(int amount) {
 		entries = new ArrayList<Interactions>(amount);
 	}
-	
+	 
 	public void createNumObsticles(int amount) {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
