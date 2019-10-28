@@ -32,6 +32,11 @@ public class MapLayout {
 		return mapHashTest;
 	}
 	
+	/* TODO: connect class to the superclass Floor in order to recieve what mapLayout the player will be on, and
+	to return the hard coded entries for said mapLayout */
+	
+	
+	
 	// based on the mapLayout, this for loop 
 	public void entryAmount() {
 		for(int i = 0; i >= entryAmountofTest; i++) {
