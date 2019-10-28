@@ -78,7 +78,10 @@ public class Map{
 		this.entries = entries;
 	}
 	
-	//TODO add function for random values that would be called in the randSpawns interface
+	public void spawnValues() 
+	{		
+		//TODO add function for random values that would be called in the randSpawns interface
+	}
 
 	//TODO add a function for spawn values that would be called in the spawnCoords interface
 }
