@@ -40,7 +40,7 @@ public class Map{
 		//test string to see if this actually wants to work for me
 		System.out.println("Sample test for Coordinate class compatibility with Map\n");
 		
-		//testing to see if it will withdraw the single stored coordinate
+		//test successful
 		Coordinates test1 = new Coordinates(50,76);
 		Coordinates test2 = new Coordinates(60,88);
 		setRoomSpawns(test1, roomSpawns);
