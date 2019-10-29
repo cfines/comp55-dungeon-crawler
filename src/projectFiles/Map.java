@@ -41,10 +41,17 @@ public class Map{
 		System.out.println("Sample test for Coordinate class compatibility with Map\n");
 		
 		//testing to see if it will withdraw the single stored coordinate
-		Coordinates test = new Coordinates(50,76);
-		setRoomSpawns(test, roomSpawns);
+		Coordinates test1 = new Coordinates(50,76);
+		Coordinates test2 = new Coordinates(60,88);
+		setRoomSpawns(test1, roomSpawns);
 		System.out.println("This should be able to retrieve the room spawn coordinates "
 				+ "in the form of an ugly address, can it actually? " + getRoomSpawns() );
-		
+		System.out.println("Now testing with another variable being added, will it save both?");
+		setRoomSpawns(test2, roomSpawns);
+		System.out.println("It should be added if this text is even appearing, let us see the address again."
+				+ " Did it change?" + getRoomSpawns());
+		System.out.println("Now for those coordinates:\n"
+				+ "test1 x = " + test1.getX() + " test1 y = " + test1.getY() + "\n"
+				+ "test2 x = " + test2.getX() + " test2 y = " + test2.getY());
 	}
 }

@@ -11,5 +11,15 @@ public class Coordinates {
 		x = horizontal;
 		y = vertical;
 	}
+	
+	public int getX() 
+	{
+		return x;
+	}
+	
+	public int getY() 
+	{
+		return y;
+	}
 	//to be used as coordinates
 }
