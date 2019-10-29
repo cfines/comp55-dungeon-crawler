@@ -14,12 +14,20 @@ public class Map{
 	private Room curRoom;
 	private HashMap <Room, SpawnCoords> randSpawns;
 	private ArrayList<RandSpawns> roomSpawns;
-	private HashMap <Interactions, Room> roomReact; 
+	private HashMap <Interactions, Room> roomReact;
+	private int horizontal, vertical;
+	private RandSpawns randomSpawnage;
 	
 	Map()
 	{
-		int xCoord = 0;
-		int yCoord = 0;
+		horizontal = 1;
+		vertical = 1;
+	}
+	
+	Map(int x, int y)
+	{
+		horizontal = x;
+		vertical = y;
 	}
 
 	public MapLayout getType() {
