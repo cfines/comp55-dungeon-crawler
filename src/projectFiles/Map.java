@@ -11,8 +11,8 @@ public class Map{
 	private Interactions entries;
 	private ArrayList<Room> roomList;
 	private Room curRoom;
-	private HashMap <Room, spawnCoords> randSpawns;
-	private ArrayList<randSpawns> roomSpawns;
+	private HashMap <Room, SpawnCoords> randSpawns;
+	private ArrayList<RandSpawns> roomSpawns;
 	private HashMap <Interactions, Room> roomReact; 
 	//instance variables
 	
@@ -46,19 +46,19 @@ public class Map{
 		this.curRoom = curRoom;
 	}
 
-	public HashMap <Room, spawnCoords> getRandSpawns() {
+	public HashMap <Room, SpawnCoords> getRandSpawns() {
 		return randSpawns;
 	}
 
-	public void setRandSpawns(HashMap <Room, spawnCoords> randSpawns) {
+	public void setRandSpawns(HashMap <Room, SpawnCoords> randSpawns) {
 		this.randSpawns = randSpawns;
 	}
 
-	public ArrayList<randSpawns> getRoomSpawns() {
+	public ArrayList<RandSpawns> getRoomSpawns() {
 		return roomSpawns;
 	}
 
-	public void setRoomSpawns(ArrayList<randSpawns> roomSpawns) {
+	public void setRoomSpawns(ArrayList<RandSpawns> roomSpawns) {
 		this.roomSpawns = roomSpawns;
 	}
 
