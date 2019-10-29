@@ -42,13 +42,10 @@ public class MapLayout {
 	
 	// based on the mapLayout, this for loop 
 	public void entryAmount() {
-		 for(int i = 1; i >= entryAmountofTest; i++) {
+		 for(int i = 1; i <= entryAmountofTest; i++) {
 			String temp = new String("E" + i);
-			entryAmount.add(i, temp);
+			entryAmount.add(temp);
 		 } 
-		// entryAmount.add("E1");
-		// entryAmount.add("E2");
-		System.out.println(entryAmount.get(1));
 	}
 	
 	public void runTest() {
@@ -63,9 +60,9 @@ public class MapLayout {
 	public static void main(String[] args){
 		
 		MapLayout testt = new MapLayout();
-		//testt.entryAmount();
-		//testt.setMapHash();
-		//testt.runTest();
+		testt.entryAmount();
+		testt.setMapHash();
+		testt.runTest();
 	}
 	
 }
