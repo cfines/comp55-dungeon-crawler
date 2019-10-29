@@ -5,6 +5,7 @@ package projectFiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Map{
 	//instance variables
@@ -13,36 +14,36 @@ public class Map{
 	private ArrayList<Room> roomList;
 	private Room curRoom;
 	private HashMap <Room, Coordinates> randSpawns;
-	private ArrayList<Coordinates> roomSpawns;
+	private static ArrayList<Coordinates> roomSpawns;
 	private HashMap <Interactions, Room> roomReact;
-	private int horizontal, vertical;
-	private Coordinates randomSpawnage;
 	
+	//basic constructor
 	Map()
 	{
-		horizontal = 1;
-		vertical = 1;
+		
+	}
+
+	//returns coordinates from array list
+
+	public static void setRoomSpawns(Coordinates random, ArrayList<Coordinates> roomSpawns)
+	{
+		roomSpawns = new ArrayList<Coordinates>();
+		roomSpawns.add(random);
 	}
 	
-	Map(int x, int y)
+	public static ArrayList<Coordinates> getRoomSpawns() 
+	{	
+		return roomSpawns;
+	}
+	
+	public static void main (String args[]) 
 	{
-		horizontal = x;
-		vertical = y;
+		//test string to see if this actually wants to work for me
+		System.out.println("Sample test for Coordinate class compatibility with Map\n");
+		
+		//testing to see if it will withdraw the single stored coordinate
+		Coordinates test = new Coordinates(50,76);
+		setRoomSpawns(test, roomSpawns);
+		System.out.println( getRoomSpawns() );
 	}
-
-	public void spawnValues() 
-	{		
-		//TODO add function for random values that would be called in the randSpawns interface
-	}
-
-	public Coordinates getCoordinates() {
-		return randomSpawnage;
-	}
-
-	public void setCoordinates(Coordinates randomSpawnage)
-	{
-		randomSpawnage = new Coordinates(50,78);
-	}
-
-	//TODO add a function for spawn values that would be called in the spawnCoords interface
 }

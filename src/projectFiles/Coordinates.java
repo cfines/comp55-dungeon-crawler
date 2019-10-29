@@ -8,8 +8,8 @@ public class Coordinates {
 	
 	public Coordinates(int horizontal, int vertical)
 	{
-		horizontal = x;
-		vertical = y;
+		x = horizontal;
+		y = vertical;
 	}
 	//to be used as coordinates
 }
