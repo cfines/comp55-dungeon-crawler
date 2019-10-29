@@ -12,36 +12,25 @@ public class RandSpawns {
 	//instance variables
 	private ArrayList <Map> randomSpawn;
 	private Map coords; 
-	private int counter;
 	
 	RandSpawns()
 	{
 		coords = new Map(0,0);
-		counter = 0;
 	}
 	
 	//stores random spawn values into an array list
 	public void UHaulStorage() 
 	{
-		//for testing purposes, it should store about 50 of these assortments
+		//for testing purposes
 		int x =(int)Math.random(), y = (int)Math.random();
 		coords = new Map(x,y);
-		for (counter = 0; counter < randomSpawn.size();) 		
-		{
-				randomSpawn.add(coords);
-				System.out.println("Random Value " + counter + "Stored! \n");
-				counter++;
-		}
+		
 	}
 	
 	//returns the random spawn values from the array list
 	public ArrayList<Map> IHaveUHaulMembership() 
 	{
 		System.out.println("All values: ");
-		for(counter = 0; counter < randomSpawn.size(); counter++) 
-		{
-			System.out.println(randomSpawn.get(counter));
-		}
 		return randomSpawn;
 	}
 	
