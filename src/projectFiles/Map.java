@@ -12,11 +12,11 @@ public class Map{
 	private Interactions entries;
 	private ArrayList<Room> roomList;
 	private Room curRoom;
-	private HashMap <Room, SpawnCoords> randSpawns;
-	private ArrayList<RandSpawns> roomSpawns;
+	private HashMap <Room, Coordinates> randSpawns;
+	private ArrayList<Coordinates> roomSpawns;
 	private HashMap <Interactions, Room> roomReact;
 	private int horizontal, vertical;
-	private RandSpawns randomSpawnage;
+	private Coordinates randomSpawnage;
 	
 	Map()
 	{
@@ -30,65 +30,18 @@ public class Map{
 		vertical = y;
 	}
 
-	public MapLayout getType() {
-		return type;
-	}
-
-	public void setType(MapLayout type) {
-		this.type = type;
-	}
-
-	public ArrayList<Room> getRoomList() {
-		return roomList;
-	}
-
-	public void setRoomList(ArrayList<Room> roomList) {
-		this.roomList = roomList;
-	}
-
-	public Room getCurRoom() {
-		return curRoom;
-	}
-
-	public void setCurRoom(Room curRoom) {
-		this.curRoom = curRoom;
-	}
-
-	public HashMap <Room, SpawnCoords> getRandSpawns() {
-		return randSpawns;
-	}
-
-	public void setRandSpawns(HashMap <Room, SpawnCoords> randSpawns) {
-		this.randSpawns = randSpawns;
-	}
-
-	public ArrayList<RandSpawns> getRoomSpawns() {
-		return roomSpawns;
-	}
-
-	public void setRoomSpawns(ArrayList<RandSpawns> roomSpawns) {
-		this.roomSpawns = roomSpawns;
-	}
-
-	public HashMap <Interactions, Room> getRoomReact() {
-		return roomReact;
-	}
-
-	public void setRoomReact(HashMap <Interactions, Room> roomReact) {
-		this.roomReact = roomReact;
-	}
-
-	public Interactions getEntries() {
-		return entries;
-	}
-
-	public void setEntries(Interactions entries) {
-		this.entries = entries;
-	}
-	
 	public void spawnValues() 
 	{		
 		//TODO add function for random values that would be called in the randSpawns interface
+	}
+
+	public Coordinates getCoordinates() {
+		return randomSpawnage;
+	}
+
+	public void setCoordinates(Coordinates randomSpawnage)
+	{
+		randomSpawnage = new Coordinates(50,78);
 	}
 
 	//TODO add a function for spawn values that would be called in the spawnCoords interface
