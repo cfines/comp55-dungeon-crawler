@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Map{
+	//instance variables
 	private MapLayout type;
 	private Interactions entries;
 	private ArrayList<Room> roomList;
@@ -14,7 +15,6 @@ public class Map{
 	private HashMap <Room, SpawnCoords> randSpawns;
 	private ArrayList<RandSpawns> roomSpawns;
 	private HashMap <Interactions, Room> roomReact; 
-	//instance variables
 	
 	Map()
 	{
