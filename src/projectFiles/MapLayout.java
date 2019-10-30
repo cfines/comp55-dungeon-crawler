@@ -3,6 +3,7 @@ package projectFiles;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// More like MapEntries but whatever
 public class MapLayout {
 	private String roomID;
 	private String entryID;		
