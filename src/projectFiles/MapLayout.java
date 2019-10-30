@@ -36,6 +36,7 @@ public class MapLayout {
 		getMapHash().put(entryAmount.get(1), entryAmount.get(0)); 
 	}
 	
+	
 	/* TODO: connect class to the superclass Floor in order to recieve what mapLayout the player will be on, and
 	to return the hard coded entries for said mapLayout */
 	

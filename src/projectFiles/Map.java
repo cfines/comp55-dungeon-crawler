@@ -46,6 +46,16 @@ public class Map{
 		return roomSpawns;
 	}
 	
+	public static HashMap<String, String> getMapHash() 
+	{
+		return type.getMapHash();
+	}
+	
+	public static void setMapHash() 
+	{
+		type.setMapHash();
+	}
+	
 	//big boi testing right here
 	public static void main (String args[]) 
 	{

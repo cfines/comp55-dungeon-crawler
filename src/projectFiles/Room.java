@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Room {
 	roomLayout roomLayout;
-	Interactions interactionClass;
+	private Interactions interactionClass;
+	private Map map;
 	private boolean isKeyRoom;
 	private int numEntries;
 	ArrayList<Interactions> entries;
@@ -26,6 +27,8 @@ public class Room {
 	public void createNumObsticles(int amount) {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
+	
+	public void createRoom()
 	
 	
 }
