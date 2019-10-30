@@ -10,18 +10,30 @@ import java.util.List;
 public class Map{
 	
 	//instance variables
-	private MapLayout type;
-	private Interactions entries;
-	private ArrayList<Room> roomList = new ArrayList<Room>();
-	private Room curRoom;
+	private static MapLayout type;
+	private static Interactions entries;
+	private static ArrayList<Room> roomList = new ArrayList<Room>();
+	private	static Room curRoom;
 	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
-	private HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
-	private HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
+	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
+	private static HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
 	
 	//basic constructor
 	Map()
 	{}
-
+	
+	//sets the interaction to a room
+	public static void setRoomInteractions(Interactions react, Room r) 
+	{
+		roomReact.put(react, r);
+	}
+	
+	//gets the hash map of the room interactions
+	public static HashMap<Interactions, Room> getRoomInteractions()
+	{
+		return roomReact;
+	}
+	
 	//adds values to the array list
 	public static void setRoomSpawns(Coordinates random, ArrayList<Coordinates> roomSpawns)
 	{
@@ -37,6 +49,7 @@ public class Map{
 	//big boi testing right here
 	public static void main (String args[]) 
 	{
+		
 		//test string to see if this actually wants to work for me
 		System.out.println("Sample test for Coordinate class compatibility with Map\n");
 		
