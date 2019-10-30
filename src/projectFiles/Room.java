@@ -20,6 +20,12 @@ public class Room {
 	
 	/* TODO: connect to the Map class in order to recieve which room of which mapLayout the user is currently on*/
 	
+	/*TODO: Create room constructor. Parameters will be 
+	 * - number of entries
+	 * - spawn coordinates and interactions
+	 * - room layout
+	 * - powerups*/
+	
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
 	public void createNumEntries(int amount) {
