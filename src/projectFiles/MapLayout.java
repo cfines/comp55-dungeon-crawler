@@ -31,23 +31,25 @@ public class MapLayout {
 		return mapHashTest;
 	}
 	
-	public void setMapHash() {
+	public void setMapHash(ArrayList<String> thing, String thing2) {
 		getMapHash().put(entryAmount.get(0), entryAmount.get(1)); 
 		getMapHash().put(entryAmount.get(1), entryAmount.get(0)); 
 	}
 	
 	
-	/* TODO: connect class to the superclass Floor in order to recieve what mapLayout the player will be on, and
+	/* TODO: connect class to the superclass Floor in order to receive what mapLayout the player will be on, and
 	to return the hard coded entries for said mapLayout */
 	
-	
+	/* TODO: Rework parameters for getters and setters of the entry points based on the map layout which will be
+	   taken from floor. */
 	
 	// based on the mapLayout, this for loop 
-	public void entryAmount() {
-		 for(int i = 1; i <= entryAmountofTest; i++) {
+	public ArrayList<String> entryAmount(int amountOfEntries) {
+		 for(int i = 1; i <= amountofEntries; i++) {
 			String temp = new String("E" + i);
 			entryAmount.add(temp);
 		 } 
+		 return entryAmount;
 	}
 	
 	public ArrayList<String> getEntryAmount() {
