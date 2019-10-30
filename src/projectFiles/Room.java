@@ -1,15 +1,17 @@
 package projectFiles;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Room {
 	roomLayout roomLayout;
 	private Interactions interactionClass;
-	private Map map;
 	private boolean isKeyRoom;
 	private int numEntries;
 	ArrayList<Interactions> entries;
 	ArrayList<Interactions> obstacles;
+	static HashMap<String,String> entryPoints;
+	static ArrayList<String> entryAmount;
 	
 	// gets the room layout from the roomLayout enum
 	public roomLayout getRoomLayout() {
@@ -28,7 +30,32 @@ public class Room {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
 	
-	public void createRoom()
+	public static void setMapHash() {
+		Map.setMapHash();
+	}
+	
+	public static HashMap<String,String> getMapHash() {
+		//is this legal??
+		return Map.getMapHash();
+	}
+	
+	public static ArrayList<String> getEntryAmount(){
+		return Map.getEntryAmount();
+	}
+	public static void setEntryAmount() {
+		Map.setEntryAmount();
+	}
+	
+	public void createRoom() {}
+	
+	public static void main(String[] args) {
+		setMapHash();
+		setEntryAmount();
+		entryPoints = getMapHash();
+		entryAmount = getEntryAmount();
+		
+		System.out.println("User enters E1 and should exit E2...does it:   " + entryPoints.get(entryAmount.get(0)));
+	}
 	
 	
 }

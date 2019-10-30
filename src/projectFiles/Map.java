@@ -56,6 +56,16 @@ public class Map{
 		type.setMapHash();
 	}
 	
+	public static ArrayList<String> getEntryAmount()
+	{
+		return type.getEntryAmount();
+	}
+	
+	public static void setEntryAmount() 
+	{
+		type.entryAmount();
+	}
+	
 	//big boi testing right here
 	public static void main (String args[]) 
 	{

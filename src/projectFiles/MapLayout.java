@@ -50,6 +50,10 @@ public class MapLayout {
 		 } 
 	}
 	
+	public ArrayList<String> getEntryAmount() {
+		return entryAmount;
+	}
+	
 	public void runTest() {
 		test = entryAmount.get(0);
 		System.out.println("User enters E1, the HashMap should spit out where the user will pop out from which shoudl be E2. Does it?:    "
