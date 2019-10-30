@@ -14,8 +14,8 @@ public class Map{
 	private Interactions entries;
 	private ArrayList<Room> roomList = new ArrayList<Room>();
 	private Room curRoom;
-	private HashMap <Room, Coordinates> randSpawns = new HashMap<Room, Coordinates>();
 	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
+	private HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
 	
 	//basic constructor
