@@ -35,21 +35,22 @@ public class Floor {
 	public void levelAdder() {
 		levelCounter++;
 	}
-	
+	// returns current map
 	public String currentMap(String curMap) {
 		return curMap;
 	}
 	// returns the level counter
+	//I'm adding a +1 to the getLevel counter since its offset by the ArrayList's first index being 0
 	public int getLevelCounter() {
 		return levelCounter + 1;
 	}
-	
+	// this returns which map layout the user will be on
+	// mod 5 will loop back to the first level if the current level exceeds 5, making this a map rotation
 	public String whatMapWeOn(){
 		int temp = levelCounter % 5;
 		return map.get(temp);
 	}
 	
-	//I'm adding a +1 to the getLevel counter since its offset by the ArrayList's first index being 0
 	public static void main(String[] args) {
 		Floor test = new Floor();
 		
