@@ -20,6 +20,12 @@ public class Room {
 	
 	/* TODO: connect to the Map class in order to recieve which room of which mapLayout the user is currently on*/
 	
+	/*TODO: Create room constructor. Parameters will be 
+	 * - number of entries
+	 * - spawn coordinates and interactions
+	 * - room layout
+	 * - powerups*/
+	
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
 	public void createNumEntries(int amount) {
@@ -31,7 +37,7 @@ public class Room {
 	}
 	
 	public static void setMapHash() {
-		Map.setMapHash();
+//		Map.setMapHash();
 	}
 	
 	public static HashMap<String,String> getMapHash() {
@@ -43,13 +49,13 @@ public class Room {
 		return Map.getEntryAmount();
 	}
 	public static void setEntryAmount() {
-		Map.setEntryAmount();
+//		Map.setEntryAmount();
 	}
 	
 	public void createRoom() {}
 	
 	public static void main(String[] args) {
-		setMapHash();
+	//	setMapHash();
 		setEntryAmount();
 		entryPoints = getMapHash();
 		entryAmount = getEntryAmount();

@@ -68,8 +68,8 @@ public class MapLayout {
 	public static void main(String[] args){
 		
 		MapLayout testt = new MapLayout();
-		testt.entryAmount();
-		testt.setMapHash();
+	//	testt.entryAmount();
+	//	testt.setMapHash();
 		testt.runTest();
 	}
 	

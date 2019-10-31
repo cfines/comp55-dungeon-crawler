@@ -12,6 +12,8 @@ public class Coordinates {
 		y = vertical;
 	}
 	
+	public Coordinates() {}
+	
 	public int getX() 
 	{
 		return x;
