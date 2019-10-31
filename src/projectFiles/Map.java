@@ -41,9 +41,16 @@ public class Map{
 	}
 	
 	//returns coordinates from array list
-	public static ArrayList<Coordinates> getRoomSpawns() 
+	public static void getRoomSpawns() 
 	{	
-		return roomSpawns;
+		for(int i = 0; i < roomSpawns.size();i++) 
+		{
+			System.out.println("X Coordinate #" + i + " " + roomSpawns.get(i).getX());
+		}
+		for(int j = 0; j < roomSpawns.size(); j++) 
+		{
+			System.out.println("Y Coordinate #"+ j + " " + roomSpawns.get(j).getY());
+		}
 	}
 	
 	public static HashMap<String, String> getMapHash() 
@@ -77,14 +84,12 @@ public class Map{
 		Coordinates test1 = new Coordinates(50,76);
 		Coordinates test2 = new Coordinates(60,88);
 		setRoomSpawns(test1, roomSpawns);
-		System.out.println("This should be able to retrieve the room spawn coordinates "
-				+ "in the form of an ugly address, can it actually? " + getRoomSpawns() );
+		getRoomSpawns();
 		System.out.println("Now testing with another variable being added, will it save both?");
 		setRoomSpawns(test2, roomSpawns);
-		System.out.println("It should be added if this text is even appearing, let us see the address again."
-				+ " Did it change?" + getRoomSpawns());
-		System.out.println("Now for those coordinates:\n"
-				+ "test1 x = " + test1.getX() + " test1 y = " + test1.getY() + "\n"
-				+ "test2 x = " + test2.getX() + " test2 y = " + test2.getY());
+		System.out.println("It should be added if this text is even appearing, let us see the info again."
+			+ " Did it change?\n");  
+		getRoomSpawns();
+		
 	}
 }
