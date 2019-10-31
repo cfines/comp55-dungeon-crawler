@@ -72,6 +72,26 @@ public class Map{
 	//	type.entryAmount();
 	//}
 	
+	//sets the rooms into the array list of type room
+	public static void setRoomList(ArrayList<Room> roomList) {
+		Map.roomList = roomList;
+	}
+	
+	//retrieves the rooms from the array list of type room
+	public static ArrayList<Room> getRoomList() {
+		return roomList;
+	}
+	
+	// sets the random spawns into a hash map that uses the room as a key and roomSpawns as the value
+	public static void setRandSpawns(HashMap <Room, ArrayList<Coordinates>> randSpawns) {
+		Map.randSpawns = randSpawns;
+	}
+	
+	// returns the random spawns into a hash map that uses the room as a key and roomSpawns as the value
+	public static HashMap <Room, ArrayList<Coordinates>> getRandSpawns() {
+		return randSpawns;
+	}
+	
 	//big boi testing right here
 	public static void main (String args[]) 
 	{
@@ -91,4 +111,6 @@ public class Map{
 		getRoomSpawns();
 		
 	}
+
+
 }
