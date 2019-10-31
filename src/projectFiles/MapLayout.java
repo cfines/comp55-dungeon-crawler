@@ -44,13 +44,13 @@ public class MapLayout {
 	   taken from floor. */
 	
 	// based on the mapLayout, this for loop 
-//	public ArrayList<String> entryAmount(int amountOfEntries) {
-	//	 for(int i = 1; i <= amountofEntries; i++) {
-		//	String temp = new String("E" + i);
-		//	entryAmount.add(temp);
-	//	 } 
-		// return entryAmount;
-//	}
+	public ArrayList<String> entryAmount(int amountOfEntries) {
+		 for(int i = 1; i <= amountOfEntries; i++) {
+			String temp = new String("E" + i);
+			entryAmount.add(temp);
+		 } 
+		 return entryAmount;
+	}
 	
 	public ArrayList<String> getEntryAmount() {
 		return entryAmount;
