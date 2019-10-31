@@ -91,6 +91,7 @@ public class Map{
 	public static HashMap <Room, ArrayList<Coordinates>> getRandSpawns() {
 		return randSpawns;
 	}
+	//TODO fix the other functions to properly do what they need to do
 	
 	//big boi testing right here
 	public static void main (String args[]) 
