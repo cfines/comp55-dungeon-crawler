@@ -37,7 +37,7 @@ public class Room {
 	}
 	
 	public static void setMapHash() {
-		Map.setMapHash();
+//		Map.setMapHash();
 	}
 	
 	public static HashMap<String,String> getMapHash() {
@@ -49,13 +49,13 @@ public class Room {
 		return Map.getEntryAmount();
 	}
 	public static void setEntryAmount() {
-		Map.setEntryAmount();
+//		Map.setEntryAmount();
 	}
 	
 	public void createRoom() {}
 	
 	public static void main(String[] args) {
-		setMapHash();
+	//	setMapHash();
 		setEntryAmount();
 		entryPoints = getMapHash();
 		entryAmount = getEntryAmount();
