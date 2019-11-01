@@ -16,7 +16,7 @@ public class Map{
 	private static ArrayList<Room> roomList = new ArrayList<Room>();
 	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
 	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
-	private static HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
+	private static HashMap <Interactions, ArrayList<Room>> roomReact = new HashMap<Interactions,ArrayList<Room>>();
 	private static HashMap <Enemy, ArrayList<Coordinates>> enemySpawn = new HashMap <Enemy, ArrayList<Coordinates>>();
 	private static HashMap <Boss, ArrayList<Coordinates>> bossSpawn = new HashMap <Boss, ArrayList<Coordinates>>();
 	//TODO think of some alternative to put enemies onto a room and avoid making a 
@@ -27,13 +27,13 @@ public class Map{
 	{}
 	
 	//sets the interaction to a room
-	public static void setRoomInteractions(Interactions react, Room r) 
+	public static void setRoomInteractions(Interactions react, ArrayList<Room> r) 
 	{
 		roomReact.put(react, r);
 	}
 	
 	//gets the hash map of the room interactions
-	public static HashMap<Interactions, Room> getRoomInteractions()
+	public static HashMap<Interactions, ArrayList<Room>> getRoomInteractions()
 	{
 		return roomReact;
 	}
