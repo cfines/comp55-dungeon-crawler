@@ -6,12 +6,15 @@ import java.util.ArrayList;
 
 import acm.graphics.*;
 import acm.program.*;
+import java.util.Stack;
 
 public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	public char pressedKey;
+	//ArrayList<KeyEvent> diag = new ArrayList<KeyEvent>();
+	Stack<KeyEvent> input = new Stack<>();
 	
 	public User testUser;
 	public GImage userRep;
@@ -39,11 +42,16 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	
 	public void keyPressed(KeyEvent e) {
 		
-		ArrayList<KeyEvent> input = new ArrayList<KeyEvent>();
-		int pressedKey = e.getKeyCode();
+		input.push(e);
+		int pressedKey = input.lastIndexOf(o, index).getKeyCode();
 		
 		if(pressedKey == KeyEvent.VK_W) {
-			
+			System.out.println("W is being pressed!");
+			if(pressedKey == KeyEvent.VK_D && pressedKey == KeyEvent.VK_W) {
+				testUser.moveY(testUser.getMoveSpeedStat());
+				testUser.moveX(testUser.getMoveSpeedStat());
+				userRep.setLocation(userRep.getX() +  testUser.getMoveSpeedStat(), userRep.getY() - testUser.getMoveSpeedStat());
+			}
 			testUser.moveY(testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
 
@@ -53,7 +61,8 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
 
 		} else if (pressedKey == KeyEvent.VK_D) {
-			
+			System.out.println("D is being pressed!");
+
 			testUser.moveX(testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
 		
@@ -64,7 +73,12 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			
 		} 
 		
-		else if (pressedKey == KeyEv
+		else if(pressedKey == KeyEvent.VK_D && pressedKey == KeyEvent.VK_W) {
+			testUser.moveY(testUser.getMoveSpeedStat());
+			testUser.moveX(testUser.getMoveSpeedStat());
+			userRep.setLocation(userRep.getX() +  testUser.getMoveSpeedStat(), userRep.getY() - testUser.getMoveSpeedStat());
+		}
+		
 		else if (pressedKey == KeyEvent.VK_E) {
 			
 			testUser.cycleWeapon();
@@ -72,6 +86,12 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			
 		}
 		
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		//clears all inputs 
+		input.clear();
+		System.out.println("Key released!");
 	}
 
 	public void testDraw() {
@@ -89,6 +109,8 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		add(weapon);
 		
 	}
+	
+	
 	
 	public void drawSword(User input_user)	{
 		
