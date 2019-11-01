@@ -20,7 +20,8 @@ public class Map{
 	private static HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
 	private static HashMap <Enemy, ArrayList<Coordinates>> enemySpawn = new HashMap <Enemy, ArrayList<Coordinates>>();
 	private static HashMap <Boss, ArrayList<Coordinates>> bossSpawn = new HashMap <Boss, ArrayList<Coordinates>>();
-	
+	//TODO think of some alternative to put enemies onto a room and avoid making a 
+	//HashMap <Room, HashMap<Enemy, ArrayList<Coordinates> thing
 	
 	//basic constructor
 	Map()
@@ -88,10 +89,12 @@ public class Map{
 		return randSpawns;
 	}
 	
+	// gets coordinates from the enemy
 	public static HashMap <Enemy, ArrayList<Coordinates>> getEnemySpawn() {
 		return enemySpawn;
 	}
 	
+	// sets enemy onto an array list of coordinates
 	public static void setEnemySpawn(HashMap <Enemy, ArrayList<Coordinates>> enemySpawn) {
 		Map.enemySpawn = enemySpawn;
 	}
