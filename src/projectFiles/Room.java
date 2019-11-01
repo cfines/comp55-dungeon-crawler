@@ -27,7 +27,8 @@ public class Room {
 	 * - powerups*/
 	
 	/*TODO: create hashmap where the key will be the name of an entry point (E1, E2, E3 etc) that will 
-	 * return the room these entry points will be in*/
+	 * return the room these entry points will be in. Remember to name each gRect what will be an entry
+	 * the proper entry name (E1, E2, E3, etc)*/
 	
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
