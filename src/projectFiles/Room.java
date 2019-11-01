@@ -58,6 +58,14 @@ public class Room {
 		return Map.getEntryAmount();
 	}
 	
+	public static HashMap<String, String> getMapRoomHash(String currLayout){
+		return Map.getMapRoomHash(currLayout);
+	}
+	
+	public static ArrayList<String> getRoomAmount(){
+		return Map.getRoomAmount();
+	}
+	
 	public void createRoom() {}
 	
 	public static void main(String[] args) {
