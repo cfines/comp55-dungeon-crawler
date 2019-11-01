@@ -88,7 +88,7 @@ public class User {
 		this.atkSpeedStat = atkSpeedStat;
 	}
 	
-	public int weaponEquiped() {
+	public int getWeaponEquiped() {
 		return weaponEquiped;
 	}
 
