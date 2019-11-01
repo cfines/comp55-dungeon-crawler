@@ -14,11 +14,12 @@ public class Map{
 	private static Boss biggerBadGuy;
 	private static Room curRoom;
 	private static Coordinates location;
-	private static Interactions react;
-	private static ArrayList<Room> roomList = new ArrayList<Room>();
-	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
+	private static Interactions inter;
+	private static ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
+	private static ArrayList<HashMap<Boss,Coordinates>> bossRoomSpawns = new ArrayList<HashMap<Boss,Coordinates>>();
 	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
-	private static HashMap <Room, Interactions> roomReact = new HashMap<Room, Interactions>();
+	private static HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
+	private static HashMap <HashMap<Interactions, Coordinates>, Room> interToRoom = new HashMap <HashMap<Interactions, Coordinates>, Room>(); 
 	private static HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private static HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
 	//TODO think of some alternative to put enemies onto a room and avoid making a 
@@ -31,35 +32,65 @@ public class Map{
 	}
 	
 	//sets the interaction to a room
-	public static void setRoomInteractions(Interactions react, Room r) 
+	public static void setInteractions(Interactions react, Coordinates r) 
 	{
-		roomReact.put(r, react);
+		reaction.put(react, r);
 	}
 	
 	//gets the hash map of the room interactions
-	public static HashMap<Room, Interactions> getRoomInteractions()
+	public static HashMap<Interactions, Coordinates> getInteractions()
 	{
-		return roomReact;
+		return reaction;
 	}
 	
-	//adds values to the array list
-	public static void setRoomSpawns(Coordinates random, ArrayList<Coordinates> roomSpawns)
+	//sets the interactions with coordinates to a room
+	public static void setInteractionsToRoom(HashMap<Interactions, Coordinates> i, Room r) 
+	{
+		interToRoom.put(i,r);
+	}
+	
+	//gets the interactions with coordinates from a room
+	public static HashMap <HashMap<Interactions, Coordinates>, Room> getInteractionsFromRoom()
+	{
+		return interToRoom;
+	}
+	
+	//adds enemy values to the array list
+	public static void setEnemyRoomSpawns(HashMap<Enemy, Coordinates> random, ArrayList<HashMap<Enemy, Coordinates>> roomSpawns)
 	{
 		roomSpawns.add(random);
 	}
 	
-	//returns coordinates from array list
-	public static void getRoomSpawns() 
+	//returns coordinates from enemy
+	public static void getEnemyRoomSpawns() 
 	{	
-		for(int i = 0; i < roomSpawns.size();i++) 
+		for(int i = 0; i < enemyRoomSpawns.size();i++) 
 		{
-			roomSpawns.get(i).getX();
+			enemyRoomSpawns.get(i).get(enemySpawn).getX();
 		}
-		for(int j = 0; j < roomSpawns.size(); j++) 
+		for(int j = 0; j < enemyRoomSpawns.size(); j++) 
 		{
-			roomSpawns.get(j).getY();
+			enemyRoomSpawns.get(j).get(enemySpawn).getY();
 		}
 	}
+	//adds boss values to the array list
+	public static void setBossRoomSpawns(HashMap<Boss, Coordinates> random, ArrayList<HashMap<Boss, Coordinates>> bossRoom)
+	{
+		bossRoom.add(random);
+	}
+		
+	//returns coordinates from boss
+	public static void getBossRoomSpawns() 
+	{	
+			for(int i = 0; i < bossRoomSpawns.size();i++) 
+			{
+				bossRoomSpawns.get(i).get(bossSpawn).getX();
+			}
+			for(int j = 0; j < enemyRoomSpawns.size(); j++) 
+			{
+				bossRoomSpawns.get(j).get(bossSpawn).getY();
+			}
+		}
 	
 	public static HashMap<String, String> getMapHash(String currLayout) 
 	{
@@ -70,17 +101,7 @@ public class Map{
 	{
 		return type.getEntryAmount();
 	}
-	
-	//sets the rooms into the array list of type room
-	public static void setRoomList(ArrayList<Room> roomList) {
-		roomList.add(curRoom);
-	}
-	
-	//retrieves the rooms from the array list of type room
-	public static ArrayList<Room> getRoomList() {
-		return roomList;
-	}
-	
+
 	// sets the random spawns into a hash map that uses the room as a key and roomSpawns as the value
 	public static void setRandSpawns(HashMap <Room, ArrayList<Coordinates>> randSpawns) {
 		Map.randSpawns = randSpawns;
@@ -107,18 +128,20 @@ public class Map{
 	}
 	
 	//sets boss onto an array list of coordinates
-	public static void setBossSpawn(HashMap <Boss, ArrayList<Coordinates>> bossSpawn) {
-		bossSpawn.put(biggerBadGuy, roomSpawns);
+	public static void setBossSpawn(Boss boss, Coordinates h) {
+		bossSpawn.put(biggerBadGuy, location);
 	}
 	//TODO fix the other functions to properly do what they need to do
 	
-	public static void somethingThatWouldMakeSense(String args[]) 
+	public static void test(String args[]) 
 	{
 		Coordinates danger = new Coordinates(300,500);
 		Coordinates inTheWay = new Coordinates (250,700);
 		setEnemySpawn(badGuy, danger);
-		setRoomSpawns(danger, roomSpawns);	
-		react = new Interactions(interactionType.obstacle_rock);
+		setEnemyRoomSpawns(enemySpawn,enemyRoomSpawns);	
+		inter = new Interactions(interactionType.obstacle_rock);
+		setInteractions(inter, inTheWay);
+		setInteractionsToRoom(reaction, curRoom);
 		
 	}
 	
