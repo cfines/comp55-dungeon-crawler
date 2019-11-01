@@ -26,6 +26,9 @@ public class Room {
 	 * - room layout
 	 * - powerups*/
 	
+	/*TODO: create hashmap where the key will be the name of an entry point (E1, E2, E3 etc) that will 
+	 * return the room these entry points will be in*/
+	
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
 	public void createNumEntries(int amount) {
