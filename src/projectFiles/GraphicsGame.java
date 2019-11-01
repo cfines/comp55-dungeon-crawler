@@ -17,6 +17,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public Enemy testEnemy;
 	public GImage enemyRep;
 	public Map testMap;
+	public GImage weapon;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -59,6 +60,11 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			testUser.moveX(-testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
 			
+		} else if (pressedKey == KeyEvent.VK_E) {
+			
+			testUser.cycleWeapon();
+			drawSword(testUser);
+			
 		}
 		
 	}
@@ -72,6 +78,30 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		enemyRep = new GImage("ghost_enemy.gif", 500, 300);
 		enemyRep.setSize(75, 75);
 		add(enemyRep);
+		
+		weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+		weapon.setSize(100,100);
+		add(weapon);
+		
+	}
+	
+	public void drawSword(User input_user)	{
+		
+		remove(weapon);
+		
+		if(input_user.getWeaponEquiped() == 0) {
+			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else if (input_user.getWeaponEquiped() == 1) {
+			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else {
+			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		}
 		
 	}
 	
