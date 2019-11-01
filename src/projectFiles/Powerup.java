@@ -3,6 +3,7 @@ package projectFiles;
 public class Powerup {
 	private itemType type;
 	private User player;
+	private Stats playerStats;
 	private int atkSpd, moveSpd, hp;
 	private double power;
 	
@@ -31,22 +32,29 @@ public class Powerup {
 	}
 	
 //TODO change the stat values depending on which power-up is picked up
-	private Stats changeStat() {
+	private User changeStat() {
 		switch(type) {
 		case HPRECOVERY: 
 		case ATKSPEED: 
 			//Powerups increase stat by one (can change later)
 			atkSpd += 1;
 			player.setAtkSpeedStat(atkSpd);
+			return player;
 		case MOVESPEED: 
 			moveSpd += 1;
 			player.setMoveSpeedStat(moveSpd);
+			return player;
 		case POWERSTAT: 
 			power += 1;
 			player.setPowerStat(power);
+			return player;
 		case HPINCREASE: 
 			hp += 1;
-			player.set
+			playerStats.setHP_tot(hp);
+			player.setUserStats(playerStats);
+			return player;
+		default:
+			return player;
 		}
 	}
 }

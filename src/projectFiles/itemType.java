@@ -1,15 +1,16 @@
 package projectFiles;
 
 public enum itemType {
-HPRECOVERY, ATKSPEED, MOVESPEED, POWERSTAT, HPINCREASE;
+HPRECOVERY, ATKSPEED, MOVESPEED, POWERSTAT, HPINCREASE, KEY;
 	
 	public String toString() {
 		switch(this) {
 			case HPRECOVERY: return "active_hprecovery";
-			case ATKSPEED: return "passive_atkspeed";
-			case MOVESPEED: return "passive_movespeed";
-			case POWERSTAT: return "passive_powerstat";
-			case HPINCREASE: return "passive_hpincrease";
+			case ATKSPEED: return "atkspeed";
+			case MOVESPEED: return "movespeed";
+			case POWERSTAT: return "powerstat";
+			case HPINCREASE: return "hpincrease";
+			case KEY: return "key";
 		}
 		return "n/a";
 	}

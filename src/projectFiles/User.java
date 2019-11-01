@@ -145,7 +145,7 @@ public class User {
 		userStats.setCoordY(userStats.getCoordY() + move);
 	}
 	
-	public void run() {
+	public static void main(String[] args) {
 		System.out.println("lol");
 	}
 }
