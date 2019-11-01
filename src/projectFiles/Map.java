@@ -12,9 +12,8 @@ public class Map{
 	private static MapLayout type;
 	private static Enemy badGuy;
 	private static Boss biggerBadGuy;
-	private static Interactions entries;
+	private static Room curRoom;
 	private static ArrayList<Room> roomList = new ArrayList<Room>();
-	private	static Room curRoom;
 	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
 	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private static HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
@@ -50,11 +49,11 @@ public class Map{
 	{	
 		for(int i = 0; i < roomSpawns.size();i++) 
 		{
-			System.out.println("X Coordinate #" + i + " " + roomSpawns.get(i).getX());
+			roomSpawns.get(i).getX();
 		}
 		for(int j = 0; j < roomSpawns.size(); j++) 
 		{
-			System.out.println("Y Coordinate #"+ j + " " + roomSpawns.get(j).getY());
+			roomSpawns.get(j).getY();
 		}
 	}
 	
@@ -68,10 +67,9 @@ public class Map{
 		return type.getEntryAmount();
 	}
 	
-	
 	//sets the rooms into the array list of type room
 	public static void setRoomList(ArrayList<Room> roomList) {
-		Map.roomList = roomList;
+		roomList.add(curRoom);
 	}
 	
 	//retrieves the rooms from the array list of type room
@@ -96,15 +94,17 @@ public class Map{
 	
 	// sets enemy onto an array list of coordinates
 	public static void setEnemySpawn(HashMap <Enemy, ArrayList<Coordinates>> enemySpawn) {
-		Map.enemySpawn = enemySpawn;
+		enemySpawn.put(badGuy, roomSpawns);
 	}
 	
+	// gets coordinates from the boss
 	public static HashMap <Boss, ArrayList<Coordinates>> getBossSpawn() {
 		return bossSpawn;
 	}
 	
+	//sets boss onto an array list of coordinates
 	public static void setBossSpawn(HashMap <Boss, ArrayList<Coordinates>> bossSpawn) {
-		Map.bossSpawn = bossSpawn;
+		bossSpawn.put(biggerBadGuy, roomSpawns);
 	}
 	//TODO fix the other functions to properly do what they need to do
 	
