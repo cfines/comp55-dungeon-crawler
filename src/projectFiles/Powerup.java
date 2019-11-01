@@ -34,6 +34,7 @@ public class Powerup {
 //TODO change the stat values depending on which power-up is picked up
 	private User changeStat() {
 		switch(type) {
+		//TODO implement this boi
 		case HPRECOVERY: 
 		case ATKSPEED: 
 			//Powerups increase stat by one (can change later)
@@ -53,6 +54,8 @@ public class Powerup {
 			playerStats.setHP_tot(hp);
 			player.setUserStats(playerStats);
 			return player;
+		case KEY:
+			//Maybe add hasKey to the general constructor in user class
 		default:
 			return player;
 		}
