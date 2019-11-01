@@ -50,6 +50,10 @@ public class Room {
 		return Map.getMapHash(currLayout);
 	}
 	
+	public static ArrayList<String> getEntryAmount(){
+		return Map.getEntryAmount();
+	}
+	
 	public void createRoom() {}
 	
 	public static void main(String[] args) {
