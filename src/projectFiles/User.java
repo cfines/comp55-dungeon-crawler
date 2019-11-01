@@ -25,7 +25,7 @@ public class User {
 	
 	//Default Constructor
 	User(){
-		moveSpeedStat = 1;
+		moveSpeedStat = 7;
 		powerStat = 1;
 		atkSpeedStat = 1;
 		

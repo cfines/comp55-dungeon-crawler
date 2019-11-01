@@ -2,6 +2,7 @@ package projectFiles;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import acm.graphics.*;
 import acm.program.*;
@@ -38,6 +39,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	
 	public void keyPressed(KeyEvent e) {
 		
+		ArrayList<KeyEvent> input = new ArrayList<KeyEvent>();
 		int pressedKey = e.getKeyCode();
 		
 		if(pressedKey == KeyEvent.VK_W) {
@@ -60,7 +62,10 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			testUser.moveX(-testUser.getMoveSpeedStat());
 			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
 			
-		} else if (pressedKey == KeyEvent.VK_E) {
+		} 
+		
+		else if (pressedKey == KeyEv
+		else if (pressedKey == KeyEvent.VK_E) {
 			
 			testUser.cycleWeapon();
 			drawSword(testUser);
@@ -71,7 +76,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
 	public void testDraw() {
 		
-		userRep = new GImage("Rogue (Sample User).gif", 300, 300);
+		userRep = new GImage("Rogue_(Sample User).gif", 300, 300);
 		userRep.setSize(75, 75);
 		add(userRep);
 		
