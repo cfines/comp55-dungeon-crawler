@@ -5,71 +5,166 @@ import java.util.HashMap;
 
 // More like MapEntries but whatever
 public class MapLayout {
+	
+	private Floor floor;
+	
 	private String roomID;
 	private String entryID;		
-	private HashMap <String, String> mapHashStartEnd;
-	private HashMap <String, String> mapHashTeleporter;
-	private HashMap <String, String> mapHashUnpredictable;
-	private HashMap <String, String> mapHashMatrix;
-	private HashMap <String, String> mapHashEspeciallyThisOne;
+	private HashMap <String, String> mapHashStartEnd = new HashMap <String, String>();
+	private HashMap <String, String> mapHashTeleporter = new HashMap <String, String>();
+	private HashMap <String, String> mapHashUnpredictable = new HashMap <String, String>();
+	private HashMap <String, String> mapHashMatrix = new HashMap <String, String>();
+	private HashMap <String, String> mapHashEspeciallyThisOne = new HashMap <String, String>();
 	
 	private HashMap <String, String> mapHashTest = new HashMap <String, String>();
-	public int entryAmountofTest = 3;
-	public ArrayList<String> entryAmount = new ArrayList<String>();
+	private int entryAmountofLayout;
+	private ArrayList<String> entryAmount = new ArrayList<String>();
 	public String test;
 	
 	MapLayout(){
 		roomID = "";
 		entryID = "";
 		test = "";
-		
 	}
 	
-	// returns mapHashTest with hard coded values for the sake of testing 
-	// will be changed later
-	public HashMap<String, String> getMapHash() {
-		return mapHashTest;
+	public String whatMapWeOn() {
+		return floor.whatMapWeOn();
 	}
 	
-	public void setMapHash(ArrayList<String> thing, String thing2) {
-		getMapHash().put(entryAmount.get(0), entryAmount.get(1)); 
-		getMapHash().put(entryAmount.get(1), entryAmount.get(0)); 
-	}
-	
-	
-	/* TODO: connect class to the superclass Floor in order to receive what mapLayout the player will be on, and
-	to return the hard coded entries for said mapLayout */
-	
-	/* TODO: Rework parameters for getters and setters of the entry points based on the map layout which will be
-	   taken from floor. */
-	
-	// based on the mapLayout, this for loop 
-	public ArrayList<String> entryAmount(int amountOfEntries) {
-		 for(int i = 1; i <= amountOfEntries; i++) {
-			String temp = new String("E" + i);
-			entryAmount.add(temp);
-		 } 
-		 return entryAmount;
+	public int getEntryAmountofLayout() {
+		return entryAmountofLayout;
 	}
 	
 	public ArrayList<String> getEntryAmount() {
 		return entryAmount;
 	}
 	
-	public void runTest() {
-		test = entryAmount.get(0);
-		System.out.println("User enters E1, the HashMap should spit out where the user will pop out from which shoudl be E2. Does it?:    "
-				+ getMapHash().get(test));
-		test = entryAmount.get(1);
-		System.out.println("User enters E2, the HashMap should spit out where the user will pop out from which shoudl be E1. Does it?:    "
-				+ getMapHash().get(test));
+	public void setEntryAmountofLayout(int amount) {
+		entryAmountofLayout = amount;
 	}
 	
+	public HashMap<String, String> getMapHashStartEnd(){
+		return mapHashStartEnd;
+	}
+	
+	public HashMap<String, String> getMapHashTeleporter(){
+		return mapHashTeleporter;
+	}
+	
+	public HashMap<String, String> getmapHashUnpredictable(){
+		return mapHashUnpredictable;
+	}
+	
+	public HashMap<String, String> getmapHashMatrix(){
+		return mapHashMatrix;
+	}
+	
+	public HashMap<String, String> getmapHashEspeciallyThisOne(){
+		return mapHashEspeciallyThisOne;
+	}
+	
+	/* This could have also been done with the level counter
+	 * but I chose to set the amount of entries based off of
+	 * the string instead of the level number.
+	 */
+	public void setEntryAmountBasedonLayout(String currLayout) {
+		if(currLayout == "map_base1") {
+			setEntryAmountofLayout(6); //TBD
+		}
+		else if(currLayout == "map_fire") {
+			setEntryAmountofLayout(0); //TBD
+		}
+		else if(currLayout == "map_water") {
+			setEntryAmountofLayout(0); //TBD
+		}
+		else if(currLayout == "map_earth") {
+			setEntryAmountofLayout(0); //TBD
+		}
+		else {
+			setEntryAmountofLayout(0); //TBD
+		} 
+	}
+	
+	// based on the mapLayout, this for loop 
+	public void setEntryAmount(int amountOfEntries) {
+		for(int i = 1; i <= amountOfEntries; i++) {
+			String temp = new String("E" + i);
+			getEntryAmount().add(temp);
+		}
+	}
+	
+	// Sets hard coded entry points for the current map 
+	public void setMapHash(String currLayout) {
+		if(currLayout == "map_base1") {
+			getMapHashStartEnd().put(getEntryAmount().get(0), getEntryAmount().get(1));
+			getMapHashStartEnd().put(getEntryAmount().get(1), getEntryAmount().get(0));
+			getMapHashStartEnd().put(getEntryAmount().get(2), getEntryAmount().get(3));
+			getMapHashStartEnd().put(getEntryAmount().get(3), getEntryAmount().get(2));
+			getMapHashStartEnd().put(getEntryAmount().get(4), getEntryAmount().get(5));
+			getMapHashStartEnd().put(getEntryAmount().get(5), getEntryAmount().get(4));
+		}
+		/*else if(currLayout == "map_fire") {
+			return mapHashTeleporter;
+		}
+		else if(currLayout == "map_water") {
+			return mapHashUnpredictable;
+		}
+		else if(currLayout == "map_earth") {
+			return mapHashMatrix;
+		}
+		else {
+			return mapHashEspeciallyThisOne;
+		}*/
+	}
+	
+	/* Returns the hash map based off the current layout string.
+	 * Again, I could have used the level counter as an alternative way 
+	 * but I just decided to go with the current layout string.*/
+	public HashMap<String, String> getMapHash(String currLayout) {
+		if(currLayout == "map_base1") {
+			return mapHashStartEnd;
+		}
+		else if(currLayout == "map_fire") {
+			return mapHashTeleporter;
+		}
+		else if(currLayout == "map_water") {
+			return mapHashUnpredictable;
+		}
+		else if(currLayout == "map_earth") {
+			return mapHashMatrix;
+		}
+		else {
+			return mapHashEspeciallyThisOne;
+		}
+	}
+	
+	public void runTest() {
+		String currMap = "map_base1"; // will be replaced with whatMapWeOn() when the program is actually running
+		HashMap<String, String> mapHashCurrMap;
+		int temp;
+		setEntryAmountBasedonLayout(currMap);
+		temp = getEntryAmountofLayout();
+		setEntryAmount(temp);
+		setMapHash(currMap);
+		mapHashCurrMap = getMapHash(currMap);
+		
+		System.out.println("The current map (which would be recieved from Floor) is 'map_base1'.");
+		System.out.println("The player enters E1 of 'map_base1' and should exit out of E2. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(0)));
+		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(1)));
+		System.out.println("The player enters E5 of 'map_base1' and should exit out of E6. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(4)));
+		System.out.println("The player enters E6 of 'map_base1' and should exit out of E5. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(5)));
+		
+		
+	}	
+	/*The order of calling functions in this class goes as follows:
+	 * - whatMapWeOn
+	 * - setEntryBasedonLayout
+	 * - setEntryAmount
+	 * - setMapHash
+	 * - getMapHash*/
 	public static void main(String[] args){
 		
 		MapLayout testt = new MapLayout();
-	//	testt.entryAmount();
-	//	testt.setMapHash();
 		testt.runTest();
 	}
 	
