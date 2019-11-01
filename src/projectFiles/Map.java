@@ -10,6 +10,7 @@ public class Map{
 	
 	//instance variables
 	private static MapLayout type;
+	private static MapRooms rooms;
 	private static Enemy badGuy;
 	private static Boss biggerBadGuy;
 	private static Room curRoom;
@@ -100,6 +101,16 @@ public class Map{
 	public static ArrayList<String> getEntryAmount()
 	{
 		return type.getEntryAmount();
+	}
+	
+	public static HashMap<String, String> getMapRoomHash(String currLayout)
+	{
+		return rooms.getMapRoomHash(currLayout);
+	}
+	
+	public static ArrayList<String> getRoomAmount()
+	{
+		return rooms.getRoomAmount();
 	}
 
 	// sets the random spawns into a hash map that uses the room as a key and roomSpawns as the value
