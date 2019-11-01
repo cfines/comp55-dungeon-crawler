@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public class Room {
 	roomLayout roomLayout;
+	private Map map;
 	private Interactions interactionClass;
 	private boolean isKeyRoom;
 	private int numEntries;
@@ -30,6 +31,9 @@ public class Room {
 	 * return the room these entry points will be in. Remember to name each gRect what will be an entry
 	 * the proper entry name (E1, E2, E3, etc)*/
 	
+	public Map map() {
+		return map;
+	}
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
 	public void createNumEntries(int amount) {
