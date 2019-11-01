@@ -14,7 +14,7 @@ public class User {
 	private int atkSpeedStat;
 	
 	//Weapon Inventory variables
-	private int arrEquiped;
+	private int weaponEquiped;
 	private ArrayList<Weapon> weapons;
 	
 	//Other user-specific variables
@@ -29,7 +29,7 @@ public class User {
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
-		arrEquiped = 0;
+		weaponEquiped = 0;
 		setupWeapons();
 		
 		numConsumable = 0;
@@ -45,7 +45,7 @@ public class User {
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
-		arrEquiped = 0;
+		weaponEquiped = 0;
 		weapons = new ArrayList<>();
 		setupWeapons();
 		
@@ -87,6 +87,10 @@ public class User {
 	public void setAtkSpeedStat(int atkSpeedStat) {
 		this.atkSpeedStat = atkSpeedStat;
 	}
+	
+	public int getWeaponEquiped() {
+		return weaponEquiped;
+	}
 
 	public ArrayList<Weapon> getWeapons() {
 		return weapons;
@@ -124,16 +128,15 @@ public class User {
 	}
 	
 	//Cycle of weapons for quickslot
-	public Weapon cycleWeapon() {
+	public void cycleWeapon() {
 		
 		//Loop back to beginning of weapons array if applicable
-		if(arrEquiped == 2) {
-			arrEquiped = 0;
+		if(weaponEquiped == 2) {
+			weaponEquiped = 0;
 		} else {
-			arrEquiped++;
+			weaponEquiped++;
 		}
-		
-		return weapons.get(arrEquiped);
+
 		
 	}
 	
