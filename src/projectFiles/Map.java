@@ -52,10 +52,10 @@ public class Map{
 		}
 	}
 	
-	public static HashMap<String, String> getMapHash() 
+	/*public static HashMap<String, String> getMapHash() 
 	{
 		return type.getMapHash();
-	}
+	}*/
 	
 //	public static void setMapHash() 
 	//{
