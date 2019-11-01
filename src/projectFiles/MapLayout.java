@@ -16,7 +16,6 @@ public class MapLayout {
 	private HashMap <String, String> mapHashMatrix = new HashMap <String, String>();
 	private HashMap <String, String> mapHashEspeciallyThisOne = new HashMap <String, String>();
 	
-	private HashMap <String, String> mapHashTest = new HashMap <String, String>();
 	private int entryAmountofLayout;
 	private ArrayList<String> entryAmount = new ArrayList<String>();
 	public String test;
@@ -26,6 +25,7 @@ public class MapLayout {
 		entryID = "";
 		test = "";
 	}
+	
 	
 	public String whatMapWeOn() {
 		return floor.whatMapWeOn();
@@ -85,7 +85,7 @@ public class MapLayout {
 		} 
 	}
 	
-	// based on the mapLayout, this for loop 
+	// based on the amount of entries of the specified map layout, this for loop will create that amount of entries
 	public void setEntryAmount(int amountOfEntries) {
 		for(int i = 1; i <= amountOfEntries; i++) {
 			String temp = new String("E" + i);
@@ -104,16 +104,16 @@ public class MapLayout {
 			getMapHashStartEnd().put(getEntryAmount().get(5), getEntryAmount().get(4));
 		}
 		/*else if(currLayout == "map_fire") {
-			return mapHashTeleporter;
+			
 		}
 		else if(currLayout == "map_water") {
-			return mapHashUnpredictable;
+			
 		}
 		else if(currLayout == "map_earth") {
-			return mapHashMatrix;
+			
 		}
 		else {
-			return mapHashEspeciallyThisOne;
+			
 		}*/
 	}
 	
