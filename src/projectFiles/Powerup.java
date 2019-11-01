@@ -14,15 +14,15 @@ public class Powerup {
 		return type;
 	}
 	
-	private int setAtkSpd() {
+	private void setAtkSpd() {
 		atkSpd = player.getAtkSpeedStat();
 	}
 	
-	private int setMoveSpd() {
+	private void setMoveSpd() {
 		moveSpd = player.getMoveSpeedStat();
 	}
 	
-	private int setPower() {
+	private void setPower() {
 		power = player.getPowerStat();
 	}
 	
@@ -34,10 +34,19 @@ public class Powerup {
 	private Stats changeStat() {
 		switch(type) {
 		case HPRECOVERY: 
-		case ATKSPEED: player.getUserStats().setAtkTimer(atkTimer);
+		case ATKSPEED: 
+			//Powerups increase stat by one (can change later)
+			atkSpd += 1;
+			player.setAtkSpeedStat(atkSpd);
 		case MOVESPEED: 
+			moveSpd += 1;
+			player.setMoveSpeedStat(moveSpd);
 		case POWERSTAT: 
+			power += 1;
+			player.setPowerStat(power);
 		case HPINCREASE: 
+			hp += 1;
+			player.set
 		}
 	}
 }
