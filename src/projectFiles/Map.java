@@ -52,25 +52,16 @@ public class Map{
 		}
 	}
 	
-	/*public static HashMap<String, String> getMapHash() 
+	public static HashMap<String, String> getMapHash(String currLayout) 
 	{
-		return type.getMapHash();
-	}*/
-	
-//	public static void setMapHash() 
-	//{
-	//	type.setMapHash();
-	//}
+		return type.getMapHash(currLayout);
+	}
 	
 	public static ArrayList<String> getEntryAmount()
 	{
 		return type.getEntryAmount();
 	}
 	
-	//public static void setEntryAmount() 
-	//{
-	//	type.entryAmount();
-	//}
 	
 	//sets the rooms into the array list of type room
 	public static void setRoomList(ArrayList<Room> roomList) {

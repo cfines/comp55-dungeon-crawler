@@ -36,31 +36,19 @@ public class Room {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
 	
-	public static void setMapHash() {
-//		Map.setMapHash();
-	}
-	
-	public static HashMap<String,String> getMapHash() {
+	public static HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
-		return Map.getMapHash();
+		return Map.getMapHash(currLayout);
 	}
 	
 	public static ArrayList<String> getEntryAmount(){
 		return Map.getEntryAmount();
 	}
-	public static void setEntryAmount() {
-//		Map.setEntryAmount();
-	}
 	
 	public void createRoom() {}
 	
 	public static void main(String[] args) {
-	//	setMapHash();
-		setEntryAmount();
-		entryPoints = getMapHash();
-		entryAmount = getEntryAmount();
-		
-		System.out.println("User enters E1 and should exit E2...does it:   " + entryPoints.get(entryAmount.get(0)));
+	
 	}
 	
 	
