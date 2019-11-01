@@ -36,13 +36,14 @@ public class Room {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
 	
+	/*This function points to MapLayout and returns the HashMap of entries
+	 * of the current map layout the user is in. What dictates the specific
+	 * HashMap that will be returned will be based off of Floor that MapLayout
+	 * will receive. It will get the hard coded entry points within the class
+	 * and assign it to the HashMap that will be returned.*/
 	public static HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
 		return Map.getMapHash(currLayout);
-	}
-	
-	public static ArrayList<String> getEntryAmount(){
-		return Map.getEntryAmount();
 	}
 	
 	public void createRoom() {}
