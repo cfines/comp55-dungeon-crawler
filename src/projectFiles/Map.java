@@ -10,12 +10,17 @@ public class Map{
 	
 	//instance variables
 	private static MapLayout type;
+	private static Enemy badGuy;
+	private static Boss biggerBadGuy;
 	private static Interactions entries;
 	private static ArrayList<Room> roomList = new ArrayList<Room>();
 	private	static Room curRoom;
 	private static ArrayList<Coordinates> roomSpawns = new ArrayList<Coordinates>();
 	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private static HashMap <Interactions, Room> roomReact = new HashMap<Interactions,Room>();
+	private static HashMap <Enemy, ArrayList<Coordinates>> enemySpawn = new HashMap <Enemy, ArrayList<Coordinates>>();
+	private static HashMap <Boss, ArrayList<Coordinates>> bossSpawn = new HashMap <Boss, ArrayList<Coordinates>>();
+	
 	
 	//basic constructor
 	Map()
@@ -82,6 +87,22 @@ public class Map{
 	public static HashMap <Room, ArrayList<Coordinates>> getRandSpawns() {
 		return randSpawns;
 	}
+	
+	public static HashMap <Enemy, ArrayList<Coordinates>> getEnemySpawn() {
+		return enemySpawn;
+	}
+	
+	public static void setEnemySpawn(HashMap <Enemy, ArrayList<Coordinates>> enemySpawn) {
+		Map.enemySpawn = enemySpawn;
+	}
+	
+	public static HashMap <Boss, ArrayList<Coordinates>> getBossSpawn() {
+		return bossSpawn;
+	}
+	
+	public static void setBossSpawn(HashMap <Boss, ArrayList<Coordinates>> bossSpawn) {
+		Map.bossSpawn = bossSpawn;
+	}
 	//TODO fix the other functions to properly do what they need to do
 	
 	//big boi testing right here
@@ -103,6 +124,5 @@ public class Map{
 		getRoomSpawns();
 		
 	}
-
 
 }
