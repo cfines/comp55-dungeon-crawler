@@ -104,10 +104,10 @@ public class Room {
 		Map.setInteractionsToRoom(reaction, room);
 		
 		System.out.println("The current room the user is in is: " + currMapTest);
-		System.out.println("There is an enemy that is of type: " + );
-		System.out.println("This enemy is located on: " + );
-		System.out.println("There is an interaction that is of this type: " + );
-		System.out.println("This interaction is located on: " + );
+		System.out.println("There is an enemy that is of type: " + enemySpawn.get(badGuy.getEnemyType()));
+		System.out.println("This enemy is located on: X = " + enemyRoomSpawns.get(danger.getX()) + " Y = " + enemyRoomSpawns.get(danger.getY()));
+		System.out.println("There is an interaction that is of this type: " + reaction.get(inter.getinteractionType()));
+		System.out.println("This interaction is located on: X = " + reaction.get(inTheWay.getX()) + " Y = " + reaction.get(inTheWay.getY()));
 	}
 	
 	// roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
