@@ -63,7 +63,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			drawSword();
 		}	
 		
-		if(ae.getKeyCode() == KeyEvent.VK_Q) {
+		if(ae.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			runPauseMenu();
 		}
 		
