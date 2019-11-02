@@ -32,8 +32,8 @@ public class Room {
 	 * return the room these entry points will be in. Remember to name each gRect what will be an entry
 	 * the proper entry name (E1, E2, E3, etc)*/
 	
-	public static Map getMapClass() {
-		return map;
+	public static String whatMapWeOn() {
+		return Map.whatMapWeOn();
 	}
 	
 	public static ArrayList<Interactions> getEntries(){
@@ -60,11 +60,11 @@ public class Room {
 	 * and assign it to the HashMap that will be returned.*/
 	public static HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
-		return getMapClass().getMapHash(currLayout);
+		return Map.getMapHash(currLayout);
 	}
 	
 	public static ArrayList<String> getEntryAmount(){
-		return getMapClass().getEntryAmount();
+		return Map.getEntryAmount();
 	}
 	
 	public static HashMap<String, String> getMapRoomHash(String currLayout){
@@ -87,15 +87,36 @@ public class Room {
 		return Map.getBossSpawn();
 	}
 	
-	
-	Room(roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns){
-		roomLayout = layout;
+	public static void testCase() {
+		String currMapTest = "map_base1";
+		HashMap<Enemy, Coordinates> enemySpawn = new HashMap<Enemy, Coordinates>();
+		HashMap<Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
+		ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
+		Coordinates danger = new Coordinates(300,500);
+		Coordinates inTheWay = new Coordinates (250,700);
+		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
+		Room room = new Room();
 		
+		Map.setEnemySpawn(badGuy, danger);
+		Map.setEnemyRoomSpawns(enemySpawn,enemyRoomSpawns);	
+		Interactions inter = new Interactions(interactionType.obstacle_rock);
+		Map.setInteractions(inter, inTheWay);
+		Map.setInteractionsToRoom(reaction, room);
+		
+		System.out.println("The current room the user is in is: " + currMapTest);
+		System.out.println("There is an enemy that is of type: " + );
+		System.out.println("This enemy is located on: " + );
+		System.out.println("There is an interaction that is of this type: " + );
+		System.out.println("This interaction is located on: " + );
 	}
+	
+	// roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
+	
+	Room(){}
+	
 	
 	public static void main(String[] args) {
-	
-	}
-	
-	
+		Room test = new Room();
+		test.testCase();
+	}	
 }

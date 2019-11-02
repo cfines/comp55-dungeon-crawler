@@ -11,6 +11,7 @@ public class Map{
 	//instance variables
 	private static MapLayout type;
 	private static MapRooms rooms;
+	private static Floor floor;
 	private static Enemy badGuy;
 	private static Boss biggerBadGuy;
 	private static Room curRoom;
@@ -27,9 +28,10 @@ public class Map{
 	private static HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
 	
 	//basic constructor
-	Map()
-	{
-		
+	Map(){}
+	
+	public static String whatMapWeOn() {
+		return floor.whatMapWeOn();
 	}
 	
 	//sets the interaction to a room
