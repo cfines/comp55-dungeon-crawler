@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Room {
 	private static roomLayout roomLayout;
-	private static Map map;
+	private static Map map = new Map();
 	private static Interactions interactionClass;
 	private static boolean isKeyRoom;
 	private static int numEntries;
@@ -13,9 +13,6 @@ public class Room {
 	private static ArrayList<Interactions> obstacles;
 	private static HashMap<String,String> entryPoints;
 	private static ArrayList<String> entryAmount;
-	private static ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
-	private static HashMap<Enemy, Coordinates> enemySpawn = new HashMap<Enemy, Coordinates>();
-	private static HashMap<Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	
 	// gets the room layout from the roomLayout enum
 	public roomLayout getRoomLayout() {
@@ -35,7 +32,7 @@ public class Room {
 	 * the proper entry name (E1, E2, E3, etc)*/
 	
 	public static String whatMapWeOn() {
-		return Map.whatMapWeOn();
+		return map.whatMapWeOn();
 	}
 	
 	public static ArrayList<Interactions> getEntries(){
@@ -62,31 +59,35 @@ public class Room {
 	 * and assign it to the HashMap that will be returned.*/
 	public static HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
-		return Map.getMapHash(currLayout);
+		return map.getMapHash(currLayout);
 	}
 	
 	public static ArrayList<String> getEntryAmount(){
-		return Map.getEntryAmount();
+		return map.getEntryAmount();
 	}
 	
 	public static HashMap<String, String> getMapRoomHash(String currLayout){
-		return Map.getMapRoomHash(currLayout);
+		return map.getMapRoomHash(currLayout);
 	}
 	
 	public static ArrayList<String> getRoomAmount(){
-		return Map.getRoomAmount();
+		return map.getRoomAmount();
 	}
 	
-	public static HashMap <HashMap<Interactions, Coordinates>, Room> getInteractionsFromRoom(){
-		return Map.getInteractionsFromRoom();
-	}
+	//TODO change the functionality of this so that it works in room because
+	//I just realized that it makes no sense to have a function that gets interactions from a room
+	//from map
+	
+	//public static HashMap <HashMap<Interactions, Coordinates>, Room> getInteractionsFromRoom(){
+	//	return Map.getInteractionsFromRoom();
+	//}
 	
 	public static HashMap<Enemy, Coordinates> getEnemySpawn(){
-		return Map.getEnemySpawn();
+		return map.getEnemySpawn();
 	}
 	
 	public static HashMap<Boss, Coordinates> getBossSpawn(){
-		return Map.getBossSpawn();
+		return map.getBossSpawn();
 	}
 	
 	public static void testCase() {
@@ -94,23 +95,25 @@ public class Room {
 		Coordinates danger = new Coordinates(30,50);
 		Coordinates inTheWay = new Coordinates (25,70);
 		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
-		Room room = new Room();
+		HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
+		ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
+		HashMap<Interactions,Coordinates> ree = new HashMap<Interactions,Coordinates>();
+		Map map = new Map();
 		
-		Map.setEnemySpawn(badGuy, danger);
-		Map.setEnemyRoomSpawns(enemySpawn,enemyRoomSpawns);	
 		Interactions inter = new Interactions(interactionType.obstacle_rock);
-		Map.setInteractions(inter, inTheWay);
-		Map.setInteractionsToRoom(reaction, room);
+		map.setInteractions(inter, inTheWay, ree);
+		
 		
 		System.out.println("The current room the user is in is: " + currMapTest);
 		System.out.println("There is an enemy that is of type: " + badGuy.getEnemyType());
-		System.out.println("This enemy is located on: X = \n");
-		System.out.println(enemyRoomSpawns);
-		
-		
-		//System.out.println(enemyRoomSpawns);
-		//System.out.println("There is an interaction that is of this type: " + reaction.get(inter.getinteractionType()));
-		//System.out.println("This interaction is located on: X = " + reaction.get(inTheWay.getX()) + " Y = " + reaction.get(inTheWay.getY()));
+		System.out.println("This enemy is located on: \nX = ");
+		map.setEnemySpawn(badGuy, danger, enemySpawn);
+		//map.setEnemyRoomSpawns(enemySpawn,enemyRoomSpawns);	
+		System.out.println(map.getEnemyRoomX());
+		System.out.println("\nY = ");
+		System.out.println(map.getEnemyRoomY());
+		System.out.println("There is an interaction that is of this type: " + inter.getinteractionType());
+		System.out.println("This interaction is located on: X = " + ree.get(inter).getX() + " Y = " + ree.get(inter).getY());
 	}
 	
 	// roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
