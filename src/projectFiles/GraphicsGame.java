@@ -188,7 +188,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			
 			System.out.println("You are in the menu!");
 			
-			//timer = new Timer();
+			//timer = new Timer();//
 			
 		}
 		
