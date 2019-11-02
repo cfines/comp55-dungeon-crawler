@@ -12,8 +12,7 @@ public class User {
 	private int moveSpeedStat;
 	private double powerStat;
 	private int atkSpeedStat;
-	private int velX;
-	private int velY;
+	private int dx, dy;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -55,6 +54,19 @@ public class User {
 		numConsumable = 0;
 		hasKey = false;
 		
+	}
+	
+	public void tick() {
+		userStats.setCoordX(userStats.getCoordX() + dx);
+		userStats.setCoordY(userStats.getCoordY() + dy);
+	}
+	
+	public void setDX(int input_dx) {
+		dx = input_dx;
+	}
+	
+	public void setDY(int input_dy) {
+		dy = input_dy;
 	}
 
 	//GETTERS AND SETTERS//
@@ -115,6 +127,14 @@ public class User {
 		this.hasKey = hasKey;
 	}
 	
+	public int getCoordX() {
+		return userStats.getCoordX();
+	}
+	
+	public int getCoordY() {
+		return userStats.getCoordY();
+	}
+	
 	/////////////////////////////////////////
 	
 	//Creation of weapons and storing them in weapons array
@@ -143,22 +163,6 @@ public class User {
 		
 	}
 	
-	public void setVelX(int input_VelX) {
-		velX = input_VelX;
-	}
 	
-	public void setVelY(int input_VelY) {
-		velY = input_VelY;
-	}
-	
-	
-	public void move() {
-		userStats.setCoordX(userStats.getCoordX() + velX); 
-		userStats.setCoordY(userStats.getCoordY() + velY);
-	}
-	
-	
-	public static void main(String[] args) {
-		System.out.println("lol");
-	}
+
 }

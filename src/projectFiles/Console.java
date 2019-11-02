@@ -13,7 +13,7 @@ public class Console extends GraphicsProgram {
 	private Room room;
 	private User user;
 	private Enemy enemy;
-	private int pressedKey;
+	private int keyInput;
 	
 	public void run() {
 		
@@ -26,56 +26,54 @@ public class Console extends GraphicsProgram {
 		enemy = new Enemy(5, 5, 2000, 1, 500, 300, ElementType.FIRE);
 	}
 	
+	public void actionPerformed(KeyEvent ae) {
+		user.tick();
+	}
+	
 	public void keyPressedManager(KeyEvent e) {
 		
-		pressedKey = e.getKeyCode();
+		keyInput = e.getKeyCode();
 		
-		if(pressedKey == KeyEvent.VK_W) {
-			
-			user.setVelY(user.getMoveSpeedStat());
-
-		} else if (pressedKey == KeyEvent.VK_S){
-
-			user.setVelY(-user.getMoveSpeedStat());
-
-		} else if (pressedKey == KeyEvent.VK_D) {
-			
-			user.setVelX(user.getMoveSpeedStat());
+		switch(keyInput) {
+		case KeyEvent.VK_W:
+			user.setDY(-user.getMoveSpeedStat());
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(user.getMoveSpeedStat());
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(user.getMoveSpeedStat());
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(-user.getMoveSpeedStat());
+			break;
+		case KeyEvent.VK_E:
+			break;
+		}
 		
-		} else if (pressedKey == KeyEvent.VK_A) {
-			
-			user.setVelX(-user.getMoveSpeedStat());
-			
-		} 
-		
-		user.move();
+		actionPerformed(e);
 		
 	}
 	
 	public void keyReleasedManager(KeyEvent e) {
 		
-		pressedKey = e.getKeyCode();
+		keyInput = e.getKeyCode();
 		
-		if(pressedKey == KeyEvent.VK_W) {
-			
-			user.setVelY(0);
-
-		} else if (pressedKey == KeyEvent.VK_S){
-
-			user.setVelY(0);
-			
-		} else if (pressedKey == KeyEvent.VK_D) {
-			
-			user.setVelX(0);
-		
-		} else if (pressedKey == KeyEvent.VK_A) {
-			
-			user.setVelX(0);
-			
-		} else if (pressedKey == KeyEvent.VK_E) {
-			
-			user.cycleWeapon();
-			
+		switch(keyInput) {
+		case KeyEvent.VK_W:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_E:
+			break;
 		}
 		
 	}

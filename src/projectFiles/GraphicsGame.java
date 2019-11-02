@@ -11,7 +11,7 @@ import acm.graphics.*;
 import acm.program.*;
 import starter.GButton;
 
-public class GraphicsGame extends GraphicsProgram implements KeyListener {
+public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
@@ -50,10 +50,10 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		game = new Console();
 		game.run();
 		
-		while(playing) {
-			game.getUser().move();
-		}
-		
+	}
+	
+	public void actionPerformed(KeyEvent ae) {
+		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -61,8 +61,9 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		if(inMenu) { return; }
 			
 		game.keyPressedManager(e);
-		userRep.setLocation(userRep.getX(), userRep.getY());
-			
+		
+		actionPerformed(e);
+		
 		if(pressedKey == KeyEvent.VK_E) {
 			
 			drawSword(game.getUser());
@@ -76,6 +77,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		
 		game.keyReleasedManager(e);
+		actionPerformed(e);
 		
 	}
 	
