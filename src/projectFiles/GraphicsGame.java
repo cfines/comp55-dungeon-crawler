@@ -22,6 +22,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage userRep;
 	public GImage enemyRep;
 	public GImage weapon;
+	public GImage floor;
 	
 	public boolean playing;
 	
