@@ -60,13 +60,18 @@ public class Map{
 		roomSpawns.add(random);
 	}
 	
-	//returns coordinates from enemy
-	public static void getEnemyRoomSpawns() 
+	//returns x-coordinates from enemy
+	public static void getEnemyRoomX() 
 	{	
 		for(int i = 0; i < enemyRoomSpawns.size();i++) 
 		{
 			enemyRoomSpawns.get(i).get(enemySpawn).getX();
 		}
+	}
+	
+	//returns y-coordinates from enemy
+	public static void getEnemyRoomY()
+	{
 		for(int j = 0; j < enemyRoomSpawns.size(); j++) 
 		{
 			enemyRoomSpawns.get(j).get(enemySpawn).getY();
@@ -78,13 +83,18 @@ public class Map{
 		bossRoom.add(random);
 	}
 		
-	//returns coordinates from boss
-	public static void getBossRoomSpawns() 
+	//returns x-coordinates from boss
+	public static void getBossRoomX() 
 	{	
 			for(int i = 0; i < bossRoomSpawns.size();i++) 
 			{
 				bossRoomSpawns.get(i).get(bossSpawn).getX();
 			}
+	}
+	
+	//returns y-coordinates from boss
+	public static void getBossRoomY()
+	{		
 			for(int j = 0; j < enemyRoomSpawns.size(); j++) 
 			{
 				bossRoomSpawns.get(j).get(bossSpawn).getY();
