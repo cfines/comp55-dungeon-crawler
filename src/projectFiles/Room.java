@@ -75,6 +75,14 @@ public class Room {
 		return Map.getRoomAmount();
 	}
 	
+	public static HashMap <HashMap<Interactions, Coordinates>, Room> getInteractionsFromRoom(){
+		return Map.getInteractionsFromRoom();
+	}
+	
+	public static void getEnemyRoomSpawns() {
+		
+	}
+	
 	
 	
 	public void createRoom() {}
