@@ -12,7 +12,7 @@ public class Map{
 	private MapLayout type;
 	private MapRooms rooms;
 	private Floor floor;
-	private Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.WATER);
+	private Enemy badGuy;
 	private Boss biggerBadGuy;
 	private Room curRoom = new Room();
 	private Interactions inter;

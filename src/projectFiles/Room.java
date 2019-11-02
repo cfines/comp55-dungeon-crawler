@@ -95,7 +95,7 @@ public class Room {
 		Coordinates danger = new Coordinates(30,50);
 		Coordinates inTheWay = new Coordinates (25,70);
 		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
-		HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
+		HashMap <Enemy, Coordinates> eS = new HashMap <Enemy, Coordinates>();
 		ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
 		HashMap<Interactions,Coordinates> ree = new HashMap<Interactions,Coordinates>();
 		Map map = new Map();
@@ -103,15 +103,17 @@ public class Room {
 		Interactions inter = new Interactions(interactionType.obstacle_rock);
 		map.setInteractions(inter, inTheWay, ree);
 		
-		
 		System.out.println("The current room the user is in is: " + currMapTest);
 		System.out.println("There is an enemy that is of type: " + badGuy.getEnemyType());
-		System.out.println("This enemy is located on: \nX = ");
-		map.setEnemySpawn(badGuy, danger, enemySpawn);
-		//map.setEnemyRoomSpawns(enemySpawn,enemyRoomSpawns);	
-		System.out.println(map.getEnemyRoomX());
-		System.out.println("\nY = ");
-		System.out.println(map.getEnemyRoomY());
+		
+		//The functions commented out only work in the Map class and nowhere else, not even here
+		
+		map.setEnemySpawn(badGuy, danger, eS);
+		map.setEnemyRoomSpawns(eS,enemyRoomSpawns);	
+		System.out.println("This enemy is located on: \nX = " + eS.get(badGuy).getX());
+		//System.out.println(map.getEnemyRoomX());
+		System.out.println("\nY = " + eS.get(badGuy).getY());
+		//System.out.println(map.getEnemyRoomY());
 		System.out.println("There is an interaction that is of this type: " + inter.getinteractionType());
 		System.out.println("This interaction is located on: X = " + ree.get(inter).getX() + " Y = " + ree.get(inter).getY());
 	}
