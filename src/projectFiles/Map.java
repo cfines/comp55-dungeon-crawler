@@ -23,8 +23,6 @@ public class Map{
 	private static HashMap <HashMap<Interactions, Coordinates>, Room> interToRoom = new HashMap <HashMap<Interactions, Coordinates>, Room>(); 
 	private static HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private static HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
-	//TODO think of some alternative to put enemies onto a room and avoid making a 
-	//HashMap <Room, HashMap<Enemy, ArrayList<Coordinates> thing
 	
 	//basic constructor
 	Map()
