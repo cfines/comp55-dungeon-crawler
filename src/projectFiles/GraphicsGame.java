@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import java.util.Stack;
+import java.util.Timer;
 
 import acm.graphics.*;
 import acm.program.*;
@@ -24,8 +25,14 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public GImage weapon;
 	Stack<Integer> pressedKeys = new Stack<Integer>();
 	
+	public boolean playing;
+	
 	public GImage menuScreen;
 	public GButton menuPlay;
+	public boolean inMenu;
+	public GObject toClick;
+	
+	Timer timer;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -41,22 +48,24 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		testEnemy = new Enemy(5, 5, 5, 1, 500, 300, ElementType.FIRE);
 		testMap = new Map();
 		
+		inMenu = true;
 		runMainMenu();
+		playing = true;
 		
-		/*testDraw();
+		testDraw();
 		
-		while(true) {
+		while(playing) {
 			testUser.move();
-		}*/
+		}
 		
 	}
 	
 	public void keyPressed(KeyEvent e) {
 	
+		if(inMenu) { return; }
+		
 		int pressedKey = e.getKeyCode();
 		pressedKeys.push(pressedKey);
-		
-		while(pressedKeys.size() != 0) {
 			
 			if(pressedKey == KeyEvent.VK_W) {
 				
@@ -81,8 +90,6 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			} 
 			
 			testUser.move();
-			
-		}
 		
 		//else if (pressedKey == KeyEv
 		//else if (pressedKey == KeyEvent.VK_E) {
@@ -98,7 +105,7 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	
 	public void keyReleased(KeyEvent e) {
 		
-		pressedKeys.pop();
+		//pressedKeys.pop();
 		
 		if(pressedKey == KeyEvent.VK_W) {
 			
@@ -119,9 +126,16 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		} 
 	}
 	
-	public void mousePressed(ActionEvent e) {
+	public void mousePressed(MouseEvent e) {
 		
+		toClick = getElementAt(e.getX(), e.getY());
 		
+		if(toClick == menuPlay) {
+		
+			removeAll();
+			inMenu = false;
+			
+		}
 		
 	}
 
@@ -169,6 +183,18 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		
 		menuPlay = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
 		add(menuPlay);
+		
+		while(inMenu) {
+			
+			System.out.println("You are in the menu!");
+			
+			//timer = new Timer();
+			
+		}
+		
+	}
+	
+	public void runPauseMenu() {
 		
 	}
 	
