@@ -14,10 +14,8 @@ public class Map{
 	private Floor floor;
 	private Enemy badGuy;
 	private Boss biggerBadGuy;
-	private Room curRoom = new Room();
+	//private Room curRoom = new Room();
 	private Interactions inter;
-	private ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
-	private ArrayList<HashMap<Boss,Coordinates>> bossRoomSpawns = new ArrayList<HashMap<Boss,Coordinates>>();
 	//private HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	private HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
@@ -42,12 +40,6 @@ public class Map{
 		return reaction;
 	}
 	
-	//adds enemy values to the array list
-	public void setEnemyRoomSpawns(HashMap<Enemy, Coordinates> random, ArrayList<HashMap<Enemy, Coordinates>> roomSpawns)
-	{
-		roomSpawns.add(getEnemySpawn());
-	}
-	
 	//returns x-coordinates from enemy
 	public int getEnemyRoomX() 
 	{	
@@ -58,11 +50,6 @@ public class Map{
 	public int getEnemyRoomY()
 	{
 		return enemySpawn.get(badGuy).getY();
-	}
-	//adds boss values to the array list
-	public void setBossRoomSpawns(HashMap<Boss, Coordinates> random, ArrayList<HashMap<Boss, Coordinates>> bossRoom)
-	{
-		bossRoom.add(getBossSpawn());
 	}
 		
 	//returns x-coordinates from boss
@@ -130,18 +117,6 @@ public class Map{
 	public void setBossSpawn(Boss boss, Coordinates h, HashMap <Boss,Coordinates> bbb) 
 	{
 		bbb.put(boss, h);
-	}
-	
-	//sets enemy to room
-	public void setEnemyToRoom(HashMap <ArrayList<HashMap<Enemy,Coordinates>>, Room> enemyToRoom) 
-	{
-		enemyToRoom.put(enemyRoomSpawns, curRoom);
-	}
-	
-	//sets boss to room
-	public void setBossToRoom(HashMap <ArrayList<HashMap<Boss,Coordinates>>, Room> bossToRoom) 
-	{
-		bossToRoom.put(bossRoomSpawns, curRoom);
 	}
 	
 	public void test() 
