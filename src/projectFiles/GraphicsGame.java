@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import java.util.Stack;
+
 import acm.graphics.*;
 import acm.program.*;
+import starter.GButton;
 
 public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
@@ -19,6 +22,10 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public GImage enemyRep;
 	public Map testMap;
 	public GImage weapon;
+	Stack<Integer> pressedKeys = new Stack<Integer>();
+	
+	public GImage menuScreen;
+	public GButton menuPlay;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -28,49 +35,93 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public void run() {
 		
 		addKeyListeners();
+		addMouseListeners();
 		
 		testUser = new User(5, 5, 5, 1, 300, 300);
 		testEnemy = new Enemy(5, 5, 5, 1, 500, 300, ElementType.FIRE);
 		testMap = new Map();
 		
-		testDraw();
+		runMainMenu();
+		
+		/*testDraw();
+		
+		while(true) {
+			testUser.move();
+		}*/
 		
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		
-		ArrayList<KeyEvent> input = new ArrayList<KeyEvent>();
+	
 		int pressedKey = e.getKeyCode();
+		pressedKeys.push(pressedKey);
+		
+		while(pressedKeys.size() != 0) {
+			
+			if(pressedKey == KeyEvent.VK_W) {
+				
+				testUser.setVelY(testUser.getMoveSpeedStat());
+				userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
+
+			} else if (pressedKey == KeyEvent.VK_S){
+
+				testUser.setVelY(-testUser.getMoveSpeedStat());
+				userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
+
+			} else if (pressedKey == KeyEvent.VK_D) {
+				
+				testUser.setVelX(testUser.getMoveSpeedStat());
+				userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
+			
+			} else if (pressedKey == KeyEvent.VK_A) {
+				
+				testUser.setVelX(-testUser.getMoveSpeedStat());
+				userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
+				
+			} 
+			
+			testUser.move();
+			
+		}
+		
+		//else if (pressedKey == KeyEv
+		//else if (pressedKey == KeyEvent.VK_E) {
+			
+			//testUser.cycleWeapon();
+			//drawSword(testUser);
+			
+		//}
+		
+	}
+	
+	
+	
+	public void keyReleased(KeyEvent e) {
+		
+		pressedKeys.pop();
 		
 		if(pressedKey == KeyEvent.VK_W) {
 			
-			testUser.moveY(testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
+			testUser.setVelY(0);
 
 		} else if (pressedKey == KeyEvent.VK_S){
 
-			testUser.moveY(-testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
-
+			testUser.setVelY(0);
+			
 		} else if (pressedKey == KeyEvent.VK_D) {
 			
-			testUser.moveX(testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
+			testUser.setVelX(0);
 		
 		} else if (pressedKey == KeyEvent.VK_A) {
 			
-			testUser.moveX(-testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
+			testUser.setVelX(0);
 			
 		} 
+	}
+	
+	public void mousePressed(ActionEvent e) {
 		
-		else if (pressedKey == KeyEv
-		else if (pressedKey == KeyEvent.VK_E) {
-			
-			testUser.cycleWeapon();
-			drawSword(testUser);
-			
-		}
+		
 		
 	}
 
@@ -107,6 +158,17 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			weapon.setSize(100,100);
 			add(weapon);
 		}
+		
+	}
+	
+	public void runMainMenu() {
+		
+		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
+		menuScreen.setSize(1155, 650);
+		add(menuScreen);
+		
+		menuPlay = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
+		add(menuPlay);
 		
 	}
 	
