@@ -53,7 +53,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
+		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		
+		//Check for User Location and Image Location sync
+		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+		System.out.println("IMAGE LOCATION: " + userRep.getX() + ", Y=" + userRep.getY());
 	}
 	
 	public void keyPressed(KeyEvent e) {
