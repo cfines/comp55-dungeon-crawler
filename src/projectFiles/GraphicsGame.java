@@ -59,23 +59,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
+		if(ae.getKeyCode() == KeyEvent.VK_E) {
+			drawSword();
+		}	
+		
+		if(ae.getKeyCode() == KeyEvent.VK_Q) {
+			runPauseMenu();
+		}
+		
 		//Check for User Location and Image Location sync
 		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-		System.out.println("IMAGE LOCATION: " + userRep.getX() + ", Y=" + userRep.getY());
+		System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
+		System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 	}
 	
 	public void keyPressed(KeyEvent e) {
 	
 		if(inMenu) { return; }
 		
-		if(pressedKey == KeyEvent.VK_ESCAPE) {
+		if(pressedKey == KeyEvent.VK_Q) {
 			runPauseMenu();
 		} else {			
 			game.keyPressedManager(e);
-			actionPerformed(e);
-			if(pressedKey == KeyEvent.VK_E) {
-				drawSword();
-			}			
+			actionPerformed(e);		
 		}
 		
 	}
@@ -181,7 +187,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		add(menuPauseReturn);
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
-				//functionality of this is that it doens't update character location. 
+		//functionality of this is that it doens't update character location. 
 		while(inMenu) {
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason

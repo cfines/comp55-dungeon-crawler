@@ -14,5 +14,10 @@ public class Weapon {
 	public ElementType getWepType() {
 		return wepType;
 	}
+
+	@Override
+	public String toString() {
+		return wepType.toString();
+	}
 	
 }

@@ -106,6 +106,10 @@ public class User {
 	public int getWeaponEquiped() {
 		return weaponEquiped;
 	}
+	
+	public String getWeaponEquipedString() {
+		return weapons.get(weaponEquiped).toString();
+	}
 
 	public ArrayList<Weapon> getWeapons() {
 		return weapons;
