@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Room {
 	private static roomLayout roomLayout;
-	static Map map;
+	private static Map map;
 	private static Interactions interactionClass;
 	private static boolean isKeyRoom;
 	private static int numEntries;
@@ -58,7 +58,7 @@ public class Room {
 	 * HashMap that will be returned will be based off of Floor that MapLayout
 	 * will receive. It will get the hard coded entry points within the class
 	 * and assign it to the HashMap that will be returned.*/
-	public HashMap<String,String> getMapHash(String currLayout) {
+	public static HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
 		return getMapClass().getMapHash(currLayout);
 	}
