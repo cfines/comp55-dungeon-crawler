@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class MapRooms {
 	
 	private HashMap <String, String> mapRoomHashStartEnd = new HashMap <String, String>();
+	private HashMap <String, String> mapRoomHashStartEnd_RoomtoEntries = new HashMap <String, String>();
 	private HashMap <String, String> mapRoomHashTeleporter = new HashMap <String, String>();
 	private HashMap <String, String> mapRoomHashUnpredictable = new HashMap <String, String>();
 	private HashMap <String, String> mapRoomHashMatrix = new HashMap <String, String>();
@@ -14,6 +15,12 @@ public class MapRooms {
 	private ArrayList<String> roomAmount = new ArrayList<String>();
 	private int roomAmountofLayout;
 	private Floor floor;
+	private MapLayout layout;
+	
+	
+	public HashMap<String, String> getMapRoomHashStartEnd_RoomtoEntries(){
+		return mapRoomHashStartEnd_RoomtoEntries;
+	}
 	
 	public HashMap<String, String> getMapRoomHashStartEnd(){
 		return mapRoomHashStartEnd;

@@ -9,10 +9,11 @@ public class Room {
 	private Interactions interactionClass;
 	private boolean isKeyRoom;
 	private int numEntries;
-	ArrayList<Interactions> entries;
-	ArrayList<Interactions> obstacles;
+	private ArrayList<Interactions> entries;
+	private ArrayList<Interactions> obstacles;
 	static HashMap<String,String> entryPoints;
 	static ArrayList<String> entryAmount;
+	
 	
 	// gets the room layout from the roomLayout enum
 	public roomLayout getRoomLayout() {
@@ -33,6 +34,14 @@ public class Room {
 	
 	public Map map() {
 		return map;
+	}
+	
+	public ArrayList<Interactions> getEntries(){
+		return entries;
+	}
+	
+	public ArrayList<Interactions> getObstacles(){
+		return obstacles;
 	}
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
@@ -65,6 +74,8 @@ public class Room {
 	public static ArrayList<String> getRoomAmount(){
 		return Map.getRoomAmount();
 	}
+	
+	
 	
 	public void createRoom() {}
 	
