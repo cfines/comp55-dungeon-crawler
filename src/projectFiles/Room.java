@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
-	roomLayout roomLayout;
-	private Map map;
-	private Interactions interactionClass;
-	private boolean isKeyRoom;
-	private int numEntries;
-	private ArrayList<Interactions> entries;
-	private ArrayList<Interactions> obstacles;
-	static HashMap<String,String> entryPoints;
-	static ArrayList<String> entryAmount;
+	private static roomLayout roomLayout;
+	static Map map;
+	private static Interactions interactionClass;
+	private static boolean isKeyRoom;
+	private static int numEntries;
+	private static ArrayList<Interactions> entries;
+	private static ArrayList<Interactions> obstacles;
+	private static HashMap<String,String> entryPoints;
+	private static ArrayList<String> entryAmount;
 	
 	
 	// gets the room layout from the roomLayout enum
@@ -32,15 +32,15 @@ public class Room {
 	 * return the room these entry points will be in. Remember to name each gRect what will be an entry
 	 * the proper entry name (E1, E2, E3, etc)*/
 	
-	public Map map() {
+	public static Map getMapClass() {
 		return map;
 	}
 	
-	public ArrayList<Interactions> getEntries(){
+	public static ArrayList<Interactions> getEntries(){
 		return entries;
 	}
 	
-	public ArrayList<Interactions> getObstacles(){
+	public static ArrayList<Interactions> getObstacles(){
 		return obstacles;
 	}
 	
@@ -58,13 +58,13 @@ public class Room {
 	 * HashMap that will be returned will be based off of Floor that MapLayout
 	 * will receive. It will get the hard coded entry points within the class
 	 * and assign it to the HashMap that will be returned.*/
-	public static HashMap<String,String> getMapHash(String currLayout) {
+	public HashMap<String,String> getMapHash(String currLayout) {
 		//is this legal??
-		return Map.getMapHash(currLayout);
+		return getMapClass().getMapHash(currLayout);
 	}
 	
 	public static ArrayList<String> getEntryAmount(){
-		return Map.getEntryAmount();
+		return getMapClass().getEntryAmount();
 	}
 	
 	public static HashMap<String, String> getMapRoomHash(String currLayout){
@@ -88,8 +88,10 @@ public class Room {
 	}
 	
 	
-	public void createRoom(roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
-							// add RoomID check based on user location) {}
+	Room(roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns){
+		roomLayout = layout;
+		
+	}
 	
 	public static void main(String[] args) {
 	
