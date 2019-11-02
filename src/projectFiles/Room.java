@@ -92,8 +92,8 @@ public class Room {
 		HashMap<Enemy, Coordinates> enemySpawn = new HashMap<Enemy, Coordinates>();
 		HashMap<Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 		ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
-		Coordinates danger = new Coordinates(300,500);
-		Coordinates inTheWay = new Coordinates (250,700);
+		Coordinates danger = new Coordinates(30,50);
+		Coordinates inTheWay = new Coordinates (25,70);
 		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
 		Room room = new Room();
 		
@@ -104,7 +104,7 @@ public class Room {
 		Map.setInteractionsToRoom(reaction, room);
 		
 		System.out.println("The current room the user is in is: " + currMapTest);
-		System.out.println("There is an enemy that is of type: " + enemySpawn.get(badGuy.getEnemyType()));
+		System.out.println("There is an enemy that is of type: " + enemyRoomSpawns.get(0).get();
 		System.out.println("This enemy is located on: X = " + enemyRoomSpawns.get(danger.getX()) + " Y = " + enemyRoomSpawns.get(danger.getY()));
 		System.out.println("There is an interaction that is of this type: " + reaction.get(inter.getinteractionType()));
 		System.out.println("This interaction is located on: X = " + reaction.get(inTheWay.getX()) + " Y = " + reaction.get(inTheWay.getY()));
