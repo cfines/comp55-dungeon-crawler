@@ -18,6 +18,8 @@ public class Map{
 	private static Interactions inter;
 	private static ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
 	private static ArrayList<HashMap<Boss,Coordinates>> bossRoomSpawns = new ArrayList<HashMap<Boss,Coordinates>>();
+	private static HashMap <ArrayList<HashMap<Enemy,Coordinates>>, Room> enemyToRoom = new HashMap<ArrayList<HashMap<Enemy,Coordinates>>, Room>();
+	private static HashMap <ArrayList<HashMap<Boss,Coordinates>>, Room> bossToRoom = new HashMap<ArrayList<HashMap<Boss,Coordinates>>,Room>();
 	private static HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private static HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	private static HashMap <HashMap<Interactions, Coordinates>, Room> interToRoom = new HashMap <HashMap<Interactions, Coordinates>, Room>(); 
@@ -147,10 +149,34 @@ public class Map{
 	}
 	
 	//sets boss onto an array list of coordinates
-	public static void setBossSpawn(Boss boss, Coordinates h) {
+	public static void setBossSpawn(Boss boss, Coordinates h) 
+	{
 		bossSpawn.put(biggerBadGuy, location);
 	}
-	//TODO fix the other functions to properly do what they need to do
+	
+	//gets room from enemy
+	public static HashMap <ArrayList<HashMap<Enemy,Coordinates>>, Room> getEnemyToRoom() 
+	{
+		return enemyToRoom;
+	}
+	
+	//sets enemy to room
+	public static void setEnemyToRoom(HashMap <ArrayList<HashMap<Enemy,Coordinates>>, Room> enemyToRoom) 
+	{
+		enemyToRoom.put(enemyRoomSpawns, curRoom);
+	}
+	
+	//gets room from boss
+	public static HashMap <ArrayList<HashMap<Boss,Coordinates>>, Room> getBossToRoom() 
+	{
+		return bossToRoom;
+	}
+	
+	//sets boss to room
+	public static void setBossToRoom(HashMap <ArrayList<HashMap<Boss,Coordinates>>, Room> bossToRoom) 
+	{
+		bossToRoom.put(bossRoomSpawns, curRoom);
+	}
 	
 	public static void test(String args[]) 
 	{
@@ -183,5 +209,6 @@ public class Map{
 //		getRoomSpawns();
 		
 	}
+
 
 }
