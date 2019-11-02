@@ -64,26 +64,7 @@ public class Map{
 		return bossSpawn.get(biggerBadGuy).getY();
 	}
 	
-	public HashMap<String, String> getMapHash(String currLayout) 
-	{
-		return type.getMapHash(currLayout);
-	}
 	
-	public ArrayList<String> getEntryAmount()
-	{
-		return type.getEntryAmount();
-	}
-	
-	public HashMap<String, String> getMapRoomHash(String currLayout)
-	{
-		return rooms.getMapRoomHash(currLayout);
-	}
-	
-	public ArrayList<String> getRoomAmount()
-	{
-		return rooms.getRoomAmount();
-	}
-
 	
 	//Not sure if we really need the 2 functions down below as one recursively calls Map to be set into the same thing
 	//While the other just returns what was already made
