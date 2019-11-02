@@ -79,13 +79,17 @@ public class Room {
 		return Map.getInteractionsFromRoom();
 	}
 	
-	public static void getEnemyRoomSpawns() {
-		
+	public static HashMap<Enemy, Coordinates> getEnemySpawn(){
+		return Map.getEnemySpawn();
+	}
+	
+	public static HashMap<Boss, Coordinates> getBossSpawn(){
+		return Map.getBossSpawn();
 	}
 	
 	
-	
-	public void createRoom() {}
+	public void createRoom(roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
+							// add RoomID check based on user location) {}
 	
 	public static void main(String[] args) {
 	
