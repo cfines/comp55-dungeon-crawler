@@ -48,6 +48,9 @@ public class Console extends GraphicsProgram {
 			user.setDX(-user.getMoveSpeedStat());
 			break;
 		case KeyEvent.VK_E:
+			user.cycleWeapon();
+			break;
+		default:
 			break;
 		}
 		
@@ -72,7 +75,7 @@ public class Console extends GraphicsProgram {
 		case KeyEvent.VK_A:
 			user.setDX(0);
 			break;
-		case KeyEvent.VK_E:
+		default:
 			break;
 		}
 		

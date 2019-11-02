@@ -30,6 +30,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean inMenu;
 	public GObject toClick;
 	
+	public GRect menuPause;
+	public GButton menuPauseReturn;
+	
 	Timer timer;
 	
 	public void init() {
@@ -64,15 +67,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void keyPressed(KeyEvent e) {
 	
 		if(inMenu) { return; }
-			
-		game.keyPressedManager(e);
 		
-		actionPerformed(e);
-		
-		if(pressedKey == KeyEvent.VK_E) {
-			
-			drawSword(game.getUser());
-			
+		if(pressedKey == KeyEvent.VK_ESCAPE) {
+			runPauseMenu();
+		} else {			
+			game.keyPressedManager(e);
+			actionPerformed(e);
+			if(pressedKey == KeyEvent.VK_E) {
+				drawSword();
+			}			
 		}
 		
 	}
@@ -80,6 +83,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	
 	public void keyReleased(KeyEvent e) {
+		
+		if(inMenu) { return; }
 		
 		game.keyReleasedManager(e);
 		actionPerformed(e);
@@ -90,12 +95,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		toClick = getElementAt(e.getX(), e.getY());
 		
-		//If "Play" button is selected
+		//If "Play" button is selected in main menu
 		if(toClick == menuPlay) {
-		
 			removeAll();
 			inMenu = false;
-			
+		}
+		
+		//If "Return" button is selected in pause menu
+		if(toClick == menuPauseReturn) {
+			remove(menuPause);
+			remove(menuPauseReturn);
+			inMenu = false;
 		}
 		
 	}
@@ -116,15 +126,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 	
-	public void drawSword(User input_user)	{
+	public void drawSword()	{
 		
 		remove(weapon);
 		
-		if(input_user.getWeaponEquiped() == 0) {
+		if(game.getUser().getWeaponEquiped() == 0) {
 			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
 			weapon.setSize(100,100);
 			add(weapon);
-		} else if (input_user.getWeaponEquiped() == 1) {
+		} else if (game.getUser().getWeaponEquiped() == 1) {
 			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
 			weapon.setSize(100,100);
 			add(weapon);
@@ -156,6 +166,28 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void runPauseMenu() {
+		
+		//If the user is already in a menu, another pause menu is not created.
+		//(This is mainly to prevent pausing within the main menu)
+		if(inMenu) { return; }
+		
+		inMenu = true;
+		
+		menuPause = new GRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		menuPause.setColor(Color.WHITE);
+		add(menuPause);
+		
+		menuPauseReturn = new GButton("Return", 50, WINDOW_HEIGHT - 75, 150, 50);
+		add(menuPauseReturn);
+		
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+				//functionality of this is that it doens't update character location. 
+		while(inMenu) {
+					
+			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+			System.out.println("You are in the menu!");
+					
+		}
 		
 	}
 	
