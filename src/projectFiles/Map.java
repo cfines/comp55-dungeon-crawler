@@ -12,10 +12,10 @@ public class Map{
 	private static MapLayout type;
 	private static MapRooms rooms;
 	private static Floor floor;
-	private static Enemy badGuy;
+	private static Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.WATER);
 	private static Boss biggerBadGuy;
-	private static Room curRoom;
-	private static Coordinates location;
+	private static Room curRoom = new Room();
+	private static Coordinates location = new Coordinates();
 	private static Interactions inter;
 	private static ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
 	private static ArrayList<HashMap<Boss,Coordinates>> bossRoomSpawns = new ArrayList<HashMap<Boss,Coordinates>>();
@@ -69,7 +69,7 @@ public class Map{
 	{	
 		for(int i = 0; i < enemyRoomSpawns.size();i++) 
 		{
-			enemyRoomSpawns.get(i).get(enemySpawn).getX();
+			System.out.println(enemyRoomSpawns.get(i).get(enemySpawn).getX());
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class Map{
 	{
 		for(int j = 0; j < enemyRoomSpawns.size(); j++) 
 		{
-			enemyRoomSpawns.get(j).get(enemySpawn).getY();
+			System.out.println(enemyRoomSpawns.get(j).get(enemySpawn).getY());
 		}
 	}
 	//adds boss values to the array list
@@ -142,7 +142,7 @@ public class Map{
 	
 	// sets enemy onto an array list of coordinates
 	public static void setEnemySpawn(Enemy enemy, Coordinates h) {
-		enemySpawn.put(badGuy, location);
+		enemySpawn.put(enemy, h);
 	}
 	
 	// gets coordinates from the boss
@@ -153,7 +153,7 @@ public class Map{
 	//sets boss onto an array list of coordinates
 	public static void setBossSpawn(Boss boss, Coordinates h) 
 	{
-		bossSpawn.put(biggerBadGuy, location);
+		bossSpawn.put(boss, h);
 	}
 	
 	//gets room from enemy
@@ -180,7 +180,7 @@ public class Map{
 		bossToRoom.put(bossRoomSpawns, curRoom);
 	}
 	
-	public static void test(String args[]) 
+	public void test() 
 	{
 		Coordinates danger = new Coordinates(300,500);
 		Coordinates inTheWay = new Coordinates (250,700);
@@ -189,13 +189,16 @@ public class Map{
 		inter = new Interactions(interactionType.obstacle_rock);
 		setInteractions(inter, inTheWay);
 		setInteractionsToRoom(reaction, curRoom);
-		
+		System.out.println(getEnemySpawn());
+		getEnemyRoomX();
+		getEnemyRoomY();
 	}
 	
 	//big boi testing right here
 	public static void main (String args[]) 
 	{
-		
+		Map mep = new Map();
+		mep.test();
 		//test string to see if this actually wants to work for me
 //		System.out.println("Sample test for Coordinate class compatibility with Map\n");
 		

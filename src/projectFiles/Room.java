@@ -13,7 +13,9 @@ public class Room {
 	private static ArrayList<Interactions> obstacles;
 	private static HashMap<String,String> entryPoints;
 	private static ArrayList<String> entryAmount;
-	
+	private static ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
+	private static HashMap<Enemy, Coordinates> enemySpawn = new HashMap<Enemy, Coordinates>();
+	private static HashMap<Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	
 	// gets the room layout from the roomLayout enum
 	public roomLayout getRoomLayout() {
@@ -89,9 +91,6 @@ public class Room {
 	
 	public static void testCase() {
 		String currMapTest = "map_base1";
-		HashMap<Enemy, Coordinates> enemySpawn = new HashMap<Enemy, Coordinates>();
-		HashMap<Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
-		ArrayList<HashMap<Enemy,Coordinates>> enemyRoomSpawns = new ArrayList<HashMap<Enemy,Coordinates>>();
 		Coordinates danger = new Coordinates(30,50);
 		Coordinates inTheWay = new Coordinates (25,70);
 		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
@@ -104,10 +103,14 @@ public class Room {
 		Map.setInteractionsToRoom(reaction, room);
 		
 		System.out.println("The current room the user is in is: " + currMapTest);
-		System.out.println("There is an enemy that is of type: " + enemyRoomSpawns.get(0).get();
-		System.out.println("This enemy is located on: X = " + enemyRoomSpawns.get(danger.getX()) + " Y = " + enemyRoomSpawns.get(danger.getY()));
-		System.out.println("There is an interaction that is of this type: " + reaction.get(inter.getinteractionType()));
-		System.out.println("This interaction is located on: X = " + reaction.get(inTheWay.getX()) + " Y = " + reaction.get(inTheWay.getY()));
+		System.out.println("There is an enemy that is of type: " + badGuy.getEnemyType());
+		System.out.println("This enemy is located on: X = \n");
+		System.out.println(enemyRoomSpawns);
+		
+		
+		//System.out.println(enemyRoomSpawns);
+		//System.out.println("There is an interaction that is of this type: " + reaction.get(inter.getinteractionType()));
+		//System.out.println("This interaction is located on: X = " + reaction.get(inTheWay.getX()) + " Y = " + reaction.get(inTheWay.getY()));
 	}
 	
 	// roomLayout layout, HashMap<Enemy, Coordinates> Espawns,  HashMap <HashMap<Interactions, Coordinates>, Room> Ispawns
