@@ -12,6 +12,8 @@ public class User {
 	private int moveSpeedStat;
 	private double powerStat;
 	private int atkSpeedStat;
+	private int velX;
+	private int velY;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -30,6 +32,7 @@ public class User {
 		atkSpeedStat = 1;
 		
 		weaponEquiped = 0;
+		weapons = new ArrayList<>();
 		setupWeapons();
 		
 		numConsumable = 0;
@@ -140,13 +143,20 @@ public class User {
 		
 	}
 	
-	public void moveX(int move) {
-		userStats.setCoordX(userStats.getCoordX() + move); 
+	public void setVelX(int input_VelX) {
+		velX = input_VelX;
 	}
 	
-	public void moveY(int move) {
-		userStats.setCoordY(userStats.getCoordY() + move);
+	public void setVelY(int input_VelY) {
+		velY = input_VelY;
 	}
+	
+	
+	public void move() {
+		userStats.setCoordX(userStats.getCoordX() + velX); 
+		userStats.setCoordY(userStats.getCoordY() + velY);
+	}
+	
 	
 	public static void main(String[] args) {
 		System.out.println("lol");

@@ -15,15 +15,13 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
-	public char pressedKey;
+	public int pressedKey;
 	
-	public User testUser;
+	public Console game;
+	
 	public GImage userRep;
-	public Enemy testEnemy;
 	public GImage enemyRep;
-	public Map testMap;
 	public GImage weapon;
-	Stack<Integer> pressedKeys = new Stack<Integer>();
 	
 	public boolean playing;
 	
@@ -44,18 +42,16 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		addKeyListeners();
 		addMouseListeners();
 		
-		testUser = new User(5, 5, 5, 1, 300, 300);
-		testEnemy = new Enemy(5, 5, 5, 1, 500, 300, ElementType.FIRE);
-		testMap = new Map();
-		
 		inMenu = true;
 		runMainMenu();
 		playing = true;
 		
 		testDraw();
+		game = new Console();
+		game.run();
 		
 		while(playing) {
-			testUser.move();
+			game.getUser().move();
 		}
 		
 	}
@@ -63,41 +59,15 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 	
 		if(inMenu) { return; }
-		
-		int pressedKey = e.getKeyCode();
-		pressedKeys.push(pressedKey);
 			
-			if(pressedKey == KeyEvent.VK_W) {
-				
-				testUser.setVelY(testUser.getMoveSpeedStat());
-				userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
-
-			} else if (pressedKey == KeyEvent.VK_S){
-
-				testUser.setVelY(-testUser.getMoveSpeedStat());
-				userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
-
-			} else if (pressedKey == KeyEvent.VK_D) {
-				
-				testUser.setVelX(testUser.getMoveSpeedStat());
-				userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
+		game.keyPressedManager(e);
+		userRep.setLocation(userRep.getX(), userRep.getY());
 			
-			} else if (pressedKey == KeyEvent.VK_A) {
-				
-				testUser.setVelX(-testUser.getMoveSpeedStat());
-				userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
-				
-			} 
+		if(pressedKey == KeyEvent.VK_E) {
 			
-			testUser.move();
-		
-		//else if (pressedKey == KeyEv
-		//else if (pressedKey == KeyEvent.VK_E) {
+			drawSword(game.getUser());
 			
-			//testUser.cycleWeapon();
-			//drawSword(testUser);
-			
-		//}
+		}
 		
 	}
 	
@@ -105,31 +75,15 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	
 	public void keyReleased(KeyEvent e) {
 		
-		//pressedKeys.pop();
+		game.keyReleasedManager(e);
 		
-		if(pressedKey == KeyEvent.VK_W) {
-			
-			testUser.setVelY(0);
-
-		} else if (pressedKey == KeyEvent.VK_S){
-
-			testUser.setVelY(0);
-			
-		} else if (pressedKey == KeyEvent.VK_D) {
-			
-			testUser.setVelX(0);
-		
-		} else if (pressedKey == KeyEvent.VK_A) {
-			
-			testUser.setVelX(0);
-			
-		} 
 	}
 	
 	public void mousePressed(MouseEvent e) {
 		
 		toClick = getElementAt(e.getX(), e.getY());
 		
+		//If "Play" button is selected
 		if(toClick == menuPlay) {
 		
 			removeAll();
@@ -172,7 +126,6 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			weapon.setSize(100,100);
 			add(weapon);
 		}
-		
 	}
 	
 	public void runMainMenu() {
@@ -184,11 +137,12 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		menuPlay = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
 		add(menuPlay);
 		
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location. 
 		while(inMenu) {
 			
+			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
 			System.out.println("You are in the menu!");
-			
-			//timer = new Timer();//
 			
 		}
 		
