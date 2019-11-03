@@ -71,7 +71,7 @@ public class Hardcoded
 	{
 		//roomID parameter if else verification
 		
-		while(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
+		if(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
 		//Room 1
 		if(userRoomPosition == "R1")
 			{
