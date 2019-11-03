@@ -70,6 +70,7 @@ public class Room {
 		return map.getBossSpawn();
 	}
 	
+	/*
 	public void testCase() {
 		String currMapTest = "map_base1";
 		Coordinates dang = new Coordinates(30,50);
@@ -135,7 +136,7 @@ public class Room {
 		System.out.println("The size of the ArrayList for entries is: " + rooms.getRoomAmount().size());
 		System.out.println("User enters E1 and exits from E2. E2 should be in R2. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(1)));
 		System.out.println("User enters E2 and exits from E1. E1 should be in R1. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(0)));
-		*/
+		
 		
 		ArrayList<String> entriesInRoom = new ArrayList<String>();
 		String currRoom = "R2";
@@ -150,6 +151,7 @@ public class Room {
 			System.out.println("Entries: " + entriesInRoom.get(i));
 		}
 	}
+	*/
 	
 	private HashMap <String, String> mapBaseEtoR = new HashMap<String, String>();
 	
@@ -199,6 +201,6 @@ public class Room {
 	
 	public static void main(String[] args) {
 		Room test = new Room();
-		test.testCase();
+		//test.testCase();
 	}	
 }

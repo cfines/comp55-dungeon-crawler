@@ -24,4 +24,12 @@ public class Coordinates {
 		return y;
 	}
 	//to be used as coordinates
+
+	@Override
+	public String toString() {
+		return "Coordinates [x=" + x + ", y=" + y + "]";
+	}
+	
+	
+	
 }

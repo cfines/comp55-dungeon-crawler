@@ -14,16 +14,37 @@ public class Console extends GraphicsProgram {
 	private User user;
 	private Enemy enemy;
 	private int keyInput;
+	private Floor floor;
+	
+	private String floorWeOn;
+	private H_A_R_D_C_O_D_E_D_ roomSetup; 
 	
 	public void run() {
-		
 		playGame();
-		
 	}
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		enemy = new Enemy(5, 5, 2000, 1, 500, 300, ElementType.FIRE);
+		
+		floor = new Floor();
+		floor.setMapArrayList();
+		floor.getLevelCounter(); //return int
+		floorWeOn = floor.whatMapWeOn(); //return string of map we on
+		
+		if(floorWeOn == "map_base1") {
+			//roomSetup.runBase("R1", floor);
+				for(int i = 0; i <= map.getInteractions().size() - 1; i++) {
+				
+					String tempString = "roomOneInteraction" + i;
+					Coordinates testCoordinates = roomSetup.getCoordinateFromString(tempString);
+					
+					System.out.println("Coordinate for " + tempString + ": " + testCoordinates.toString());
+				
+				}
+			
+		}
+		
 	}
 	
 	public void actionPerformed(KeyEvent ae) {

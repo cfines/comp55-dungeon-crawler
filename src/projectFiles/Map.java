@@ -100,6 +100,7 @@ public class Map{
 		bbb.put(boss, h);
 	}
 	
+	/*
 	public void test() 
 	{
 		Coordinates danger = new Coordinates(300,500);
@@ -111,12 +112,13 @@ public class Map{
 		getEnemyRoomX();
 		getEnemyRoomY();
 	}
+	*/
 	
 	//big boi testing right here
 	public static void main (String args[]) 
 	{
 		Map mep = new Map();
-		mep.test();
+		//mep.test();
 		//test string to see if this actually wants to work for me
 //		System.out.println("Sample test for Coordinate class compatibility with Map\n");
 		
