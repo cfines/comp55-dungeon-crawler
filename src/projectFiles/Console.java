@@ -35,6 +35,7 @@ public class Console {
 		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
 		
 		if(floorWeOn == "map_base1") {
+			System.out.println("I have the talking stick");
 			roomSetup.runBase("R1", floor);
 				for(int i = 0; i <= map.getInteractions().size() - 1; i++) {
 				
