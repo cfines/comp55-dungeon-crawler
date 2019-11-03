@@ -16,7 +16,7 @@ public class Console extends GraphicsProgram {
 	private int keyInput;
 	private Floor floor = new Floor();
 	
-	private String floorWeOn;
+	private String floorWeOn = new String();
 	private Hardcoded roomSetup = new Hardcoded(); 
 	
 	public void run() {
