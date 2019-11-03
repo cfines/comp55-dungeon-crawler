@@ -19,8 +19,9 @@ public class Console extends GraphicsProgram {
 	private String floorWeOn = new String();
 	private Hardcoded roomSetup = new Hardcoded(); 
 	
-	public void run() {
-		playGame();
+	public static void main(String[] args) {
+		Console test = new Console();
+		test.playGame();
 	}
 	
 	public void playGame() {
