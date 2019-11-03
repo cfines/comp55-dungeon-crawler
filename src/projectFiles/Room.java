@@ -138,8 +138,6 @@ public class Room {
 		System.out.println("User enters E2 and exits from E1. E1 should be in R1. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(0)));
 		
 		
-		ArrayList <String> entryArrayList = layout.getEntryAmount();
-		ArrayList <String> roomArrayList = rooms.getRoomAmount();
 		ArrayList<String> entriesInRoom = new ArrayList<String>();
 		System.out.println("\nThe current room is R2. Which entries are in R2?");
 		System.out.println("Entry amount size: " + layout.getEntryAmount());
@@ -162,6 +160,17 @@ public class Room {
 	
 	public static HashMap<String,String> getMapBaseEtoR() {
 		return mapBaseEtoR;
+	}
+	
+	public static ArrayList<String> setEtoRAmount(ArrayList<String> entryAmnt, String currRoom){
+		ArrayList<String> entriesInRoom = new ArrayList<String>();
+		for (int i = 0; i <= entryAmnt.size() - 1; i++) {
+			String temp1 = entryAmnt.get(i);
+			if(getMapBaseEtoR().get(temp1) == currRoom) {
+				entriesInRoom.add(temp1);
+			}
+		}
+		return entriesInRoom;
 	}
 	
 	/*This function is another section that will be filled with hard coded values for a hashmap.
