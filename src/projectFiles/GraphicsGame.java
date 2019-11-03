@@ -18,7 +18,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public int pressedKey;
 	
 	public Console game;
-	
+
 	public GImage userRep;
 	public GImage enemyRep;
 	public GImage weapon;
@@ -65,7 +65,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}	
 		
 		if(ae.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			runPauseMenu();
+			//runPauseMenu();
 		}
 		
 		//Check for User Location and Image Location sync
@@ -78,8 +78,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 		if(inMenu) { return; }
 		
-		if(pressedKey == KeyEvent.VK_Q) {
-			runPauseMenu();
+		if(pressedKey == KeyEvent.VK_ESCAPE) {
+			//runPauseMenu();
 		} else {			
 			game.keyPressedManager(e);
 			actionPerformed(e);		
@@ -118,6 +118,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 
 	public void testDraw() {
+		
+		floor = new GImage("Base Map (floor).png", 0, 0);
+		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		add(floor);
 		
 		userRep = new GImage("Rogue_(Sample User).gif", 300, 300);
 		userRep.setSize(75, 75);
