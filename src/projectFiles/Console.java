@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 import acm.program.GraphicsProgram;
 
-public class Console extends GraphicsProgram {
+public class Console {
 	
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
@@ -23,6 +23,7 @@ public class Console extends GraphicsProgram {
 		Console test = new Console();
 		System.out.println("Running...");
 		test.playGame();
+		System.out.println("We made it through playGame()!");
 	}
 	
 	public void playGame() {
