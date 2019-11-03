@@ -21,19 +21,18 @@ public class Console {
 	
 	public static void main(String[] args) {
 		Console test = new Console();
-		System.out.println("Running...");
 		test.playGame();
-		System.out.println("We made it through playGame()!");
+		System.out.println("Running...");
 	}
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		enemy = new Enemy(5, 5, 2000, 1, 500, 300, ElementType.FIRE);
-		
+		int temp;
 		floor = new Floor();
 		floor.setMapArrayList();
-		floor.getLevelCounter(); //return int
-		floorWeOn = floor.whatMapWeOn(); //return string of map we on
+		temp = floor.getLevelCounter(); //return int
+		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
 		
 		if(floorWeOn == "map_base1") {
 			roomSetup.runBase("R1", floor);
