@@ -21,6 +21,7 @@ public class Console extends GraphicsProgram {
 	
 	public static void main(String[] args) {
 		Console test = new Console();
+		System.out.println("Running...");
 		test.playGame();
 	}
 	
