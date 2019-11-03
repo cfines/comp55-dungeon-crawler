@@ -103,6 +103,8 @@ public class Room {
 		System.out.println("There is now a new interaction. It is of type: " + interracial.getinteractionType());
 		System.out.println("This interaction is located on: X = " + ree.get(interracial).getX() + " Y = " + ree.get(interracial).getY());
 		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		HashMap<String, String> mapHashCurrMap;
 		int temp;
 		MapLayout layout = new MapLayout();
