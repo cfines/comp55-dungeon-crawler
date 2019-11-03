@@ -33,7 +33,7 @@ public class Console extends GraphicsProgram {
 		floorWeOn = floor.whatMapWeOn(); //return string of map we on
 		
 		if(floorWeOn == "map_base1") {
-			//roomSetup.runBase("R1", floor);
+			roomSetup.runBase("R1", floor);
 				for(int i = 0; i <= map.getInteractions().size() - 1; i++) {
 				
 					String tempString = "roomOneInteraction" + i;
