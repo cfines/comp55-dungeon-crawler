@@ -46,13 +46,13 @@ public class Floor {
 	}
 	// this returns which map layout the user will be on
 	// mod 5 will loop back to the first level if the current level exceeds 5, making this a map rotation
-	public String whatMapWeOn(){
-		int temp = levelCounter % 5;
+	public String whatMapWeOn(int currLevel){
+		int temp = currLevel % 5;
 		return map.get(temp);
 	}
 	
 	public static void main(String[] args) {
-		Floor test = new Floor();
+		/*Floor test = new Floor();
 		
 		test.setMapArrayList();
 		
@@ -72,6 +72,6 @@ public class Floor {
 		
 		System.out.println("The player has advanced another 5 levels. It should now say we are on level 7. Does it?: " + test.getLevelCounter());
 		System.out.println("Because we are on level " + test.getLevelCounter() + ", we should be on map_fire again, "
-				+ "because we have done a full rotation of the map order. Are we?: " + test.whatMapWeOn() + "\n");
+				+ "because we have done a full rotation of the map order. Are we?: " + test.whatMapWeOn() + "\n");*/
 	}
 }
