@@ -37,7 +37,7 @@ public class Console {
 		if(floorWeOn == "map_base1") {
 			System.out.println("I have the talking stick in the if statement");
 			roomSetup.runBase("R1", floor);
-				for(int i = 0; i <= map.getInteractions().size() - 1; i++) {
+				for(int i = 0; i < 4/*map.getInteractions().size() - 1*/; i++) {
 					System.out.println("I have the talking stick in the for loop");
 				
 					String tempString = "roomOneInteraction" + i;
