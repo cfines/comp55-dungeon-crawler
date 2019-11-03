@@ -140,18 +140,45 @@ public class Room {
 		ArrayList <String> roomArrayList = rooms.getRoomAmount();
 		ArrayList<String> entriesInRoom = new ArrayList<String>();
 		System.out.println("\nThe current room is R2. Which entries are in R2?");
+		System.out.println("Entry amount size: " + layout.getEntryAmount());
 		
-		for (int i = 1; i <= mapHashCurrMap2.size(); i++) {
-			String temp1 = rooms.getRoomAmount().get(i);
-			if(mapHashCurrMap2.get(temp1) == "R2") {
-				entriesInRoom.add(mapHashCurrMap2.get("E" + i));
+		
+		setEntryToRoom(currMapTest);
+		for (int i = 0; i <= layout.getEntryAmount().size() - 1; i++) {
+			String temp1 = layout.getEntryAmount().get(i);
+			if(getMapBaseEtoR().get(temp1) == "R2") {
+				entriesInRoom.add(temp1);
 			}
-			System.out.println(i);
 		}
 		
-		for (int i = 1; i <= entriesInRoom.size(); i++) {
+		for (int i = 0; i <= entriesInRoom.size() - 1; i++) {
 			System.out.println("Entries: " + entriesInRoom.get(i));
 		}
+	}
+	
+	private static HashMap <String, String> mapBaseEtoR = new HashMap<String, String>();
+	
+	public static HashMap<String,String> getMapBaseEtoR() {
+		return mapBaseEtoR;
+	}
+	
+	public static void setEntryToRoom(String currLayout) {
+		if(currLayout == "map_base1") {
+			getMapBaseEtoR().put("E2", "R2"); 
+			getMapBaseEtoR().put("E3", "R2"); //TBD
+		}
+		else if(currLayout == "map_fire") {
+			//TBD
+		}
+		else if(currLayout == "map_water") {
+			//TBD
+		}
+		else if(currLayout == "map_earth") {
+			//TBD
+		}
+		else {
+			//TBD
+		} 
 	}
 	
 	
