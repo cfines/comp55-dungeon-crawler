@@ -47,7 +47,7 @@ public class Hardcoded
 	private static ArrayList<Interactions> mbr1 = new ArrayList<Interactions>();
 	
 	public String whatMapWeOn() {
-		return floor.whatMapWeOn();
+		return floor.whatMapWeOn(floor.getLevelCounter());
 	}
 	
 	/*public void nextRoom() {
@@ -71,7 +71,7 @@ public class Hardcoded
 	{
 		//roomID parameter if else verification
 		
-		while(curFloor.whatMapWeOn() == "map_base1"){
+		while(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
 		//Room 1
 		if(userRoomPosition == "R1")
 			{

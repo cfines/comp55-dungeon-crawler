@@ -20,7 +20,7 @@ public class MapLayout {
 	MapLayout(){}	
 	
 	public String whatMapWeOn() {
-		return floor.whatMapWeOn();
+		return floor.whatMapWeOn(floor.getLevelCounter());
 	}
 	
 	public int getEntryAmountofLayout() {

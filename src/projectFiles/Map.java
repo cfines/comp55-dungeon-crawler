@@ -25,7 +25,7 @@ public class Map{
 	Map(){}
 	
 	public String whatMapWeOn() {
-		return floor.whatMapWeOn();
+		return floor.whatMapWeOn(floor.getLevelCounter());
 	}
 	
 	//sets the interaction to a room

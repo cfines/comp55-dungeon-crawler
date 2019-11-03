@@ -42,7 +42,7 @@ public class Floor {
 	// returns the level counter
 	//I'm adding a +1 to the getLevel counter since its offset by the ArrayList's first index being 0
 	public int getLevelCounter() {
-		return levelCounter + 1;
+		return levelCounter;
 	}
 	// this returns which map layout the user will be on
 	// mod 5 will loop back to the first level if the current level exceeds 5, making this a map rotation
