@@ -66,7 +66,7 @@ public class MapRooms {
 	
 	public void setRoomAmountBasedonLayout(String currLayout) {
 		if(currLayout == "map_base1") {
-			setRoomAmountofLayout(4); //TBD
+			setRoomAmountofLayout(3); //TBD
 		}
 		else if(currLayout == "map_fire") {
 			setRoomAmountofLayout(0); //TBD
@@ -133,6 +133,7 @@ public class MapRooms {
 		System.out.println("Current map is 'map_base1'");
 		System.out.println("User enters E1 and exits from E2. E2 should be in R2. Is it?: " + mapHashCurrMap.get(getRoomAmount().get(1)));
 		System.out.println("User enters E2 and exits from E1. E1 should be in R1. Is it?: " + mapHashCurrMap.get(getRoomAmount().get(0)));
+		System.out.println(getRoomAmount().get(2));
 	}
 	
 	public static void main(String[] args) {

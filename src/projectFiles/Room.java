@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class Room {
-	private static roomLayout roomLayout;
-	private static Map map = new Map();
-	private static Interactions interactionClass;
-	private static boolean isKeyRoom;
-	private static int numEntries;
-	private static ArrayList<Interactions> entries;
-	private static ArrayList<Interactions> obstacles;
-	private static HashMap<String,String> entryPoints;
-	private static ArrayList<String> entryAmount;
+	private roomLayout roomLayout;
+	private Map map = new Map();
+	private Interactions interactionClass;
+	private boolean isKeyRoom;
+	private int numEntries;
+	private ArrayList<Interactions> entries;
+	private ArrayList<Interactions> obstacles;
+	private HashMap<String,String> entryPoints;
+	private ArrayList<String> entryAmount;
 	
 	// gets the room layout from the roomLayout enum
 	public roomLayout getRoomLayout() {
@@ -32,15 +32,15 @@ public class Room {
 	 * return the room these entry points will be in. Remember to name each gRect what will be an entry
 	 * the proper entry name (E1, E2, E3, etc)*/
 	
-	public static String whatMapWeOn() {
+	public String whatMapWeOn() {
 		return map.whatMapWeOn();
 	}
 	
-	public static ArrayList<Interactions> getEntries(){
+	public ArrayList<Interactions> getEntries(){
 		return entries;
 	}
 	
-	public static ArrayList<Interactions> getObstacles(){
+	public ArrayList<Interactions> getObstacles(){
 		return obstacles;
 	}
 	
@@ -62,15 +62,15 @@ public class Room {
 	//	return Map.getInteractionsFromRoom();
 	//}
 	
-	public static HashMap<Enemy, Coordinates> getEnemySpawn(){
+	public HashMap<Enemy, Coordinates> getEnemySpawn(){
 		return map.getEnemySpawn();
 	}
 	
-	public static HashMap<Boss, Coordinates> getBossSpawn(){
+	public HashMap<Boss, Coordinates> getBossSpawn(){
 		return map.getBossSpawn();
 	}
 	
-	public static void testCase() {
+	public void testCase() {
 		String currMapTest = "map_base1";
 		Coordinates dang = new Coordinates(30,50);
 		Coordinates inTheWay = new Coordinates (25,70);
@@ -119,9 +119,8 @@ public class Room {
 		System.out.println("The size of the ArrayList for entries is: " + layout.getEntryAmount().size());
 		System.out.println("The player enters E1 of 'map_base1' and should exit out of E2. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(0)));
 		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(1)));
-		System.out.println("The player enters E5 of 'map_base1' and should exit out of E6. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(4)));
-		System.out.println("The player enters E6 of 'map_base1' and should exit out of E5. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(5)));
 		
+		/*
 		int temp2;
 		MapRooms rooms = new MapRooms();
 		HashMap<String, String> mapHashCurrMap2;
@@ -136,33 +135,29 @@ public class Room {
 		System.out.println("The size of the ArrayList for entries is: " + rooms.getRoomAmount().size());
 		System.out.println("User enters E1 and exits from E2. E2 should be in R2. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(1)));
 		System.out.println("User enters E2 and exits from E1. E1 should be in R1. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(0)));
-		
+		*/
 		
 		ArrayList<String> entriesInRoom = new ArrayList<String>();
+		String currRoom = "R2";
 		System.out.println("\nThe current room is R2. Which entries are in R2?");
 		System.out.println("Entry amount size: " + layout.getEntryAmount());
 		
 		
 		setEntryToRoom(currMapTest);
-		for (int i = 0; i <= layout.getEntryAmount().size() - 1; i++) {
-			String temp1 = layout.getEntryAmount().get(i);
-			if(getMapBaseEtoR().get(temp1) == "R2") {
-				entriesInRoom.add(temp1);
-			}
-		}
+		entriesInRoom = setEtoRAmount(layout.getEntryAmount(), currRoom);
 		
 		for (int i = 0; i <= entriesInRoom.size() - 1; i++) {
 			System.out.println("Entries: " + entriesInRoom.get(i));
 		}
 	}
 	
-	private static HashMap <String, String> mapBaseEtoR = new HashMap<String, String>();
+	private HashMap <String, String> mapBaseEtoR = new HashMap<String, String>();
 	
-	public static HashMap<String,String> getMapBaseEtoR() {
+	public HashMap<String,String> getMapBaseEtoR() {
 		return mapBaseEtoR;
 	}
 	
-	public static ArrayList<String> setEtoRAmount(ArrayList<String> entryAmnt, String currRoom){
+	public ArrayList<String> setEtoRAmount(ArrayList<String> entryAmnt, String currRoom){
 		ArrayList<String> entriesInRoom = new ArrayList<String>();
 		for (int i = 0; i <= entryAmnt.size() - 1; i++) {
 			String temp1 = entryAmnt.get(i);
@@ -175,10 +170,12 @@ public class Room {
 	
 	/*This function is another section that will be filled with hard coded values for a hashmap.
 	 * This hashmap will contain the entry IDs (key) and will return the room ID it will be in (value).*/
-	public static void setEntryToRoom(String currLayout) {
+	public void setEntryToRoom(String currLayout) {
 		if(currLayout == "map_base1") {
+			getMapBaseEtoR().put("E1", "R1"); 
 			getMapBaseEtoR().put("E2", "R2"); 
-			getMapBaseEtoR().put("E3", "R2"); //TBD
+			getMapBaseEtoR().put("E3", "R2");
+			getMapBaseEtoR().put("E4", "R3"); //TBD
 		}
 		else if(currLayout == "map_fire") {
 			//TBD
