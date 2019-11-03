@@ -1,0 +1,12 @@
+package projectFiles;
+
+//DO NOT EVEN LOOK AT THIS
+//JESUS THIS IS ATROCIOUS
+//ALL THESE HARDCODED VALUES WILL GIVE YOU AN ANYURISM
+
+public class H_A_R_D_C_O_D_E_D_ 
+
+
+{
+	
+}
