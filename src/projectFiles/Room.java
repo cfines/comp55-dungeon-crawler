@@ -164,6 +164,8 @@ public class Room {
 		return mapBaseEtoR;
 	}
 	
+	/*This function is another section that will be filled with hard coded values for a hashmap.
+	 * This hashmap will contain the entry IDs (key) and will return the room ID it will be in (value).*/
 	public static void setEntryToRoom(String currLayout) {
 		if(currLayout == "map_base1") {
 			getMapBaseEtoR().put("E2", "R2"); 
