@@ -9,15 +9,15 @@ public class Console extends GraphicsProgram {
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	
-	private Map map;
-	private Room room;
-	private User user;
+	private Map map = new Map();
+	private Room room = new Room();
+	private User user = new User();
 	private Enemy enemy;
 	private int keyInput;
-	private Floor floor;
+	private Floor floor = new Floor();
 	
 	private String floorWeOn;
-	private H_A_R_D_C_O_D_E_D_ roomSetup; 
+	private Hardcoded roomSetup = new Hardcoded(); 
 	
 	public void run() {
 		playGame();

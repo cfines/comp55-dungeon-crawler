@@ -33,19 +33,18 @@ import java.util.HashMap;
  * - whatMapWeOn()
  */
 
-public class H_A_R_D_C_O_D_E_D_ 
+public class Hardcoded 
 {
-	private static HashMap <Interactions, Coordinates> interactionStorage;
-	private static HashMap <Enemy, Coordinates> enemyStorage;
-	private static HashMap <Boss, Coordinates> bossStorage;
+	private static HashMap <Interactions, Coordinates> interactionStorage = new HashMap <Interactions, Coordinates>();
+	private static HashMap <Enemy, Coordinates> enemyStorage = new HashMap <Enemy, Coordinates>();
+	private static HashMap <Boss, Coordinates> bossStorage = new HashMap <Boss, Coordinates>();
 	private static Map map = new Map();
 	private static Room room = new Room();
 	private static Floor floor = new Floor();
 	private static MapLayout layout = new MapLayout();
 	private static HashMap <String, String> mapHashCurrMap = new HashMap<String, String>();
 	private static String currentMap = new String();
-
-	private static ArrayList<Interactions> mbr1;
+	private static ArrayList<Interactions> mbr1 = new ArrayList<Interactions>();
 	
 	public String whatMapWeOn() {
 		return floor.whatMapWeOn();
