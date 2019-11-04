@@ -59,6 +59,18 @@ public class User {
 	public void tick() {
 		userStats.setCoordX(userStats.getCoordX() + dx);
 		userStats.setCoordY(userStats.getCoordY() + dy);
+		if(userStats.getCoordX() <= 0) {
+			userStats.setCoordX(0);
+		}
+		if(userStats.getCoordX() >= 1155 - 60) {
+			userStats.setCoordX(1155 - 60);
+		}
+		if(userStats.getCoordY() <= 0) {
+			userStats.setCoordY(0);
+		}
+		if(userStats.getCoordY() >= 650 - 80) {
+			userStats.setCoordY(650 - 80);
+		}
 	}
 	
 	public void setDX(int input_dx) {

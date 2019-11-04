@@ -100,6 +100,7 @@ public class Console {
 			break;
 		}
 		
+		
 	}
 	
 	public boolean canMove() {
