@@ -60,6 +60,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		game = new Console();
 		game.playGame();
+
 		drawRoom();
 
 	}

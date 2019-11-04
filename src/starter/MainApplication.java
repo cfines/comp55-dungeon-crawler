@@ -1,4 +1,7 @@
 package starter;
+
+import acm.graphics.GImage;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
@@ -7,6 +10,7 @@ public class MainApplication extends GraphicsApplication {
 
 	private SomePane somePane;
 	private MenuPane menu;
+	private GImage menuScreen;
 	private int count;
 
 	public void init() {
