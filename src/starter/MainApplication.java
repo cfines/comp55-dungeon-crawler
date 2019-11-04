@@ -33,7 +33,7 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToSome() {
 		playRandomSound();
-		game.run();
+		switchToScreen(somePane);
 	}
 
 	private void playRandomSound() {

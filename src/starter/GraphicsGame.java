@@ -41,6 +41,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
+	public static final String MUSIC_FOLDER = "sounds";
+	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
+	private int count;
+	
 	Timer timer;
 	
 	public void init() {
@@ -49,7 +53,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void run() {
-		
+		playRandomSound();
 		addKeyListeners();
 		addMouseListeners();
 		
@@ -259,5 +263,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 		}
 	
+	}
+	
+	private void playRandomSound() {
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
 	}
 }
