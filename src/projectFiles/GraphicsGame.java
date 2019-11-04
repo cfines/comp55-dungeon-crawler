@@ -3,7 +3,7 @@ package projectFiles;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.Stack;
 import java.util.Timer;
 
@@ -30,6 +30,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GButton menuPlay, highScore, credits, exit;
 	public boolean inMenu;
 	public GObject toClick;
+	
+	public GImage interaction;
+	public GImage stairs;
 	
 	public GRect menuPause;
 	public GButton menuPauseReturn;
@@ -216,13 +219,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawInteraction() {
-		for() {
+		for(HashMap.Entry test : game.getInteractionHash()) {
 			
 		}
 	}
 	
 	public void drawEnemy() {
-		
+		for() {
 	}
 	
 }
