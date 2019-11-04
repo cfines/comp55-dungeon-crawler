@@ -136,12 +136,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		userRep.setSize(75, 75);
 		add(userRep);
 		
-		drawInteraction();
-		drawEnemy();
-		
 		weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
 		weapon.setSize(100,100);
 		add(weapon);
+		
+		drawInteraction();
+		drawEnemy();
 		
 	}
 	
@@ -232,7 +232,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			Coordinates tempCoord = tempHash.get(test.getKey());
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(DOOR_WIDTH, DOOR_HEIGHT, tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2));
+				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
+				entry.setFillColor(Color.BLACK);
 				add(entry);
 			} else {
 				interactionRep = new GImage(tempInteraction.getinteractionType() + ".png", tempCoord.getX(), tempCoord.getY());

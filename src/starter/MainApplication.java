@@ -1,6 +1,7 @@
 package starter;
 
 import acm.graphics.GImage;
+import projectFiles.GraphicsGame;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1155;
@@ -12,6 +13,7 @@ public class MainApplication extends GraphicsApplication {
 	private MenuPane menu;
 	private GImage menuScreen;
 	private int count;
+	private GraphicsGame game;
 
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -32,7 +34,7 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToSome() {
 		playRandomSound();
-		switchToScreen(somePane);
+		game.run();
 	}
 
 	private void playRandomSound() {
