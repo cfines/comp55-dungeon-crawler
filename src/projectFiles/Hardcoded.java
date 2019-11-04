@@ -87,10 +87,6 @@ public class Hardcoded
 			bruhMap.setInteractions(roomOneInteraction2, rock2, h);
 			bruhMap.setInteractions(roomOneInteraction3, hole1, h);
 			bruhMap.setInteractions(roomOneInteraction4, entry1, h);
-			mbr1.add(roomOneInteraction1);
-			mbr1.add(roomOneInteraction2);
-			mbr1.add(roomOneInteraction3);
-			mbr1.add(roomOneInteraction4);
 			}
 			
 			//Room 2
@@ -138,20 +134,6 @@ public class Hardcoded
 
 	public Coordinates getCoordinateFromHash(Interactions input_interactions) {
 		return interactionStorage.get(input_interactions);
-	}
-	
-	public Coordinates getCoordinateFromString(String hashKey) {
-		
-		Coordinates correctCoordinate = new Coordinates();
-		
-		for(int i = 0; i < interactionStorage.size() - 1; i++) {
-			if(mbr1.get(i).toString() == hashKey) {
-				correctCoordinate = interactionStorage.get(mbr1.get(i));
-			}
-		}
-		
-		return correctCoordinate;
-		
 	}
 
 }	
