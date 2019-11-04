@@ -50,9 +50,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		runMainMenu();
 		playing = true;
 		
-		testDraw();
+		drawRoom();
 		game = new Console();
 		game.playGame();
+		
+			
+		
 		
 	}
 	
@@ -117,7 +120,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 
-	public void testDraw() {
+	public void drawRoom() {
 		
 		floor = new GImage("Base Map (floor).png", 0, 0);
 		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -127,9 +130,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		userRep.setSize(75, 75);
 		add(userRep);
 		
-		enemyRep = new GImage("ghost_enemy.gif", 500, 300);
-		enemyRep.setSize(75, 75);
-		add(enemyRep);
+		drawInteraction();
+		drawEnemy();
 		
 		weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
 		weapon.setSize(100,100);
@@ -204,6 +206,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawInteraction() {
+		for() {
+			
+		}
+	}
+	
+	public void drawEnemy() {
 		
 	}
 	

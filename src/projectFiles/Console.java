@@ -18,8 +18,8 @@ public class Console {
 	private Floor floor = new Floor();
 	
 	private String floorWeOn = new String();
-	private HashMap<Interactions, Coordinates> bruh = new HashMap<Interactions, Coordinates>();
-	private HashMap<Enemy, Coordinates> enemyBruh = new HashMap<Enemy, Coordinates>();
+	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
+	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	
 	public static void main(String[] args) {
 		Console test = new Console();
@@ -37,18 +37,9 @@ public class Console {
 		
 		if(floorWeOn == "map_base1") {
 			System.out.println("I have the talking stick in the if statement");
-			//roomSetup.runBase("R1", floor);
-			map.runRunBase("R1", floor, map, bruh, enemyBruh);
-			bruh = map.getInteractions();
-			enemyBruh = map.getEnemySpawn();
-				for(int i = 0; i < 4/*map.getInteractions().size() - 1*/; i++) {
-					System.out.println("I have the talking stick in the for loop");
-			
-					//System.out.println("Type of Interaction: " + bruh.getKey().getInteractionType());
-					System.out.println("Coordinate");
-				
-				}
-			
+			map.runRunBase("R1", floor, map, interactionHash, enemyHash);
+			interactionHash = map.getInteractions();
+			enemyHash = map.getEnemySpawn();
 		}
 		
 	}
@@ -114,6 +105,14 @@ public class Console {
 	
 	public User getUser() {
 		return user;
+	}
+	
+	public HashMap<Interactions, Coordinates> getInteractionHash(){
+		return this.interactionHash;
+	}
+	
+	public HashMap<Enemy, Coordinates> getEnemyHash(){
+		return this.enemyHash;
 	}
 	
 }
