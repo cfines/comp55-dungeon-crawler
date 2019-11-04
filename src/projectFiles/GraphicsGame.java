@@ -219,13 +219,21 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawInteraction() {
-		for(HashMap.Entry test : game.getInteractionHash()) {
+		
+		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
+		
+		for(HashMap.Entry test : tempHash.entrySet()) {
 			
 		}
 	}
 	
 	public void drawEnemy() {
-		for() {
-	}
+		
+		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
+		
+		for(HashMap.Entry test : tempHash.entrySet()) {
+			
+		}
 	
+	}
 }
