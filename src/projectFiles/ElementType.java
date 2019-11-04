@@ -5,9 +5,9 @@ FIRE, WATER, EARTH;
 	
 	public String toString() {
 		switch(this) {
-			case FIRE: return "fire";
-			case WATER: return "water";
-			case EARTH: return "earth";
+			case FIRE: return "FIRE";
+			case WATER: return "WATER";
+			case EARTH: return "EARTH";
 		}
 		return "n/a";
 	}

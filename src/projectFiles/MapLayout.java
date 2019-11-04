@@ -8,8 +8,6 @@ public class MapLayout {
 	
 	private Floor floor;
 	
-	private String roomID;
-	private String entryID;		
 	private HashMap <String, String> mapHashStartEnd = new HashMap <String, String>();
 	private HashMap <String, String> mapHashTeleporter = new HashMap <String, String>();
 	private HashMap <String, String> mapHashUnpredictable = new HashMap <String, String>();
@@ -18,17 +16,11 @@ public class MapLayout {
 	
 	private int entryAmountofLayout;
 	private ArrayList<String> entryAmount = new ArrayList<String>();
-	public String test;
 	
-	MapLayout(){
-		roomID = "";
-		entryID = "";
-		test = "";
-	}
-	
+	MapLayout(){}	
 	
 	public String whatMapWeOn() {
-		return floor.whatMapWeOn();
+		return floor.whatMapWeOn(floor.getLevelCounter());
 	}
 	
 	public int getEntryAmountofLayout() {
@@ -51,7 +43,7 @@ public class MapLayout {
 		return mapHashTeleporter;
 	}
 	
-	public HashMap<String, String> getmapHashUnpredictable(){
+	public HashMap<String, String> getMapHashUnpredictable(){
 		return mapHashUnpredictable;
 	}
 	
@@ -69,7 +61,7 @@ public class MapLayout {
 	 */
 	public void setEntryAmountBasedonLayout(String currLayout) {
 		if(currLayout == "map_base1") {
-			setEntryAmountofLayout(6); //TBD
+			setEntryAmountofLayout(4); //TBD
 		}
 		else if(currLayout == "map_fire") {
 			setEntryAmountofLayout(0); //TBD
@@ -100,8 +92,6 @@ public class MapLayout {
 			getMapHashStartEnd().put(getEntryAmount().get(1), getEntryAmount().get(0));
 			getMapHashStartEnd().put(getEntryAmount().get(2), getEntryAmount().get(3));
 			getMapHashStartEnd().put(getEntryAmount().get(3), getEntryAmount().get(2));
-			getMapHashStartEnd().put(getEntryAmount().get(4), getEntryAmount().get(5));
-			getMapHashStartEnd().put(getEntryAmount().get(5), getEntryAmount().get(4));
 		}
 		/*else if(currLayout == "map_fire") {
 			
@@ -138,6 +128,7 @@ public class MapLayout {
 		}
 	}
 	
+	
 	public void runTest() {
 		String currMap = "map_base1"; // will be replaced with whatMapWeOn() when the program is actually running
 		HashMap<String, String> mapHashCurrMap;
@@ -150,11 +141,7 @@ public class MapLayout {
 		
 		System.out.println("The current map (which would be recieved from Floor) is 'map_base1'.");
 		System.out.println("The player enters E1 of 'map_base1' and should exit out of E2. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(0)));
-		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(1)));
-		System.out.println("The player enters E5 of 'map_base1' and should exit out of E6. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(4)));
-		System.out.println("The player enters E6 of 'map_base1' and should exit out of E5. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(5)));
-		
-		
+		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(1)));	
 	}	
 	/*The order of calling functions in this class goes as follows:
 	 * - whatMapWeOn

@@ -4,24 +4,37 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import java.util.Stack;
+import java.util.Timer;
+
 import acm.graphics.*;
 import acm.program.*;
-import java.util.Stack;
+import starter.GButton;
 
-public class GraphicsGame extends GraphicsProgram implements KeyListener {
+public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
-	public char pressedKey;
-	//ArrayList<KeyEvent> diag = new ArrayList<KeyEvent>();
-	Stack<KeyEvent> input = new Stack<>();
+	public int pressedKey;
 	
-	public User testUser;
+	public Console game;
+
 	public GImage userRep;
-	public Enemy testEnemy;
 	public GImage enemyRep;
-	public Map testMap;
 	public GImage weapon;
+	public GImage floor;
+	
+	public boolean playing;
+	
+	public GImage menuScreen;
+	public GButton menuPlay;
+	public boolean inMenu;
+	public GObject toClick;
+	
+	public GRect menuPause;
+	public GButton menuPauseReturn;
+	
+	Timer timer;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -31,70 +44,84 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 	public void run() {
 		
 		addKeyListeners();
+		addMouseListeners();
 		
-		testUser = new User(5, 5, 5, 1, 300, 300);
-		testEnemy = new Enemy(5, 5, 5, 1, 500, 300, ElementType.FIRE);
-		testMap = new Map();
+		inMenu = true;
+		runMainMenu();
+		playing = true;
 		
 		testDraw();
+		game = new Console();
+		game.playGame();
 		
+	}
+	
+	public void actionPerformed(KeyEvent ae) {
+		game.getUser().tick();
+		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		
+		if(ae.getKeyCode() == KeyEvent.VK_E) {
+			drawSword();
+		}	
+		
+		if(ae.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			//runPauseMenu();
+		}
+		
+		//Check for User Location and Image Location sync
+		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+		System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
+		System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 	}
 	
 	public void keyPressed(KeyEvent e) {
+	
+		if(inMenu) { return; }
 		
-		input.push(e);
-		int pressedKey = input.lastIndexOf(o, index).getKeyCode();
-		
-		if(pressedKey == KeyEvent.VK_W) {
-			System.out.println("W is being pressed!");
-			if(pressedKey == KeyEvent.VK_D && pressedKey == KeyEvent.VK_W) {
-				testUser.moveY(testUser.getMoveSpeedStat());
-				testUser.moveX(testUser.getMoveSpeedStat());
-				userRep.setLocation(userRep.getX() +  testUser.getMoveSpeedStat(), userRep.getY() - testUser.getMoveSpeedStat());
-			}
-			testUser.moveY(testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX(), userRep.getY() - testUser.getMoveSpeedStat());
-
-		} else if (pressedKey == KeyEvent.VK_S){
-
-			testUser.moveY(-testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX(), userRep.getY() + testUser.getMoveSpeedStat());
-
-		} else if (pressedKey == KeyEvent.VK_D) {
-			System.out.println("D is being pressed!");
-
-			testUser.moveX(testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX() + testUser.getMoveSpeedStat(), userRep.getY());
-		
-		} else if (pressedKey == KeyEvent.VK_A) {
-			
-			testUser.moveX(-testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX() - testUser.getMoveSpeedStat(), userRep.getY());
-			
-		} 
-		
-		else if(pressedKey == KeyEvent.VK_D && pressedKey == KeyEvent.VK_W) {
-			testUser.moveY(testUser.getMoveSpeedStat());
-			testUser.moveX(testUser.getMoveSpeedStat());
-			userRep.setLocation(userRep.getX() +  testUser.getMoveSpeedStat(), userRep.getY() - testUser.getMoveSpeedStat());
-		}
-		
-		else if (pressedKey == KeyEvent.VK_E) {
-			
-			testUser.cycleWeapon();
-			drawSword(testUser);
-			
+		if(pressedKey == KeyEvent.VK_ESCAPE) {
+			//runPauseMenu();
+		} else {			
+			game.keyPressedManager(e);
+			actionPerformed(e);		
 		}
 		
 	}
 	
+	
+	
 	public void keyReleased(KeyEvent e) {
-		//clears all inputs 
-		input.clear();
-		System.out.println("Key released!");
+		
+		if(inMenu) { return; }
+		
+		game.keyReleasedManager(e);
+		actionPerformed(e);
+		
+	}
+	
+	public void mousePressed(MouseEvent e) {
+		
+		toClick = getElementAt(e.getX(), e.getY());
+		
+		//If "Play" button is selected in main menu
+		if(toClick == menuPlay) {
+			removeAll();
+			inMenu = false;
+		}
+		
+		//If "Return" button is selected in pause menu
+		if(toClick == menuPauseReturn) {
+			remove(menuPause);
+			remove(menuPauseReturn);
+			inMenu = false;
+		}
+		
 	}
 
 	public void testDraw() {
+		
+		floor = new GImage("Base Map (floor).png", 0, 0);
+		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		add(floor);
 		
 		userRep = new GImage("Rogue_(Sample User).gif", 300, 300);
 		userRep.setSize(75, 75);
@@ -110,17 +137,15 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 		
 	}
 	
-	
-	
-	public void drawSword(User input_user)	{
+	public void drawSword()	{
 		
 		remove(weapon);
 		
-		if(input_user.getWeaponEquiped() == 0) {
+		if(game.getUser().getWeaponEquiped() == 0) {
 			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
 			weapon.setSize(100,100);
 			add(weapon);
-		} else if (input_user.getWeaponEquiped() == 1) {
+		} else if (game.getUser().getWeaponEquiped() == 1) {
 			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
 			weapon.setSize(100,100);
 			add(weapon);
@@ -129,6 +154,56 @@ public class GraphicsGame extends GraphicsProgram implements KeyListener {
 			weapon.setSize(100,100);
 			add(weapon);
 		}
+	}
+	
+	public void runMainMenu() {
+		
+		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
+		menuScreen.setSize(1155, 650);
+		add(menuScreen);
+		
+		menuPlay = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
+		add(menuPlay);
+		
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location. 
+		while(inMenu) {
+			
+			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+			System.out.println("You are in the menu!");
+			
+		}
+		
+	}
+	
+	public void runPauseMenu() {
+		
+		//If the user is already in a menu, another pause menu is not created.
+		//(This is mainly to prevent pausing within the main menu)
+		if(inMenu) { return; }
+		
+		inMenu = true;
+		
+		menuPause = new GRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		menuPause.setColor(Color.WHITE);
+		add(menuPause);
+		
+		menuPauseReturn = new GButton("Return", 50, WINDOW_HEIGHT - 75, 150, 50);
+		add(menuPauseReturn);
+		
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location. 
+		while(inMenu) {
+					
+			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+			System.out.println("You are in the menu!");
+
+					
+		}
+		
+	}
+	
+	public void drawInteraction() {
 		
 	}
 	
