@@ -23,6 +23,19 @@ public class Floor {
 	
 	private int levelCounter = 0;
 	private ArrayList<String> map = new ArrayList<String>();
+	private String currRoom = new String();
+	// Resets the current room to "R1" when the user enters a new floor
+	public void resetCurrRoom() {
+		currRoom = "R1";
+	}
+	// Returns the current room the user is in
+	public String getCurrRoom() {
+		return currRoom;
+	}
+	// Sets the new room the player will be in based on the hashmap identifying which room has which entry
+	public void setCurrRoom(String newCurrRoom) {
+		currRoom = newCurrRoom;
+	}
 	// this would need to be one of the FIRST functions to be called in order to initialize the arraylist of the types of maps
 	public void setMapArrayList() {
 		map.add("map_base1"); 
@@ -50,6 +63,8 @@ public class Floor {
 		int temp = currLevel % 5;
 		return map.get(temp);
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		/*Floor test = new Floor();
