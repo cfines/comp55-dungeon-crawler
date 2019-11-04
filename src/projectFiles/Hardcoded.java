@@ -67,7 +67,7 @@ public class Hardcoded
 		entriesInRoom = room.getMapBaseEtoR();
 	}*/
 	
-	public void runBase(String userRoomPosition, Floor curFloor) 
+	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h) 
 	{
 		//roomID parameter if else verification
 		
@@ -83,10 +83,10 @@ public class Hardcoded
 			Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
 			Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
 			Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
-			map.setInteractions(roomOneInteraction1, rock1, interactionStorage);
-			map.setInteractions(roomOneInteraction2, rock2, interactionStorage);
-			map.setInteractions(roomOneInteraction3, hole1, interactionStorage);
-			map.setInteractions(roomOneInteraction4, entry1, interactionStorage);
+			bruhMap.setInteractions(roomOneInteraction1, rock1, h);
+			bruhMap.setInteractions(roomOneInteraction2, rock2, h);
+			bruhMap.setInteractions(roomOneInteraction3, hole1, h);
+			bruhMap.setInteractions(roomOneInteraction4, entry1, h);
 			mbr1.add(roomOneInteraction1);
 			mbr1.add(roomOneInteraction2);
 			mbr1.add(roomOneInteraction3);
@@ -110,13 +110,13 @@ public class Hardcoded
 			Enemy roomTwoEnemy2 = new Enemy(5,0,0,5,1,3, ElementType.FIRE);
 			Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door, 2, 4);
 			Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door, 2, 5);
-			map.setInteractions(roomTwoInteraction1, rock1, interactionStorage);
-			map.setInteractions(roomTwoInteraction2, hole1, interactionStorage);
-			map.setInteractions(roomTwoInteraction3, hole2, interactionStorage);
-			map.setEnemySpawn(roomTwoEnemy1, enemy1, enemyStorage);
-			map.setEnemySpawn(roomTwoEnemy2, enemy2, enemyStorage);
-			map.setInteractions(roomTwoInteraction4, entry1, interactionStorage);
-			map.setInteractions(roomTwoInteraction5, entry2, interactionStorage);
+			//map.setInteractions(roomTwoInteraction1, rock1, interactionStorage);
+			//map.setInteractions(roomTwoInteraction2, hole1, interactionStorage);
+			//map.setInteractions(roomTwoInteraction3, hole2, interactionStorage);
+			//map.setEnemySpawn(roomTwoEnemy1, enemy1, enemyStorage);
+			//map.setEnemySpawn(roomTwoEnemy2, enemy2, enemyStorage);
+			//map.setInteractions(roomTwoInteraction4, entry1, interactionStorage);
+			//map.setInteractions(roomTwoInteraction5, entry2, interactionStorage);
 			}
 			
 			//Room 3
@@ -128,9 +128,9 @@ public class Hardcoded
 			Interactions roomThreeInteraction1 = new Interactions(interactionType.entry_stair, 3, 1);
 			Enemy roomThreeEnemy1 = new Enemy(6,9,6,9,6,9, ElementType.WATER);
 			Interactions roomThreeInteraction2 = new Interactions(interactionType.entry_door, 3, 2);
-			map.setInteractions(roomThreeInteraction1, stairs1, interactionStorage);
-			map.setEnemySpawn(roomThreeEnemy1, enemy1, enemyStorage);
-			map.setInteractions(roomThreeInteraction2, entry1, interactionStorage);
+			//map.setInteractions(roomThreeInteraction1, stairs1, interactionStorage);
+			//map.setEnemySpawn(roomThreeEnemy1, enemy1, enemyStorage);
+			//map.setInteractions(roomThreeInteraction2, entry1, interactionStorage);
 			}
 		
 		}	

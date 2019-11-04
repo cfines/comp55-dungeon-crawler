@@ -1,6 +1,7 @@
 package projectFiles;
 
 import java.awt.event.*;
+import java.util.HashMap;
 
 import acm.program.GraphicsProgram;
 
@@ -18,6 +19,7 @@ public class Console {
 	
 	private String floorWeOn = new String();
 	private Hardcoded roomSetup = new Hardcoded(); 
+	private HashMap<Interactions, Coordinates> bruh = new HashMap<Interactions, Coordinates>();
 	
 	public static void main(String[] args) {
 		Console test = new Console();
@@ -35,14 +37,14 @@ public class Console {
 		
 		if(floorWeOn == "map_base1") {
 			System.out.println("I have the talking stick in the if statement");
-			roomSetup.runBase("R1", floor);
+			//roomSetup.runBase("R1", floor);
+			map.runRunBase("R1", floor, map, bruh);
+			bruh = map.getInteractions();
 				for(int i = 0; i < 4/*map.getInteractions().size() - 1*/; i++) {
 					System.out.println("I have the talking stick in the for loop");
-				
-					String tempString = "roomOneInteraction" + i;
-					Coordinates testCoordinates = roomSetup.getCoordinateFromString(tempString);
-					
-					System.out.println("Coordinate for " + tempString + ": " + testCoordinates.toString());
+			
+					//System.out.println("Type of Interaction: " + bruh.getKey());
+					System.out.println("Coordinate");
 				
 				}
 			

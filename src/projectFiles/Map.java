@@ -21,6 +21,8 @@ public class Map{
 	private HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
 	
+	private Hardcoded bruhMoment = new Hardcoded();
+	
 	//basic constructor
 	Map(){}
 	
@@ -98,6 +100,21 @@ public class Map{
 	public void setBossSpawn(Boss boss, Coordinates h, HashMap <Boss,Coordinates> bbb) 
 	{
 		bbb.put(boss, h);
+	}
+	
+	public Coordinates getCoordinateFromString(String hashKey) {
+		
+		Coordinates correctCoordinate = new Coordinates();
+		correctCoordinate = reaction.get(hashKey);
+		
+		return correctCoordinate;
+		
+	}
+	
+	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h) {
+		
+		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h);
+		
 	}
 	
 	/*
