@@ -18,8 +18,8 @@ public class Console {
 	private Floor floor = new Floor();
 	
 	private String floorWeOn = new String();
-	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
-	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
+	private HashMap<Interactions, Coordinates> interactionHash;
+	private HashMap<Enemy, Coordinates> enemyHash;
 	
 	public static void main(String[] args) {
 		Console test = new Console();
