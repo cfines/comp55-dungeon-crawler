@@ -15,6 +15,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
+	
+	public static final int DOOR_WIDTH = 50;
+	public static final int DOOR_HEIGHT = 500;
+	
 	public int pressedKey;
 	
 	public Console game;
@@ -31,7 +35,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean inMenu;
 	public GObject toClick;
 	
-	public GImage interaction;
+	public GRect entry;
+	public GImage interactionRep;
 	public GImage stairs;
 	
 	public GRect menuPause;
@@ -53,13 +58,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		runMainMenu();
 		playing = true;
 		
-		drawRoom();
 		game = new Console();
 		game.playGame();
-		
-			
-		
-		
+		drawRoom();
+
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
@@ -220,18 +222,39 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void drawInteraction() {
 		
+		Interactions tempInteraction;
 		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
 		
 		for(HashMap.Entry test : tempHash.entrySet()) {
+			
+			tempInteraction = (Interactions)test.getKey();
+			Coordinates tempCoord = tempHash.get(test.getKey());
+			
+			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
+				entry = new GRect(DOOR_WIDTH, DOOR_HEIGHT, tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2));
+				add(entry);
+			} else {
+				interactionRep = new GImage(tempInteraction.getinteractionType() + ".png", tempCoord.getX(), tempCoord.getY());
+				interactionRep.setSize(75, 75);
+				add(interactionRep);
+			}
 			
 		}
 	}
 	
 	public void drawEnemy() {
 		
+		Enemy tempEnemy;
 		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
 		
 		for(HashMap.Entry test : tempHash.entrySet()) {
+			
+			tempEnemy = (Enemy) test.getKey();
+			Coordinates tempCoord = tempHash.get(test.getKey());
+			
+			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
+			enemyRep.setSize(75, 75);
+			add(enemyRep);
 			
 		}
 	
