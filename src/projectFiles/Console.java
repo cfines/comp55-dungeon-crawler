@@ -18,8 +18,8 @@ public class Console {
 	private Floor floor = new Floor();
 	
 	private String floorWeOn = new String();
-	private HashMap<Interactions, Coordinates> interactionHash;
-	private HashMap<Enemy, Coordinates> enemyHash;
+	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
+	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	
 	public static void main(String[] args) {
 		Console test = new Console();
@@ -37,8 +37,12 @@ public class Console {
 		if(floorWeOn == "map_base1") {
 			System.out.println("I have the talking stick in the if statement");
 			map.runRunBase("R1", floor, map, interactionHash, enemyHash);
-			interactionHash = map.getInteractions();
-			enemyHash = map.getEnemySpawn();
+			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
+			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
+			
+			//interactionHash = tempInteractionHash;
+			//enemyHash = tempEnemyHash;
+			
 		} 
 		
 	}
