@@ -31,9 +31,9 @@ public class Map{
 	}
 	
 	//sets the interaction to a room
-	public void setInteractions(Interactions react, Coordinates r, HashMap <Interactions, Coordinates> h) 
+	public void setInteractions(Interactions react, Coordinates r, HashMap <Interactions, Coordinates> interactationPassbyHash) 
 	{
-		h.put(react, r);
+		interactationPassbyHash.put(react, r);
 	}
 	
 	//gets the hash map of the room interactions
