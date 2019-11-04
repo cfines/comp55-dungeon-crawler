@@ -52,7 +52,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		testDraw();
 		game = new Console();
-		game.main();
+		game.playGame();
 		
 	}
 	

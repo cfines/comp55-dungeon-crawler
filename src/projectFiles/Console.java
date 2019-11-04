@@ -18,7 +18,6 @@ public class Console {
 	private Floor floor = new Floor();
 	
 	private String floorWeOn = new String();
-	private Hardcoded roomSetup = new Hardcoded(); 
 	private HashMap<Interactions, Coordinates> bruh = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyBruh = new HashMap<Enemy, Coordinates>();
 	
