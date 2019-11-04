@@ -35,12 +35,11 @@ public class Console {
 		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
 		
 		if(floorWeOn == "map_base1") {
-			//System.out.println("I have the talking stick in the if statement");
+			System.out.println("I have the talking stick in the if statement");
 			map.runRunBase("R1", floor, map, interactionHash, enemyHash);
+			interactionHash = map.getInteractions();
+			enemyHash = map.getEnemySpawn();
 		} 
-		
-		interactionHash = map.getInteractions();
-		enemyHash = map.getEnemySpawn();
 		
 	}
 	
