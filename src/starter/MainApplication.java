@@ -10,6 +10,7 @@ public class MainApplication extends GraphicsApplication {
 
 	private SomePane somePane;
 	private MenuPane menu;
+	private GImage menuScreen;
 	private int count;
 
 	public void init() {

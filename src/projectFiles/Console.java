@@ -29,7 +29,6 @@ public class Console {
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
-		enemy = new Enemy(5, 5, 2000, 1, 500, 300, ElementType.FIRE);
 		int temp = floor.getLevelCounter(); //return int;
 		floor = new Floor();
 		floor.setMapArrayList();
