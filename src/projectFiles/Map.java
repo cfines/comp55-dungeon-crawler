@@ -111,9 +111,9 @@ public class Map{
 		
 	}
 	
-	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h) {
+	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee) {
 		
-		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h);
+		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee);
 		
 	}
 	

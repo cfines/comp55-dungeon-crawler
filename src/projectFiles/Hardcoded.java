@@ -67,7 +67,7 @@ public class Hardcoded
 		entriesInRoom = room.getMapBaseEtoR();
 	}*/
 	
-	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h) 
+	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee) 
 	{
 		//roomID parameter if else verification
 		
@@ -110,13 +110,13 @@ public class Hardcoded
 			Enemy roomTwoEnemy2 = new Enemy(5,0,0,5,1,3, ElementType.FIRE);
 			Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door, 2, 4);
 			Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door, 2, 5);
-			//map.setInteractions(roomTwoInteraction1, rock1, interactionStorage);
-			//map.setInteractions(roomTwoInteraction2, hole1, interactionStorage);
-			//map.setInteractions(roomTwoInteraction3, hole2, interactionStorage);
-			//map.setEnemySpawn(roomTwoEnemy1, enemy1, enemyStorage);
-			//map.setEnemySpawn(roomTwoEnemy2, enemy2, enemyStorage);
-			//map.setInteractions(roomTwoInteraction4, entry1, interactionStorage);
-			//map.setInteractions(roomTwoInteraction5, entry2, interactionStorage);
+			bruhMap.setInteractions(roomTwoInteraction1, rock1, h);
+			bruhMap.setInteractions(roomTwoInteraction2, hole1, h);
+			bruhMap.setInteractions(roomTwoInteraction3, hole2, h);
+			bruhMap.setInteractions(roomTwoInteraction4, entry1, h);
+			bruhMap.setInteractions(roomTwoInteraction5, entry2, h);
+			bruhMap.setEnemySpawn(roomTwoEnemy1, enemy1, eee);
+			bruhMap.setEnemySpawn(roomTwoEnemy2, enemy2, eee);
 			}
 			
 			//Room 3
@@ -128,9 +128,9 @@ public class Hardcoded
 			Interactions roomThreeInteraction1 = new Interactions(interactionType.entry_stair, 3, 1);
 			Enemy roomThreeEnemy1 = new Enemy(6,9,6,9,6,9, ElementType.WATER);
 			Interactions roomThreeInteraction2 = new Interactions(interactionType.entry_door, 3, 2);
-			//map.setInteractions(roomThreeInteraction1, stairs1, interactionStorage);
-			//map.setEnemySpawn(roomThreeEnemy1, enemy1, enemyStorage);
-			//map.setInteractions(roomThreeInteraction2, entry1, interactionStorage);
+			bruhMap.setInteractions(roomThreeInteraction1, stairs1, h);
+			bruhMap.setInteractions(roomThreeInteraction2, entry1, h);
+			bruhMap.setEnemySpawn(roomThreeEnemy1, enemy1, eee);
 			}
 		
 		}	
