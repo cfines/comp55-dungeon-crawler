@@ -27,7 +27,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean playing;
 	
 	public GImage menuScreen;
-	public GButton menuPlay;
+	public GButton menuPlay, highScore, credits, exit;
 	public boolean inMenu;
 	public GObject toClick;
 	
@@ -166,6 +166,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		menuPlay = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
 		add(menuPlay);
+		
+		highScore = new GButton("High Scores", 300, WINDOW_HEIGHT - 75, 150, 50);
+		add(highScore);
+		
+		credits = new GButton("Credits", 550, WINDOW_HEIGHT - 75, 150, 50);
+		add(credits);
+		
+		exit = new GButton("Exit", 800, WINDOW_HEIGHT - 75, 150, 50);
+		add(exit);
+		
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
