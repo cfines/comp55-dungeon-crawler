@@ -3,27 +3,26 @@ package starter;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
-	private GButton play;
-	private GButton highScore;
-	private GButton credits;
-	private GButton exit;
+	public static final int WINDOW_WIDTH = 1155;
+	public static final int WINDOW_HEIGHT = 650;
+	public GImage menuScreen;
+	public GButton play, highScore, credits, exit;
 
 	public MenuPane(MainApplication app) {
-		super();
-		program = app;
-		play = new GButton("Play", 200, 200, 200, 200);
-		highScore = new GButton("High Score", 500, 200, 200, 200);
-		credits = new GButton("Credits", 800, 200, 200, 200);
-		exit = new GButton("Exit", 1100, 200, 200, 200);
-		play.setFillColor(Color.RED);
-		highScore.setFillColor(Color.WHITE);
-		credits.setFillColor(Color.WHITE);
-		exit.setFillColor(Color.WHITE);
+		//super();
+		//program = app;
+		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
+		menuScreen.setSize(1155, 650);
+		play = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
+		highScore = new GButton("High Scores", 300, WINDOW_HEIGHT - 75, 150, 50);
+		credits = new GButton("Credits", 550, WINDOW_HEIGHT - 75, 150, 50);
+		exit = new GButton("Exit", 800, WINDOW_HEIGHT - 75, 150, 50);
 	}
 
 	@Override
