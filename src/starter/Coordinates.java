@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 //only to be called by Map
 

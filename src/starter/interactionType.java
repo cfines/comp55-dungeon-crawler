@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public enum interactionType {
 	entry_door, entry_stair, obstacle_wallShort, obstacle_wallLong, obstacle_rock, obstacle_hole;

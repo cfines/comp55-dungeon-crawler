@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public enum itemType {
 HPRECOVERY, ATKSPEED, MOVESPEED, POWERSTAT, HPINCREASE, KEY;

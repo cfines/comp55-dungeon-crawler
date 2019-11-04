@@ -1,7 +1,7 @@
 //This the map class that takes in the values of map layout and room, 
 //spits out the combination, 
 //and leads to something beautiful
-package projectFiles;
+package starter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

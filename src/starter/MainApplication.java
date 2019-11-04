@@ -1,7 +1,6 @@
 package starter;
 
 import acm.graphics.GImage;
-import projectFiles.GraphicsGame;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1155;

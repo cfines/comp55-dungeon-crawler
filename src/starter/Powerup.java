@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public class Powerup {
 	private itemType type;

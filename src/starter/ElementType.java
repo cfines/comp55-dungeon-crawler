@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public enum ElementType {
 FIRE, WATER, EARTH;

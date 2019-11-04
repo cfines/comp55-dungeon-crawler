@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public class Boss {
 	private Stats bossStats;

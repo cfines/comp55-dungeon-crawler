@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 import java.awt.event.*;
 import java.util.HashMap;

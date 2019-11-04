@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,7 +9,6 @@ import java.util.Timer;
 
 import acm.graphics.*;
 import acm.program.*;
-import starter.GButton;
 
 public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 

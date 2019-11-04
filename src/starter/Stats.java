@@ -1,4 +1,4 @@
-package projectFiles;
+package starter;
 
 public class Stats {
 	private int HP_cur, HP_tot;
