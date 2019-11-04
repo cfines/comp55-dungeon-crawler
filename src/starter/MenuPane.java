@@ -19,10 +19,10 @@ public class MenuPane extends GraphicsPane {
 		program = app;
 		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
 		menuScreen.setSize(1155, 650);
-		play = new GButton("Play", 50, WINDOW_HEIGHT - 75, 150, 50);
-		highScore = new GButton("High Scores", 401, WINDOW_HEIGHT - 75, 150, 50);
-		credits = new GButton("Credits", 751, WINDOW_HEIGHT - 75, 150, 50);
-		exit = new GButton("Exit", 955, WINDOW_HEIGHT - 75, 150, 50);
+		play = new GButton("Play", 200, WINDOW_HEIGHT - 75, 150, 50);
+		highScore = new GButton("High Scores", 387.5, WINDOW_HEIGHT - 75, 150, 50);
+		credits = new GButton("Credits", 575, WINDOW_HEIGHT - 75, 150, 50);
+		exit = new GButton("Exit", 762.5, WINDOW_HEIGHT - 75, 150, 50);
 	}
 
 	@Override
@@ -48,6 +48,9 @@ public class MenuPane extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == play) {
 			program.switchToSome();
+		}
+		else if(obj == exit) {
+			System.exit(0);
 		}
 	}
 }
