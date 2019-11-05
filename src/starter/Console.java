@@ -1,9 +1,11 @@
 package starter;
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.HashMap;
 
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 import acm.program.GraphicsProgram;
 
 public class Console {
@@ -21,12 +23,6 @@ public class Console {
 	private String floorWeOn = new String();
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
-	
-	public static void main(String[] args) {
-		Console test = new Console();
-		test.playGame();
-		System.out.println("Running...");
-	}
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
@@ -59,6 +55,7 @@ public class Console {
 		switch(keyInput) {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
+			
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
@@ -114,15 +111,34 @@ public class Console {
 	
 	////////////////////////////////////
 	
-	public String getNextRoom(int x, int y) {
-		int userX = x;
-		int userY = y;
-		GObject userLoc = getElemenentAt(userX, userY);
+	public void getNextRoom() {
+		Interactions tempInteraction;
+		int coordX = user.getCoordX();
+		int coordY = user.getCoordY();
+		int entryCoordX;
+		int entryCoordY;
+		String enteredEntry;
+		HashMap<Interactions, Coordinates> findCoords = getInteractionHash();
 		
-		if (userLoc ==  
 		
-		
+		for(HashMap.Entry test : findCoords.entrySet()) {
+			tempInteraction = (Interactions)test.getKey();
+			Coordinates tempCoord = findCoords.get(test.getKey());
+			
+			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
+				entryCoordX = tempCoord.getX();
+				entryCoordY = tempCoord.getY();
+				
+				if(coordX >= entryCoordX && coordY >= (tempCoord.getY() - 250) && coordX <= 50 && coordY <= 500) {
+					
+					System.out.println(test.getKey());
+					
+				}
+			}	
+		}		
 	}
+		
+
 	
 	////////////////////////////////////
 	
@@ -132,6 +148,11 @@ public class Console {
 	
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
+	}
+	
+	public static void main(String[] args) {
+		Console test = new Console();
+		test.getNextRoom();
 	}
 	
 }
