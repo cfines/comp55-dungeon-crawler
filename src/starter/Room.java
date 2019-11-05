@@ -12,6 +12,7 @@ public class Room {
 	private int numEntries;
 	private ArrayList<Interactions> entries;
 	private ArrayList<Interactions> obstacles;
+	private ArrayList<Enemy> enemies;
 	private HashMap<String,String> entryPoints;
 	private ArrayList<String> entryAmount;
 	
@@ -34,14 +35,18 @@ public class Room {
 	
 	public String whatMapWeOn() {
 		return map.whatMapWeOn();
-	}
-	
+	}   
+	    
 	public ArrayList<Interactions> getEntries(){
 		return entries;
 	}
 	
 	public ArrayList<Interactions> getObstacles(){
 		return obstacles;
+	}
+	
+	public ArrayList<Enemy> getEnemies(){
+		return enemies;
 	}
 	
 	// the parameters for getting the entries and obstacles are the amount of said entries and obstacles inside the specific room the player is in
@@ -53,19 +58,23 @@ public class Room {
 		obstacles = new ArrayList<Interactions>(amount);
 	}
 	
+	public void createEnemies(int amount) {
+		enemies = new ArrayList<Enemy>(amount);
+	}
+	
 	
 	//TODO change the functionality of this so that it works in room because
 	//I just realized that it makes no sense to have a function that gets interactions from a room
-	//from map
-	
+	//from map         
+	                 
 	//public static HashMap <HashMap<Interactions, Coordinates>, Room> getInteractionsFromRoom(){
 	//	return Map.getInteractionsFromRoom();
 	//}
 	
 	public HashMap<Enemy, Coordinates> getEnemySpawn(){
 		return map.getEnemySpawn();
-	}
-	
+	}     
+	      
 	public HashMap<Boss, Coordinates> getBossSpawn(){
 		return map.getBossSpawn();
 	}
@@ -91,9 +100,9 @@ public class Room {
 		//System.out.println(map.getEnemyRoomY());
 		System.out.println("There is an interaction that is of this type: " + inter.getinteractionType());
 		System.out.println("This interaction is located on: X = " + ree.get(inter).getX() + " Y = " + ree.get(inter).getY());
-		System.out.println("\nNow testing for 2!\n");
-		Enemy thirteenPercent = new Enemy(50,99,44,22,11,69,ElementType.EARTH);
-		Coordinates majorityOfCrime = new Coordinates(69,420);
+		System.out.println("\nNow testing for 2!\n");                                         
+		Enemy thirteenPercent = new Enemy(50,99,44,22,11,69,ElementType.EARTH);                      
+		Coordinates majorityOfCrime = new Coordinates(69,420);   
 		map.setEnemySpawn(thirteenPercent, majorityOfCrime, eS);
 		System.out.println("This new enemy is of type: " + thirteenPercent.getEnemyType());
 		System.out.println("This new enemy is located on: \nX = " + eS.get(thirteenPercent).getX());
