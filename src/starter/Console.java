@@ -27,7 +27,7 @@ public class Console {
 	
 	
 	public void setNextCurrRoom(String nextCurrRoom) {
-	//	roomFromEntry = nextCurrRoom;
+		currRoom = nextCurrRoom;
 		floor.setCurrRoom(nextCurrRoom);
 	}
 	
@@ -35,7 +35,7 @@ public class Console {
 		return currRoom;
 	}
 	
-	public String getCurrRoom() {
+	public String getNextCurrRoom() {
 		currRoom = floor.getCurrRoom();
 		return floor.getCurrRoom();
 	}
@@ -63,11 +63,11 @@ public class Console {
 		//System.out.println(floorWeOn);
 		
 		if(floorWeOn == "map_base1") {
-			System.out.println("Inside the playGame if statement");
 			if(getLocalCurrRoom() == null) {
 				resetRoom();
 			}
-			map.runRunBase("R2", floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
+			System.out.println("Current room: " + getLocalCurrRoom());
+			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
 			//interactionHash = tempInteractionHash;
@@ -201,12 +201,12 @@ public class Console {
 	
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
-						System.out.println("Next room will be: " + getCurrRoom());
-						break;
+						System.out.println("Next room will be: " + getNextCurrRoom());
+						//break;
+						playGame(); 
 					}
-				}break;
+				}//break;
 			}
-			//map.runRunBase(getCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 		}
 	
 		
