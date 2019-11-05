@@ -3,6 +3,7 @@ package starter;
 import java.awt.event.*;
 import java.util.HashMap;
 
+import acm.graphics.GObject;
 import acm.program.GraphicsProgram;
 
 public class Console {
@@ -49,7 +50,6 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		user.tick();
-		
 	}
 	
 	public void keyPressedManager(KeyEvent e) {
@@ -111,6 +111,20 @@ public class Console {
 	public User getUser() {
 		return user;
 	}
+	
+	////////////////////////////////////
+	
+	public String getNextRoom(int x, int y) {
+		int userX = x;
+		int userY = y;
+		GObject userLoc = getElemenentAt(userX, userY);
+		
+		if (userLoc ==  
+		
+		
+	}
+	
+	////////////////////////////////////
 	
 	public HashMap<Interactions, Coordinates> getInteractionHash(){
 		return this.interactionHash;
