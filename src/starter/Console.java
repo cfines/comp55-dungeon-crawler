@@ -67,7 +67,7 @@ public class Console {
 			if(getLocalCurrRoom() == null) {
 				resetRoom();
 			}
-			map.runRunBase(getCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
+			map.runRunBase("R2", floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
 			//interactionHash = tempInteractionHash;
@@ -202,8 +202,9 @@ public class Console {
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getCurrRoom());
+						break;
 					}
-				}
+				}break;
 			}
 			//map.runRunBase(getCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 		}
