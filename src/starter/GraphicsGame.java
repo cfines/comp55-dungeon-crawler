@@ -234,8 +234,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			tempInteraction = (Interactions)test.getKey();
 			Coordinates tempCoord = tempHash.get(test.getKey());
 			
+			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
+			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(tempCoord.getX() - 500, tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
+				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
 				entry.setFillColor(Color.BLACK);
 				add(entry);
 			} else {

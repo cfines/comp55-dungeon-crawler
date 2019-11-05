@@ -15,28 +15,67 @@ public class Console {
 	private Enemy enemy;
 	private int keyInput;
 	private Floor floor = new Floor();
+	private MapLayout layout = new MapLayout();
 	
 	private String floorWeOn = new String();
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
+	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
+	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
+	private String currRoom;
+	//private String roomFromEntry = new String();
+	
+	
+	public void setNextCurrRoom(String nextCurrRoom) {
+		currRoom = nextCurrRoom;
+		floor.setCurrRoom(nextCurrRoom);
+	}
+	
+	public String getLocalCurrRoom() {
+		return currRoom;
+	}
+	
+	public String getNextCurrRoom() {
+		currRoom = floor.getCurrRoom();
+		return floor.getCurrRoom();
+	}
+	
+	public void levelAdder() {
+		floor.levelAdder();
+	}
+	
+	public int getLevelCounter() {
+		return floor.getLevelCounter();
+	}
+	
+	public void resetRoom() {
+		currRoom = "R1";
+		floor.resetCurrRoom();
+	}
+	
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
-		int temp = floor.getLevelCounter(); //return int;
+		int temp = getLevelCounter(); //return int;
 		floor = new Floor();
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
-		
+		//System.out.println(floorWeOn);
 		
 		if(floorWeOn == "map_base1") {
-			System.out.println("I have the talking stick in the if statement");
-			map.runRunBase("R1", floor, map, interactionHash, enemyHash);
+			if(getLocalCurrRoom() == null) {
+				resetRoom();
+			}
+			System.out.println("Current room: " + getLocalCurrRoom());
+			
+			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
+			// which is why it just resets the user position back to where he was without any room changes?
+			
+			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
-			
 			//interactionHash = tempInteractionHash;
 			//enemyHash = tempEnemyHash;
-			
 		} 
 		
 		
@@ -44,6 +83,10 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		user.tick();
+<<<<<<< HEAD
+=======
+		//enemy.move(user);
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 	
 	public void keyPressedManager(KeyEvent e) {
@@ -112,40 +155,80 @@ public class Console {
 	
 	////////////////////////////////////
 	
-	private ArrayList<Coordinates> enteredEntries = new ArrayList<Coordinates>();
-	private Hardcoded hardcoded = new Hardcoded();
+	Hardcoded hardcoded = new Hardcoded();
 	
-	public void setEnteredEntries(Coordinates entry) {
-		enteredEntries.add(entry);
-		System.out.println(enteredEntries.size());
-	}
-	
-	public ArrayList<Coordinates> getEnteredEntries() {
-		return enteredEntries;
-	}
-	
-	public void getNextRoom() {
-		int coordX = user.getCoordX();
-		int coordY = user.getCoordY();
-		ArrayList<Coordinates> tempArrayList = getEnteredEntries();
-		System.out.println(tempArrayList.size());
+		public void getNextRoom() {
+			int coordX = user.getCoordX();
+			int coordY = user.getCoordY();
+			String tempString;
+			//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
+			//tempArrayList = getEntries();
+			
+			HashMap<String,ArrayList<Coordinates>> tempHash = new HashMap<String,ArrayList<Coordinates>>();
+			tempHash = getEntriesHash();
 		
-		for(int i = 0; i <= tempArrayList.size() - 1; i++) {
-			
-			System.out.println("Inside for loop of getNextRoom");
-			
-			if (coordX >= getEnteredEntries().get(i).getX() && coordY >= getEnteredEntries().get(i).getY() && coordX <= getEnteredEntries().get(i).getX() 
-					&& coordY <= getEnteredEntries().get(i).getY()) {
+			for(HashMap.Entry test : tempHash.entrySet()) {
+					
+				tempString = (String)test.getKey();
+				ArrayList<Coordinates> tempCoord = tempHash.get(test.getKey());
 				
-				System.out.println("User has entered " + getEnteredEntries().get(i));
-				
+				for(int i = 0; i <= tempCoord.size() - 1; i++) {
+					int temp1 = tempCoord.get(i).getX();
+					int temp2 = tempCoord.get(i).getY();
+					
+					// TODO check pixel range of player instead of that single point
+					
+					
+					if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
+						&& coordY <= temp2 + 500 ) {
+						
+					System.out.println("Detected user in the gRect!");
+					System.out.println("The name of the gRect the user is in is: " + tempString);
+					
+					
+					//TODO for the love of god, change the way how we call all our functions when this thing actually works
+					HashMap<String, String> mapHashCurrEntry;
+					HashMap<String, String> mapHashNextRoom;
+					ArrayList<String> numOfEntries;
+					int temp; 
+					
+						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
+						temp = layout.getEntryAmountofLayout();
+						layout.setEntryAmount(temp);
+						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+						mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+						
+						String nextEntry = mapHashCurrEntry.get(tempString);
+						System.out.println("The next entry will be: " + nextEntry);
+						
+						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+						numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
+						
+						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+						mapHashNextRoom = room.getMapBaseEtoR();
+	
+						String nextRoom = mapHashNextRoom.get(nextEntry);
+						setNextCurrRoom(nextRoom);
+						System.out.println("Next room will be: " + getNextCurrRoom());
+						//break;
+						playGame(); 
+					}
+				}//break;
 			}
-		}	
-	}
+		}
+	
 		
 
 	
 	////////////////////////////////////
+	
+	public ArrayList<Coordinates> getEntries(){
+		return this.entries;
+	}
+	
+	public HashMap<String,ArrayList<Coordinates>> getEntriesHash(){
+		return this.enteredEntriesHash;
+	}
 	
 	public HashMap<Interactions, Coordinates> getInteractionHash(){
 		return this.interactionHash;

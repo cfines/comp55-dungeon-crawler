@@ -20,11 +20,35 @@ public class Map{
 	private HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	private HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
+	private ArrayList<Coordinates> enteredEntries = new ArrayList<Coordinates>();
+	private HashMap<String, ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String, ArrayList<Coordinates>>();
 	
 	private Hardcoded bruhMoment = new Hardcoded();
 	
 	//basic constructor
 	Map(){}
+	
+	///////////////////////////////////////////
+	
+	
+	public void setEnteredEntries(String entryID, Coordinates entry, ArrayList<Coordinates> passBy1, HashMap <String, ArrayList<Coordinates>> passBy2) {
+		passBy1.add(entry);
+		ArrayList<Coordinates> temp = passBy1;
+		temp.add(entry);
+		passBy2.put(entryID, temp);		
+	}
+	
+	public ArrayList<Coordinates> getEnteredEntries() {
+		return enteredEntries;		
+	}
+	
+	public HashMap<String, ArrayList<Coordinates>> getEnteredEntriesHash(){
+		return enteredEntriesHash;
+	}
+	
+	
+	
+	///////////////////////////////////////////
 	
 	public String whatMapWeOn() {
 		return floor.whatMapWeOn(floor.getLevelCounter());
@@ -111,9 +135,10 @@ public class Map{
 		
 	}
 	
-	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee) {
+	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee, 
+			ArrayList<Coordinates> enteredEntries, HashMap<String,ArrayList<Coordinates>> enteredEntriesHash) {
 		
-		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee);
+		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee, enteredEntries, enteredEntriesHash);
 		
 	}
 	
