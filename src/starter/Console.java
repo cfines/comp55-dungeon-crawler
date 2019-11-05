@@ -67,6 +67,10 @@ public class Console {
 				resetRoom();
 			}
 			System.out.println("Current room: " + getLocalCurrRoom());
+			
+			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
+			// which is why it just resets the user position back to where he was without any room changes?
+			
 			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
