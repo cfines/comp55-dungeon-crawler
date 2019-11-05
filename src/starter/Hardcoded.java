@@ -74,7 +74,7 @@ public class Hardcoded
 		
 		if(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
 		//Room 1
-		if(userRoomPosition == "R2")
+		if(userRoomPosition == "R1")
 			{
 			Coordinates rock1 = new Coordinates (70,89);
 			Coordinates rock2 = new Coordinates (780,301);
@@ -91,7 +91,7 @@ public class Hardcoded
 			}
 			
 			//Room 2
-			else if(userRoomPosition == "R1")
+			else if(userRoomPosition == "R2")
 			{
 			Coordinates rock1 = new Coordinates (80, 90);
 			Coordinates hole1 = new Coordinates (500,91);
