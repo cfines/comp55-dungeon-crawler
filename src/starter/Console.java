@@ -1,12 +1,8 @@
 package starter;
 
-import java.awt.Color;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
-
-import acm.graphics.GObject;
-import acm.graphics.GRect;
-import acm.program.GraphicsProgram;
 
 public class Console {
 	
@@ -57,16 +53,19 @@ public class Console {
 		switch(keyInput) {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
-			
+			getNextRoom();
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
+			getNextRoom();
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
+			getNextRoom();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
+			getNextRoom();
 			break;
 		case KeyEvent.VK_E:
 			user.cycleWeapon();
@@ -113,31 +112,35 @@ public class Console {
 	
 	////////////////////////////////////
 	
+	private ArrayList<Coordinates> enteredEntries = new ArrayList<Coordinates>();
+	private Hardcoded hardcoded = new Hardcoded();
+	
+	public void setEnteredEntries(Coordinates entry) {
+		enteredEntries.add(entry);
+		System.out.println(enteredEntries.size());
+	}
+	
+	public ArrayList<Coordinates> getEnteredEntries() {
+		return enteredEntries;
+	}
+	
 	public void getNextRoom() {
-		Interactions tempInteraction;
 		int coordX = user.getCoordX();
 		int coordY = user.getCoordY();
-		int entryCoordX;
-		int entryCoordY;
-		String enteredEntry;
-		HashMap<Interactions, Coordinates> findCoords = getInteractionHash();
+		ArrayList<Coordinates> tempArrayList = getEnteredEntries();
+		System.out.println(tempArrayList.size());
 		
-		
-		for(HashMap.Entry test : findCoords.entrySet()) {
-			tempInteraction = (Interactions)test.getKey();
-			Coordinates tempCoord = findCoords.get(test.getKey());
+		for(int i = 0; i <= tempArrayList.size() - 1; i++) {
 			
-			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entryCoordX = tempCoord.getX();
-				entryCoordY = tempCoord.getY();
+			System.out.println("Inside for loop of getNextRoom");
+			
+			if (coordX >= getEnteredEntries().get(i).getX() && coordY >= getEnteredEntries().get(i).getY() && coordX <= getEnteredEntries().get(i).getX() 
+					&& coordY <= getEnteredEntries().get(i).getY()) {
 				
-				if(coordX >= entryCoordX && coordY >= (tempCoord.getY() - 250) && coordX <= 50 && coordY <= 500) {
-					
-					System.out.println(test.getKey());
-					
-				}
-			}	
-		}		
+				System.out.println("User has entered " + getEnteredEntries().get(i));
+				
+			}
+		}	
 	}
 		
 

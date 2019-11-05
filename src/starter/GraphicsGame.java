@@ -82,8 +82,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//Check for User Location and Image Location sync
 		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-		System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
-		System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
+		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
+		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -235,7 +235,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			Coordinates tempCoord = tempHash.get(test.getKey());
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
+				entry = new GRect(tempCoord.getX() - 500, tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
 				entry.setFillColor(Color.BLACK);
 				add(entry);
 			} else {
