@@ -70,7 +70,7 @@ public class Hardcoded
 	}*/
 	
 	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h, 
-													HashMap <Enemy, Coordinates> eee, ArrayList<Coordinates> enteredEntries/*, HashMap <Boss, Coordinates> bbb*/) 
+													HashMap <Enemy, Coordinates> eee, ArrayList<Coordinates> enteredEntriesArrayList, HashMap<String,ArrayList<Coordinates>> enteredEntriesHash/*, HashMap <Boss, Coordinates> bbb*/) 
 	{
 		//roomID parameter if else verification
 		
@@ -108,7 +108,7 @@ public class Hardcoded
 				Coordinates rock2 = new Coordinates (780,301);
 				Coordinates hole1 = new Coordinates (72,301);
 				Coordinates entry1 = new Coordinates (500, 325);
-				bruhMap.setEnteredEntries(entry1, enteredEntries);
+				bruhMap.setEnteredEntries("entry1", entry1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
 				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
 				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);

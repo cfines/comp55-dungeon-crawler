@@ -20,6 +20,7 @@ public class Console {
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
+	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
@@ -30,7 +31,7 @@ public class Console {
 		
 		
 		if(floorWeOn == "map_base1") {
-			map.runRunBase("R1", floor, map, interactionHash, enemyHash, entries);
+			map.runRunBase("R1", floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
 			
@@ -114,28 +115,34 @@ public class Console {
 	
 	Hardcoded hardcoded = new Hardcoded();
 	
-	public void getNextRoom() {
-		int coordX = user.getCoordX();
-		int coordY = user.getCoordY();
-		ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
-		tempArrayList = getEntries();
-		
-		for(int i = 0; i <= tempArrayList.size()-1; i++) {
-			System.out.println(tempArrayList.get(i));
-			//System.out.println("I have the talking stick in getNextRoom's for loop");
-			int temp1 = tempArrayList.get(i).getX();
-			int temp2 = tempArrayList.get(i).getY();
-		
+		public void getNextRoom() {
+			int coordX = user.getCoordX();
+			int coordY = user.getCoordY();
+			String tempString;
+			//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
+			//tempArrayList = getEntries();
 			
-			if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
-					&& coordY <= temp2 + 500 ) {
+			HashMap<String,ArrayList<Coordinates>> tempHash = new HashMap<String,ArrayList<Coordinates>>();
+			tempHash = getEntriesHash();
+		
+			for(HashMap.Entry test : tempHash.entrySet()) {
+					
+				tempString = (String)test.getKey();
+				ArrayList<Coordinates> tempCoord = tempHash.get(test.getKey());
 				
-				System.out.println("I have the talking stick in getNextRoom's if statement");
-				System.out.println("Detected user in the gRect!!!!!!!!!!!!!");
-				
+				for(int i = 0; i <= tempCoord.size() - 1; i++) {
+					int temp1 = tempCoord.get(i).getX();
+					int temp2 = tempCoord.get(i).getY();
+					
+					if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
+						&& coordY <= temp2 + 500 ) {
+						
+					System.out.println("Detected user in the gRect!");
+					System.out.println("The name of the gRect the user is in is: " + tempString);
+					}
+				}
 			}
-		}	
-	}
+		}
 	
 		
 
@@ -144,6 +151,10 @@ public class Console {
 	
 	public ArrayList<Coordinates> getEntries(){
 		return this.entries;
+	}
+	
+	public HashMap<String,ArrayList<Coordinates>> getEntriesHash(){
+		return this.enteredEntriesHash;
 	}
 	
 	public HashMap<Interactions, Coordinates> getInteractionHash(){
