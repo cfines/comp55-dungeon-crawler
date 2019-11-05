@@ -3,6 +3,8 @@ package starter;
 public class Enemy {
 	private Stats enemyStats;
 	private User userStats;
+	private int moveSpeedStat;
+	private double powerStat;
 	private ElementType enemyType;
 	private int dx, dy, userX, userY;
 	
@@ -10,6 +12,8 @@ public class Enemy {
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{
 		enemyStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
+		moveSpeedStat = 5;
+		powerStat = 5;
 		this.enemyType = bossType;
 	}
 	
@@ -23,17 +27,17 @@ public class Enemy {
 		enemyStats.setCoordY(enemyStats.getCoordY() + 2);
 	}
 	
-	public void move() {
+	public void move(User user) {
 		dx = enemyStats.getCoordX();
 		dy = enemyStats.getCoordY();
 		userX = userStats.getCoordX();
 		userY = userStats.getCoordY();
 		
-		if(dx <= userX + 500 && dy <= userY + 500) {
-			
-		}
-		else {
-			
+		if(dy > userY) {
+			enemyStats.setCoordY(dy -= moveSpeedStat);
+			if(dy < -moveSpeedStat) {
+				dy = -moveSpeedStat;
+			}
 		}
 	}
 }
