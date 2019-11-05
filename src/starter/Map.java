@@ -20,11 +20,25 @@ public class Map{
 	private HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	private HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
+	private ArrayList<Coordinates> enteredEntries = new ArrayList<Coordinates>();
 	
 	private Hardcoded bruhMoment = new Hardcoded();
 	
 	//basic constructor
 	Map(){}
+	
+	///////////////////////////////////////////
+	
+	
+	public void setEnteredEntries(Coordinates entry, ArrayList<Coordinates> passBy) {
+		passBy.add(entry);		
+	}
+	
+	public ArrayList<Coordinates> getEnteredEntries() {
+		return enteredEntries;		
+	}
+	
+	///////////////////////////////////////////
 	
 	public String whatMapWeOn() {
 		return floor.whatMapWeOn(floor.getLevelCounter());
@@ -111,9 +125,9 @@ public class Map{
 		
 	}
 	
-	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee) {
+	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee, ArrayList<Coordinates> enteredEntries) {
 		
-		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee);
+		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee, enteredEntries);
 		
 	}
 	
