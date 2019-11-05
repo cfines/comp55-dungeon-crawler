@@ -75,7 +75,8 @@ public class Hardcoded
 		//roomID parameter if else verification
 		
 		if(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
-		//Room 1
+		
+			//Room 2
 			if(userRoomPosition == "R2")
 			{
 				Coordinates rock1 = new Coordinates (80, 90);
@@ -101,7 +102,7 @@ public class Hardcoded
 				bruhMap.setEnemySpawn(roomTwoEnemy2, enemy2, eee);
 			}
 			
-			//Room 2
+			//Room 1
 			else if(userRoomPosition == "R1")
 			{
 				Coordinates rock1 = new Coordinates (70,89);
