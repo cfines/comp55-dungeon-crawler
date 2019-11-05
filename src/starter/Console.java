@@ -28,6 +28,7 @@ public class Console {
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
 		
+		
 		if(floorWeOn == "map_base1") {
 			System.out.println("I have the talking stick in the if statement");
 			map.runRunBase("R1", floor, map, interactionHash, enemyHash, entries);
@@ -43,6 +44,7 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		user.tick();
+		enemy.move(user);
 	}
 	
 	public void keyPressedManager(KeyEvent e) {

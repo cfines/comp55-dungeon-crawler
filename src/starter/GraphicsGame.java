@@ -251,7 +251,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void drawEnemy() {
 		
-		
 		Enemy tempEnemy;
 		HashMap<Enemy, Coordinates> tempHash = game.getEnemyHash();
 		
