@@ -68,7 +68,7 @@ public class Hardcoded
 	}*/
 	
 	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h, 
-													HashMap <Enemy, Coordinates> eee, HashMap <Boss, Coordinates> bbb) 
+													HashMap <Enemy, Coordinates> eee/*, HashMap <Boss, Coordinates> bbb*/) 
 	{
 		//roomID parameter if else verification
 		
@@ -244,13 +244,13 @@ public class Hardcoded
 			//Room 9 (BOSS ROOM)
 			else if(userRoomPosition == "R9") 
 			{
-			Coordinates boss1 = new Coordinates(575,325);
+			//Coordinates boss1 = new Coordinates(575,325);
 			Coordinates entry1 = new Coordinates(575,645);	//TODO find way to prevent user to leave until the boss is dead
 			Coordinates stairs1 = new Coordinates(575, 100);	//TODO make sure that these don't appear until the boss is dead
-			Boss roomNineBoss1 = new Boss(10,10,2,2,2,2, ElementType.EARTH);	//TODO decide which boss we want first
+			//Boss roomNineBoss1 = new Boss(10,10,2,2,2,2, ElementType.EARTH);	//TODO decide which boss we want first
 			Interactions roomNineInteraction1 = new Interactions(interactionType.entry_door,9,1);
 			Interactions roomNineInteraction2 = new Interactions(interactionType.entry_stair,9,2);
-			bruhMap.setBossSpawn(roomNineBoss1, boss1, bbb);
+			//bruhMap.setBossSpawn(roomNineBoss1, boss1, bbb);
 			bruhMap.setInteractions(roomNineInteraction1, entry1, h);
 			bruhMap.setInteractions(roomNineInteraction2, stairs1, h);
 			}
