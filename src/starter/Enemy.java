@@ -8,6 +8,8 @@ public class Enemy {
 	private ElementType enemyType;
 	private int dx, dy, userX, userY;
 	
+	Enemy(){};
+	
 	Enemy (int input_HP_cur, int input_HP_tot, int atkTime,
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{

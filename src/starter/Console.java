@@ -39,6 +39,7 @@ public class Console {
 			
 		} 
 		
+		
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
