@@ -30,7 +30,6 @@ public class Console {
 		
 		
 		if(floorWeOn == "map_base1") {
-			System.out.println("I have the talking stick in the if statement");
 			map.runRunBase("R1", floor, map, interactionHash, enemyHash, entries);
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
@@ -44,7 +43,7 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		user.tick();
-		enemy.move(user);
+		//enemy.move(user);
 	}
 	
 	public void keyPressedManager(KeyEvent e) {
@@ -123,16 +122,16 @@ public class Console {
 		
 		for(int i = 0; i <= tempArrayList.size()-1; i++) {
 			System.out.println(tempArrayList.get(i));
-			System.out.println("I have the talking stick in getNextRoom's for loop");
+			//System.out.println("I have the talking stick in getNextRoom's for loop");
 			int temp1 = tempArrayList.get(i).getX();
 			int temp2 = tempArrayList.get(i).getY();
 		
 			
-			if (coordX >= tempArrayList.get(i).getX() && coordY >= temp2 && coordX <= temp1
-					&& coordY <= tempArrayList.get(i).getY()) {
+			if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
+					&& coordY <= temp2 + 500 ) {
 				
 				System.out.println("I have the talking stick in getNextRoom's if statement");
-				System.out.println("User has entered " + tempArrayList.get(i));
+				System.out.println("Detected user in the gRect!!!!!!!!!!!!!");
 				
 			}
 		}	

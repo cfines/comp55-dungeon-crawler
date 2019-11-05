@@ -76,47 +76,47 @@ public class Hardcoded
 		
 		if(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
 		//Room 1
-		if(userRoomPosition == "R2")
+			if(userRoomPosition == "R2")
 			{
-			Coordinates rock1 = new Coordinates (70,89);
-			Coordinates rock2 = new Coordinates (780,301);
-			Coordinates hole1 = new Coordinates (72,301);
-			Coordinates entry1 = new Coordinates (500, 325);
-			bruhMap.setEnteredEntries(entry1, enteredEntries);
-			Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
-			Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
-			Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
-			Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
-			bruhMap.setInteractions(roomOneInteraction1, rock1, h);
-			bruhMap.setInteractions(roomOneInteraction2, rock2, h);
-			bruhMap.setInteractions(roomOneInteraction3, hole1, h);
-			bruhMap.setInteractions(roomOneInteraction4, entry1, h);
+				Coordinates rock1 = new Coordinates (80, 90);
+				Coordinates hole1 = new Coordinates (500,91);
+				Coordinates hole2 = new Coordinates (75, 500);
+				Coordinates enemy1 = new Coordinates (350, 76);
+				Coordinates enemy2 = new Coordinates (367, 504);
+				Coordinates entry1 = new Coordinates (5, 325);
+				Coordinates entry2 = new Coordinates (1145, 325);
+				Interactions roomTwoInteraction1 = new Interactions(interactionType.obstacle_rock, 2, 1);
+				Interactions roomTwoInteraction2 = new Interactions(interactionType.obstacle_hole, 2, 2);
+				Interactions roomTwoInteraction3 = new Interactions(interactionType.obstacle_hole, 2, 3);
+				Enemy roomTwoEnemy1 = new Enemy(2, 2, 2, 2, 2, 2, ElementType.EARTH);
+				Enemy roomTwoEnemy2 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
+				Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door, 2, 4);
+				Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door, 2, 5);
+				bruhMap.setInteractions(roomTwoInteraction1, rock1, h);
+				bruhMap.setInteractions(roomTwoInteraction2, hole1, h);
+				bruhMap.setInteractions(roomTwoInteraction3, hole2, h);
+				bruhMap.setInteractions(roomTwoInteraction4, entry1, h);
+				bruhMap.setInteractions(roomTwoInteraction5, entry2, h);
+				bruhMap.setEnemySpawn(roomTwoEnemy1, enemy1, eee);
+				bruhMap.setEnemySpawn(roomTwoEnemy2, enemy2, eee);
 			}
 			
 			//Room 2
 			else if(userRoomPosition == "R1")
 			{
-			Coordinates rock1 = new Coordinates (80, 90);
-			Coordinates hole1 = new Coordinates (500,91);
-			Coordinates hole2 = new Coordinates (75, 500);
-			Coordinates enemy1 = new Coordinates (350, 76);
-			Coordinates enemy2 = new Coordinates (367, 504);
-			Coordinates entry1 = new Coordinates (5, 325);
-			Coordinates entry2 = new Coordinates (1145, 325);
-			Interactions roomTwoInteraction1 = new Interactions(interactionType.obstacle_rock, 2, 1);
-			Interactions roomTwoInteraction2 = new Interactions(interactionType.obstacle_hole, 2, 2);
-			Interactions roomTwoInteraction3 = new Interactions(interactionType.obstacle_hole, 2, 3);
-			Enemy roomTwoEnemy1 = new Enemy(2, 2, 2, 2, 2, 2, ElementType.EARTH);
-			Enemy roomTwoEnemy2 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
-			Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door, 2, 4);
-			Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door, 2, 5);
-			bruhMap.setInteractions(roomTwoInteraction1, rock1, h);
-			bruhMap.setInteractions(roomTwoInteraction2, hole1, h);
-			bruhMap.setInteractions(roomTwoInteraction3, hole2, h);
-			bruhMap.setInteractions(roomTwoInteraction4, entry1, h);
-			bruhMap.setInteractions(roomTwoInteraction5, entry2, h);
-			bruhMap.setEnemySpawn(roomTwoEnemy1, enemy1, eee);
-			bruhMap.setEnemySpawn(roomTwoEnemy2, enemy2, eee);
+				Coordinates rock1 = new Coordinates (70,89);
+				Coordinates rock2 = new Coordinates (780,301);
+				Coordinates hole1 = new Coordinates (72,301);
+				Coordinates entry1 = new Coordinates (500, 325);
+				bruhMap.setEnteredEntries(entry1, enteredEntries);
+				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
+				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
+				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
+				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
+				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
+				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
+				bruhMap.setInteractions(roomOneInteraction3, hole1, h);
+				bruhMap.setInteractions(roomOneInteraction4, entry1, h);
 			}
 			
 			//Room 3
