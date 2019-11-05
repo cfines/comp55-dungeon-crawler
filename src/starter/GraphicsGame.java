@@ -205,7 +205,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		inMenu = true;
 		
-		menuPause = new GRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		menuPause = new GRect(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT);
 		menuPause.setColor(Color.WHITE);
 		add(menuPause);
 		
@@ -248,6 +248,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawEnemy() {
+		
 		
 		Enemy tempEnemy;
 		HashMap<Enemy, Coordinates> tempHash = game.getEnemyHash();
