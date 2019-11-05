@@ -45,6 +45,8 @@ public class Hardcoded
 	private static HashMap <String, String> mapHashCurrMap = new HashMap<String, String>();
 	private static String currentMap = new String();
 	private static ArrayList<Interactions> mbr1 = new ArrayList<Interactions>();
+	private static Console console = new Console();
+	
 	
 	public String whatMapWeOn() {
 		return floor.whatMapWeOn(floor.getLevelCounter());
@@ -80,6 +82,7 @@ public class Hardcoded
 			Coordinates rock2 = new Coordinates (780,301);
 			Coordinates hole1 = new Coordinates (72,301);
 			Coordinates entry1 = new Coordinates (1145, 325);
+			console.setEnteredEntries(entry1);
 			Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
 			Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
 			Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
