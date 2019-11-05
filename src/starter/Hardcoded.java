@@ -196,12 +196,13 @@ public class Hardcoded
 			{
 			Coordinates rock1 = new Coordinates(900,150);
 			Coordinates entry1 = new Coordinates(575,5);
-			//Coordinates key1 = new Coordinates(575,325); //TODO uncomment this once key implementation is found
+			Coordinates key1 = new Coordinates(575,325);
 			Interactions roomSixInteraction1 = new Interactions(interactionType.obstacle_rock,6,1);
 			Interactions roomSixInteraction2 = new Interactions(interactionType.entry_door,6,2);
+			Interactions roomSixInteraction3 = new Interactions(interactionType.item_gif_key,6,3);
 			bruhMap.setInteractions(roomSixInteraction1, rock1, h);
 			bruhMap.setInteractions(roomSixInteraction2, entry1, h);
-			//TODO include method to add keys to rooms
+			bruhMap.setInteractions(roomSixInteraction3, key1, h);
 			}
 		
 			//Room 7
