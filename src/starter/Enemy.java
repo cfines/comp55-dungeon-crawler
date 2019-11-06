@@ -8,6 +8,8 @@ public class Enemy {
 	private ElementType enemyType;
 	private int dx, dy, userX, userY;
 	
+	Enemy(){};
+	
 	Enemy (int input_HP_cur, int input_HP_tot, int atkTime,
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{
@@ -20,6 +22,22 @@ public class Enemy {
 	public ElementType getEnemyType() 
 	{
 		return enemyType;
+	}
+	
+	public void setDX(int dx) {
+		this.dx = dx;
+	}
+	
+	public void setDY(int dy) {
+		this.dy = dy;
+	}
+	
+	public int getCoordX() {
+		return enemyStats.getCoordX();
+	}
+	
+	public int getCoordY() {
+		return enemyStats.getCoordY();
 	}
 	
 	public void tick(){
@@ -39,5 +57,12 @@ public class Enemy {
 				dy = -moveSpeedStat;
 			}
 		}
+		else if(dx > userX) {
+			enemyStats.setCoordY(dx -= moveSpeedStat);
+			if(dx < -moveSpeedStat) {
+				dx = -moveSpeedStat;
+			}
+		}
+
 	}
 }

@@ -111,15 +111,18 @@ public class Hardcoded
 				Coordinates rock2 = new Coordinates (780,301);
 				Coordinates hole1 = new Coordinates (72,301);
 				Coordinates E1 = new Coordinates (500, 325);
+				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
 				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
 				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
 				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
+				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
 				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
 				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
 				bruhMap.setInteractions(roomOneInteraction3, hole1, h);
 				bruhMap.setInteractions(roomOneInteraction4, E1, h);
+				bruhMap.setEnemySpawn(roomOneEnemy1, enemy1, eee);
 			}
 			
 			//Room 3
@@ -240,7 +243,7 @@ public class Hardcoded
 			Interactions roomEightInteraction2 = new Interactions(interactionType.obstacle_rock,8,2);
 			Interactions roomEightInteraction3 = new Interactions(interactionType.obstacle_hole,8,3);
 			Interactions roomEightInteraction4 = new Interactions(interactionType.entry_door,8,4);
-			Interactions roomEightInteraction5 = new Interactions(interactionType.entry_door,8,5);
+			Interactions roomEightInteraction5 = new Interactions(interactionType.entry_bossDoor,8,5);
 			bruhMap.setInteractions(roomEightInteraction1, rock1, h);
 			bruhMap.setInteractions(roomEightInteraction2, rock2, h);
 			bruhMap.setInteractions(roomEightInteraction3, hole1, h);
@@ -263,7 +266,15 @@ public class Hardcoded
 			}
 		}	
 	}
-
+	
+	public Coordinates getEnemies(Enemy enemies) {
+		return enemyStorage.get(enemies);
+	}
+	
+	public Coordinates getBoss(Boss boss) {
+		return bossStorage.get(boss);
+	}
+	
 	public Coordinates getCoordinateFromHash(Interactions input_interactions) {
 		return interactionStorage.get(input_interactions);
 	}

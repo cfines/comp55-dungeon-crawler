@@ -108,7 +108,6 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		user.tick();
-		//enemy.move(user);
 	}
 	
 	public void keyPressedManager(KeyEvent e) {
