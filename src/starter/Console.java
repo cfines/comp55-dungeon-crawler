@@ -278,13 +278,12 @@ public class Console {
 			resetUserRoom();
 		}
 		
-		if(currFloor == "map_base1") {
-			System.out.println("Current level: " + currFloor);
-			System.out.println("Current room: " + getLocalCurrRoom());
+		System.out.println("Current level: " + currFloor);
+		System.out.println("Current room: " + getLocalCurrRoom());
 
-			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
-			//getNextRoom();
-		}
+		map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
+		//getNextRoom();
+		
 
 	}
 

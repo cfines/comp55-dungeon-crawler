@@ -57,6 +57,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//Misc. Important Stuff
 	public GObject toClick;
+	public String room;
 	public HashMap<Enemy, Coordinates> ggEnemyHash;
 	public ArrayList<Enemy> ggEnemyArray;
 	
@@ -75,16 +76,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		game = new Console();
 		game.playGame();
-
+		room = game.getLocalCurrRoom();
 		drawRoom();
 		
 		while(running) {
 			
-			if(game.getLocalCurrRoom() != game.getUser().getCurrRoom()) {
+			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
 				drawRoom();
 				game.getUser().setCurrRoom(game.getLocalCurrRoom());
 			}
+			room = game.getLocalCurrRoom();
 			
 		}
 
@@ -122,12 +124,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			runPauseMenu();
 		}
 		
-		//Check for User Location and Image Location sync
+		//ULTIMATE CHECK FOR MOST THINGS (comment in/out what is needed at respective time)
 		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
 		System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
 		//System.out.println("CURRENT ROOM (FROM USER): " + game.getUser().getCurrRoom());
-		System.out.println("ENEMY LOCATION: X=" + ggEnemyArray.get(0).getCoordX() + ", Y=" + ggEnemyArray.get(0).getCoordY());
-		System.out.println("ENEMY IMAGE LOCATION: X=" + enemyRep.getX() + ", Y=" + enemyRep.getY());
+		
+		//TODO- check on these, returning lots of errors
+		//System.out.println("ENEMY LOCATION: X=" + ggEnemyArray.get(0).getCoordX() + ", Y=" + ggEnemyArray.get(0).getCoordY());
+		//System.out.println("ENEMY IMAGE LOCATION: X=" + enemyRep.getX() + ", Y=" + enemyRep.getY());
+		
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 		
