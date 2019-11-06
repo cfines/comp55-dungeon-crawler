@@ -114,6 +114,7 @@ public class Console {
 
 			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
 			//getNextRoom();
+		}
 
 	}
 
