@@ -28,6 +28,7 @@ public class Console {
 	
 	//Room Traversal
 	private String floorWeOn = new String();
+	private String roomWeIn = new String();
 	private String currRoom;
 	private int keyInput;
 
@@ -91,12 +92,24 @@ public class Console {
 		return this.enemyHash;
 	}
 	
+	public ArrayList<Enemy> getEnemiesArray(){
+		return this.enemies;
+	}
+	
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
 	}
 	
 	public boolean getGamePaused() {
 		return gamePaused;
+	}
+	
+	public String getRoomWeIn() {
+		return roomWeIn;
+	}
+	
+	public void setRoomWeIn(String roomWeIn) {
+		this.roomWeIn = roomWeIn;
 	}
 	
 	//RESETS
@@ -176,6 +189,10 @@ public class Console {
 		
 		if(gamePaused) { return; }
 		user.tick();
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+		}
 		
 	}
 

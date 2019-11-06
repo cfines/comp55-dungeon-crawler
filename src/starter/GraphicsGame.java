@@ -41,6 +41,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	//GRAPHICS Overlay Stuff
 	public GImage weapon;
 	public GLabel health;
+	public GLabel levelLabel;
+	public GLabel roomLabel;
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
@@ -55,6 +57,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//Misc. Important Stuff
 	public GObject toClick;
+	public HashMap<Enemy, Coordinates> ggEnemyHash;
+	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -121,6 +125,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//Check for User Location and Image Location sync
 		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
 		System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+		//System.out.println("CURRENT ROOM (FROM USER): " + game.getUser().getCurrRoom());
+		System.out.println("ENEMY LOCATION: X=" + ggEnemyArray.get(0).getCoordX() + ", Y=" + ggEnemyArray.get(0).getCoordY());
+		System.out.println("ENEMY IMAGE LOCATION: X=" + enemyRep.getX() + ", Y=" + enemyRep.getY());
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 		
@@ -286,12 +293,14 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void drawEnemy() {
 		
 		Enemy tempEnemy;
-		HashMap<Enemy, Coordinates> tempHash = game.getEnemyHash();
+		ggEnemyHash = game.getEnemyHash();
+		ggEnemyArray = game.getEnemiesArray();
 		
-		for(HashMap.Entry test : tempHash.entrySet()) {
+		for(HashMap.Entry test : ggEnemyHash.entrySet()) {
 			
 			tempEnemy = (Enemy) test.getKey();
-			Coordinates tempCoord = tempHash.get(test.getKey());
+			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
+			
 			
 			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
 			enemyRep.setSize(75, 75);
@@ -302,10 +311,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawOverlay() {
-		
 		drawSword();
 		drawHealth();
-		
+		drawLevelLabel();
+		drawRoomLabel();
 	}
 	
 	public void drawSword()	{
@@ -329,13 +338,24 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawHealth() {
-		
 		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
 		health.setFont("Arial-Bold-22");
 		health.setColor(Color.red);
 		add(health);
-		
-		
+	}
+	
+	public void drawLevelLabel() {
+		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 10, 70);
+		levelLabel.setFont("Arial-Bold-22");
+		levelLabel.setColor(Color.red);
+		add(levelLabel);
+	}
+	
+	public void drawRoomLabel() {
+		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 10, 90);
+		roomLabel.setFont("Arial-Bold-22");
+		roomLabel.setColor(Color.red);
+		add(roomLabel);
 	}
 	
 	public void resetRoom() {
