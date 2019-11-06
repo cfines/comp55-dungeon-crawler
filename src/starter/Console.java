@@ -49,24 +49,51 @@ public class Console {
 	}
 	
 	public void resetRoom() {
-		currRoom = "R1";
-		floor.resetCurrRoom();
+		//currRoom = "R1";
+		//floor.resetCurrRoom();
+		interactionHash = new HashMap<Interactions, Coordinates>();
+		enemyHash = new HashMap<Enemy, Coordinates>();
 	}
 	
+	public void resetUserRoom() {
+		currRoom = "R1";
+	}
+	
+	public void resetMap() {
+		map = new Map();
+	}
 	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		int temp = getLevelCounter(); //return int;
-		floor = new Floor();
 		floor.setMapArrayList();
-		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
+		floorWeOn = floor.whatMapWeOn(temp);
+		boolean Playing = true;
+		
+		
+		baseInit(floorWeOn);
+		
+		 //return string of map we on
 		//System.out.println(floorWeOn);
 		
-		if(floorWeOn == "map_base1") {
-			if(getLocalCurrRoom() == null) {
-				resetRoom();
-			}
+		
+	}
+	
+	public void baseInit(String currFloor) {
+		generateRoom(currFloor);
+		resetRoom();
+	}
+	
+	public void generateRoom(String currFloor) {
+		
+		if(getLocalCurrRoom() == null) {
+			resetUserRoom();
+		}
+		
+		if(currFloor == "map_base1") {
+			System.out.println("Current level: " + currFloor);
 			System.out.println("Current room: " + getLocalCurrRoom());
+			//System.out.println("Current room: " + getLocalCurrRoom());
 			
 			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
 			// which is why it just resets the user position back to where he was without any room changes?
@@ -77,7 +104,6 @@ public class Console {
 			//interactionHash = tempInteractionHash;
 			//enemyHash = tempEnemyHash;
 		} 
-		
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
@@ -206,10 +232,10 @@ public class Console {
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getNextCurrRoom());
-						//break;
-						playGame(); 
+						
+						break;
 					}
-				}//break;
+				}break;
 			}
 		}
 	
