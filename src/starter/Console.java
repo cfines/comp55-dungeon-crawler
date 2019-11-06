@@ -22,6 +22,7 @@ public class Console {
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
+	private HashMap <Boss, Coordinates> bossHash = new HashMap <Boss, Coordinates>();
 	private String currRoom;
 	//private String roomFromEntry = new String();
 	
@@ -97,7 +98,7 @@ public class Console {
 			
 			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
 			// which is why it just resets the user position back to where he was without any room changes?
-			
+
 			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//getNextRoom();
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
