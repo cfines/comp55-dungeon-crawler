@@ -45,7 +45,7 @@ public class Enemy {
 		enemyStats.setCoordY(enemyStats.getCoordY() + 2);
 	}
 	
-	public void move(User user) {
+	/*public void move(User user) {
 		dx = enemyStats.getCoordX();
 		dy = enemyStats.getCoordY();
 		userX = userStats.getCoordX();
@@ -64,5 +64,5 @@ public class Enemy {
 			}
 		}
 
-	}
+	}*/
 }

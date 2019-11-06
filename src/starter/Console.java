@@ -129,19 +129,19 @@ public class Console {
 		switch(keyInput) {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
-			//getNextRoom();
+			getNextRoom();
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
-			//getNextRoom();
+			getNextRoom();
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
-			//getNextRoom();
+			getNextRoom();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
-			//getNextRoom();
+			getNextRoom();
 			break;
 		case KeyEvent.VK_E:
 			user.cycleWeapon();
@@ -181,7 +181,7 @@ public class Console {
 		/*for(Enemy enemy : enemies) {
 			enemy.move(user);
 		}*/
-		enemy.move(user);
+		//enemy.move(user);
 	}
 
 	public boolean canMove() {
