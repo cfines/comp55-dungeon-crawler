@@ -70,7 +70,18 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void actionPerformed(KeyEvent ae) {
 		game.getUser().tick();
+		
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		
+		ArrayList<Enemy> tempEnem = game.getEnemies();
+		
+		for(Enemy enemy : tempEnem) {
+			game.moveEnemy(enemy);
+		}
+		
+		for(Enemy enemy : tempEnem) {
+			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+		}
 		
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();

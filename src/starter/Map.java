@@ -66,6 +66,16 @@ public class Map{
 		return reaction;
 	}
 	
+	public HashMap<Enemy, Coordinates> getEnemies()
+	{
+		return enemySpawn;
+	}
+	
+	public HashMap<Boss, Coordinates> getBoss()
+	{
+		return bossSpawn;
+	}
+	
 	//returns x-coordinates from enemy
 	public int getEnemyRoomX() 
 	{	
