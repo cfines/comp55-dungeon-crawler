@@ -32,13 +32,13 @@ public class Console {
 	}
 	
 	public String getLocalCurrRoom() {
-		return floor.getCurrRoom();
-		//return currRoom;
+		//return floor.getCurrRoom();
+		return currRoom;
 	}
 	
 	public String getNextCurrRoom() {
-		currRoom = floor.getCurrRoom();
-		return floor.getCurrRoom();
+		 return currRoom = floor.getCurrRoom();
+		//return floor.getCurrRoom();
 	}
 	
 	public void levelAdder() {
@@ -71,7 +71,6 @@ public class Console {
 		floorWeOn = floor.whatMapWeOn(temp);
 		boolean Playing = true;
 		
-		
 		baseInit(floorWeOn);
 		
 		 //return string of map we on
@@ -81,6 +80,7 @@ public class Console {
 	}
 	
 	public void baseInit(String currFloor) {
+		resetRoom();
 		generateRoom(currFloor);
 	}
 	
@@ -98,7 +98,7 @@ public class Console {
 			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
 			// which is why it just resets the user position back to where he was without any room changes?
 			
-			map.runRunBase("R1"/*getLocalCurrRoom()*/, floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
+			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
 			//getNextRoom();
 			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
 			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
@@ -232,8 +232,9 @@ public class Console {
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getNextCurrRoom());
-					}
-				}
+						
+					}break;
+				}break;
 			}
 		}
 	
