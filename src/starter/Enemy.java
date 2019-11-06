@@ -2,7 +2,6 @@ package starter;
 
 public class Enemy {
 	private Stats enemyStats;
-	private User userStats;
 	private int moveSpeedStat;
 	private double powerStat;
 	private ElementType enemyType;
@@ -45,24 +44,26 @@ public class Enemy {
 		enemyStats.setCoordY(enemyStats.getCoordY() + 2);
 	}
 	
-	/*public void move(User user) {
+	public void move(User user) {
 		dx = enemyStats.getCoordX();
 		dy = enemyStats.getCoordY();
-		userX = userStats.getCoordX();
-		userY = userStats.getCoordY();
+		userX = user.getCoordX();
+		userY = user.getCoordY();
 		
 		if(dy > userY) {
 			enemyStats.setCoordY(dy -= moveSpeedStat);
 			if(dy < -moveSpeedStat) {
 				dy = -moveSpeedStat;
+				System.out.println("Enemy y: " + dy);
 			}
 		}
 		else if(dx > userX) {
 			enemyStats.setCoordY(dx -= moveSpeedStat);
 			if(dx < -moveSpeedStat) {
 				dx = -moveSpeedStat;
+				System.out.println("Enemy x: " + dx);
 			}
 		}
 
-	}*/
+	}
 }

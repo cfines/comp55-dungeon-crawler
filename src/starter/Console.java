@@ -14,7 +14,8 @@ public class Console {
 	private Map map = new Map();
 	private Room room = new Room();
 	private User user = new User();
-	private ArrayList<Enemy> enemies;
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+;
 	private int keyInput;
 	private Floor floor = new Floor();
 	private MapLayout layout = new MapLayout();
@@ -178,10 +179,10 @@ public class Console {
 	}
 
 	public void moveEnemy(Enemy enemy) {
-		/*for(Enemy enemy : enemies) {
-			enemy.move(user);
-		}*/
-		//enemy.move(user);
+		for(Enemy enemy2 : enemies) {
+			enemy2.move(user);
+		}
+		enemy.move(user);
 	}
 
 	public boolean canMove() {
