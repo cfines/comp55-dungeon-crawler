@@ -39,6 +39,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
+	public GLabel health;
+	
 	public boolean firstSwordCall = true;
 	public boolean running = true;
 	
@@ -66,13 +68,21 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 
 		drawRoom();
 		
-		
+		while(running) {
+			
+			if(game.getLocalCurrRoom() != game.getUser().getCurrRoom()) {
+				resetRoom();
+				drawRoom();
+				game.getUser().setCurrRoom(game.getLocalCurrRoom());
+			}
+			
+		}
 
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
 		
-		if(inMenu) { return; }
+		if(inMenu || game.getGamePaused()) { return; }
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
@@ -106,7 +116,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void keyPressed(KeyEvent e) {
 	
-		if(inMenu) { return; }
+		if(game.getGamePaused() && (pressedKey == KeyEvent.VK_ESCAPE)) {
+
+			remove(menuPause);
+			remove(menuPauseReturn);
+			game.setGamePaused(false);
+			
+		} else if(inMenu) { return; }
 		
 		if(pressedKey == KeyEvent.VK_ESCAPE) {
 			runPauseMenu();
@@ -121,7 +137,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void keyReleased(KeyEvent e) {
 		
-		if(inMenu) { return; }
+		if(inMenu || game.getGamePaused()) { return; }
 		
 		game.keyReleasedManager(e);
 		actionPerformed(e);
@@ -142,7 +158,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(toClick == menuPauseReturn) {
 			remove(menuPause);
 			remove(menuPauseReturn);
-			inMenu = false;
+			game.setGamePaused(false);
 		}
 		
 	}
@@ -156,11 +172,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
 		add(userRep);
-		
-		drawSword();
-		
+
 		drawInteraction();
 		drawEnemy();
+		
+		drawOverlay();
 		
 	}
 	
@@ -224,9 +240,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//If the user is already in a menu, another pause menu is not created.
 		//(This is mainly to prevent pausing within the main menu)
-		if(inMenu) { return; }
+		if(inMenu || game.getGamePaused()) { return; }
 		
-		inMenu = true;
+		game.setGamePaused(true);
 		
 		menuPause = new GRect(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT);
 		menuPause.setColor(Color.WHITE);
@@ -282,6 +298,23 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 		}
 	
+	}
+	
+	public void drawOverlay() {
+		
+		drawSword();
+		drawHealth();
+		
+	}
+	
+	public void drawHealth() {
+		
+		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
+		health.setFont("Arial-Bold-22");
+		health.setColor(Color.red);
+		add(health);
+		
+		
 	}
 	
 	private void playRandomSound() {

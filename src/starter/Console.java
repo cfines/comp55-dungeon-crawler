@@ -15,6 +15,8 @@ public class Console {
 	private Room room = new Room();
 	private User user = new User();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	
+	private boolean gamePaused = false;
 ;
 	private int keyInput;
 	private Floor floor = new Floor();
@@ -120,7 +122,10 @@ public class Console {
 	}
 
 	public void actionPerformed(KeyEvent ae) {
+		
+		if(gamePaused) { return; }
 		user.tick();
+		
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -280,6 +285,14 @@ public class Console {
 
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
+	}
+	
+	public void setGamePaused(boolean gamePaused) {
+		this.gamePaused = gamePaused;
+	}
+	
+	public boolean getGamePaused() {
+		return gamePaused;
 	}
 
 	public static void main(String[] args) {
