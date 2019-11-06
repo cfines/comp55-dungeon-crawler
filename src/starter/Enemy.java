@@ -24,6 +24,22 @@ public class Enemy {
 		return enemyType;
 	}
 	
+	public void setDX(int dx) {
+		this.dx = dx;
+	}
+	
+	public void setDY(int dy) {
+		this.dy = dy;
+	}
+	
+	public int getCoordX() {
+		return enemyStats.getCoordX();
+	}
+	
+	public int getCoordY() {
+		return enemyStats.getCoordY();
+	}
+	
 	public void tick(){
 		enemyStats.setCoordX(enemyStats.getCoordX() + 2);
 		enemyStats.setCoordY(enemyStats.getCoordY() + 2);
@@ -41,5 +57,12 @@ public class Enemy {
 				dy = -moveSpeedStat;
 			}
 		}
+		else if(dx > userX) {
+			enemyStats.setCoordY(dx -= moveSpeedStat);
+			if(dx < -moveSpeedStat) {
+				dx = -moveSpeedStat;
+			}
+		}
+
 	}
 }

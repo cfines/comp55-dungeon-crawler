@@ -266,7 +266,15 @@ public class Hardcoded
 			}
 		}	
 	}
-
+	
+	public Coordinates getEnemies(Enemy enemies) {
+		return enemyStorage.get(enemies);
+	}
+	
+	public Coordinates getBoss(Boss boss) {
+		return bossStorage.get(boss);
+	}
+	
 	public Coordinates getCoordinateFromHash(Interactions input_interactions) {
 		return interactionStorage.get(input_interactions);
 	}
