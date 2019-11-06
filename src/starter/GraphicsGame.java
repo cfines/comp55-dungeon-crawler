@@ -27,8 +27,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage weapon;
 	public GImage floor;
 	
-	public boolean playing;
-	
 	public GImage menuScreen;
 	public GButton menuPlay, highScore, credits, exit;
 	public boolean inMenu;
@@ -42,6 +40,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GButton menuPauseReturn;
 	
 	public boolean firstSwordCall = true;
+	public boolean running = true;
 	
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
@@ -61,18 +60,22 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		inMenu = true;
 		runMainMenu();
-		playing = true;
 		
 		game = new Console();
 		game.playGame();
 
 		drawRoom();
+		
+		
 
 	}
 	
 	public void actionPerformed(KeyEvent ae) {
-		game.getUser().tick();
 		
+		if(inMenu) { return; }
+		
+		//These two lines are responsible for moving User and its respective image
+		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
 		ArrayList<Enemy> tempEnem = game.getEnemies();
@@ -90,13 +93,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}	
 		
 		if(ae.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			//runPauseMenu();
+			runPauseMenu();
 		}
 		
 		//Check for User Location and Image Location sync
 		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+		System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
+		
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -104,7 +109,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(inMenu) { return; }
 		
 		if(pressedKey == KeyEvent.VK_ESCAPE) {
-			//runPauseMenu();
+			runPauseMenu();
 		} else {			
 			game.keyPressedManager(e);
 			actionPerformed(e);		
@@ -148,7 +153,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		add(floor);
 		
-		userRep = new GImage("Rogue_(Sample User).gif", 300, 300);
+		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
 		add(userRep);
 		
@@ -157,6 +162,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawInteraction();
 		drawEnemy();
 		
+	}
+	
+	public void resetRoom() {
+		removeAll();
+		firstSwordCall = true;
 	}
 	
 	public void drawSword()	{
@@ -204,7 +214,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
 			System.out.println("You are in the menu!");
-			
+
+					
 		}
 		
 	}
@@ -226,13 +237,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
-		while(inMenu) {
-					
-			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
-
-					
-		}
+		
 		
 	}
 	

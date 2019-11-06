@@ -21,6 +21,7 @@ public class User {
 	//Other user-specific variables
 	private int numConsumable;
 	private boolean hasKey;
+	private int curRoom;
 	
 	///////////////////////
 	
@@ -36,6 +37,7 @@ public class User {
 		
 		numConsumable = 0;
 		hasKey = false;
+		curRoom = 1;
 	}
 	
 	//General Constructor
@@ -53,6 +55,7 @@ public class User {
 		
 		numConsumable = 0;
 		hasKey = false;
+		curRoom = 1;
 		
 	}
 	
@@ -179,6 +182,8 @@ public class User {
 		
 	}
 	
-	
+	public String getRoomToString() {
+		return "R" + curRoom;
+	}
 
 }
