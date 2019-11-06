@@ -70,7 +70,8 @@ public class Hardcoded
 	}*/
 	
 	public void runBase(String userRoomPosition, Floor curFloor, Map bruhMap, HashMap <Interactions, Coordinates> h, 
-													HashMap <Enemy, Coordinates> eee, ArrayList<Coordinates> enteredEntriesArrayList, HashMap<String,ArrayList<Coordinates>> enteredEntriesHash/*, HashMap <Boss, Coordinates> bbb*/) 
+													HashMap <Enemy, Coordinates> eee, ArrayList<Coordinates> enteredEntriesArrayList, 
+													HashMap<String,ArrayList<Coordinates>> enteredEntriesHash, HashMap <Boss, Coordinates> bbb) 
 	{
 		//roomID parameter if else verification
 		
