@@ -243,7 +243,7 @@ public class Hardcoded
 			Interactions roomEightInteraction2 = new Interactions(interactionType.obstacle_rock,8,2);
 			Interactions roomEightInteraction3 = new Interactions(interactionType.obstacle_hole,8,3);
 			Interactions roomEightInteraction4 = new Interactions(interactionType.entry_door,8,4);
-			Interactions roomEightInteraction5 = new Interactions(interactionType.entry_door,8,5);
+			Interactions roomEightInteraction5 = new Interactions(interactionType.entry_bossDoor,8,5);
 			bruhMap.setInteractions(roomEightInteraction1, rock1, h);
 			bruhMap.setInteractions(roomEightInteraction2, rock2, h);
 			bruhMap.setInteractions(roomEightInteraction3, hole1, h);
