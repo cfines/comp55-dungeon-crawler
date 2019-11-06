@@ -41,6 +41,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
+	public boolean firstSwordCall = true;
+	
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 	private int count;
@@ -150,9 +152,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		userRep.setSize(75, 75);
 		add(userRep);
 		
-		weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
-		weapon.setSize(100,100);
-		add(weapon);
+		drawSword();
 		
 		drawInteraction();
 		drawEnemy();
@@ -161,7 +161,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void drawSword()	{
 		
-		remove(weapon);
+		if(!firstSwordCall) { remove(weapon); }
+		firstSwordCall = false;
 		
 		if(game.getUser().getWeaponEquiped() == 0) {
 			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);

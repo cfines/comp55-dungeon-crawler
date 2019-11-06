@@ -24,6 +24,7 @@ public class Console {
 	public HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
+	private HashMap <Boss, Coordinates> bossHash = new HashMap <Boss, Coordinates>();
 	private String currRoom;
 	//private String roomFromEntry = new String();
 
@@ -34,12 +35,13 @@ public class Console {
 	}
 
 	public String getLocalCurrRoom() {
+		//return floor.getCurrRoom();
 		return currRoom;
 	}
 
 	public String getNextCurrRoom() {
-		currRoom = floor.getCurrRoom();
-		return floor.getCurrRoom();
+		 return currRoom = floor.getCurrRoom();
+		//return floor.getCurrRoom();
 	}
 
 	public void levelAdder() {
@@ -51,18 +53,31 @@ public class Console {
 	}
 
 	public void resetRoom() {
-		currRoom = "R1";
-		floor.resetCurrRoom();
+		//currRoom = "R1";
+		//floor.resetCurrRoom();
+		interactionHash = new HashMap<Interactions, Coordinates>();
+		enemyHash = new HashMap<Enemy, Coordinates>();
 	}
-
-
+	
+	public void resetUserRoom() {
+		currRoom = "R1";
+	}
+	
+	public void resetMap() {
+		map = new Map();
+	}
+	
 	public void playGame() {
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		user = new User(5, 5, 1000, 1, 300, 300);
 		int temp = getLevelCounter(); //return int;
-		floor = new Floor();
 		floor.setMapArrayList();
-		floorWeOn = floor.whatMapWeOn(temp); //return string of map we on
+		floorWeOn = floor.whatMapWeOn(temp);
+		boolean Playing = true;
+		
+		baseInit(floorWeOn);
+		
+		 //return string of map we on
 		//System.out.println(floorWeOn);
 
 		for(Enemy key : enemyHash.keySet()) {
@@ -74,24 +89,31 @@ public class Console {
 			}
 		}
 
-
-
 		if(floorWeOn == "map_base1") {
 			if(getLocalCurrRoom() == null) {
 				resetRoom();
 			}
+		}
+		
+	}
+	
+	public void baseInit(String currFloor) {
+		resetRoom();
+		generateRoom(currFloor);
+	}
+	
+	public void generateRoom(String currFloor) {
+		
+		if(getLocalCurrRoom() == null) {
+			resetUserRoom();
+		}
+		
+		if(currFloor == "map_base1") {
+			System.out.println("Current level: " + currFloor);
 			System.out.println("Current room: " + getLocalCurrRoom());
 
-			// perhaps its because the assigned pass b references arent being cleared when entering a new room? 
-			// which is why it just resets the user position back to where he was without any room changes?
-
-			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash);
-			//HashMap<Interactions, Coordinates> tempInteractionHash = map.getInteractions();
-			//HashMap<Enemy, Coordinates> tempEnemyHash = map.getEnemySpawn();
-			//interactionHash = tempInteractionHash;
-			//enemyHash = tempEnemyHash;
-		} 
-
+			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
+			//getNextRoom();
 
 	}
 
@@ -213,32 +235,30 @@ public class Console {
 					HashMap<String, String> mapHashNextRoom;
 					ArrayList<String> numOfEntries;
 					int temp; 
-
-					layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
-					temp = layout.getEntryAmountofLayout();
-					layout.setEntryAmount(temp);
-					layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-					mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-
-					String nextEntry = mapHashCurrEntry.get(tempString);
-					System.out.println("The next entry will be: " + nextEntry);
-
-					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-					numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
-
-					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-					mapHashNextRoom = room.getMapBaseEtoR();
-
-					String nextRoom = mapHashNextRoom.get(nextEntry);
-					setNextCurrRoom(nextRoom);
-					System.out.println("Next room will be: " + getNextCurrRoom());
-					//break;
-					playGame(); 
-				}
-			}//break;
+					
+						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
+						temp = layout.getEntryAmountofLayout();
+						layout.setEntryAmount(temp);
+						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+						mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+						
+						String nextEntry = mapHashCurrEntry.get(tempString);
+						System.out.println("The next entry will be: " + nextEntry);
+						
+						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+						numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
+						
+						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+						mapHashNextRoom = room.getMapBaseEtoR();
+	
+						String nextRoom = mapHashNextRoom.get(nextEntry);
+						setNextCurrRoom(nextRoom);
+						System.out.println("Next room will be: " + getNextCurrRoom());
+						
+					}break;
+				}break;
+			}
 		}
-	}
-
 
 
 
