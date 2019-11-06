@@ -5,50 +5,56 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
-import java.util.Timer;
+import javax.swing.Timer;
 
 import acm.graphics.*;
 import acm.program.*;
 
 public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 
+	////////////////////////// INSTANCE VARIABLES AND RUN /////////////////////////////
+	
+	//Window Variables
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	
+	//GG Variables
+	public Console game;
+	public boolean inMenu;
+	public int pressedKey;
+	public boolean firstSwordCall = true;
+	public boolean running = true;
+	public Timer timer;
+	
+	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
 	public static final int DOOR_HEIGHT = 500;
-	
-	public int pressedKey;
-	
-	public Console game;
-
-	public GImage userRep;
-	public GImage enemyRep;
-	public GImage weapon;
-	public GImage floor;
-	
-	public GImage menuScreen;
-	public GButton menuPlay, highScore, credits, exit;
-	public boolean inMenu;
-	public GObject toClick;
-	
 	public GRect entry;
-	public GImage interactionRep;
 	public GImage stairs;
 	
+	//GRAPHICS Room Creation and Entity Representation
+	public GImage userRep;
+	public GImage enemyRep;
+	public GImage interactionRep;
+	public GImage floor;
+	
+	//GRAPHICS Overlay Stuff
+	public GImage weapon;
+	public GLabel health;
+	
+	//GRAPHICS Menu Stuff
+	public GImage menuScreen;
+	public GButton menuPlay, highScore, credits, exit;
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
-	public GLabel health;
-	
-	public boolean firstSwordCall = true;
-	public boolean running = true;
-	
+	//AUDIO Sound Stuff
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 	private int count;
 	
-	Timer timer;
+	//Misc. Important Stuff
+	public GObject toClick;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -79,6 +85,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}
 
 	}
+	
+	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
+	
+	
+	
+	////////////////////////// USER INTERACTION WITH GRAPHICSGAME /////////////////////////////
 	
 	public void actionPerformed(KeyEvent ae) {
 		
@@ -133,8 +145,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 	
-	
-	
 	public void keyReleased(KeyEvent e) {
 		
 		if(inMenu || game.getGamePaused()) { return; }
@@ -162,48 +172,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}
 		
 	}
-
-	public void drawRoom() {
-		
-		floor = new GImage("Base Map (floor).png", 0, 0);
-		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		add(floor);
-		
-		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
-		userRep.setSize(75, 75);
-		add(userRep);
-
-		drawInteraction();
-		drawEnemy();
-		
-		drawOverlay();
-		
-	}
 	
-	public void resetRoom() {
-		removeAll();
-		firstSwordCall = true;
-	}
+	//////////////////////////// END USER INTERACTMENT WITH GRAPHICS GAME ////////////////////////////
 	
-	public void drawSword()	{
-		
-		if(!firstSwordCall) { remove(weapon); }
-		firstSwordCall = false;
-		
-		if(game.getUser().getWeaponEquiped() == 0) {
-			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
-		} else if (game.getUser().getWeaponEquiped() == 1) {
-			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
-		} else {
-			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
-		}
-	}
+	
+	
+	//////////////////////////// MENU CALLS //////////////////////////////////////////////////////////
+	
+	
+	//TODO- change these to GraphicsPanes, have method calls that activate them
+	//-Scharkey
 	
 	public void runMainMenu() {
 		
@@ -257,6 +235,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 	
+	//////////////////////////// END OF MENU CALLS ///////////////////////////////////////////////////
+	
+	
+	
+	//////////////////////////// DRAWING CALLS ///////////////////////////////////////////////////////
+
+	public void drawRoom() {
+		
+		floor = new GImage("Base Map (floor).png", 0, 0);
+		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		add(floor);
+		
+		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
+		userRep.setSize(75, 75);
+		add(userRep);
+
+		drawInteraction();
+		drawEnemy();
+		
+		drawOverlay();
+		
+	}
+	
 	public void drawInteraction() {
 		
 		Interactions tempInteraction;
@@ -307,6 +308,26 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 	
+	public void drawSword()	{
+		
+		if(!firstSwordCall) { remove(weapon); }
+		firstSwordCall = false;
+		
+		if(game.getUser().getWeaponEquiped() == 0) {
+			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else if (game.getUser().getWeaponEquiped() == 1) {
+			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else {
+			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		}
+	}
+	
 	public void drawHealth() {
 		
 		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
@@ -317,8 +338,21 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 	}
 	
+	public void resetRoom() {
+		removeAll();
+		firstSwordCall = true;
+	}
+	
+	///////////////////////////// END OF DRAWING CALLS ////////////////////////////////////////////
+	
+	
+	
+	///////////////////////////// AUDIO CALLS /////////////////////////////////////////////////////
+	
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
 	}
+	
+	///////////////////////////// END OF AUDIO CALLS //////////////////////////////////////////////
 }
