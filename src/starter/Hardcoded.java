@@ -108,9 +108,9 @@ public class Hardcoded
 			//Room 1
 			else if(userRoomPosition == "R1")
 			{
-				Coordinates rock1 = new Coordinates (70,89);
-				Coordinates rock2 = new Coordinates (780,301);
-				Coordinates hole1 = new Coordinates (72,301);
+				Coordinates rock1 = new Coordinates (170,189);
+				Coordinates rock2 = new Coordinates (890,200);
+				Coordinates hole1 = new Coordinates (172,425);
 				Coordinates E1 = new Coordinates (500, 325);
 				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);

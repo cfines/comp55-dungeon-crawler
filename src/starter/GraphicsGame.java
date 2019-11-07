@@ -33,6 +33,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage stairs;
 	
 	//GRAPHICS Room Creation and Entity Representation
+	public GRect voidSpace;
 	public GImage userRep;
 	public GImage enemyRep;
 	public GImage interactionRep;
@@ -43,6 +44,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GLabel health;
 	public GLabel levelLabel;
 	public GLabel roomLabel;
+	public GRect weaponBox;
+	public GRect weaponBoxOutline;
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
@@ -255,9 +258,27 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 
 	public void drawRoom() {
 		
-		floor = new GImage("Base Map (floor).png", 0, 0);
-		floor.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		//empty space to be set for all rooms
+		voidSpace = new GRect(WINDOW_WIDTH,WINDOW_HEIGHT);
+		voidSpace.setColor(Color.BLACK);
+		voidSpace.setFilled(true);
+		add(voidSpace);
+		
+		
+		floor = new GImage("Base_Floor (Tutorial Floor).png", 15, 30);
+		floor.setSize(WINDOW_WIDTH-30, WINDOW_HEIGHT-100);
 		add(floor);
+		
+		weaponBoxOutline = new GRect(0,WINDOW_HEIGHT-100, 110,110);
+		weaponBoxOutline.setColor(Color.GRAY);
+		weaponBoxOutline.setFilled(true);
+		add(weaponBoxOutline);
+		
+		weaponBox = new GRect(5,WINDOW_HEIGHT-100,101,101);
+		weaponBox.setColor(Color.WHITE);
+		weaponBox.setFilled(true);
+		add(weaponBox);
+		
 		
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
@@ -284,7 +305,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
 				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.BLACK);
+				entry.setFillColor(Color.CYAN);
 				add(entry);
 			} else {
 				interactionRep = new GImage(tempInteraction.getinteractionType() + ".png", tempCoord.getX(), tempCoord.getY());
