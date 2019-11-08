@@ -132,7 +132,9 @@ public class Hardcoded
 			Coordinates enemy1 = new Coordinates (800, 70);
 			Coordinates enemy2 = new Coordinates(575,487);
 			Coordinates E4 = new Coordinates (60, 325);
+			bruhMap.setEnteredEntries("E4", E4, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates E5 = new Coordinates (1005, 325);
+			bruhMap.setEnteredEntries("E5", E5, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates rock1 = new Coordinates (575,325);
 			Coordinates hole1 = new Coordinates (230,163);
 			Enemy roomThreeEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.WATER);
