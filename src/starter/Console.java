@@ -8,35 +8,58 @@ import acm.graphics.GImage;
 
 public class Console {
 
-	public static final int WINDOW_WIDTH = 1155;
-	public static final int WINDOW_HEIGHT = 650;
+	///////////////////////////// INSTANCE VARIABLES ///////////////////////////////////////
 
-	private Map map = new Map();
-	private Room room = new Room();
+	//CONSOLE IMPORTANT VARIABLES
 	private User user = new User();
-	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-;
-	private int keyInput;
 	private Floor floor = new Floor();
+	private Map map = new Map();
 	private MapLayout layout = new MapLayout();
-
-	private String floorWeOn = new String();
+	private Room room = new Room();
+	private boolean gamePaused = false;
+	
+	//Enemy and Interaction Handling
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
-	public HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
-	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
-	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
+	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
 	private HashMap <Boss, Coordinates> bossHash = new HashMap <Boss, Coordinates>();
+	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
+	
+	//Room Traversal
+	private String floorWeOn = new String();
+	private String roomWeIn = new String();
 	private String currRoom;
+	private int keyInput;
+
+	//Misc. Variables
 	//private String roomFromEntry = new String();
 
+	///////////////////////////// END OF INSTANCE VARIABLES ///////////////////////////////////////
+	
+	
+	
+	///////////////////////////// GETTERS AND SETTERS ///////////////////////////////////////
 
+	//CONSOLE VARIABLES
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, int input_x, int input_y) {
+		user = new User(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
+	}
+	
+	public Floor getFloor() {
+		return floor;
+	}
+	
 	public void setNextCurrRoom(String nextCurrRoom) {
 		currRoom = nextCurrRoom;
 		floor.setCurrRoom(nextCurrRoom);
 	}
 
 	public String getLocalCurrRoom() {
-		//return floor.getCurrRoom();
 		return currRoom;
 	}
 
@@ -52,6 +75,44 @@ public class Console {
 	public int getLevelCounter() {
 		return floor.getLevelCounter();
 	}
+	
+	public ArrayList<Coordinates> getEntries(){
+		return this.entries;
+	}
+
+	public HashMap<String,ArrayList<Coordinates>> getEntriesHash(){
+		return this.enteredEntriesHash;
+	}
+
+	public HashMap<Interactions, Coordinates> getInteractionHash(){
+		return this.interactionHash;
+	}
+
+	public HashMap<Enemy, Coordinates> getEnemyHash(){
+		return this.enemyHash;
+	}
+	
+	public ArrayList<Enemy> getEnemiesArray(){
+		return this.enemies;
+	}
+	
+	public void setGamePaused(boolean gamePaused) {
+		this.gamePaused = gamePaused;
+	}
+	
+	public boolean getGamePaused() {
+		return gamePaused;
+	}
+	
+	public String getRoomWeIn() {
+		return roomWeIn;
+	}
+	
+	public void setRoomWeIn(String roomWeIn) {
+		this.roomWeIn = roomWeIn;
+	}
+	
+	//RESETS
 
 	public void resetRoom() {
 		//currRoom = "R1";
@@ -67,6 +128,21 @@ public class Console {
 	public void resetMap() {
 		map = new Map();
 	}
+	
+	public ArrayList<Enemy> getEnemies() {
+		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+		for(Enemy key : enemyHash.keySet()) {
+			enemies.add(key);
+		}
+		return enemies;
+	}
+
+	
+	/////////////////////////// END OF GETTERS AND SETTERS ////////////////////////////////////////
+	
+	
+	
+	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
 	
 	public void playGame() {
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -98,29 +174,26 @@ public class Console {
 		
 	}
 	
-	public void baseInit(String currFloor) {
-		resetRoom();
-		generateRoom(currFloor);
+	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
+	public static void main(String[] args) {
+		Console test = new Console();
+		test.getNextRoom();
 	}
 	
-	public void generateRoom(String currFloor) {
-		
-		if(getLocalCurrRoom() == null) {
-			resetUserRoom();
-		}
-		
-		if(currFloor == "map_base1") {
-			System.out.println("Current level: " + currFloor);
-			System.out.println("Current room: " + getLocalCurrRoom());
-
-			map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
-			//getNextRoom();
-		}
-
-	}
-
+	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
+	
+	
+	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
+	
 	public void actionPerformed(KeyEvent ae) {
+		
+		if(gamePaused) { return; }
 		user.tick();
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+		}
+		
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -177,32 +250,42 @@ public class Console {
 		}
 
 	}
-
+	
 	public void moveEnemy(Enemy enemy) {
 		for(Enemy enemy2 : enemies) {
 			enemy2.move(user);
 		}
 		enemy.move(user);
 	}
-
+	
 	public boolean canMove() {
 		return true;
 	}
-
-	public ArrayList<Enemy> getEnemies() {
-		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		for(Enemy key : enemyHash.keySet()) {
-			enemies.add(key);
+	
+	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
+	
+	
+	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
+	
+	public void baseInit(String currFloor) {
+		resetRoom();
+		generateRoom(currFloor);
+	}
+	
+	public void generateRoom(String currFloor) {
+		
+		if(getLocalCurrRoom() == null) {
+			resetUserRoom();
 		}
-		return enemies;
+		
+		System.out.println("Current level: " + currFloor);
+		System.out.println("Current room: " + getLocalCurrRoom());
+
+		map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
+		//getNextRoom();
+		
+
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	////////////////////////////////////
-
 
 	public void getNextRoom() {
 		int coordX = user.getCoordX();
@@ -261,30 +344,7 @@ public class Console {
 				}break;
 			}
 		}
-
-
-
-	////////////////////////////////////
-
-	public ArrayList<Coordinates> getEntries(){
-		return this.entries;
-	}
-
-	public HashMap<String,ArrayList<Coordinates>> getEntriesHash(){
-		return this.enteredEntriesHash;
-	}
-
-	public HashMap<Interactions, Coordinates> getInteractionHash(){
-		return this.interactionHash;
-	}
-
-	public HashMap<Enemy, Coordinates> getEnemyHash(){
-		return this.enemyHash;
-	}
-
-	public static void main(String[] args) {
-		Console test = new Console();
-		test.getNextRoom();
-	}
+	
+	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 
 }
