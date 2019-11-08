@@ -100,9 +100,9 @@ public class Hardcoded
 			//Room 2
 			else if(userRoomPosition == "R2")
 			{
-				Coordinates rock1 = new Coordinates (80, 90);
+				Coordinates rock1 = new Coordinates (100, 90);
 				Coordinates hole1 = new Coordinates (500,91);
-				Coordinates hole2 = new Coordinates (75, 500);
+				Coordinates hole2 = new Coordinates (575, 400);
 				Coordinates enemy1 = new Coordinates (350, 76);
 				Coordinates enemy2 = new Coordinates (367, 504);
 				Coordinates E2 = new Coordinates (60, 325);
