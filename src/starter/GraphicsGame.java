@@ -206,7 +206,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			System.out.println("You are in the menu!");
 			
 		}
-		
 	}
 	
 	public void runPauseMenu() {
@@ -230,7 +229,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
 			System.out.println("You are in the menu!");
-
 					
 		}
 		
