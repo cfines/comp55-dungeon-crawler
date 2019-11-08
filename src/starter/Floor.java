@@ -3,7 +3,7 @@ package starter;
 import java.util.ArrayList;
 
 public class Floor {
-
+	
 	private Map curMap;
 	//private PowerUps key;
 	//private PowerUps drop;

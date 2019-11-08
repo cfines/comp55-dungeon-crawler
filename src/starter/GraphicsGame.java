@@ -293,7 +293,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 	}
 	
