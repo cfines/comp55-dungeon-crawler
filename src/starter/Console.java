@@ -161,6 +161,9 @@ public class Console {
 		}
 		
 		baseInit(getLocalCurrRoom() , floorWeOn);
+		//baseInit(getLocalCurrRoom() , floorWeOn);
+		//baseInit(getLocalCurrRoom() , floorWeOn);
+		
 		
 		 //return string of map we on
 		//System.out.println(floorWeOn);
@@ -314,8 +317,8 @@ public class Console {
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempString);
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
-					HashMap<String, String> mapHashCurrEntry;
-					HashMap<String, String> mapHashNextRoom;
+					HashMap<String, String> mapHashCurrEntry = new HashMap<String, String>();
+					HashMap<String, String> mapHashNextRoom = new HashMap<String, String>();
 					ArrayList<String> numOfEntries;
 					int temp; 
 					
@@ -337,12 +340,11 @@ public class Console {
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getNextCurrRoom());
-						baseInit(getNextCurrRoom(), getCurrFloor());
+						//baseInit(getNextCurrRoom(), getCurrFloor());
+						playGame();
 						break;
 					}
-				break;
 				}
-			break;
 			}
 		}
 

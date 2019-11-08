@@ -87,6 +87,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		while(running) {
 			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
 			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+		
 			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();

@@ -131,8 +131,8 @@ public class Hardcoded
 			{
 			Coordinates enemy1 = new Coordinates (800, 70);
 			Coordinates enemy2 = new Coordinates(575,487);
-			Coordinates E4 = new Coordinates (5, 325);
-			Coordinates E5 = new Coordinates (1145, 325);
+			Coordinates E4 = new Coordinates (60, 325);
+			Coordinates E5 = new Coordinates (1005, 325);
 			Coordinates rock1 = new Coordinates (575,325);
 			Coordinates hole1 = new Coordinates (230,163);
 			Enemy roomThreeEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.WATER);
