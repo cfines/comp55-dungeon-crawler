@@ -77,17 +77,37 @@ public class Hardcoded
 		
 		if(curFloor.whatMapWeOn(floor.getLevelCounter()) == "map_base1"){
 		
-			//Room 2
-			if(userRoomPosition == "R2")
+			//Room 1
+			if(userRoomPosition == "R1")
 			{
-				Coordinates rock1 = new Coordinates (80, 90);
+				Coordinates rock1 = new Coordinates (170,189);
+				Coordinates rock2 = new Coordinates (890,200);
+				Coordinates hole1 = new Coordinates (172,425);
+				Coordinates E1 = new Coordinates (1005, 325);
+				Coordinates enemy1 = new Coordinates(400,209);
+				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
+				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
+				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
+				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
+				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
+				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
+				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
+				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
+				bruhMap.setInteractions(roomOneInteraction3, hole1, h);
+				bruhMap.setInteractions(roomOneInteraction4, E1, h);
+				bruhMap.setEnemySpawn(roomOneEnemy1, enemy1, eee);
+			}
+			//Room 2
+			else if(userRoomPosition == "R2")
+			{
+				Coordinates rock1 = new Coordinates (100, 90);
 				Coordinates hole1 = new Coordinates (500,91);
-				Coordinates hole2 = new Coordinates (75, 500);
+				Coordinates hole2 = new Coordinates (575, 400);
 				Coordinates enemy1 = new Coordinates (350, 76);
 				Coordinates enemy2 = new Coordinates (367, 504);
-				Coordinates E2 = new Coordinates (5, 325);
+				Coordinates E2 = new Coordinates (60, 325);
 				bruhMap.setEnteredEntries("E2", E2, enteredEntriesArrayList, enteredEntriesHash);
-				Coordinates E3 = new Coordinates (1145, 325);
+				Coordinates E3 = new Coordinates (1005, 325);
 				bruhMap.setEnteredEntries("E3", E3, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomTwoInteraction1 = new Interactions(interactionType.obstacle_rock, 2, 1);
 				Interactions roomTwoInteraction2 = new Interactions(interactionType.obstacle_hole, 2, 2);
@@ -105,34 +125,16 @@ public class Hardcoded
 				bruhMap.setEnemySpawn(roomTwoEnemy2, enemy2, eee);
 			}
 			
-			//Room 1
-			else if(userRoomPosition == "R1")
-			{
-				Coordinates rock1 = new Coordinates (170,189);
-				Coordinates rock2 = new Coordinates (890,200);
-				Coordinates hole1 = new Coordinates (172,425);
-				Coordinates E1 = new Coordinates (500, 325);
-				Coordinates enemy1 = new Coordinates(400,209);
-				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
-				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
-				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
-				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
-				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
-				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
-				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
-				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
-				bruhMap.setInteractions(roomOneInteraction3, hole1, h);
-				bruhMap.setInteractions(roomOneInteraction4, E1, h);
-				bruhMap.setEnemySpawn(roomOneEnemy1, enemy1, eee);
-			}
 			
 			//Room 3
 			else if(userRoomPosition == "R3")
 			{
 			Coordinates enemy1 = new Coordinates (800, 70);
 			Coordinates enemy2 = new Coordinates(575,487);
-			Coordinates E4 = new Coordinates (5, 325);
-			Coordinates E5 = new Coordinates (1145, 325);
+			Coordinates E4 = new Coordinates (60, 325);
+			bruhMap.setEnteredEntries("E4", E4, enteredEntriesArrayList, enteredEntriesHash);
+			Coordinates E5 = new Coordinates (1005, 325);
+			bruhMap.setEnteredEntries("E5", E5, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates rock1 = new Coordinates (575,325);
 			Coordinates hole1 = new Coordinates (230,163);
 			Enemy roomThreeEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.WATER);

@@ -4,8 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import acm.graphics.GImage;
-
 public class Console {
 
 	///////////////////////////// INSTANCE VARIABLES ///////////////////////////////////////
@@ -131,8 +129,13 @@ public class Console {
 
 	
 	/////////////////////////// END OF GETTERS AND SETTERS ////////////////////////////////////////
-	
-	
+	private String currentFloor;
+	public void setCurrFloor(String input) {
+		currentFloor = input;
+	}
+	public String getCurrFloor() {
+		return currentFloor;
+	}
 	
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
 	
@@ -142,9 +145,17 @@ public class Console {
 		int temp = getLevelCounter(); //return int;
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp);
+		setCurrFloor(floorWeOn);
 		boolean Playing = true;
 		
-		baseInit(floorWeOn);
+		if(getLocalCurrRoom() == null) {
+			resetUserRoom();
+		}
+		
+		baseInit(getLocalCurrRoom() , floorWeOn);
+		//baseInit(getLocalCurrRoom() , floorWeOn);
+		//baseInit(getLocalCurrRoom() , floorWeOn);
+		
 		
 		 //return string of map we on
 		//System.out.println(floorWeOn);
@@ -265,23 +276,19 @@ public class Console {
 	
 	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 	
-	public void baseInit(String currFloor) {
+	public void baseInit(String nextCurrRoom, String currFloor) {
 		resetRoom();
-		generateRoom(currFloor);
+		generateRoom(nextCurrRoom, currFloor);
 	}
 	
-	public void generateRoom(String currFloor) {
+	public void generateRoom(String nextCurrRoom, String currFloor) {
 		
-		if(getLocalCurrRoom() == null) {
-			resetUserRoom();
-		}
 		
 		System.out.println("Current level: " + currFloor);
-		System.out.println("Current room: " + getLocalCurrRoom());
+		System.out.println("Current room: " + nextCurrRoom);
 
-		map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
+		map.runRunBase(nextCurrRoom, floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
 		//getNextRoom();
-		
 
 	}
 
@@ -291,7 +298,6 @@ public class Console {
 		String tempString;
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
-
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
 
 		for(HashMap.Entry test : tempHash.entrySet()) {
@@ -304,18 +310,13 @@ public class Console {
 				int temp2 = tempCoord.get(i).getY();
 
 				// TODO check pixel range of player instead of that single point
-
-
 				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
 						&& coordY <= temp2 + 500 ) {
-
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempString);
-
-
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
-					HashMap<String, String> mapHashCurrEntry;
-					HashMap<String, String> mapHashNextRoom;
+					HashMap<String, String> mapHashCurrEntry = new HashMap<String, String>();
+					HashMap<String, String> mapHashNextRoom = new HashMap<String, String>();
 					ArrayList<String> numOfEntries;
 					int temp; 
 					
@@ -337,11 +338,18 @@ public class Console {
 						String nextRoom = mapHashNextRoom.get(nextEntry);
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getNextCurrRoom());
-						
-					}break;
-				}break;
+						//baseInit(getNextCurrRoom(), getCurrFloor());
+						playGame();
+						break;
+					}
+				}
 			}
 		}
+
+	private void removeAll() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 

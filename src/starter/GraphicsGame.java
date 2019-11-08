@@ -20,6 +20,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GG Variables
 	public Console game;
+	public User player;
 	public boolean inMenu;
 	public int pressedKey;
 	public boolean firstSwordCall = true;
@@ -94,11 +95,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		
+		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
+			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+			//System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+		
+			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
-				drawRoom();
 				game.getUser().setCurrRoom(game.getLocalCurrRoom());
+				drawRoom();
 			}
 			room = game.getLocalCurrRoom();
 			
@@ -247,7 +253,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
-	
+		while(inMenu) {
+					
+			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+			System.out.println("You are in the menu!");
+					
+		}
 		
 		
 	}
@@ -290,6 +301,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
+
 		
 	}
 	
