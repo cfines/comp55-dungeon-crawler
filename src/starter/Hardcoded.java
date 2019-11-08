@@ -105,9 +105,9 @@ public class Hardcoded
 				Coordinates hole2 = new Coordinates (75, 500);
 				Coordinates enemy1 = new Coordinates (350, 76);
 				Coordinates enemy2 = new Coordinates (367, 504);
-				Coordinates E2 = new Coordinates (5, 325);
+				Coordinates E2 = new Coordinates (60, 325);
 				bruhMap.setEnteredEntries("E2", E2, enteredEntriesArrayList, enteredEntriesHash);
-				Coordinates E3 = new Coordinates (1145, 325);
+				Coordinates E3 = new Coordinates (1005, 325);
 				bruhMap.setEnteredEntries("E3", E3, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomTwoInteraction1 = new Interactions(interactionType.obstacle_rock, 2, 1);
 				Interactions roomTwoInteraction2 = new Interactions(interactionType.obstacle_hole, 2, 2);

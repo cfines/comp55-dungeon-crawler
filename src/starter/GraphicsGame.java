@@ -84,7 +84,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawRoom();
 		
 		while(running) {
-			System.out.println("runnin'");
+			System.out.println("running");
+			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
 				game.getUser().setCurrRoom(game.getLocalCurrRoom());
