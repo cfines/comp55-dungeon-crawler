@@ -166,6 +166,21 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			actionPerformed(e);		
 		}
 		
+		switch(pressedKey) {
+		case KeyEvent.VK_UP:
+			//add attack animation
+			break;
+		case KeyEvent.VK_LEFT:
+			//add attack animation
+			break;
+		case KeyEvent.VK_DOWN:
+			//add attack animation
+			break;
+		case KeyEvent.VK_RIGHT:
+			//add attack animation
+			break;
+		}
+		
 	}
 	
 	public void keyReleased(KeyEvent e) {

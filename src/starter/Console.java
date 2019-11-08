@@ -23,7 +23,7 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
-	private Boolean[] keyDown = new Boolean[4];
+	private Boolean[] keyDown = new Boolean[9];
 	
 	//Room Traversal
 	private String floorWeOn = new String();
@@ -190,6 +190,8 @@ public class Console {
 	public void actionPerformed(KeyEvent ae) {
 		
 		if(gamePaused) { return; }
+		if(!canMove()) { return; }
+		
 		user.tick();
 		
 		for(int i = 0; i < enemies.size(); i++) {
@@ -232,7 +234,24 @@ public class Console {
 			keyDown[3] = true;
 			break;
 		case KeyEvent.VK_E:
+			keyDown[4] = true;
 			user.cycleWeapon();
+			break;
+		case KeyEvent.VK_UP:
+			keyDown[5] = true;
+			generateHitbox(e);
+			break;
+		case KeyEvent.VK_LEFT:
+			keyDown[6] = true;
+			generateHitbox(e);
+			break;
+		case KeyEvent.VK_DOWN:
+			keyDown[7] = true;
+			generateHitbox(e);
+			break;
+		case KeyEvent.VK_RIGHT:
+			keyDown[8] = true;
+			generateHitbox(e);
 			break;
 		default:
 			break;
@@ -257,6 +276,21 @@ public class Console {
 		}
 		if(keyInput == KeyEvent.VK_D) {
 			keyDown[3] = false;
+		}
+		if(keyInput == KeyEvent.VK_E) {
+			keyDown[4] = false;
+		}
+		if(keyInput == KeyEvent.VK_UP) {
+			keyDown[5] = false;		
+		}
+		if(keyInput == KeyEvent.VK_LEFT) {
+			keyDown[6] = false;
+		}
+		if(keyInput == KeyEvent.VK_DOWN) {
+			keyDown[7] = false;
+		}
+		if(keyInput == KeyEvent.VK_RIGHT) {
+			keyDown[8] = false;
 		}
 		
 		if(keyDown[0] && !keyDown[2]) {
@@ -306,10 +340,46 @@ public class Console {
 	}*/
 	
 	public boolean canMove() {
+		//TODO have some boundary checks called in here
 		return true;
 	}
 	
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
+	
+	
+	
+	/////////////////////////// COMBAT METHODS //////////////////////////////////////////////////
+	
+	//This will be called whenever a user wants to attack
+	public void generateHitbox(KeyEvent e) {
+		//TODO add checks for enemy within X/Y pixels in from of User depending on KeyEvent
+	}
+	
+	//This will be called inside generateHitbox if an enemy is detected within the attack range
+	public void userDmgToEnemy(Enemy enemyBeingAttacked) {
+		Weapon tempSword = user.getCurWeapon();
+		int attackBoost = 0;
+		
+		//Checks for elemental damage boosts
+		if((tempSword.getWepType() == ElementType.FIRE) && (enemyBeingAttacked.getEnemyType() == ElementType.EARTH)) {
+			attackBoost += 1;
+		} else if((tempSword.getWepType() == ElementType.WATER) && (enemyBeingAttacked.getEnemyType() == ElementType.FIRE)) {
+			attackBoost += 1;
+		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getEnemyType() == ElementType.WATER)) {
+			attackBoost += 1;
+		}
+		
+		//TODO Potentially add elemental damage debuffs? (Like if a user attacks a water enemy with fire
+		
+	}
+	
+	//This will be called when a user is detected to be touching an enemy
+	public void enemyDmgToUser(Enemy enemyAttacking) {
+		
+	}
+	
+	/////////////////////////// END OF COMBAT METHODS ///////////////////////////////////////////
+	
 	
 	
 	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////

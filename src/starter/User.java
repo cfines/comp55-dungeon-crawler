@@ -122,6 +122,10 @@ public class User {
 		return weaponEquiped;
 	}
 	
+	public Weapon getCurWeapon() {
+		return weapons.get(weaponEquiped);
+	}
+	
 	public String getWeaponEquipedString() {
 		return weapons.get(weaponEquiped).toString();
 	}
