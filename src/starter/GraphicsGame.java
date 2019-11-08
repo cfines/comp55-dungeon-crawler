@@ -97,8 +97,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
-			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-			//System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
 		
 			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
