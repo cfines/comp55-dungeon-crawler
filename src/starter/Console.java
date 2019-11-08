@@ -1,8 +1,11 @@
 package starter;
 
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.swing.Timer;
 
 public class Console {
 
@@ -30,6 +33,7 @@ public class Console {
 	private String roomWeIn = new String();
 	private String currRoom;
 	private int keyInput;
+	private Timer timer;
 
 	//Misc. Variables
 	//private String roomFromEntry = new String();
@@ -154,9 +158,6 @@ public class Console {
 		}
 		
 		baseInit(getLocalCurrRoom() , floorWeOn);
-		//baseInit(getLocalCurrRoom() , floorWeOn);
-		//baseInit(getLocalCurrRoom() , floorWeOn);
-		
 		
 		 //return string of map we on
 		//System.out.println(floorWeOn);
@@ -408,18 +409,21 @@ public class Console {
 		//tempArrayList = getEntries();
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
 
-		for(HashMap.Entry test : tempHash.entrySet()) {
+		for(HashMap.Entry test : tempHash.entrySet()) 
+		{
 
 			tempString = (String)test.getKey();
 			ArrayList<Coordinates> tempCoord = tempHash.get(test.getKey());
 
-			for(int i = 0; i <= tempCoord.size() - 1; i++) {
+			for(int i = 0; i <= tempCoord.size() - 1; i++) 
+			{
 				int temp1 = tempCoord.get(i).getX();
 				int temp2 = tempCoord.get(i).getY();
 
 				// TODO check pixel range of player instead of that single point
 				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
-						&& coordY <= temp2 + 500 ) {
+						&& coordY <= temp2 + 500 ) 
+				{
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempString);
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
@@ -447,12 +451,13 @@ public class Console {
 						setNextCurrRoom(nextRoom);
 						System.out.println("Next room will be: " + getNextCurrRoom());
 						//baseInit(getNextCurrRoom(), getCurrFloor());
-						playGame();
+						playGame(); 
 						break;
 					}
 				}
 			}
-		}
+	}
+	
 
 	private void removeAll() {
 		// TODO Auto-generated method stub
