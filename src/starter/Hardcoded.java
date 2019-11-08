@@ -83,7 +83,7 @@ public class Hardcoded
 				Coordinates rock1 = new Coordinates (170,189);
 				Coordinates rock2 = new Coordinates (890,200);
 				Coordinates hole1 = new Coordinates (172,425);
-				Coordinates E1 = new Coordinates (500, 325);
+				Coordinates E1 = new Coordinates (1005, 325);
 				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
