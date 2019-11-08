@@ -293,8 +293,8 @@ public class Console {
 	}
 
 	public void getNextRoom() {
-		int coordX = user.getCoordX();
-		int coordY = user.getCoordY();
+		double coordX = user.getCoordX();
+		double coordY = user.getCoordY();
 		String tempString;
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();

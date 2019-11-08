@@ -31,11 +31,11 @@ public class Enemy {
 		this.dy = dy;
 	}
 	
-	public int getCoordX() {
+	public double getCoordX() {
 		return enemyStats.getCoordX();
 	}
 	
-	public int getCoordY() {
+	public double getCoordY() {
 		return enemyStats.getCoordY();
 	}
 	
