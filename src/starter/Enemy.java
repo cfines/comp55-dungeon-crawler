@@ -5,7 +5,7 @@ public class Enemy {
 	private int moveSpeedStat;
 	private double powerStat;
 	private ElementType enemyType;
-	private int dx, dy, userX, userY;
+	private int dx, dy;
 	
 	Enemy(){};
 	
@@ -40,30 +40,11 @@ public class Enemy {
 	}
 	
 	public void tick(){
-		enemyStats.setCoordX(enemyStats.getCoordX() + 2);
-		enemyStats.setCoordY(enemyStats.getCoordY() + 2);
+		
+		enemyStats.setCoordX(enemyStats.getCoordX() + dx);
+		dx+=5;
+		enemyStats.setCoordY(enemyStats.getCoordY() + dy);
+		dy+=5;
 	}
 	
-	public void move(User user) {
-		dx = enemyStats.getCoordX();
-		dy = enemyStats.getCoordY();
-		userX = user.getCoordX();
-		userY = user.getCoordY();
-		
-		if(dy > userY) {
-			enemyStats.setCoordY(dy -= moveSpeedStat);
-			if(dy < -moveSpeedStat) {
-				dy = -moveSpeedStat;
-				System.out.println("Enemy y: " + dy);
-			}
-		}
-		else if(dx > userX) {
-			enemyStats.setCoordY(dx -= moveSpeedStat);
-			if(dx < -moveSpeedStat) {
-				dx = -moveSpeedStat;
-				System.out.println("Enemy x: " + dx);
-			}
-		}
-
-	}
 }

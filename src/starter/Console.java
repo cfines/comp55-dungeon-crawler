@@ -11,7 +11,7 @@ public class Console {
 	///////////////////////////// INSTANCE VARIABLES ///////////////////////////////////////
 
 	//CONSOLE IMPORTANT VARIABLES
-	private User user = new User();
+	private User user;
 	private Floor floor = new Floor();
 	private Map map = new Map();
 	private MapLayout layout = new MapLayout();
@@ -92,7 +92,7 @@ public class Console {
 		return this.enemyHash;
 	}
 	
-	public ArrayList<Enemy> getEnemiesArray(){
+	public ArrayList<Enemy> getEnemies(){
 		return this.enemies;
 	}
 	
@@ -128,14 +128,6 @@ public class Console {
 	public void resetMap() {
 		map = new Map();
 	}
-	
-	public ArrayList<Enemy> getEnemies() {
-		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		for(Enemy key : enemyHash.keySet()) {
-			enemies.add(key);
-		}
-		return enemies;
-	}
 
 	
 	/////////////////////////// END OF GETTERS AND SETTERS ////////////////////////////////////////
@@ -145,7 +137,7 @@ public class Console {
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
 	
 	public void playGame() {
-		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+		ArrayList<Enemy> enemies = getEnemies();
 		user = new User(5, 5, 1000, 1, 300, 300);
 		int temp = getLevelCounter(); //return int;
 		floor.setMapArrayList();
@@ -157,14 +149,11 @@ public class Console {
 		 //return string of map we on
 		//System.out.println(floorWeOn);
 
-		for(Enemy key : enemyHash.keySet()) {
-			enemies.add(key);
-		}
-		if(enemies.size() > 0) {
+		/*if(enemies.size() > 0) {
 			for(Enemy enemy : enemies) {
-				moveEnemy(enemy);
+				enemy.move();
 			}
-		}
+		}*/
 
 		if(floorWeOn == "map_base1") {
 			if(getLocalCurrRoom() == null) {
@@ -185,6 +174,7 @@ public class Console {
 	
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
 	
+	
 	public void actionPerformed(KeyEvent ae) {
 		
 		if(gamePaused) { return; }
@@ -198,6 +188,14 @@ public class Console {
 
 	public void keyPressedManager(KeyEvent e) {
 
+		for(Enemy key : enemyHash.keySet()) {
+			enemies.add(key);
+		}
+		
+		for(Enemy curEnemy : enemies) {
+			curEnemy.tick();
+		}
+		
 		keyInput = e.getKeyCode();
 
 		switch(keyInput) {
@@ -251,12 +249,12 @@ public class Console {
 
 	}
 	
-	public void moveEnemy(Enemy enemy) {
+	/*public void moveEnemy(Enemy enemy) {
 		for(Enemy enemy2 : enemies) {
-			enemy2.move(user);
+			enemy2.move();
 		}
-		enemy.move(user);
-	}
+		enemy.move();
+	}*/
 	
 	public boolean canMove() {
 		return true;

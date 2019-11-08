@@ -162,7 +162,6 @@ public class Map{
 		setInteractions(inter, inTheWay, reaction);
 		System.out.println(getEnemySpawn());
 		getEnemyRoomX();
-		getEnemyRoomY();
 	}
 	*/
 	
