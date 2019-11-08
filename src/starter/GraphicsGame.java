@@ -20,6 +20,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GG Variables
 	public Console game;
+	public User player;
 	public boolean inMenu;
 	public int pressedKey;
 	public boolean firstSwordCall = true;
@@ -83,11 +84,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawRoom();
 		
 		while(running) {
-			
+			System.out.println("runnin'");
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
-				drawRoom();
 				game.getUser().setCurrRoom(game.getLocalCurrRoom());
+				drawRoom();
 			}
 			room = game.getLocalCurrRoom();
 			

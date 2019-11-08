@@ -4,8 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import acm.graphics.GImage;
-
 public class Console {
 
 	///////////////////////////// INSTANCE VARIABLES ///////////////////////////////////////
@@ -299,7 +297,6 @@ public class Console {
 		String tempString;
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
-
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
 
 		for(HashMap.Entry test : tempHash.entrySet()) {
@@ -312,15 +309,10 @@ public class Console {
 				int temp2 = tempCoord.get(i).getY();
 
 				// TODO check pixel range of player instead of that single point
-
-
 				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
 						&& coordY <= temp2 + 500 ) {
-
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempString);
-
-
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
 					HashMap<String, String> mapHashCurrEntry;
 					HashMap<String, String> mapHashNextRoom;
@@ -347,10 +339,17 @@ public class Console {
 						System.out.println("Next room will be: " + getNextCurrRoom());
 						baseInit(getNextCurrRoom(), getCurrFloor());
 						break;
-					}break;
-				}break;
+					}
+				break;
+				}
+			break;
 			}
 		}
+
+	private void removeAll() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 
