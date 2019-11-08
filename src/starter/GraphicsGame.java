@@ -83,6 +83,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		
+		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
 			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
 			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
