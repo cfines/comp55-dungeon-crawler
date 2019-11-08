@@ -23,6 +23,7 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
+	private Boolean[] keyDown = new Boolean[4];
 	
 	//Room Traversal
 	private String floorWeOn = new String();
@@ -212,19 +213,23 @@ public class Console {
 		switch(keyInput) {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
-			getNextRoom();
-			break;
-		case KeyEvent.VK_S:
-			user.setDY(user.getMoveSpeedStat());
-			getNextRoom();
-			break;
-		case KeyEvent.VK_D:
-			user.setDX(user.getMoveSpeedStat());
+			keyDown[0] = true;
 			getNextRoom();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
 			getNextRoom();
+			keyDown[1] = true;
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(user.getMoveSpeedStat());
+			getNextRoom();
+			keyDown[2] = true;
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(user.getMoveSpeedStat());
+			getNextRoom();
+			keyDown[3] = true;
 			break;
 		case KeyEvent.VK_E:
 			user.cycleWeapon();
@@ -240,23 +245,56 @@ public class Console {
 	public void keyReleasedManager(KeyEvent e) {
 
 		keyInput = e.getKeyCode();
-
-		switch(keyInput) {
-		case KeyEvent.VK_W:
+		
+		if(keyInput == KeyEvent.VK_W) {
+			keyDown[0] = false;
+		}
+		if(keyInput == KeyEvent.VK_A) {
+			keyDown[1] = false;
+		}
+		if(keyInput == KeyEvent.VK_S) {
+			keyDown[2] = false;
+		}
+		if(keyInput == KeyEvent.VK_D) {
+			keyDown[3] = false;
+		}
+		
+		if(keyDown[0] && !keyDown[2]) {
+			user.setDY(-user.getMoveSpeedStat());
+		}
+		if(!keyDown[0] && keyDown[2]) {
+			user.setDY(user.getMoveSpeedStat());
+		}
+		if(!keyDown[0] && !keyDown[2]) {
 			user.setDY(0);
-			break;
-		case KeyEvent.VK_S:
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_D:
+		}
+		
+		
+		if(keyDown[1] && !keyDown[3]) {
+			user.setDX(-user.getMoveSpeedStat());
+		}
+		if(!keyDown[1] && keyDown[3]) {
+			user.setDX(user.getMoveSpeedStat());
+		}
+		if(!keyDown[1] && !keyDown[3]) {
 			user.setDX(0);
+		}
+		/*switch(keyInput) {
+		case KeyEvent.VK_W:
+			keyDown[0] = false;
 			break;
 		case KeyEvent.VK_A:
-			user.setDX(0);
+			keyDown[1] = false;
+			break;
+		case KeyEvent.VK_S:
+			keyDown[2] = false;
+			break;
+		case KeyEvent.VK_D:
+			keyDown[3] = false;
 			break;
 		default:
 			break;
-		}
+		}*/
 
 	}
 	
