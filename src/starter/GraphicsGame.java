@@ -245,14 +245,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
-<<<<<<< HEAD
-		while(inMenu) {
+		/*while(inMenu) {
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
 			System.out.println("You are in the menu!");
 					
-		}
-=======
+		}*/
 		
 		
 	}
