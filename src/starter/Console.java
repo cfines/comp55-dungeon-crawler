@@ -34,6 +34,7 @@ public class Console {
 	private String currRoom;
 	private int keyInput;
 	private Timer timer;
+	public static final int DELAY_MS = 25;
 
 	//Misc. Variables
 	//private String roomFromEntry = new String();
@@ -145,14 +146,14 @@ public class Console {
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
 	
 	public void playGame() {
-		ArrayList<Enemy> enemies = getEnemies();
+		enemies = getEnemies();
 		user = new User(5, 5, 1000, 1, 300, 300);
+		generateEnemies();
 		int temp = getLevelCounter(); //return int;
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp);
 		setCurrFloor(floorWeOn);
 		boolean Playing = true;
-		
 		if(getLocalCurrRoom() == null) {
 			resetUserRoom();
 		}
@@ -173,7 +174,13 @@ public class Console {
 				resetRoom();
 			}
 		}
-		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+			enemies.get(i).setDX(enemies.get(i).getCoordX()+5);
+			enemies.get(i).setDY(0);
+			//Timer timer = new Timer(DELAY_MS, null);
+			//timer.start();
+		}
 	}
 	
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
@@ -187,7 +194,16 @@ public class Console {
 	
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
 	
-	
+	public void generateEnemies() {
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+			enemies.get(i).setDX(5);
+			enemies.get(i).setDY(0);
+			//Timer timer = new Timer(DELAY_MS, null);
+			//timer.start();
+		}
+		
+	}
 	public void actionPerformed(KeyEvent ae) {
 		
 		if(gamePaused) { return; }
@@ -195,9 +211,9 @@ public class Console {
 		
 		user.tick();
 		
-		for(int i = 0; i < enemies.size(); i++) {
+		/*for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
-		}
+		}*/
 		
 	}
 

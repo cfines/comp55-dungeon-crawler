@@ -92,6 +92,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		game = new Console();
 		game.playGame();
+		game.generateEnemies();
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		
@@ -360,7 +361,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
 			enemyRep.setSize(75, 75);
 			add(enemyRep);
-			
 		}
 	
 	}
