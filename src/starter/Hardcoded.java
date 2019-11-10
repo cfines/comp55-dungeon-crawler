@@ -83,7 +83,7 @@ public class Hardcoded
 				Coordinates rock1 = new Coordinates (170,189);
 				Coordinates rock2 = new Coordinates (890,200);
 				Coordinates hole1 = new Coordinates (172,425);
-				Coordinates E1 = new Coordinates (1005, 325);
+				Coordinates E1 = new Coordinates (1040, 300);
 				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
@@ -105,9 +105,9 @@ public class Hardcoded
 				Coordinates hole2 = new Coordinates (575, 400);
 				Coordinates enemy1 = new Coordinates (350, 76);
 				Coordinates enemy2 = new Coordinates (367, 504);
-				Coordinates E2 = new Coordinates (60, 325);
+				Coordinates E2 = new Coordinates (60, 300);
 				bruhMap.setEnteredEntries("E2", E2, enteredEntriesArrayList, enteredEntriesHash);
-				Coordinates E3 = new Coordinates (1005, 325);
+				Coordinates E3 = new Coordinates (1040, 300);
 				bruhMap.setEnteredEntries("E3", E3, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomTwoInteraction1 = new Interactions(interactionType.obstacle_rock, 2, 1);
 				Interactions roomTwoInteraction2 = new Interactions(interactionType.obstacle_hole, 2, 2);
@@ -131,9 +131,9 @@ public class Hardcoded
 			{
 			Coordinates enemy1 = new Coordinates (800, 70);
 			Coordinates enemy2 = new Coordinates(575,487);
-			Coordinates E4 = new Coordinates (60, 325);
+			Coordinates E4 = new Coordinates (60, 300);
 			bruhMap.setEnteredEntries("E4", E4, enteredEntriesArrayList, enteredEntriesHash);
-			Coordinates E5 = new Coordinates (1005, 325);
+			Coordinates E5 = new Coordinates (1040, 300);
 			bruhMap.setEnteredEntries("E5", E5, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates rock1 = new Coordinates (575,325);
 			Coordinates hole1 = new Coordinates (230,163);
@@ -159,8 +159,8 @@ public class Hardcoded
 			Coordinates enemy3 = new Coordinates(863, 434);
 			Coordinates hole1 = new Coordinates(900,100);
 			Coordinates rock1 = new Coordinates(230,490);
-			Coordinates E6 = new Coordinates(5,325);
-			Coordinates E7 = new Coordinates(575, 645);
+			Coordinates E6 = new Coordinates(60,300);
+			Coordinates E7 = new Coordinates(575, 490);
 			bruhMap.setEnteredEntries("E6", E6, enteredEntriesArrayList, enteredEntriesHash);
 			bruhMap.setEnteredEntries("E7", E7, enteredEntriesArrayList, enteredEntriesHash);
 			Enemy roomFourEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
@@ -184,9 +184,9 @@ public class Hardcoded
 			{
 			Coordinates enemy1 = new Coordinates(575,325);
 			Coordinates hole1 = new Coordinates(230,325);
-			Coordinates E8 = new Coordinates(575,5);
-			Coordinates E9 = new Coordinates(5,325);
-			Coordinates E10 = new Coordinates(575,645);
+			Coordinates E8 = new Coordinates(575,60);
+			Coordinates E9 = new Coordinates(575,490);
+			Coordinates E10 = new Coordinates(1040,300);
 			bruhMap.setEnteredEntries("E8", E8, enteredEntriesArrayList, enteredEntriesHash);
 			bruhMap.setEnteredEntries("E9", E9, enteredEntriesArrayList, enteredEntriesHash);
 			bruhMap.setEnteredEntries("E10", E10, enteredEntriesArrayList, enteredEntriesHash);
@@ -206,9 +206,9 @@ public class Hardcoded
 			else if(userRoomPosition == "R6") 
 			{
 			Coordinates rock1 = new Coordinates(900,150);
-			Coordinates E11 = new Coordinates(575,5);
+			Coordinates E11 = new Coordinates(575,60);
 			bruhMap.setEnteredEntries("E11", E11, enteredEntriesArrayList, enteredEntriesHash);
-			Coordinates key1 = new Coordinates(575,325);
+			Coordinates key1 = new Coordinates(575,300);
 			Interactions roomSixInteraction1 = new Interactions(interactionType.obstacle_rock,6,1);
 			Interactions roomSixInteraction2 = new Interactions(interactionType.entry_door,6,2);
 			Interactions roomSixInteraction3 = new Interactions(interactionType.item_gif_key,6,3);
@@ -221,8 +221,8 @@ public class Hardcoded
 			else if(userRoomPosition == "R7") 
 			{
 			Coordinates rock1 = new Coordinates(300,200);
-			Coordinates E12 = new Coordinates(5,325);
-			Coordinates E13 = new Coordinates(1145,325);
+			Coordinates E12 = new Coordinates(60,300);
+			Coordinates E13 = new Coordinates(1040,300);
 			bruhMap.setEnteredEntries("E12", E12, enteredEntriesArrayList, enteredEntriesHash);
 			bruhMap.setEnteredEntries("E13", E13, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates enemy1 = new Coordinates(575,100);
@@ -248,8 +248,8 @@ public class Hardcoded
 			Coordinates rock1 = new Coordinates(150,425);
 			Coordinates rock2 = new Coordinates(575,325);
 			Coordinates hole1 = new Coordinates(901,325);
-			Coordinates E14 = new Coordinates(5,325);
-			Coordinates E15 = new Coordinates(575,5);	//TODO this door needs to be locked as it leads to the boss room!!!
+			Coordinates E14 = new Coordinates(60,300);
+			Coordinates E15 = new Coordinates(575,60);	//TODO this door needs to be locked as it leads to the boss room!!!
 			bruhMap.setEnteredEntries("E14", E14, enteredEntriesArrayList, enteredEntriesHash);
 			bruhMap.setEnteredEntries("E15", E15, enteredEntriesArrayList, enteredEntriesHash);
 			Interactions roomEightInteraction1 = new Interactions(interactionType.obstacle_rock,8,1);
@@ -268,7 +268,7 @@ public class Hardcoded
 			else if(userRoomPosition == "R9") 
 			{
 			//Coordinates boss1 = new Coordinates(575,325);
-			Coordinates E16 = new Coordinates(575,645);	//TODO find way to prevent user to leave until the boss is dead
+			Coordinates E16 = new Coordinates(575,490);	//TODO find way to prevent user to leave until the boss is dead
 			bruhMap.setEnteredEntries("E16", E16, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates stairs1 = new Coordinates(575, 100);	//TODO make sure that these don't appear until the boss is dead
 			//Boss roomNineBoss1 = new Boss(10,10,2,2,2,2, ElementType.EARTH);	//TODO decide which boss we want first

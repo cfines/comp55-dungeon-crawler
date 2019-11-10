@@ -61,7 +61,7 @@ public class MapLayout {
 	 */
 	public void setEntryAmountBasedonLayout(String currLayout) {
 		if(currLayout == "map_base1") {
-			setEntryAmountofLayout(4); //TBD
+			setEntryAmountofLayout(15); //TBD
 		}
 		else if(currLayout == "map_fire") {
 			setEntryAmountofLayout(0); //TBD

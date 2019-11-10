@@ -29,7 +29,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
-	public static final int DOOR_HEIGHT = 500;
+	public static final int DOOR_HEIGHT = 50;
 	public GRect entry;
 	public GImage stairs;
 	
@@ -333,7 +333,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
+				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
 				entry.setFillColor(Color.CYAN);
 				add(entry);
 			} else {
