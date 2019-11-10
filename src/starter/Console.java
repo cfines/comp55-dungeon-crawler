@@ -433,6 +433,8 @@ public class Console {
 				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
 						&& coordY <= temp2 + 500 ) 
 				{
+					//TODO this method is only friendly to rooms with doors on the left or right, not up or down, find way to 
+					//detect x-coordinates as explicitly as the y-coordinates
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempString);
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
