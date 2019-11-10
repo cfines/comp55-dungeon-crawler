@@ -458,12 +458,6 @@ public class Console {
 			}
 	}
 	
-
-	private void removeAll() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 
 }
