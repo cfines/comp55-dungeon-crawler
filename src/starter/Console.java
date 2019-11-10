@@ -238,6 +238,7 @@ public class Console {
 			keyDown[4] = true;
 			user.cycleWeapon();
 			break;
+			//TODO fix this method, moves the user when changing weapons and shouldn't
 		case KeyEvent.VK_UP:
 			keyDown[5] = true;
 			generateHitbox(e);
