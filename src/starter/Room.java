@@ -187,7 +187,18 @@ public class Room {
 			getMapBaseEtoR().put("E2", "R2"); 
 			getMapBaseEtoR().put("E3", "R2");
 			getMapBaseEtoR().put("E4", "R3");
-			getMapBaseEtoR().put("E5", "R3");//TBD
+			getMapBaseEtoR().put("E5", "R3");
+			getMapBaseEtoR().put("E6", "R4");
+			getMapBaseEtoR().put("E7", "R4");
+			getMapBaseEtoR().put("E8", "R5");
+			getMapBaseEtoR().put("E9", "R5");
+			getMapBaseEtoR().put("E10", "R5");
+			getMapBaseEtoR().put("E11", "R6");
+			getMapBaseEtoR().put("E12", "R7");
+			getMapBaseEtoR().put("E13", "R7");
+			getMapBaseEtoR().put("E14", "R8");
+			getMapBaseEtoR().put("E15", "R8");
+			getMapBaseEtoR().put("E16", "R9");//TBD
 		}
 		else if(currLayout == "map_fire") {
 			//TBD
