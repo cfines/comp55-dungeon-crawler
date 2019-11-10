@@ -186,7 +186,8 @@ public class Room {
 			getMapBaseEtoR().put("E1", "R1"); 
 			getMapBaseEtoR().put("E2", "R2"); 
 			getMapBaseEtoR().put("E3", "R2");
-			getMapBaseEtoR().put("E4", "R3"); //TBD
+			getMapBaseEtoR().put("E4", "R3");
+			getMapBaseEtoR().put("E5", "R3");//TBD
 		}
 		else if(currLayout == "map_fire") {
 			//TBD
