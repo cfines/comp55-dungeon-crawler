@@ -202,14 +202,6 @@ public class Console {
 	}
 
 	public void keyPressedManager(KeyEvent e) {
-
-		for(Enemy key : enemyHash.keySet()) {
-			enemies.add(key);
-		}
-		
-		for(Enemy curEnemy : enemies) {
-			curEnemy.tick();
-		}
 		
 		keyInput = e.getKeyCode();
 
