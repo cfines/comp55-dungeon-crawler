@@ -88,10 +88,33 @@ public class MapLayout {
 	// Sets hard coded entry points for the current map 
 	public void setMapHash(String currLayout) {
 		if(currLayout == "map_base1") {
+			//R1
 			getMapHashStartEnd().put(getEntryAmount().get(0), getEntryAmount().get(1));
+			//R2
 			getMapHashStartEnd().put(getEntryAmount().get(1), getEntryAmount().get(0));
 			getMapHashStartEnd().put(getEntryAmount().get(2), getEntryAmount().get(3));
+			//R3
 			getMapHashStartEnd().put(getEntryAmount().get(3), getEntryAmount().get(2));
+			getMapHashStartEnd().put(getEntryAmount().get(4), getEntryAmount().get(5));
+			//R4
+			getMapHashStartEnd().put(getEntryAmount().get(5), getEntryAmount().get(4));
+			getMapHashStartEnd().put(getEntryAmount().get(6), getEntryAmount().get(7));
+			//R5
+			getMapHashStartEnd().put(getEntryAmount().get(7), getEntryAmount().get(6));
+			getMapHashStartEnd().put(getEntryAmount().get(8), getEntryAmount().get(9));
+			getMapHashStartEnd().put(getEntryAmount().get(10), getEntryAmount().get(11));
+			//R6
+			getMapHashStartEnd().put(getEntryAmount().get(9), getEntryAmount().get(8));
+			//R7
+			getMapHashStartEnd().put(getEntryAmount().get(11), getEntryAmount().get(10));
+			getMapHashStartEnd().put(getEntryAmount().get(12), getEntryAmount().get(13));
+			//R8
+			getMapHashStartEnd().put(getEntryAmount().get(13), getEntryAmount().get(12));
+			getMapHashStartEnd().put(getEntryAmount().get(14), getEntryAmount().get(15));	//BOSS DOOR
+			//R9 (BOSS ROOM)\\
+			getMapHashStartEnd().put(getEntryAmount().get(15), getEntryAmount().get(16));
+			//TODO include method for stair traversal
+			
 		}
 		/*else if(currLayout == "map_fire") {
 			
