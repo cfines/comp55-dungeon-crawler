@@ -454,10 +454,75 @@ public class Console {
 	//This will be called whenever a user wants to attack
 	public void generateHitbox(KeyEvent e) {
 		//TODO add checks for enemy within X/Y pixels in from of User depending on KeyEvent
+		
+		//FOR RIGHT NOW, THIS IS JUST THE SAME CHECK USED IN SETCANMOVE() TO CHECK FOR
+		//INTERACTIONS, WITH A FEW VARIABLES CHANGED. WE CAN CHANGE THIS IN THE FUTURE, I
+		//JUST HAVE THIS FOR NOW FOR THE SAKE OF HAVING SOMETHING TO BUILD ON TOP OF
+		for(HashMap.Entry test : enemyHash.entrySet()) {
+			
+			Coordinates tempCoord = enemyHash.get(test.getKey());
+			
+			//UPWARDS ATTACK
+			if(keyInput == KeyEvent.VK_UP) {
+				
+				//X CHECK
+					//In front of user's leftmost point		//Behind user's rightmost point
+				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
+					//Y checks
+					//Enemy is above user					//Less than a hit away
+					if((tempCoord.getY() > user.getCoordY()) && (tempCoord.getY() < (user.getCoordY() - user.getMoveSpeedStat()))) {
+						userDmgToEnemy((Enemy)test.getKey());
+					}
+				}
+				
+				
+			//LEFT ATTACK
+			} else if(keyInput == KeyEvent.VK_LEFT) {
+				
+				//Y CHECK
+				//Below user's topmost point				//Above user's lowest point
+				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
+					//X checks
+					//Enemy is "behind" user					//Less than a hit away
+					if((tempCoord.getX() < user.getCoordX()) && (tempCoord.getX() > (user.getCoordX() - user.getMoveSpeedStat()))) {
+						userDmgToEnemy((Enemy)test.getKey());
+					}
+				}	
+				
+			//DOWNWARDS ATTACK
+			} else if(keyInput == KeyEvent.VK_DOWN) {
+				
+				//X CHECK
+					//In front of user's leftmost point		//Behind user's rightmost point
+				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
+					//Y checks
+					//Enemy is below user							//Less than a hit away
+					if((tempCoord.getY() < (user.getCoordY() + 75)) && (tempCoord.getY() > ((user.getCoordY() + 75) + user.getMoveSpeedStat()))) {
+						userDmgToEnemy((Enemy)test.getKey());
+					}
+				}
+			
+			//RIGHT ATTACK
+			} else if(keyInput == KeyEvent.VK_RIGHT) {
+				
+				//Y CHECK
+				//Below user's topmost point				//Above user's lowest point
+				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
+					//X checks
+					//Enemy is in front of user					//Less than a hit away
+					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + user.getMoveSpeedStat()))) {
+						userDmgToEnemy((Enemy)test.getKey());
+					}
+				}				
+				
+			}
+
+		}
+		
 	}
 	
 	//This will be called inside generateHitbox if an enemy is detected within the attack range
-	public void userDmgToEnemy(Enemy enemyBeingAttacked) {
+	public int userDmgToEnemy(Enemy enemyBeingAttacked) {
 		Weapon tempSword = user.getCurWeapon();
 		int attackBoost = 0;
 		
@@ -471,6 +536,8 @@ public class Console {
 		}
 		
 		//TODO Potentially add elemental damage debuffs? (Like if a user attacks a water enemy with fire
+		
+		return user.getUserStats().getBaseDamage() + attackBoost;
 		
 	}
 	
