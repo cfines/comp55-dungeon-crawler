@@ -86,6 +86,8 @@ public class MapLayout {
 	}
 	
 	// Sets hard coded entry points for the current map 
+	//TODO add other entry points for traversal to different rooms as it seems that it only traverses by +1 but is incapable of going to another room
+	//that is of +2 of it's current location
 	public void setMapHash(String currLayout) {
 		if(currLayout == "map_base1") {
 			//R1

@@ -1,14 +1,20 @@
 package starter;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
+
 import javax.swing.Timer;
 
-import acm.graphics.*;
-import acm.program.*;
+import acm.graphics.GImage;
+import acm.graphics.GLabel;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 
@@ -95,11 +101,18 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		
-		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
-			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
 			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
-		
+			//String tempString;
+			//Console test = new Console();
+			//HashMap<String,ArrayList<Coordinates>> tempHash = test.getEntriesHash();
+			//for(HashMap.Entry h : tempHash.entrySet()) 
+		//	{
+			//	tempString = (String)h.getKey();
+			//	ArrayList<Coordinates> tempCoord = tempHash.get(h.getKey());
+			//System.out.println("user at : " + tempString);
+		//	}
 			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
@@ -109,7 +122,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			room = game.getLocalCurrRoom();
 			
 		}
-
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
