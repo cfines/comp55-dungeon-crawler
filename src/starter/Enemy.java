@@ -56,6 +56,5 @@ public class Enemy {
 			derp.tick();
 			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		}
-		
 	}
 }

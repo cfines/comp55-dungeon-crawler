@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 import javax.swing.Timer;
 
+import acm.graphics.GImage;
+
 public class Console {
 
 	///////////////////////////// INSTANCE VARIABLES ///////////////////////////////////////
@@ -148,7 +150,6 @@ public class Console {
 	public void playGame() {
 		enemies = getEnemies();
 		user = new User(5, 5, 1000, 1, 300, 300);
-		generateEnemies();
 		int temp = getLevelCounter(); //return int;
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp);
@@ -186,7 +187,27 @@ public class Console {
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
 	public static void main(String[] args) {
 		Console test = new Console();
-		test.getNextRoom();
+		//test.enemies = test.getEnemies();
+		//test.getNextRoom();
+		//test.generateEnemies();
+		/*for(int i = 0; i < test.enemies.size(); i++) {
+			//Timer timer = new Timer(DELAY_MS, null);
+			//timer.start();
+			System.out.println("X: " + test.enemies.get(i).getCoordX() + " Y: " + test.enemies.get(i).getCoordY());
+		}*/
+		Enemy tempEnemy = new Enemy(5,5,5,5,5,5,ElementType.FIRE);
+		HashMap<Enemy, Coordinates> enemyHash = test.getEnemyHash();
+		test.enemies = test.getEnemies();
+		
+		for(HashMap.Entry test2 : enemyHash.entrySet()) {
+			
+			tempEnemy = (Enemy) test2.getKey();
+			Coordinates tempCoord = enemyHash.get(test2.getKey());
+			//tempEnemy.tick();
+			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
+		}
+		Coordinates tempCoord = new Coordinates(2, 2);
+		System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 	}
 	
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
@@ -194,16 +215,6 @@ public class Console {
 	
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
 	
-	public void generateEnemies() {
-		for(int i = 0; i < enemies.size(); i++) {
-			enemies.get(i).tick();
-			enemies.get(i).setDX(5);
-			enemies.get(i).setDY(0);
-			//Timer timer = new Timer(DELAY_MS, null);
-			//timer.start();
-		}
-		
-	}
 	public void actionPerformed(KeyEvent ae) {
 		
 		if(gamePaused) { return; }
@@ -350,7 +361,20 @@ public class Console {
 	}*/
 	
 	public boolean canMove() {
-		//TODO have some boundary checks called in here
+		//TODO have some boundary checks called in here		
+		for(HashMap.Entry test : enemyHash.entrySet()) {
+			
+			tempEnemy = (Enemy) test.getKey();
+			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
+			
+			
+			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
+			enemyRep.setSize(75, 75);
+			add(enemyRep);
+		}
+		enemyStats.setCoordX(enemyStats.getCoordX() + dx);
+		enemyStats.setCoordY(enemyStats.getCoordY() + dy);
+		
 		return true;
 	}
 	
