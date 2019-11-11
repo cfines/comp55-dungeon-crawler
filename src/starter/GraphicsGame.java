@@ -144,6 +144,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}*/
 		if(inMenu || game.getGamePaused()) { return; }
 		
+		if((ae.getKeyCode() == KeyEvent.VK_W) || (ae.getKeyCode() == KeyEvent.VK_A) || (ae.getKeyCode() == KeyEvent.VK_S) || (ae.getKeyCode() == KeyEvent.VK_D)) {
+			game.setCanMove(ae);
+		}
+		if(!game.getCanMove()) { return; }
+		
+		
+		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
@@ -169,6 +176,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 		
+		System.out.println("Can move: " + game.getCanMove());
+		
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -190,16 +199,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		switch(pressedKey) {
 		case KeyEvent.VK_UP:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_LEFT:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_DOWN:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_RIGHT:
-			//add attack animation
+			drawAttack(e);
 			break;
 		}
 		
@@ -347,9 +356,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		Interactions tempInteraction;
 		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
 		
-		for(HashMap.Entry test : tempHash.entrySet()) {
+		for(HashMap.Entry<Interactions, Coordinates> test : tempHash.entrySet()) {
 			
-			tempInteraction = (Interactions)test.getKey();
+			tempInteraction = test.getKey();
 			Coordinates tempCoord = tempHash.get(test.getKey());
 			
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
@@ -373,9 +382,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		ggEnemyHash = game.getEnemyHash();
 		ggEnemyArray = game.getEnemies();
 		
-		for(HashMap.Entry test : ggEnemyHash.entrySet()) {
+		for(HashMap.Entry<Enemy, Coordinates> test : ggEnemyHash.entrySet()) {
 			
-			tempEnemy = (Enemy) test.getKey();
+			tempEnemy = test.getKey();
 			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
 			
 			
@@ -437,6 +446,23 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void resetRoom() {
 		removeAll();
 		firstSwordCall = true;
+	}
+	
+	public void drawAttack(KeyEvent e) {
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			//add attack animation
+			break;
+		case KeyEvent.VK_LEFT:
+			//add attack animation
+			break;
+		case KeyEvent.VK_DOWN:
+			//add attack animation
+			break;
+		case KeyEvent.VK_RIGHT:
+			//add attack animation
+			break;
+		}
 	}
 	
 	///////////////////////////// END OF DRAWING CALLS ////////////////////////////////////////////

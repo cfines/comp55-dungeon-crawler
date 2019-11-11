@@ -25,6 +25,10 @@ public class Enemy {
 		return enemyType;
 	}
 	
+	public Stats getEnemyStats() {
+		return enemyStats;
+	}
+	
 	public void setStartX(int x) {
 		startUp.setX(x);
 	}
