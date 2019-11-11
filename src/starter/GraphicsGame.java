@@ -107,7 +107,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		while(running) {
 			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+			//System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+			String test = new String();
+			test = game.getLocalCurrRoom();
 			//String tempString;
 			//Console test = new Console();
 			//HashMap<String,ArrayList<Coordinates>> tempHash = test.getEntriesHash();
