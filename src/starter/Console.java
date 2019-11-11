@@ -222,9 +222,12 @@ public class Console {
 	
 	public void actionPerformed(KeyEvent ae) {
 		
-		if(gamePaused) { return; }
-		if(!getCanMove()) { return; }
+		//Checks for...
+		if(gamePaused) { return; }		//Game being paused
+		//checkEnemyAttack();				//Enemy attacks
+		if(!getCanMove()) { return; }	//Interaction blocks
 		
+		//Now you can move!
 		user.tick();
 		
 		/*for(int i = 0; i < enemies.size(); i++) {
@@ -567,9 +570,26 @@ public class Console {
 		
 	}
 	
+	public void checkEnemyAttack() {
+		
+		for(HashMap.Entry<Enemy, Coordinates> test : enemyHash.entrySet()) {
+			
+			Coordinates tempCoord = enemyHash.get(test.getKey());
+			
+				//TODO these aren't accurate at all, fix this in future
+				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
+					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + 50))) {
+						enemyDmgToUser(test.getKey());
+					}
+				}
+				
+		}
+		
+	}
+	
 	//This will be called when a user is detected to be touching an enemy
 	public void enemyDmgToUser(Enemy enemyAttacking) {
-		
+		user.getUserStats().setHP_cur(user.getUserStats().getHP_cur() - enemyAttacking.getEnemyStats().getBaseDamage());
 	}
 	
 	/////////////////////////// END OF COMBAT METHODS ///////////////////////////////////////////
