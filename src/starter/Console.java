@@ -364,7 +364,7 @@ public class Console {
 		Coordinates foundInteractionCoordinates = new Coordinates();
 		boolean foundInteractionBool = false;
 		
-		for(HashMap.Entry test : interactionHash.entrySet()) {
+		for(HashMap.Entry<Interactions, Coordinates> test : interactionHash.entrySet()) {
 			
 			Coordinates tempCoord = interactionHash.get(test.getKey());
 			
@@ -458,7 +458,7 @@ public class Console {
 		//FOR RIGHT NOW, THIS IS JUST THE SAME CHECK USED IN SETCANMOVE() TO CHECK FOR
 		//INTERACTIONS, WITH A FEW VARIABLES CHANGED. WE CAN CHANGE THIS IN THE FUTURE, I
 		//JUST HAVE THIS FOR NOW FOR THE SAKE OF HAVING SOMETHING TO BUILD ON TOP OF
-		for(HashMap.Entry test : enemyHash.entrySet()) {
+		for(HashMap.Entry<Enemy, Coordinates> test : enemyHash.entrySet()) {
 			
 			Coordinates tempCoord = enemyHash.get(test.getKey());
 			
@@ -470,7 +470,7 @@ public class Console {
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Enemy is above user					//Less than a hit away
-					if((tempCoord.getY() > user.getCoordY()) && (tempCoord.getY() < (user.getCoordY() - user.getMoveSpeedStat()))) {
+					if((tempCoord.getY() > user.getCoordY()) && (tempCoord.getY() < (user.getCoordY() - 50))) {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}
@@ -484,7 +484,7 @@ public class Console {
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
 					//X checks
 					//Enemy is "behind" user					//Less than a hit away
-					if((tempCoord.getX() < user.getCoordX()) && (tempCoord.getX() > (user.getCoordX() - user.getMoveSpeedStat()))) {
+					if((tempCoord.getX() < user.getCoordX()) && (tempCoord.getX() > (user.getCoordX() - 50))) {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}	
@@ -497,7 +497,7 @@ public class Console {
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Enemy is below user							//Less than a hit away
-					if((tempCoord.getY() < (user.getCoordY() + 75)) && (tempCoord.getY() > ((user.getCoordY() + 75) + user.getMoveSpeedStat()))) {
+					if((tempCoord.getY() < (user.getCoordY() + 75)) && (tempCoord.getY() > ((user.getCoordY() + 75) + 50))) {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}
@@ -510,7 +510,7 @@ public class Console {
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
 					//X checks
 					//Enemy is in front of user					//Less than a hit away
-					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + user.getMoveSpeedStat()))) {
+					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + 50))) {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}				
