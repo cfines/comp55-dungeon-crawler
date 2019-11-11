@@ -99,7 +99,11 @@ public class Console {
 	}
 	
 	public ArrayList<Enemy> getEnemies(){
-		return this.enemies;
+		ArrayList<Enemy> tempArray = new ArrayList<Enemy>();
+		for(Enemy key : getEnemyHash().keySet()) {
+			tempArray.add(key);
+		}
+		return tempArray;
 	}
 	
 	public void setGamePaused(boolean gamePaused) {
@@ -148,8 +152,11 @@ public class Console {
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
 	
 	public void playGame() {
-		enemies = getEnemies();
 		user = new User(5, 5, 1000, 1, 300, 300);
+		enemies = new ArrayList<Enemy>(); 
+		for(Enemy key : getEnemyHash().keySet()) {
+			enemies.add(key);
+		}
 		int temp = getLevelCounter(); //return int;
 		floor.setMapArrayList();
 		floorWeOn = floor.whatMapWeOn(temp);
@@ -175,13 +182,6 @@ public class Console {
 				resetRoom();
 			}
 		}
-		for(int i = 0; i < enemies.size(); i++) {
-			enemies.get(i).tick();
-			enemies.get(i).setDX(enemies.get(i).getCoordX()+5);
-			enemies.get(i).setDY(0);
-			//Timer timer = new Timer(DELAY_MS, null);
-			//timer.start();
-		}
 	}
 	
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
@@ -203,11 +203,9 @@ public class Console {
 			
 			tempEnemy = (Enemy) test2.getKey();
 			Coordinates tempCoord = enemyHash.get(test2.getKey());
-			//tempEnemy.tick();
+			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
-		Coordinates tempCoord = new Coordinates(2, 2);
-		System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 	}
 	
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
@@ -218,13 +216,14 @@ public class Console {
 	public void actionPerformed(KeyEvent ae) {
 		
 		if(gamePaused) { return; }
-		if(!canMove()) { return; }
-		
+		//if(!canMove()) { return; }
+		//canMove();
 		user.tick();
-		
-		/*for(int i = 0; i < enemies.size(); i++) {
+		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
-		}*/
+			//Timer timer = new Timer(DELAY_MS, null);
+			//timer.start();
+		}
 		
 	}
 
@@ -360,19 +359,19 @@ public class Console {
 		enemy.move();
 	}*/
 	
-	public boolean canMove() {
+	public void canMove() {
 		//TODO have some boundary checks called in here		
 		Enemy tempEnemy = new Enemy();
 		for(HashMap.Entry enemy : enemyHash.entrySet()) {
 			
 			tempEnemy = (Enemy) enemy.getKey();
 			Coordinates tempCoord = enemyHash.get(enemy.getKey());
-			//tempCoord.
+			tempCoord.setX(tempCoord.getX() + 5);
 		}
 		//enemyStats.setCoordX(enemyStats.getCoordX() + dx);
 	//	enemyStats.setCoordY(enemyStats.getCoordY() + dy);
 		
-		return true;
+		//return true;
 	}
 	
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////

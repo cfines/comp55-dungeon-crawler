@@ -6,13 +6,14 @@ public class Enemy {
 	private int moveSpeedStat;
 	private double powerStat;
 	private ElementType enemyType;
-	private int x, y;
+	private int dx, dy;
 	
 	Enemy(){};
 	
 	Enemy (int input_HP_cur, int input_HP_tot, int atkTime,
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{
+		startUp = new Coordinates(input_x, input_y);
 		enemyStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		moveSpeedStat = 5;
 		powerStat = 5;
@@ -32,22 +33,25 @@ public class Enemy {
 		startUp.setY(y);
 	}
 	
-	public double getCoordX() {
+	public int getCoordX() {
 		return startUp.getX();
 	}
 	
-	public double getCoordY() {
+	public int getCoordY() {
 		return startUp.getY();
 	}
 	
 	public void tick() {
-		setStartX(5);
-		setStartY(5);
+		enemyStats.setCoordX(getCoordX() + 5);
+		enemyStats.setCoordY(getCoordY() + 5);
+		setStartX(getCoordX() + 5);
+		setStartY(getCoordY() + 5);
 	}
 	
 	public static void main(String[] args) {
-		Enemy derp = new Enemy();
-		derp.enemyStats = new Stats(5, 5, 5, 5, 5, 5);
+		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE);
+		derp.setStartX(10);
+		derp.setStartY(5);
 		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
 		while(1<5) {

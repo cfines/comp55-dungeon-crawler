@@ -72,18 +72,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
-		/*ArrayList<Enemy> tempEnem = game.getEnemies();
 		
 		/*for(int i = 0; i < tempEnem.size(); i++){
 			tempEnem.get(i).tick();
 		}*/
-		/*for(Enemy enemy : tempEnem) {
-			enemy.tick();
-		}
+		/*ArrayList<Enemy> tempEnem = game.getEnemies();
 		
 		for(Enemy enemy : tempEnem) {
+			enemy.tick();
 			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
 		}*/
+		
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		requestFocus();
 	}
@@ -100,6 +99,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		game.playGame();
 		room = game.getLocalCurrRoom();
 		drawRoom();
+		ArrayList<Enemy> tempEnem = game.getEnemies();
+		for(Enemy enemy : tempEnem) {
+			enemy.tick();
+			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+		}
 		
 		while(running) {
 			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
@@ -132,16 +136,22 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void actionPerformed(KeyEvent ae) {
 		
-		for(int i = 0; i < game.getEnemies().size(); i++) {
+		
+		/*for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
+			entry.getKey().
 			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}
+		}*/
 		if(inMenu || game.getGamePaused()) { return; }
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
+		for(int i = 0; i < game.getEnemies().size(); i++) {
+			game.getEnemies().get(i).tick();
+			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
+		}
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	
