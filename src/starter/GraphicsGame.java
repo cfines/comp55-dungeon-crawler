@@ -98,7 +98,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		game = new Console();
 		game.playGame();
-		game.generateEnemies();
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		

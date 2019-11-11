@@ -1,11 +1,12 @@
 package starter;
 
 public class Enemy {
+	private Coordinates startUp;
 	private Stats enemyStats;
 	private int moveSpeedStat;
 	private double powerStat;
 	private ElementType enemyType;
-	private double dx, dy;
+	private int x, y;
 	
 	Enemy(){};
 	
@@ -23,39 +24,35 @@ public class Enemy {
 		return enemyType;
 	}
 	
-	public void setDX(double dx) {
-		this.dx = dx;
+	public void setStartX(int x) {
+		startUp.setX(x);
 	}
 	
-	public void setDY(double dy) {
-		this.dy = dy;
+	public void setStartY(int y) {
+		startUp.setY(y);
 	}
 	
 	public double getCoordX() {
-		return enemyStats.getCoordX();
+		return startUp.getX();
 	}
 	
 	public double getCoordY() {
-		return enemyStats.getCoordY();
+		return startUp.getY();
 	}
 	
 	public void tick() {
-		
-		enemyStats.setCoordX(enemyStats.getCoordX() + dx);
-		enemyStats.setCoordY(enemyStats.getCoordY() + dy);
+		setStartX(5);
+		setStartY(5);
 	}
 	
 	public static void main(String[] args) {
 		Enemy derp = new Enemy();
 		derp.enemyStats = new Stats(5, 5, 5, 5, 5, 5);
-		derp.setDX(5);
-		derp.setDY(5);
 		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
 		while(1<5) {
 			derp.tick();
 			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		}
-		
 	}
 }

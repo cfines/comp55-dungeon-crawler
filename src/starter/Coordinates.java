@@ -1,7 +1,5 @@
 package starter;
 
-//only to be called by Map
-
 public class Coordinates {
 	public int x;
 	public int y;
@@ -13,6 +11,14 @@ public class Coordinates {
 	}
 	
 	public Coordinates() {}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
 	
 	public int getX() 
 	{
