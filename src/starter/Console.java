@@ -362,18 +362,15 @@ public class Console {
 	
 	public boolean canMove() {
 		//TODO have some boundary checks called in here		
-		for(HashMap.Entry test : enemyHash.entrySet()) {
+		Enemy tempEnemy = new Enemy();
+		for(HashMap.Entry enemy : enemyHash.entrySet()) {
 			
-			tempEnemy = (Enemy) test.getKey();
-			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
-			
-			
-			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
-			enemyRep.setSize(75, 75);
-			add(enemyRep);
+			tempEnemy = (Enemy) enemy.getKey();
+			Coordinates tempCoord = enemyHash.get(enemy.getKey());
+			//tempCoord.
 		}
-		enemyStats.setCoordX(enemyStats.getCoordX() + dx);
-		enemyStats.setCoordY(enemyStats.getCoordY() + dy);
+		//enemyStats.setCoordX(enemyStats.getCoordX() + dx);
+	//	enemyStats.setCoordY(enemyStats.getCoordY() + dy);
 		
 		return true;
 	}
