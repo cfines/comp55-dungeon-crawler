@@ -29,19 +29,19 @@ public class Enemy {
 		return enemyStats;
 	}
 	
-	public void setStartX(int x) {
+	public void setStartX(double x) {
 		startUp.setX(x);
 	}
 	
-	public void setStartY(int y) {
+	public void setStartY(double y) {
 		startUp.setY(y);
 	}
 	
-	public int getCoordX() {
+	public double getCoordX() {
 		return startUp.getX();
 	}
 	
-	public int getCoordY() {
+	public double getCoordY() {
 		return startUp.getY();
 	}
 	

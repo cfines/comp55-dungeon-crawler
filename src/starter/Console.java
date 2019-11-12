@@ -4,6 +4,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import javax.swing.Timer;
 
@@ -626,16 +629,14 @@ public class Console {
 	public void getNextRoom() {
 		double coordX = user.getCoordX();
 		double coordY = user.getCoordY();
-		String tempString;
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
-
-		for(HashMap.Entry test : tempHash.entrySet()) 
+		Set<String> temp = tempHash.keySet();
+		Iterator tempKey;
+		while(tempKey.hasNext()) 
 		{
-
-			tempString = (String)test.getKey();
-			ArrayList<Coordinates> tempCoord = tempHash.get(test.getKey());
+			ArrayList<Coordinates> tempCoord = tempHash.get(tempKey);
 
 			for(int i = 0; i <= tempCoord.size() - 1; i++) 
 			{
@@ -662,7 +663,7 @@ public class Console {
 						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
 						mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
 						
-						String nextEntry = mapHashCurrEntry.get(tempString);
+						String nextEntry = mapHashCurrEntry.get(tempKey);
 						System.out.println("The next entry will be: " + nextEntry);
 						
 						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
