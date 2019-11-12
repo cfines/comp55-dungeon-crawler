@@ -10,7 +10,6 @@ public class Map{
 	
 	//instance variables
 	private MapLayout type;
-	private MapRooms rooms;
 	private Floor floor;
 	private Enemy badGuy;
 	private Boss biggerBadGuy;
@@ -148,6 +147,17 @@ public class Map{
 	public void runRunBase(String userRoomPosition, Floor curFloor,  Map bruhMap, HashMap <Interactions, Coordinates> h, HashMap <Enemy, Coordinates> eee, 
 			ArrayList<Coordinates> enteredEntries, HashMap<String,ArrayList<Coordinates>> enteredEntriesHash, HashMap<Boss,Coordinates> bossHash) {
 		
+		if(curFloor != null && bruhMap != null && h != null && eee != null && enteredEntries !=null && enteredEntries != null && enteredEntriesHash != null) {
+		String userRoomPosition1 = new String();
+		Floor curFloor1= new Floor();
+		Map bruhMap1 = new Map();
+		HashMap <Interactions, Coordinates> h1 = new HashMap <Interactions, Coordinates>();
+		HashMap <Enemy, Coordinates> eee1 = new HashMap <Enemy, Coordinates>();
+		ArrayList<Coordinates> enteredEntries1 = new ArrayList<Coordinates>();
+		HashMap<String,ArrayList<Coordinates>> enteredEntriesHash1 = new HashMap<String,ArrayList<Coordinates>>();
+		HashMap<Boss,Coordinates> bossHash1 = new HashMap<Boss,Coordinates>();
+		}
+		
 		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee, enteredEntries, enteredEntriesHash,bossHash);
 		
 	}
@@ -162,7 +172,6 @@ public class Map{
 		setInteractions(inter, inTheWay, reaction);
 		System.out.println(getEnemySpawn());
 		getEnemyRoomX();
-		getEnemyRoomY();
 	}
 	*/
 	

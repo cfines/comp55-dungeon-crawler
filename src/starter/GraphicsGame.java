@@ -20,6 +20,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GG Variables
 	public Console game;
+	public User player;
 	public boolean inMenu;
 	public int pressedKey;
 	public boolean firstSwordCall = true;
@@ -65,6 +66,18 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
+		/*ArrayList<Enemy> tempEnem = game.getEnemies();
+		
+		/*for(int i = 0; i < tempEnem.size(); i++){
+			tempEnem.get(i).tick();
+		}*/
+		/*for(Enemy enemy : tempEnem) {
+			enemy.tick();
+		}
+		
+		for(Enemy enemy : tempEnem) {
+			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+		}*/
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		requestFocus();
 	}
@@ -82,12 +95,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		
+		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
-			
+			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+		
+			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
-				drawRoom();
 				game.getUser().setCurrRoom(game.getLocalCurrRoom());
+				drawRoom();
 			}
 			room = game.getLocalCurrRoom();
 			
@@ -103,21 +120,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void actionPerformed(KeyEvent ae) {
 		
+		for(int i = 0; i < game.getEnemies().size(); i++) {
+			game.getEnemies().get(i).tick();
+			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
+		}
 		if(inMenu || game.getGamePaused()) { return; }
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
-		
-		ArrayList<Enemy> tempEnem = game.getEnemies();
-		
-		for(Enemy enemy : tempEnem) {
-			game.moveEnemy(enemy);
-		}
-		
-		for(Enemy enemy : tempEnem) {
-			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
-		}
 		
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
@@ -127,9 +138,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			runPauseMenu();
 		}
 		
-		//ULTIMATE CHECK FOR MOST THINGS (comment in/out what is needed at respective time)
-		System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-		System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
 		//System.out.println("CURRENT ROOM (FROM USER): " + game.getUser().getCurrRoom());
 		
 		//TODO- check on these, returning lots of errors
@@ -156,6 +164,21 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		} else {			
 			game.keyPressedManager(e);
 			actionPerformed(e);		
+		}
+		
+		switch(pressedKey) {
+		case KeyEvent.VK_UP:
+			//add attack animation
+			break;
+		case KeyEvent.VK_LEFT:
+			//add attack animation
+			break;
+		case KeyEvent.VK_DOWN:
+			//add attack animation
+			break;
+		case KeyEvent.VK_RIGHT:
+			//add attack animation
+			break;
 		}
 		
 	}
@@ -246,10 +269,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
 		/*while(inMenu) {
+=======
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location. 
+		while(inMenu) {
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
 			System.out.println("You are in the menu!");
 					
+<<<<<<< HEAD
 		}*/
 		
 		
@@ -293,6 +322,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 	}
 	
@@ -325,7 +358,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		Enemy tempEnemy;
 		ggEnemyHash = game.getEnemyHash();
-		ggEnemyArray = game.getEnemiesArray();
+		ggEnemyArray = game.getEnemies();
 		
 		for(HashMap.Entry test : ggEnemyHash.entrySet()) {
 			

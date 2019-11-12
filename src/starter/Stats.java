@@ -4,7 +4,7 @@ public class Stats {
 	private int HP_cur, HP_tot;
 	private int atkTimer;
 	private int baseDamage;
-	private int coordX, coordY;
+	private double coordX, coordY;
 	
 	Stats () {
 		HP_cur = HP_tot = 1;
@@ -13,7 +13,7 @@ public class Stats {
 		coordX = coordY = 1;
 	}
 	
-	Stats (int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, int input_x, int input_y) {
+	Stats (int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, double input_x, double input_y) {
 		HP_cur = input_HP_cur;
 		HP_tot = input_HP_tot;
 		atkTimer = atkTime; //add method later 
@@ -54,20 +54,21 @@ public class Stats {
 		this.baseDamage = baseDamage;
 	}
 
-	public int getCoordX() {
+	public double getCoordX() {
 		return coordX;
 	}
 
-	public void setCoordX(int coordX) {
+	public void setCoordX(double coordX) {
 		this.coordX = coordX;
 	}
 
-	public int getCoordY() {
+	public double getCoordY() {
 		return coordY;
 	}
 
-	public void setCoordY(int coordY) {
+	public void setCoordY(double coordY) {
 		this.coordY = coordY;
 	}
+
 	
 }

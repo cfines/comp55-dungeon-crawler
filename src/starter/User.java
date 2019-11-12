@@ -12,7 +12,7 @@ public class User {
 	private int moveSpeedStat;
 	private double powerStat;
 	private int atkSpeedStat;
-	private int dx, dy;
+	private double dx, dy;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -42,7 +42,7 @@ public class User {
 	
 	//General Constructor
 	User(int input_HP_cur, int input_HP_tot, int atkTime,
-			int input_dmg, int input_x, int input_y){
+			int input_dmg, double input_x, double input_y){
 		
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		moveSpeedStat = 7;
@@ -76,11 +76,11 @@ public class User {
 		}
 	}
 	
-	public void setDX(int input_dx) {
+	public void setDX(double input_dx) {
 		dx = input_dx;
 	}
 	
-	public void setDY(int input_dy) {
+	public void setDY(double input_dy) {
 		dy = input_dy;
 	}
 
@@ -122,6 +122,10 @@ public class User {
 		return weaponEquiped;
 	}
 	
+	public Weapon getCurWeapon() {
+		return weapons.get(weaponEquiped);
+	}
+	
 	public String getWeaponEquipedString() {
 		return weapons.get(weaponEquiped).toString();
 	}
@@ -146,11 +150,11 @@ public class User {
 		this.hasKey = hasKey;
 	}
 	
-	public int getCoordX() {
+	public double getCoordX() {
 		return userStats.getCoordX();
 	}
 	
-	public int getCoordY() {
+	public double getCoordY() {
 		return userStats.getCoordY();
 	}
 	
