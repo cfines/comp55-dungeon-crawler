@@ -632,7 +632,7 @@ public class Console {
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
-		Set<String> temp = tempHash.keySet();
+		Set<String> temporary = tempHash.keySet();
 		Iterator tempKey;
 		while(tempKey.hasNext()) 
 		{
@@ -640,8 +640,8 @@ public class Console {
 
 			for(int i = 0; i <= tempCoord.size() - 1; i++) 
 			{
-				int temp1 = tempCoord.get(i).getX();
-				int temp2 = tempCoord.get(i).getY();
+				double temp1 = tempCoord.get(i).getX();
+				double temp2 = tempCoord.get(i).getY();
 
 				// TODO check pixel range of player instead of that single point
 				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
