@@ -49,6 +49,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Overlay Stuff
 	public GImage weapon;
+	public GImage portrait;
 	public GLabel health;
 	public GLabel levelLabel;
 	public GLabel roomLabel;
@@ -407,6 +408,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawHealth();
 		drawLevelLabel();
 		drawRoomLabel();
+		drawPortrait();
 	}
 	
 	public void drawSword()	{
@@ -429,22 +431,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}
 	}
 	
+	public void drawPortrait() 
+	{
+		portrait = new GImage("User_Portrait.png", 0,20);
+		portrait.setSize(75,75);
+		add(portrait);
+	}
+	
 	public void drawHealth() {
-		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
+		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 76, 50);
 		health.setFont("Arial-Bold-22");
 		health.setColor(Color.red);
 		add(health);
 	}
 	
 	public void drawLevelLabel() {
-		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 10, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 76, 70);
 		levelLabel.setFont("Arial-Bold-22");
 		levelLabel.setColor(Color.red);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel() {
-		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 10, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 76, 90);
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
