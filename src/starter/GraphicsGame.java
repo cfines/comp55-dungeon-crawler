@@ -238,6 +238,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			inMenu = false;
 		}
 		
+		//If "Credits" button is selected in main menu
+		if(toClick == credits) 
+		{
+			removeAll();
+			
+		}
+		
 		//If "Return" button is selected in pause menu
 		if(toClick == menuPauseReturn) {
 			remove(menuPause);
