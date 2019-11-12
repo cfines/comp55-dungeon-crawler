@@ -1,6 +1,7 @@
 package starter;
 
 public class Enemy {
+	private Coordinates startUp;
 	private Stats enemyStats;
 	private int moveSpeedStat;
 	private double powerStat;
@@ -12,6 +13,7 @@ public class Enemy {
 	Enemy (int input_HP_cur, int input_HP_tot, int atkTime,
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{
+		startUp = new Coordinates(input_x, input_y);
 		enemyStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		moveSpeedStat = 5;
 		powerStat = 5;
@@ -23,28 +25,42 @@ public class Enemy {
 		return enemyType;
 	}
 	
-	public void setDX(int dx) {
-		this.dx = dx;
+	public Stats getEnemyStats() {
+		return enemyStats;
 	}
 	
-	public void setDY(int dy) {
-		this.dy = dy;
+	public void setStartX(double x) {
+		startUp.setX(x);
+	}
+	
+	public void setStartY(double y) {
+		startUp.setY(y);
 	}
 	
 	public double getCoordX() {
-		return enemyStats.getCoordX();
+		return startUp.getX();
 	}
 	
 	public double getCoordY() {
-		return enemyStats.getCoordY();
+		return startUp.getY();
 	}
 	
-	public void tick(){
-		
-		enemyStats.setCoordX(enemyStats.getCoordX() + dx);
-		dx+=5;
-		enemyStats.setCoordY(enemyStats.getCoordY() + dy);
-		dy+=5;
+	public void tick() {
+		enemyStats.setCoordX(getCoordX() + 5);
+		enemyStats.setCoordY(getCoordY() + 5);
+		setStartX(getCoordX() + 5);
+		setStartY(getCoordY() + 5);
 	}
 	
+	public static void main(String[] args) {
+		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE);
+		derp.setStartX(10);
+		derp.setStartY(5);
+		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+		//Checking if tick updates enemy location
+		while(1<5) {
+			derp.tick();
+			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+		}
+	}
 }

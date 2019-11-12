@@ -1,12 +1,10 @@
 package starter;
 
-//only to be called by Map
-
 public class Coordinates {
-	public int x;
-	public int y;
+	public double x;
+	public double y;
 	
-	public Coordinates(int horizontal, int vertical)
+	public Coordinates(double horizontal, double vertical)
 	{
 		x = horizontal;
 		y = vertical;
@@ -14,12 +12,20 @@ public class Coordinates {
 	
 	public Coordinates() {}
 	
-	public int getX() 
+	public void setX(double x) {
+		this.x = x;
+	}
+	
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+	public double getX() 
 	{
 		return x;
 	}
 	
-	public int getY() 
+	public double getY() 
 	{
 		return y;
 	}

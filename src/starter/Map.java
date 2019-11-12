@@ -76,25 +76,25 @@ public class Map{
 	}
 	
 	//returns x-coordinates from enemy
-	public int getEnemyRoomX() 
+	public double getEnemyRoomX() 
 	{	
 		return enemySpawn.get(badGuy).getX();
 	}
 	
 	//returns y-coordinates from enemy
-	public int getEnemyRoomY()
+	public double getEnemyRoomY()
 	{
 		return enemySpawn.get(badGuy).getY();
 	}
 		
 	//returns x-coordinates from boss
-	public int getBossRoomX() 
+	public double getBossRoomX() 
 	{	
 		return bossSpawn.get(biggerBadGuy).getX();
 	}
 	
 	//returns y-coordinates from boss
-	public int getBossRoomY()
+	public double getBossRoomY()
 	{		
 		return bossSpawn.get(biggerBadGuy).getY();
 	}

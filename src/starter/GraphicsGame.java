@@ -1,14 +1,20 @@
 package starter;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
+
 import javax.swing.Timer;
 
-import acm.graphics.*;
-import acm.program.*;
+import acm.graphics.GImage;
+import acm.graphics.GLabel;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class GraphicsGame extends GraphicsProgram implements ActionListener, KeyListener {
 
@@ -29,7 +35,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
-	public static final int DOOR_HEIGHT = 500;
+	public static final int DOOR_HEIGHT = 50;
 	public GRect entry;
 	public GImage stairs;
 	
@@ -66,18 +72,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
-		/*ArrayList<Enemy> tempEnem = game.getEnemies();
 		
 		/*for(int i = 0; i < tempEnem.size(); i++){
 			tempEnem.get(i).tick();
 		}*/
-		/*for(Enemy enemy : tempEnem) {
-			enemy.tick();
-		}
+		/*ArrayList<Enemy> tempEnem = game.getEnemies();
 		
 		for(Enemy enemy : tempEnem) {
+			enemy.tick();
 			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
 		}*/
+		
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		requestFocus();
 	}
@@ -94,12 +99,26 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		game.playGame();
 		room = game.getLocalCurrRoom();
 		drawRoom();
+		ArrayList<Enemy> tempEnem = game.getEnemies();
+		for(Enemy enemy : tempEnem) {
+			enemy.tick();
+			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+		}
 		
-		//TODO adjust parameters for after a traversal as it seems to only work for R1 to R2 only
 		while(running) {
-			System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
-			System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
-		
+			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
+			//System.out.println("CURRENT ROOM: " + game.getLocalCurrRoom());
+			String test = new String();
+			test = game.getLocalCurrRoom();
+			//String tempString;
+			//Console test = new Console();
+			//HashMap<String,ArrayList<Coordinates>> tempHash = test.getEntriesHash();
+			//for(HashMap.Entry h : tempHash.entrySet()) 
+		//	{
+			//	tempString = (String)h.getKey();
+			//	ArrayList<Coordinates> tempCoord = tempHash.get(h.getKey());
+			//System.out.println("user at : " + tempString);
+		//	}
 			//don't delete this comment as this is the only thing letting this work
 			if(game.getLocalCurrRoom() != room) {
 				resetRoom();
@@ -109,7 +128,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			room = game.getLocalCurrRoom();
 			
 		}
-
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
@@ -120,16 +138,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void actionPerformed(KeyEvent ae) {
 		
-		for(int i = 0; i < game.getEnemies().size(); i++) {
+		
+		/*for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
+			entry.getKey().
 			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}
+		}*/
 		if(inMenu || game.getGamePaused()) { return; }
+		
+		if((ae.getKeyCode() == KeyEvent.VK_W) || (ae.getKeyCode() == KeyEvent.VK_A) || (ae.getKeyCode() == KeyEvent.VK_S) || (ae.getKeyCode() == KeyEvent.VK_D)) {
+			game.setCanMove(ae);
+		}
+		if(!game.getCanMove()) { return; }
+		
+		
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
+		for(int i = 0; i < game.getEnemies().size(); i++) {
+			game.getEnemies().get(i).tick();
+			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
+		}
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	
@@ -146,6 +177,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
+		
+		System.out.println("Can move: " + game.getCanMove());
 		
 	}
 	
@@ -167,16 +200,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		switch(pressedKey) {
 		case KeyEvent.VK_UP:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_LEFT:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_DOWN:
-			//add attack animation
+			drawAttack(e);
 			break;
 		case KeyEvent.VK_RIGHT:
-			//add attack animation
+			drawAttack(e);
 			break;
 		}
 		
@@ -329,15 +362,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		Interactions tempInteraction;
 		HashMap<Interactions, Coordinates> tempHash = game.getInteractionHash();
 		
-		for(HashMap.Entry test : tempHash.entrySet()) {
+		for(HashMap.Entry<Interactions, Coordinates> test : tempHash.entrySet()) {
 			
-			tempInteraction = (Interactions)test.getKey();
+			tempInteraction = test.getKey();
 			Coordinates tempCoord = tempHash.get(test.getKey());
 			
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY() - (DOOR_HEIGHT / 2), DOOR_WIDTH, DOOR_HEIGHT);
+				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
 				entry.setFillColor(Color.CYAN);
 				add(entry);
 			} else {
@@ -355,16 +388,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		ggEnemyHash = game.getEnemyHash();
 		ggEnemyArray = game.getEnemies();
 		
-		for(HashMap.Entry test : ggEnemyHash.entrySet()) {
+		for(HashMap.Entry<Enemy, Coordinates> test : ggEnemyHash.entrySet()) {
 			
-			tempEnemy = (Enemy) test.getKey();
+			tempEnemy = test.getKey();
 			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
 			
 			
 			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
 			enemyRep.setSize(75, 75);
 			add(enemyRep);
-			
 		}
 	
 	}
@@ -420,6 +452,23 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void resetRoom() {
 		removeAll();
 		firstSwordCall = true;
+	}
+	
+	public void drawAttack(KeyEvent e) {
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			//add attack animation
+			break;
+		case KeyEvent.VK_LEFT:
+			//add attack animation
+			break;
+		case KeyEvent.VK_DOWN:
+			//add attack animation
+			break;
+		case KeyEvent.VK_RIGHT:
+			//add attack animation
+			break;
+		}
 	}
 	
 	///////////////////////////// END OF DRAWING CALLS ////////////////////////////////////////////
