@@ -58,7 +58,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
-	public GButton menuPlay, highScore, credits, exit;
+	public GButton menuPlay, highScore, credits, exit,goBack;
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
@@ -66,6 +66,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3"};
 	private int count;
+	public AudioPlayer audio = AudioPlayer.getInstance();
 	
 	//Misc. Important Stuff
 	public GObject toClick;
@@ -238,11 +239,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			inMenu = false;
 		}
 		
+		//If "High Scores" button is selected in main menu
+		if(toClick == highScore) 
+		{
+			removeAll();
+		}
+		
 		//If "Credits" button is selected in main menu
 		if(toClick == credits) 
 		{
 			removeAll();
-			
+			runCredits();
 		}
 		
 		//If "Return" button is selected in pause menu
@@ -250,6 +257,14 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
+		}
+		
+		//If "Return" button is select in Credits
+		if(toClick == goBack) 
+		{
+			audio.stopSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
+			removeAll();
+			runMainMenu();
 		}
 		
 	}
@@ -292,6 +307,24 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 
 					
 		}
+	}
+	
+	public void runCredits() 
+	{
+		int WINDOW_WIDTH = 1155, WINDOW_HEIGHT = 650;
+		GImage credits = new GImage("Credits.gif", 25,0);
+		GImage text = new GImage("Credits text.png", 10,0);
+		credits.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+		AudioPlayer audio = AudioPlayer.getInstance();
+		GRect emptySpace = new GRect(1155,650);
+		emptySpace.setColor(Color.black);
+		emptySpace.setFilled(true);
+		add(emptySpace);
+		add(credits);
+		add(text);
+		add(goBack);
+		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 	
 	public void runPauseMenu() {
