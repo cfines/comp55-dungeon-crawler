@@ -632,8 +632,9 @@ public class Console {
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
-		Set<String> temporary = tempHash.keySet();
+		List<String> temporary = tempHash.keySet();
 		Iterator tempKey;
+		
 		while(tempKey.hasNext()) 
 		{
 			ArrayList<Coordinates> tempCoord = tempHash.get(tempKey);
@@ -650,7 +651,7 @@ public class Console {
 					//TODO this method is only friendly to rooms with doors on the left or right, not up or down, find way to 
 					//detect x-coordinates as explicitly as the y-coordinates
 					System.out.println("Detected user in the gRect!");
-					System.out.println("The name of the gRect the user is in is: " + tempString);
+					System.out.println("The name of the gRect the user is in is: " + tempKey);
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
 					HashMap<String, String> mapHashCurrEntry = new HashMap<String, String>();
 					HashMap<String, String> mapHashNextRoom = new HashMap<String, String>();
