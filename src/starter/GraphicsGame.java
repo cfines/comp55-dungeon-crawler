@@ -32,6 +32,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean firstSwordCall = true;
 	public boolean running = true;
 	public Timer timer;
+	public Floor f;
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
@@ -62,7 +63,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//AUDIO Sound Stuff
 	public static final String MUSIC_FOLDER = "sounds";
-	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
+	private static final String[] SOUND_FILES = { "main_menu_background.mp3"};
 	private int count;
 	
 	//Misc. Important Stuff
@@ -98,6 +99,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		game = new Console();
 		game.playGame();
 		room = game.getLocalCurrRoom();
+		stopRandomSound();
 		drawRoom();
 		ArrayList<Enemy> tempEnem = game.getEnemies();
 		for(Enemy enemy : tempEnem) {
@@ -340,7 +342,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		
-		
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
 		add(userRep);
@@ -349,7 +350,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
-
+		if(game.getCurrFloor() == "map_base1") 
+		{
+			AudioPlayer a = AudioPlayer.getInstance();
+			a.playSoundWithOptions(MUSIC_FOLDER, "Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3", true);
+		}
 		
 	}
 	
@@ -476,6 +481,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void stopRandomSound() {
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.stopSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void playRandomSoundForever() 
+	{
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length], true);
 	}
 	
 	///////////////////////////// END OF AUDIO CALLS //////////////////////////////////////////////
