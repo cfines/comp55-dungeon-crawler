@@ -89,7 +89,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void run() {
-		playRandomSound();
+		playRandomSoundForever();
 		addKeyListeners();
 		addMouseListeners();
 		
