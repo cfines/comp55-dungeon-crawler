@@ -720,11 +720,11 @@ public class Console {
 		//ArrayList<Coordinates> tempArrayList = new ArrayList<Coordinates>();
 		//tempArrayList = getEntries();
 		HashMap<String,ArrayList<Coordinates>> tempHash = getEntriesHash();
-		List<String> temporary = tempHash.keySet();
-		Iterator tempKey;
-		
-		while(tempKey.hasNext()) 
+		Set<String> tempKeys = tempHash.keySet();
+		Iterator<String> tempKeysIter = tempKeys.iterator();
+		while(tempKeysIter.hasNext()) 
 		{
+			String tempKey = tempKeysIter.next();
 			ArrayList<Coordinates> tempCoord = tempHash.get(tempKey);
 
 			for(int i = 0; i <= tempCoord.size() - 1; i++) 
