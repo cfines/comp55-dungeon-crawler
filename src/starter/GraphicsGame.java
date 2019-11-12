@@ -152,7 +152,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void keyPressed(KeyEvent e) {
 	
 		if(game.getGamePaused() && (pressedKey == KeyEvent.VK_ESCAPE)) {
-
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
@@ -322,10 +321,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 	}
 	

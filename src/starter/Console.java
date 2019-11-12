@@ -91,15 +91,6 @@ public class Console {
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
 	}
-<<<<<<< HEAD
-
-	public ArrayList<Enemy> getEnemiesArray(){
-=======
-	
-	public ArrayList<Enemy> getEnemies(){
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-		return this.enemies;
-	}
 
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
@@ -357,10 +348,8 @@ public class Console {
 		}*/
 
 	}
-<<<<<<< HEAD
 
 	public void moveEnemy(Enemy enemy) {
-=======
 	
 	/*public void moveEnemy(Enemy enemy) {
 >>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
@@ -374,15 +363,13 @@ public class Console {
 =======
 		enemy.move();
 	}*/
-	
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
+	}
 	public boolean canMove() {
 		//TODO have some boundary checks called in here
 		return true;
 	}
 
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
-<<<<<<< HEAD
 
 
 	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
@@ -390,8 +377,7 @@ public class Console {
 	public void baseInit(String currFloor) {
 		resetRoom();
 		generateRoom(currFloor);
-=======
-	
+	}
 	
 	
 	/////////////////////////// COMBAT METHODS //////////////////////////////////////////////////
@@ -399,16 +385,15 @@ public class Console {
 	//This will be called whenever a user wants to attack
 	public void generateHitbox(KeyEvent e) {
 		//TODO add checks for enemy within X/Y pixels in from of User depending on KeyEvent
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
-<<<<<<< HEAD
 
 	public void generateRoom(String currFloor) {
 
 		if(getLocalCurrRoom() == null) {
 			resetUserRoom();
-=======
-	
+		}
+	}
+			
 	//This will be called inside generateHitbox if an enemy is detected within the attack range
 	public void userDmgToEnemy(Enemy enemyBeingAttacked) {
 		Weapon tempSword = user.getCurWeapon();
@@ -421,17 +406,14 @@ public class Console {
 			attackBoost += 1;
 		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getEnemyType() == ElementType.WATER)) {
 			attackBoost += 1;
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		}
-<<<<<<< HEAD
 
-		System.out.println("Current level: " + currFloor);
+		System.out.println("Current level: " + getCurrFloor());
 		System.out.println("Current room: " + getLocalCurrRoom());
 
 		map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
 		//getNextRoom();
 
-=======
 		
 		//TODO Potentially add elemental damage debuffs? (Like if a user attacks a water enemy with fire
 		
@@ -458,7 +440,6 @@ public class Console {
 		
 		System.out.println("Current level: " + currFloor);
 		System.out.println("Current room: " + nextCurrRoom);
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 
 		map.runRunBase(nextCurrRoom, floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
 		//getNextRoom();
@@ -492,7 +473,6 @@ public class Console {
 					HashMap<String, String> mapHashNextRoom = new HashMap<String, String>();
 					ArrayList<String> numOfEntries;
 					int temp; 
-<<<<<<< HEAD
 
 					layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
 					temp = layout.getEntryAmountofLayout();
@@ -515,7 +495,6 @@ public class Console {
 
 				}break;
 			}break;
-=======
 					
 						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
 						temp = layout.getEntryAmountofLayout();
@@ -541,19 +520,15 @@ public class Console {
 					}
 				}
 			}
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		}
-<<<<<<< HEAD
 	}
 
-=======
 
 	private void removeAll() {
 		// TODO Auto-generated method stub
 		
 	}
 	
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 
 }
