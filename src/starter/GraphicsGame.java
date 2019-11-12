@@ -248,6 +248,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//If "Credits" button is selected in main menu
 		if(toClick == credits) 
 		{
+			stopRandomSound();
 			removeAll();
 			runCredits();
 		}
