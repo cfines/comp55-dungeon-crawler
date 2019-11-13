@@ -76,7 +76,7 @@ public final class AudioPlayer {
 		});
 	}
 
-	private void playSoundWithOptions(String folder, String filename, boolean shouldLoop) {
+	public void playSoundWithOptions(String folder, String filename, boolean shouldLoop) {
 		MediaPlayer mPlayer = findSound(folder, filename);
 		if (mPlayer == null || mPlayer.getCycleDuration().lessThanOrEqualTo(mPlayer.getCurrentTime())) {
 			mPlayer = createMediaPlayer(folder, filename);

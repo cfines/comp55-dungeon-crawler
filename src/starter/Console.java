@@ -709,8 +709,8 @@ public class Console {
 					System.out.println("Detected user in the gRect!");
 					System.out.println("The name of the gRect the user is in is: " + tempKey);
 					//TODO for the love of god, change the way how we call all our functions when this thing actually works
-					HashMap<String, String> mapHashCurrEntry = new HashMap<String, String>();
-					HashMap<String, String> mapHashNextRoom = new HashMap<String, String>();
+					HashMap<String, String> mapHashCurrEntry;
+					HashMap<String, String> mapHashNextRoom;
 					ArrayList<String> numOfEntries;
 					int temp; 
 

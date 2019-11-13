@@ -32,6 +32,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean firstSwordCall = true;
 	public boolean running = true;
 	public Timer timer;
+	public Floor f;
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
@@ -48,6 +49,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Overlay Stuff
 	public GImage weapon;
+	public GImage portrait;
 	public GLabel health;
 	public GLabel levelLabel;
 	public GLabel roomLabel;
@@ -56,14 +58,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
-	public GButton menuPlay, highScore, credits, exit;
+	public GButton menuPlay, highScore, credits, exit,goBack;
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
 	//AUDIO Sound Stuff
 	public static final String MUSIC_FOLDER = "sounds";
-	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
+	private static final String[] SOUND_FILES = { "main_menu_background.mp3"};
 	private int count;
+	public AudioPlayer audio = AudioPlayer.getInstance();
 	
 	//Misc. Important Stuff
 	public GObject toClick;
@@ -88,7 +91,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void run() {
-		playRandomSound();
+		playRandomSoundForever();
 		addKeyListeners();
 		addMouseListeners();
 		
@@ -98,6 +101,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		game = new Console();
 		game.playGame();
 		room = game.getLocalCurrRoom();
+		stopRandomSound();
 		drawRoom();
 		ArrayList<Enemy> tempEnem = game.getEnemies();
 		for(Enemy enemy : tempEnem) {
@@ -234,11 +238,33 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			inMenu = false;
 		}
 		
+		//If "High Scores" button is selected in main menu
+		if(toClick == highScore) 
+		{
+			removeAll();
+		}
+		
+		//If "Credits" button is selected in main menu
+		if(toClick == credits) 
+		{
+			stopRandomSound();
+			removeAll();
+			runCredits();
+		}
+		
 		//If "Return" button is selected in pause menu
 		if(toClick == menuPauseReturn) {
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
+		}
+		
+		//If "Return" button is select in Credits
+		if(toClick == goBack) 
+		{
+			audio.stopSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
+			removeAll();
+			runMainMenu();
 		}
 		
 	}
@@ -277,10 +303,30 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		while(inMenu) {
 			
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
-
+			//System.out.println("You are in the menu!");
+			String yes = new String();
+			yes = " ";
+			
 					
 		}
+	}
+	
+	public void runCredits() 
+	{
+		int WINDOW_WIDTH = 1155, WINDOW_HEIGHT = 650;
+		GImage credits = new GImage("Credits.gif", 25,0);
+		GImage text = new GImage("Credits text.png", 10,0);
+		credits.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+		AudioPlayer audio = AudioPlayer.getInstance();
+		GRect emptySpace = new GRect(1155,650);
+		emptySpace.setColor(Color.black);
+		emptySpace.setFilled(true);
+		add(emptySpace);
+		add(credits);
+		add(text);
+		add(goBack);
+		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 	
 	public void runPauseMenu() {
@@ -308,10 +354,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 >>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+<<<<<<< HEAD
 			System.out.println("You are in the menu!");
 					
 <<<<<<< HEAD
 		}*/
+=======
+			//System.out.println("You are in the menu!");
+				String yes = new String();
+				yes = " ";
+		}
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 		
 	}
@@ -345,7 +398,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		
-		
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
 		add(userRep);
@@ -353,7 +405,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawInteraction();
 		drawEnemy();
 		
+<<<<<<< HEAD
 		drawOverlay();
+=======
+		drawOverlay();
+		if(game.getCurrFloor() == "map_base1") 
+		{
+			AudioPlayer a = AudioPlayer.getInstance();
+			a.playSoundWithOptions(MUSIC_FOLDER, "Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3", true);
+		}
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 	}
 	
@@ -406,6 +467,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawHealth();
 		drawLevelLabel();
 		drawRoomLabel();
+		drawPortrait();
 	}
 	
 	public void drawSword()	{
@@ -428,22 +490,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}
 	}
 	
+	public void drawPortrait() 
+	{
+		portrait = new GImage("User_Portrait.png", 0,20);
+		portrait.setSize(75,75);
+		add(portrait);
+	}
+	
 	public void drawHealth() {
-		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
+		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 76, 50);
 		health.setFont("Arial-Bold-22");
 		health.setColor(Color.red);
 		add(health);
 	}
 	
 	public void drawLevelLabel() {
-		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 10, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 76, 70);
 		levelLabel.setFont("Arial-Bold-22");
 		levelLabel.setColor(Color.red);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel() {
-		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 10, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 76, 90);
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
@@ -480,6 +549,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void stopRandomSound() {
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.stopSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void playRandomSoundForever() 
+	{
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length], true);
 	}
 	
 	///////////////////////////// END OF AUDIO CALLS //////////////////////////////////////////////
