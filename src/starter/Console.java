@@ -102,9 +102,7 @@ public class Console {
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
 	}
-<<<<<<< HEAD
 
-=======
 	
 	public ArrayList<Enemy> getEnemies(){
 		ArrayList<Enemy> tempArray = new ArrayList<Enemy>();
@@ -114,7 +112,6 @@ public class Console {
 		return tempArray;
 	}
 	
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
 	}
@@ -130,15 +127,12 @@ public class Console {
 	public void setRoomWeIn(String roomWeIn) {
 		this.roomWeIn = roomWeIn;
 	}
-<<<<<<< HEAD
 
-=======
 	
 	public boolean getCanMove() {
 		return canMove;
 	}
 	
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	//RESETS
 
 	public void resetRoom() {
@@ -154,14 +148,6 @@ public class Console {
 
 	public void resetMap() {
 		map = new Map();
-	}
-
-	public ArrayList<Enemy> getEnemies() {
-		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		for(Enemy key : enemyHash.keySet()) {
-			enemies.add(key);
-		}
-		return enemies;
 	}
 
 
@@ -188,14 +174,11 @@ public class Console {
 		floorWeOn = floor.whatMapWeOn(temp);
 		setCurrFloor(floorWeOn);
 		boolean Playing = true;
-<<<<<<< HEAD
 
 		baseInit(floorWeOn);
 
 		//return string of map we on
 		
-=======
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		if(getLocalCurrRoom() == null) {
 			resetUserRoom();
 		}
@@ -216,9 +199,7 @@ public class Console {
 				resetRoom();
 			}
 		}
-<<<<<<< HEAD
 
-=======
 
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
@@ -227,7 +208,6 @@ public class Console {
 			//Timer timer = new Timer(DELAY_MS, null);
 			//timer.start();
 		}
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
@@ -258,13 +238,9 @@ public class Console {
 
 
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	
 	public void actionPerformed(KeyEvent ae) {
-<<<<<<< HEAD
 
 		if(gamePaused) { return; }
 		/*if(canMove(ae)) {
@@ -275,7 +251,6 @@ public class Console {
 		}
 		if(!canMove()) { return; }
 		*/
-=======
 		
 		//Checks for...
 		if(gamePaused) { return; }		//Game being paused
@@ -283,12 +258,8 @@ public class Console {
 		if(!getCanMove()) { return; }	//Interaction blocks
 		
 		//Now you can move!
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		user.tick();
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 			//Timer timer = new Timer(DELAY_MS, null);
@@ -441,14 +412,12 @@ public class Console {
 =======
 		enemy.move();
 	}*/
-<<<<<<< HEAD
 	}
 	public boolean canMove() {
 		//TODO have some boundary checks called in here
 		return true;
-=======
-	
-	public void canMove() {};
+	}
+	//public void canMove() {};
 	
 	public void setCanMove(KeyEvent e) {
 		
@@ -550,7 +519,6 @@ public class Console {
 	//	enemyStats.setCoordY(enemyStats.getCoordY() + dy);
 		
 		return true;
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
@@ -768,7 +736,7 @@ public class Console {
 				}break;
 			}break;
 					
-						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
+					/*	layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
 						temp = layout.getEntryAmountofLayout();
 						layout.setEntryAmount(temp);
 						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
@@ -788,20 +756,15 @@ public class Console {
 						System.out.println("Next room will be: " + getNextCurrRoom());
 						//baseInit(getNextCurrRoom(), getCurrFloor());
 						playGame(); 
-						break;
+						break;*/
 					}
-				}
-			}
-<<<<<<< HEAD
 		}
-	}
+	
 
 
 	private void removeAll() {
 		// TODO Auto-generated method stub
 		
-=======
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 	
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
