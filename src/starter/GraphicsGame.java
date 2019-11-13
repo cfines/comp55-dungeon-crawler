@@ -304,8 +304,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		while(inMenu) {
 			
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
-
+			//System.out.println("You are in the menu!");
+			String yes = new String();
+			yes = " ";
+			
 					
 		}
 	}
@@ -348,8 +350,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		while(inMenu) {
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
-					
+			//System.out.println("You are in the menu!");
+				String yes = new String();
+				yes = " ";
 		}
 		
 		
