@@ -471,19 +471,21 @@ public class Console {
 		
 	//Stan's canMove(), conflicted with merge. Given new name for now, we'll discuss the 
 	//purpose of the function and all that later.
-	public boolean stanCanMove() {
+	public void checkCollision() {
 		//TODO have some boundary checks called in here		
-		Enemy tempEnemy = new Enemy();
-		for(HashMap.Entry enemy : enemyHash.entrySet()) {
+		for(HashMap.Entry inter : interactionHash.entrySet()) {
 			
-			tempEnemy = (Enemy) enemy.getKey();
-			Coordinates tempCoord = enemyHash.get(enemy.getKey());
-			tempCoord.setX(tempCoord.getX() + 5);
+			if(intCollisionTest()) {
+				
+			}	
 		}
-		//enemyStats.setCoordX(enemyStats.getCoordX() + dx);
-	//	enemyStats.setCoordY(enemyStats.getCoordY() + dy);
-		
-		return true;
+	}
+	
+	public boolean intCollisionTest(GImage image) {
+		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
+				&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
+				&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()
+				&& user.getCoordX() - image.getX() >= -user.getMoveSpeedStat());
 	}
 	
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
