@@ -189,7 +189,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void keyPressed(KeyEvent e) {
 	
 		if(game.getGamePaused() && (pressedKey == KeyEvent.VK_ESCAPE)) {
-
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
@@ -346,17 +345,20 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		add(menuPauseReturn);
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location.
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
 		while(inMenu) {
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
+					
 			//System.out.println("You are in the menu!");
 				String yes = new String();
 				yes = " ";
 		}
-		
-		
 	}
+		
+		
 	
 	//////////////////////////// END OF MENU CALLS ///////////////////////////////////////////////////
 	
