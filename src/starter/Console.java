@@ -23,7 +23,7 @@ public class Console {
 	private MapLayout layout = new MapLayout();
 	private Room room = new Room();
 	private boolean gamePaused = false;
-
+	
 	//Enemy and Interaction Handling
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
@@ -31,7 +31,6 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
-
 	private Boolean[] keyDown = new Boolean[9];
 	private boolean canMove = true;
 	
@@ -47,24 +46,24 @@ public class Console {
 	//private String roomFromEntry = new String();
 
 	///////////////////////////// END OF INSTANCE VARIABLES ///////////////////////////////////////
-
-
-
+	
+	
+	
 	///////////////////////////// GETTERS AND SETTERS ///////////////////////////////////////
 
 	//CONSOLE VARIABLES
 	public User getUser() {
 		return user;
 	}
-
+	
 	public void setUser(int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, int input_x, int input_y) {
 		user = new User(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 	}
-
+	
 	public Floor getFloor() {
 		return floor;
 	}
-
+	
 	public void setNextCurrRoom(String nextCurrRoom) {
 		currRoom = nextCurrRoom;
 		floor.setCurrRoom(nextCurrRoom);
@@ -75,7 +74,7 @@ public class Console {
 	}
 
 	public String getNextCurrRoom() {
-		return currRoom = floor.getCurrRoom();
+		 return currRoom = floor.getCurrRoom();
 		//return floor.getCurrRoom();
 	}
 
@@ -86,7 +85,7 @@ public class Console {
 	public int getLevelCounter() {
 		return floor.getLevelCounter();
 	}
-
+	
 	public ArrayList<Coordinates> getEntries(){
 		return this.entries;
 	}
@@ -102,7 +101,6 @@ public class Console {
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
 	}
-
 	
 	public ArrayList<Enemy> getEnemies(){
 		ArrayList<Enemy> tempArray = new ArrayList<Enemy>();
@@ -115,19 +113,18 @@ public class Console {
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
 	}
-
+	
 	public boolean getGamePaused() {
 		return gamePaused;
 	}
-
+	
 	public String getRoomWeIn() {
 		return roomWeIn;
 	}
-
+	
 	public void setRoomWeIn(String roomWeIn) {
 		this.roomWeIn = roomWeIn;
 	}
-
 	
 	public boolean getCanMove() {
 		return canMove;
@@ -141,18 +138,17 @@ public class Console {
 		interactionHash = new HashMap<Interactions, Coordinates>();
 		enemyHash = new HashMap<Enemy, Coordinates>();
 	}
-
+	
 	public void resetUserRoom() {
 		currRoom = "R1";
 	}
-
+	
 	public void resetMap() {
 		map = new Map();
 	}
 
-
+	
 	/////////////////////////// END OF GETTERS AND SETTERS ////////////////////////////////////////
-
 	private String currentFloor;
 	public void setCurrFloor(String input) {
 		currentFloor = input;
@@ -162,7 +158,7 @@ public class Console {
 	}
 	
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
-
+	
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		enemies = new ArrayList<Enemy>(); 
@@ -174,11 +170,6 @@ public class Console {
 		floorWeOn = floor.whatMapWeOn(temp);
 		setCurrFloor(floorWeOn);
 		boolean Playing = true;
-
-		baseInit(floorWeOn);
-
-		//return string of map we on
-		
 		if(getLocalCurrRoom() == null) {
 			resetUserRoom();
 		}
@@ -200,7 +191,6 @@ public class Console {
 			}
 		}
 
-
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 			enemies.get(i).setStartX((int)enemies.get(i).getCoordX()+5);
@@ -209,7 +199,7 @@ public class Console {
 			//timer.start();
 		}
 	}
-
+	
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
 	public static void main(String[] args) {
 		Console test = new Console();
@@ -233,24 +223,13 @@ public class Console {
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
 	}
-
+	
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
-
-
+	
+	
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
-
 	
 	public void actionPerformed(KeyEvent ae) {
-
-		if(gamePaused) { return; }
-		/*if(canMove(ae)) {
-			
-		}
-		else {
-			
-		}
-		if(!canMove()) { return; }
-		*/
 		
 		//Checks for...
 		if(gamePaused) { return; }		//Game being paused
@@ -259,13 +238,12 @@ public class Console {
 		
 		//Now you can move!
 		user.tick();
-
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 			//Timer timer = new Timer(DELAY_MS, null);
 			//timer.start();
 		}
-
+		
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -303,18 +281,19 @@ public class Console {
 			break;
 			//TODO fix this method, moves the user when changing weapons and shouldn't
 		case KeyEvent.VK_UP:
-			// handle up 
+			keyDown[5] = true;
+			generateHitbox(e);
 			break;
 		case KeyEvent.VK_LEFT:
-			// handle left
-			break;
-		case KeyEvent.VK_RIGHT :
-			// handle right
 			keyDown[6] = true;
 			generateHitbox(e);
 			break;
 		case KeyEvent.VK_DOWN:
 			keyDown[7] = true;
+			generateHitbox(e);
+			break;
+		case KeyEvent.VK_RIGHT:
+			keyDown[8] = true;
 			generateHitbox(e);
 			break;
 		default:
@@ -395,27 +374,15 @@ public class Console {
 		}*/
 
 	}
-
-	public void moveEnemy(Enemy enemy) {
 	
 	/*public void moveEnemy(Enemy enemy) {
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		for(Enemy enemy2 : enemies) {
 			enemy2.move();
 		}
-<<<<<<< HEAD
-		enemy.move(user);
-	}
-
-=======
 		enemy.move();
 	}*/
-	}
-	public boolean canMove() {
-		//TODO have some boundary checks called in here
-		return true;
-	}
-	//public void canMove() {};
+	
+	public void canMove() {};
 	
 	public void setCanMove(KeyEvent e) {
 		
@@ -518,16 +485,9 @@ public class Console {
 		
 		return true;
 	}
-
+	
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
-
-
-	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
-
-	public void baseInit(String currFloor) {
-		resetRoom();
-		generateRoom(currFloor);
-	}
+	
 	
 	
 	/////////////////////////// COMBAT METHODS //////////////////////////////////////////////////
@@ -601,14 +561,7 @@ public class Console {
 		}
 		
 	}
-
-	public void generateRoom(String currFloor) {
-
-		if(getLocalCurrRoom() == null) {
-			resetUserRoom();
-		}
-	}
-			
+	
 	//This will be called inside generateHitbox if an enemy is detected within the attack range
 	public int userDmgToEnemy(Enemy enemyBeingAttacked) {
 		Weapon tempSword = user.getCurWeapon();
@@ -622,13 +575,6 @@ public class Console {
 		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getEnemyType() == ElementType.WATER)) {
 			attackBoost += 1;
 		}
-
-		System.out.println("Current level: " + getCurrFloor());
-		System.out.println("Current room: " + getLocalCurrRoom());
-
-		map.runRunBase(getLocalCurrRoom(), floor, map, interactionHash, enemyHash, entries, enteredEntriesHash, bossHash);
-		//getNextRoom();
-
 		
 		//TODO Potentially add elemental damage debuffs? (Like if a user attacks a water enemy with fire
 		
@@ -711,30 +657,8 @@ public class Console {
 					HashMap<String, String> mapHashNextRoom;
 					ArrayList<String> numOfEntries;
 					int temp; 
-
-					layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
-					temp = layout.getEntryAmountofLayout();
-					layout.setEntryAmount(temp);
-					layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-					mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-
-					String nextEntry = mapHashCurrEntry.get(tempKey);
-					System.out.println("The next entry will be: " + nextEntry);
-
-					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-					numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
-
-					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-					mapHashNextRoom = room.getMapBaseEtoR();
-
-					String nextRoom = mapHashNextRoom.get(nextEntry);
-					setNextCurrRoom(nextRoom);
-					System.out.println("Next room will be: " + getNextCurrRoom());
-
-				}break;
-			}break;
 					
-					/*	layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
+						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
 						temp = layout.getEntryAmountofLayout();
 						layout.setEntryAmount(temp);
 						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
@@ -754,15 +678,10 @@ public class Console {
 						System.out.println("Next room will be: " + getNextCurrRoom());
 						//baseInit(getNextCurrRoom(), getCurrFloor());
 						playGame(); 
-						break;*/
+						break;
 					}
-		}
-	
-
-
-	private void removeAll() {
-		// TODO Auto-generated method stub
-		
+				}
+			}
 	}
 	
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
