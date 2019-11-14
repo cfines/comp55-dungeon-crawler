@@ -345,29 +345,20 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		add(menuPauseReturn);
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
-		//functionality of this is that it doens't update character location. 
-		/*while(inMenu) {
-=======
+		//functionality of this is that it doens't update character location.
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
 		while(inMenu) {
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-<<<<<<< HEAD
-			System.out.println("You are in the menu!");
 					
-<<<<<<< HEAD
-		}*/
-=======
 			//System.out.println("You are in the menu!");
 				String yes = new String();
 				yes = " ";
 		}
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-		
-		
 	}
+		
+		
 	
 	//////////////////////////// END OF MENU CALLS ///////////////////////////////////////////////////
 	
@@ -405,16 +396,12 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawInteraction();
 		drawEnemy();
 		
-<<<<<<< HEAD
-		drawOverlay();
-=======
 		drawOverlay();
 		if(game.getCurrFloor() == "map_base1") 
 		{
 			AudioPlayer a = AudioPlayer.getInstance();
 			a.playSoundWithOptions(MUSIC_FOLDER, "Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3", true);
 		}
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		
 	}
 	

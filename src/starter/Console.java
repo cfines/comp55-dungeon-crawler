@@ -310,8 +310,6 @@ public class Console {
 			break;
 		case KeyEvent.VK_RIGHT :
 			// handle right
-			generateHitbox(e);
-			break;
 			keyDown[6] = true;
 			generateHitbox(e);
 			break;
@@ -720,7 +718,7 @@ public class Console {
 					layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
 					mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
 
-					String nextEntry = mapHashCurrEntry.get(tempString);
+					String nextEntry = mapHashCurrEntry.get(tempKey);
 					System.out.println("The next entry will be: " + nextEntry);
 
 					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
