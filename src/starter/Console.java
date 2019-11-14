@@ -473,9 +473,8 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
-		for(HashMap.Entry inter : interactionHash.entrySet()) {
-			
-			if(intCollisionTest()) {
+		for(Interactions inter : interactionHash.keySet()) {
+			if(intCollisionTest(inter.getImage())) {
 				
 			}	
 		}
