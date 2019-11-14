@@ -97,6 +97,7 @@ public class MapLayout {
 			getMapHashStartEnd().put(getEntryAmount().get(2), getEntryAmount().get(3));
 			//R3
 			getMapHashStartEnd().put(getEntryAmount().get(3), getEntryAmount().get(2));
+			/*
 			getMapHashStartEnd().put(getEntryAmount().get(4), getEntryAmount().get(5));
 			//R4
 			getMapHashStartEnd().put(getEntryAmount().get(5), getEntryAmount().get(4));
@@ -115,6 +116,7 @@ public class MapLayout {
 			getMapHashStartEnd().put(getEntryAmount().get(14), getEntryAmount().get(15));	//BOSS DOOR
 			//R9 (BOSS ROOM)\\
 			getMapHashStartEnd().put(getEntryAmount().get(15), getEntryAmount().get(16));
+			*/
 			//TODO include method for stair traversal
 			
 		}
@@ -166,7 +168,9 @@ public class MapLayout {
 		
 		System.out.println("The current map (which would be recieved from Floor) is 'map_base1'.");
 		System.out.println("The player enters E1 of 'map_base1' and should exit out of E2. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(0)));
-		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(1)));	
+		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(getEntryAmount().get(1)));
+		System.out.println("E3 to E4?: " + mapHashCurrMap.get(getEntryAmount().get(2)));
+		System.out.println("E4 to E3?: " + mapHashCurrMap.get(getEntryAmount().get(3)));
 	}	
 	/*The order of calling functions in this class goes as follows:
 	 * - whatMapWeOn

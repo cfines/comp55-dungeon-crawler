@@ -647,8 +647,8 @@ public class Console {
 				double temp2 = tempCoord.get(i).getY();
 
 				// TODO check pixel range of player instead of that single point
-				if (coordX >= temp1 && coordY >= temp2 - 250 && coordX <= temp1 + 50
-						&& coordY <= temp2 + 500 ) 
+				if (coordX >= temp1 && coordY >= temp2 && coordX <= temp1 + 50
+						&& coordY <= temp2 + 50 ) 
 				{
 					//TODO this method is only friendly to rooms with doors on the left or right, not up or down, find way to 
 					//detect x-coordinates as explicitly as the y-coordinates

@@ -9,13 +9,9 @@ import java.util.HashMap;
 public class Map{
 	
 	//instance variables
-	private MapLayout type;
 	private Floor floor;
 	private Enemy badGuy;
 	private Boss biggerBadGuy;
-	//private Room curRoom = new Room();
-	private Interactions inter;
-	//private HashMap <Room, ArrayList<Coordinates>> randSpawns = new HashMap<Room, ArrayList<Coordinates>>();
 	private HashMap <Interactions, Coordinates> reaction = new HashMap<Interactions, Coordinates>();
 	private HashMap <Enemy, Coordinates> enemySpawn = new HashMap <Enemy, Coordinates>();
 	private HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
