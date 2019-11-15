@@ -48,6 +48,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage floor;
 	
 	//GRAPHICS Overlay Stuff
+	public GImage creditsImg;
+	public GImage text;
 	public GImage weapon;
 	public GImage portrait;
 	public GLabel health;
@@ -55,6 +57,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GLabel roomLabel;
 	public GRect weaponBox;
 	public GRect weaponBoxOutline;
+	public GRect emptySpace;
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
@@ -263,7 +266,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(toClick == goBack) 
 		{
 			audio.stopSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
-			removeAll();
+			remove(emptySpace);
+			remove(creditsImg);
+			remove(text);
+			remove(goBack);
 			runMainMenu();
 		}
 		
@@ -314,16 +320,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void runCredits() 
 	{
 		int WINDOW_WIDTH = 1155, WINDOW_HEIGHT = 650;
-		GImage credits = new GImage("Credits.gif", 25,0);
-		GImage text = new GImage("Credits text.png", 10,0);
-		credits.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
+		creditsImg = new GImage("Credits.gif", 25,0);
+		text = new GImage("Credits text.png", 10,0);
+		creditsImg.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
 		AudioPlayer audio = AudioPlayer.getInstance();
-		GRect emptySpace = new GRect(1155,650);
+		emptySpace = new GRect(1155,650);
 		emptySpace.setColor(Color.black);
 		emptySpace.setFilled(true);
 		add(emptySpace);
-		add(credits);
+		add(creditsImg);
 		add(text);
 		add(goBack);
 		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
