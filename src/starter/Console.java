@@ -237,7 +237,7 @@ public class Console {
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		//getNextRoom();
-
+		System.out.println("lol");
 		//Now you can move!
 		checkCollision();
 		user.tick();
@@ -300,7 +300,7 @@ public class Console {
 		default:
 			break;
 		}
-		//actionPerformed(e);
+		actionPerformed(e);
 
 	}
 
