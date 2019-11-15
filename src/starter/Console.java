@@ -23,7 +23,7 @@ public class Console {
 	private MapLayout layout = new MapLayout();
 	private Room room = new Room();
 	private boolean gamePaused = false;
-	
+
 	//Enemy and Interaction Handling
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	private HashMap<Enemy, Coordinates> enemyHash = new HashMap<Enemy, Coordinates>();
@@ -33,7 +33,7 @@ public class Console {
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
 	private Boolean[] keyDown = new Boolean[9];
 	private boolean canMove = true;
-	
+
 	//Room Traversal
 	private String floorWeOn = new String();
 	private String roomWeIn = new String();
@@ -46,24 +46,24 @@ public class Console {
 	//private String roomFromEntry = new String();
 
 	///////////////////////////// END OF INSTANCE VARIABLES ///////////////////////////////////////
-	
-	
-	
+
+
+
 	///////////////////////////// GETTERS AND SETTERS ///////////////////////////////////////
 
 	//CONSOLE VARIABLES
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(int input_HP_cur, int input_HP_tot, int atkTime, int input_dmg, int input_x, int input_y) {
 		user = new User(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 	}
-	
+
 	public Floor getFloor() {
 		return floor;
 	}
-	
+
 	public void setNextCurrRoom(String nextCurrRoom) {
 		currRoom = nextCurrRoom;
 		floor.setCurrRoom(nextCurrRoom);
@@ -74,7 +74,7 @@ public class Console {
 	}
 
 	public String getNextCurrRoom() {
-		 return currRoom = floor.getCurrRoom();
+		return currRoom = floor.getCurrRoom();
 		//return floor.getCurrRoom();
 	}
 
@@ -85,7 +85,7 @@ public class Console {
 	public int getLevelCounter() {
 		return floor.getLevelCounter();
 	}
-	
+
 	public ArrayList<Coordinates> getEntries(){
 		return this.entries;
 	}
@@ -101,7 +101,7 @@ public class Console {
 	public HashMap<Enemy, Coordinates> getEnemyHash(){
 		return this.enemyHash;
 	}
-	
+
 	public ArrayList<Enemy> getEnemies(){
 		ArrayList<Enemy> tempArray = new ArrayList<Enemy>();
 		for(Enemy key : getEnemyHash().keySet()) {
@@ -109,27 +109,27 @@ public class Console {
 		}
 		return tempArray;
 	}
-	
+
 	public void setGamePaused(boolean gamePaused) {
 		this.gamePaused = gamePaused;
 	}
-	
+
 	public boolean getGamePaused() {
 		return gamePaused;
 	}
-	
+
 	public String getRoomWeIn() {
 		return roomWeIn;
 	}
-	
+
 	public void setRoomWeIn(String roomWeIn) {
 		this.roomWeIn = roomWeIn;
 	}
-	
+
 	public boolean getCanMove() {
 		return canMove;
 	}
-	
+
 	//RESETS
 
 	public void resetRoom() {
@@ -138,16 +138,16 @@ public class Console {
 		interactionHash = new HashMap<Interactions, Coordinates>();
 		enemyHash = new HashMap<Enemy, Coordinates>();
 	}
-	
+
 	public void resetUserRoom() {
 		currRoom = "R1";
 	}
-	
+
 	public void resetMap() {
 		map = new Map();
 	}
 
-	
+
 	/////////////////////////// END OF GETTERS AND SETTERS ////////////////////////////////////////
 	private String currentFloor;
 	public void setCurrFloor(String input) {
@@ -156,9 +156,9 @@ public class Console {
 	public String getCurrFloor() {
 		return currentFloor;
 	}
-	
+
 	//////////////////////////////////// PLAY GAME //////////////////////////////////////////////////
-	
+
 	public void playGame() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		enemies = new ArrayList<Enemy>(); 
@@ -173,10 +173,10 @@ public class Console {
 		if(getLocalCurrRoom() == null) {
 			resetUserRoom();
 		}
-		
+
 		baseInit(getLocalCurrRoom() , floorWeOn);
-		
-		 //return string of map we on
+
+		//return string of map we on
 		//System.out.println(floorWeOn);
 
 		/*if(enemies.size() > 0) {
@@ -199,7 +199,7 @@ public class Console {
 			//timer.start();
 		}
 	}
-	
+
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
 	public void run() {
 		Console test = new Console();
@@ -214,9 +214,9 @@ public class Console {
 		Enemy tempEnemy = new Enemy(5,5,5,5,5,5,ElementType.FIRE);
 		HashMap<Enemy, Coordinates> enemyHash = test.getEnemyHash();
 		test.enemies = test.getEnemies();
-		
+
 		for(HashMap.Entry test2 : enemyHash.entrySet()) {
-			
+
 			tempEnemy = (Enemy) test2.getKey();
 			Coordinates tempCoord = enemyHash.get(test2.getKey());
 			tempEnemy.tick();
@@ -224,30 +224,30 @@ public class Console {
 		}
 		for(Interactions inter : interactionHash.keySet()) {
 			//if(intCollisionTest(inter.getImage())) {
-				add(inter.getImage());
-				System.out.println("Oh no, I hit a rock");
-				user.setDX(inter.getImage().getWidth());
-				user.setDY(inter.getImage().getHeight());
+			add(inter.getImage());
+			System.out.println("Oh no, I hit a rock");
+			user.setDX(inter.getImage().getWidth());
+			user.setDY(inter.getImage().getHeight());
 			//}	
 		}
-		
-		
+
+
 	}
-	
+
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
-	
-	
+
+
 	////////////////////////////// MOVEMENT AND INTERACTMENT ////////////////////////////////
-	
+
 	public void actionPerformed(KeyEvent ae) {
-		
+
 		//Checks for...
 		if(gamePaused) { return; }		//Game being paused
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		checkCollision();
 		//getNextRoom();
-		
+
 		//Now you can move!
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
@@ -255,11 +255,11 @@ public class Console {
 			//Timer timer = new Timer(DELAY_MS, null);
 			//timer.start();
 		}
-		
+
 	}
 
 	public void keyPressedManager(KeyEvent e) {
-		
+
 		keyInput = e.getKeyCode();
 
 		switch(keyInput) {
@@ -317,7 +317,7 @@ public class Console {
 	public void keyReleasedManager(KeyEvent e) {
 
 		keyInput = e.getKeyCode();
-		
+
 		if(keyInput == KeyEvent.VK_W) {
 			keyDown[0] = false;
 		}
@@ -345,7 +345,7 @@ public class Console {
 		if(keyInput == KeyEvent.VK_RIGHT) {
 			keyDown[8] = false;
 		}
-		
+
 		if(keyDown[0] && !keyDown[2]) {
 			user.setDY(-user.getMoveSpeedStat());
 		}
@@ -355,8 +355,8 @@ public class Console {
 		if(!keyDown[0] && !keyDown[2]) {
 			user.setDY(0);
 		}
-		
-		
+
+
 		if(keyDown[1] && !keyDown[3]) {
 			user.setDX(-user.getMoveSpeedStat());
 		}
@@ -384,31 +384,31 @@ public class Console {
 		}*/
 
 	}
-	
+
 	/*public void moveEnemy(Enemy enemy) {
 		for(Enemy enemy2 : enemies) {
 			enemy2.move();
 		}
 		enemy.move();
 	}*/
-	
+
 	public void canMove() {};
-	
+
 	public void setCanMove(KeyEvent e) {
-		
+
 		keyInput = e.getKeyCode();
 		Coordinates foundInteractionCoordinates = new Coordinates();
 		boolean foundInteractionBool = false;
-		
+
 		for(HashMap.Entry<Interactions, Coordinates> test : interactionHash.entrySet()) {
-			
+
 			Coordinates tempCoord = interactionHash.get(test.getKey());
-			
+
 			//UPWARDS MOVEMENT
 			if(keyInput == KeyEvent.VK_W) {
-				
+
 				//X CHECK
-					//In front of user's leftmost point		//Behind user's rightmost point
+				//In front of user's leftmost point		//Behind user's rightmost point
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Interaction is above user					//Less than a move away
@@ -416,11 +416,11 @@ public class Console {
 						foundInteractionCoordinates = tempCoord;
 					}
 				}
-				
-				
-			//LEFT MOVEMENT
+
+
+				//LEFT MOVEMENT
 			} else if(keyInput == KeyEvent.VK_A) {
-				
+
 				//Y CHECK
 				//Below user's topmost point				//Above user's lowest point
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
@@ -430,12 +430,12 @@ public class Console {
 						foundInteractionCoordinates = tempCoord;
 					}
 				}	
-				
-			//DOWNWARDS MOVEMENT
+
+				//DOWNWARDS MOVEMENT
 			} else if(keyInput == KeyEvent.VK_S) {
-				
+
 				//X CHECK
-					//In front of user's leftmost point		//Behind user's rightmost point
+				//In front of user's leftmost point		//Behind user's rightmost point
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Interaction is below user							//Less than a move away
@@ -443,10 +443,10 @@ public class Console {
 						foundInteractionCoordinates = tempCoord;
 					}
 				}
-			
-			//RIGHT MOVEMENT
+
+				//RIGHT MOVEMENT
 			} else if(keyInput == KeyEvent.VK_D) {
-				
+
 				//Y CHECK
 				//Below user's topmost point				//Above user's lowest point
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
@@ -456,11 +456,11 @@ public class Console {
 						foundInteractionCoordinates = tempCoord;
 					}
 				}				
-				
+
 			}
 
 		}
-		
+
 		//This final check goes through our dedicated ArrayList of entries and sees if the
 		//coordinates match between the encountered interaction. If the two match up, that means
 		//the encountered interaction is an entry, and that the user should move. If not, it is
@@ -478,7 +478,7 @@ public class Console {
 			canMove = true;
 		}
 	}
-		
+
 	//Stan's canMove(), conflicted with merge. Given new name for now, we'll discuss the 
 	//purpose of the function and all that later.
 	public void checkCollision() {
@@ -491,36 +491,36 @@ public class Console {
 			}	
 		}
 	}
-	
+
 	public boolean intCollisionTest(GImage image) {
 		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
 				&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
 				&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()
 				&& user.getCoordX() - image.getX() >= -user.getMoveSpeedStat());
 	}
-	
+
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
-	
-	
-	
+
+
+
 	/////////////////////////// COMBAT METHODS //////////////////////////////////////////////////
-	
+
 	//This will be called whenever a user wants to attack
 	public void generateHitbox(KeyEvent e) {
 		//TODO add checks for enemy within X/Y pixels in from of User depending on KeyEvent
-		
+
 		//FOR RIGHT NOW, THIS IS JUST THE SAME CHECK USED IN SETCANMOVE() TO CHECK FOR
 		//INTERACTIONS, WITH A FEW VARIABLES CHANGED. WE CAN CHANGE THIS IN THE FUTURE, I
 		//JUST HAVE THIS FOR NOW FOR THE SAKE OF HAVING SOMETHING TO BUILD ON TOP OF
 		for(HashMap.Entry<Enemy, Coordinates> test : enemyHash.entrySet()) {
-			
+
 			Coordinates tempCoord = enemyHash.get(test.getKey());
-			
+
 			//UPWARDS ATTACK
 			if(keyInput == KeyEvent.VK_UP) {
-				
+
 				//X CHECK
-					//In front of user's leftmost point		//Behind user's rightmost point
+				//In front of user's leftmost point		//Behind user's rightmost point
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Enemy is above user					//Less than a hit away
@@ -528,11 +528,11 @@ public class Console {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}
-				
-				
-			//LEFT ATTACK
+
+
+				//LEFT ATTACK
 			} else if(keyInput == KeyEvent.VK_LEFT) {
-				
+
 				//Y CHECK
 				//Below user's topmost point				//Above user's lowest point
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
@@ -542,12 +542,12 @@ public class Console {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}	
-				
-			//DOWNWARDS ATTACK
+
+				//DOWNWARDS ATTACK
 			} else if(keyInput == KeyEvent.VK_DOWN) {
-				
+
 				//X CHECK
-					//In front of user's leftmost point		//Behind user's rightmost point
+				//In front of user's leftmost point		//Behind user's rightmost point
 				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
 					//Y checks
 					//Enemy is below user							//Less than a hit away
@@ -555,10 +555,10 @@ public class Console {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}
-			
-			//RIGHT ATTACK
+
+				//RIGHT ATTACK
 			} else if(keyInput == KeyEvent.VK_RIGHT) {
-				
+
 				//Y CHECK
 				//Below user's topmost point				//Above user's lowest point
 				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
@@ -568,18 +568,18 @@ public class Console {
 						userDmgToEnemy((Enemy)test.getKey());
 					}
 				}				
-				
+
 			}
 
 		}
-		
+
 	}
-	
+
 	//This will be called inside generateHitbox if an enemy is detected within the attack range
 	public int userDmgToEnemy(Enemy enemyBeingAttacked) {
 		Weapon tempSword = user.getCurWeapon();
 		int attackBoost = 0;
-		
+
 		//Checks for elemental damage boosts
 		if((tempSword.getWepType() == ElementType.FIRE) && (enemyBeingAttacked.getEnemyType() == ElementType.EARTH)) {
 			attackBoost += 1;
@@ -588,49 +588,49 @@ public class Console {
 		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getEnemyType() == ElementType.WATER)) {
 			attackBoost += 1;
 		}
-		
+
 		//TODO Potentially add elemental damage debuffs? (Like if a user attacks a water enemy with fire
-		
+
 		return user.getUserStats().getBaseDamage() + attackBoost;
-		
+
 	}
-	
+
 	public void checkEnemyAttack() {
-		
+
 		for(HashMap.Entry<Enemy, Coordinates> test : enemyHash.entrySet()) {
-			
+
 			Coordinates tempCoord = enemyHash.get(test.getKey());
-			
-				//TODO these aren't accurate at all, fix this in future
-				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
-					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + 50))) {
-						enemyDmgToUser(test.getKey());
-					}
+
+			//TODO these aren't accurate at all, fix this in future
+			if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
+				if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + 50))) {
+					enemyDmgToUser(test.getKey());
 				}
-				
+			}
+
 		}
-		
+
 	}
-	
+
 	//This will be called when a user is detected to be touching an enemy
 	public void enemyDmgToUser(Enemy enemyAttacking) {
 		user.getUserStats().setHP_cur(user.getUserStats().getHP_cur() - enemyAttacking.getEnemyStats().getBaseDamage());
 	}
-	
+
 	/////////////////////////// END OF COMBAT METHODS ///////////////////////////////////////////
-	
-	
-	
+
+
+
 	/////////////////////////// ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
-	
+
 	public void baseInit(String nextCurrRoom, String currFloor) {
 		resetRoom();
 		generateRoom(nextCurrRoom, currFloor);
 	}
-	
+
 	public void generateRoom(String nextCurrRoom, String currFloor) {
-		
-		
+
+
 		System.out.println("Current level: " + currFloor);
 		System.out.println("Current room: " + nextCurrRoom);
 
@@ -670,33 +670,33 @@ public class Console {
 					HashMap<String, String> mapHashNextRoom;
 					ArrayList<String> numOfEntries;
 					int temp; 
-					
-						layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
-						temp = layout.getEntryAmountofLayout();
-						layout.setEntryAmount(temp);
-						layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-						mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
-						
-						String nextEntry = mapHashCurrEntry.get(tempKey);
-						System.out.println("The next entry will be: " + nextEntry);
-						
-						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-						numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
-						
-						room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
-						mapHashNextRoom = room.getMapBaseEtoR();
-	
-						String nextRoom = mapHashNextRoom.get(nextEntry);
-						setNextCurrRoom(nextRoom);
-						System.out.println("Next room will be: " + getNextCurrRoom());
-						//baseInit(getNextCurrRoom(), getCurrFloor());
-						playGame(); 
-						break;
-					}
+
+					layout.setEntryAmountBasedonLayout(floor.whatMapWeOn(floor.getLevelCounter()));
+					temp = layout.getEntryAmountofLayout();
+					layout.setEntryAmount(temp);
+					layout.setMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+					mapHashCurrEntry = layout.getMapHash(floor.whatMapWeOn(floor.getLevelCounter()));
+
+					String nextEntry = mapHashCurrEntry.get(tempKey);
+					System.out.println("The next entry will be: " + nextEntry);
+
+					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+					numOfEntries = room.setEtoRAmount(layout.getEntryAmount(), floor.whatMapWeOn(floor.getLevelCounter()));
+
+					room.setEntryToRoom(floor.whatMapWeOn(floor.getLevelCounter()));
+					mapHashNextRoom = room.getMapBaseEtoR();
+
+					String nextRoom = mapHashNextRoom.get(nextEntry);
+					setNextCurrRoom(nextRoom);
+					System.out.println("Next room will be: " + getNextCurrRoom());
+					//baseInit(getNextCurrRoom(), getCurrFloor());
+					playGame(); 
+					break;
 				}
 			}
+		}
 	}
-	
+
 	//////////////////////// END OF ROOM/MAP/FLOOR TRAVERSAL AND SETUP ///////////////////////////////
 
 }
