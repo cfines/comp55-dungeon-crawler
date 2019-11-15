@@ -73,7 +73,7 @@ public class Console {
 		return currRoom;
 	}
 
-	public String getNextCurrRoom() {
+	public String getNextCurrRoom() {checkCollision() ;
 		return currRoom = floor.getCurrRoom();
 		//return floor.getCurrRoom();
 	}
@@ -239,7 +239,7 @@ public class Console {
 		//getNextRoom();
 
 		//Now you can move!
-		checkCollision();
+		//checkCollision();
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
@@ -262,18 +262,21 @@ public class Console {
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
 			setCanMove(e);
+			checkCollision();
 			//getNextRoom();
 			//keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
+			checkCollision() ;
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
+			checkCollision() ;
 			//getNextRoom();
 			//keyDown[3] = true;
 			break;
@@ -481,7 +484,7 @@ public class Console {
 		System.out.println("Oh no, I hit a rock");
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
-				System.out.println("Oh no, I hit a rock");
+				System.out.println("in the for loop");
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
 			}	
