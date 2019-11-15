@@ -222,6 +222,8 @@ public class Console {
 			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
+		
+		
 	}
 	
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
@@ -235,6 +237,8 @@ public class Console {
 		if(gamePaused) { return; }		//Game being paused
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
+		checkCollision();
+		getNextRoom();
 		
 		//Now you can move!
 		user.tick();
@@ -252,31 +256,26 @@ public class Console {
 
 		switch(keyInput) {
 		case KeyEvent.VK_W:
-			checkCollision();
 			user.setDY(-user.getMoveSpeedStat());
 			setCanMove(e);
-			getNextRoom();
 			keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
-			checkCollision();
 			user.setDX(-user.getMoveSpeedStat());
 			setCanMove(e);
-			getNextRoom();
+			//getNextRoom();
 			keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
-			checkCollision();
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
-			getNextRoom();
+			//getNextRoom();
 			keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
-			checkCollision();
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
-			getNextRoom();
+			//getNextRoom();
 			keyDown[3] = true;
 			break;
 		case KeyEvent.VK_E:
@@ -303,8 +302,7 @@ public class Console {
 		default:
 			break;
 		}
-
-		actionPerformed(e);
+		//actionPerformed(e);
 
 	}
 
@@ -481,6 +479,7 @@ public class Console {
 			if(intCollisionTest(inter.getImage())) {
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
+				System.out.println("Oh no, I hit a rock");
 			}	
 		}
 	}
