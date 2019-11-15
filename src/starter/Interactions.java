@@ -5,10 +5,10 @@ import acm.graphics.GImage;
 //remember, these things will be inside of room as we going to treat
 //them like obstacles
 public class Interactions {
-	interactionType inter = null;
-	int roomNum = 0;
-	int numInter = 0;
-	GImage image = null;
+	interactionType inter;
+	int roomNum;
+	int numInter;
+	GImage image;
 
 	public Interactions(interactionType type, int roomNum, int numInter)
 	{

@@ -234,7 +234,7 @@ public class Console {
 		//Checks for...
 		if(gamePaused) { return; }		//Game being paused
 		//checkEnemyAttack();				//Enemy attacks
-		if(!getCanMove()) { return; }	//Interaction blocks
+		//if(!getCanMove()) { return; }	//Interaction blocks
 		
 		//Now you can move!
 		user.tick();
@@ -252,24 +252,28 @@ public class Console {
 
 		switch(keyInput) {
 		case KeyEvent.VK_W:
+			checkCollision();
 			user.setDY(-user.getMoveSpeedStat());
 			setCanMove(e);
 			getNextRoom();
 			keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
+			checkCollision();
 			user.setDX(-user.getMoveSpeedStat());
 			setCanMove(e);
 			getNextRoom();
 			keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
+			checkCollision();
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
 			getNextRoom();
 			keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
+			checkCollision();
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
 			getNextRoom();
@@ -475,7 +479,8 @@ public class Console {
 		//TODO have some boundary checks called in here		
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
-				
+				user.setDX(inter.getImage().getWidth());
+				user.setDY(inter.getImage().getHeight());
 			}	
 		}
 	}
