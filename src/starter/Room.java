@@ -94,7 +94,10 @@ public class Room {
 		
 		String nextEntry, nextRoom;
 		nextEntry = mapHashCurrMap.get(layout.getEntryAmount().get(2));
-		System.out.println("E3 to E4?: " + nextEntry);
+		System.out.println("E1 to E2?: " + mapHashCurrMap.get(layout.getEntryAmount().get(0)));
+		System.out.println("E2 to E1?: " + mapHashCurrMap.get(layout.getEntryAmount().get(1)));
+		System.out.println("E3 to E4?: " + mapHashCurrMap.get(layout.getEntryAmount().get(2)));
+		System.out.println("E4 to E3?: " + mapHashCurrMap.get(layout.getEntryAmount().get(3)));
 		
 		setEntryToRoom(currMapTest);
 		numOfEntries = setEtoRAmount(layout.getEntryAmount(), currMapTest);
