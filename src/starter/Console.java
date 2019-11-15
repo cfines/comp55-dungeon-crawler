@@ -201,7 +201,7 @@ public class Console {
 	}
 	
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
-	public static void main(String[] args) {
+	public void run() {
 		Console test = new Console();
 		//test.enemies = test.getEnemies();
 		//test.getNextRoom();
@@ -222,6 +222,14 @@ public class Console {
 			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
+		for(Interactions inter : interactionHash.keySet()) {
+			//if(intCollisionTest(inter.getImage())) {
+				add(inter.getImage());
+				System.out.println("Oh no, I hit a rock");
+				user.setDX(inter.getImage().getWidth());
+				user.setDY(inter.getImage().getHeight());
+			//}	
+		}
 		
 		
 	}
@@ -238,7 +246,7 @@ public class Console {
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		checkCollision();
-		getNextRoom();
+		//getNextRoom();
 		
 		//Now you can move!
 		user.tick();
@@ -477,9 +485,9 @@ public class Console {
 		//TODO have some boundary checks called in here		
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
+				System.out.println("Oh no, I hit a rock");
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
-				System.out.println("Oh no, I hit a rock");
 			}	
 		}
 	}
