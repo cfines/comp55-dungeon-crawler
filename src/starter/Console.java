@@ -222,14 +222,6 @@ public class Console {
 			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
-		for(Interactions inter : interactionHash.keySet()) {
-			//if(intCollisionTest(inter.getImage())) {
-				add(inter.getImage());
-				System.out.println("Oh no, I hit a rock");
-				user.setDX(inter.getImage().getWidth());
-				user.setDY(inter.getImage().getHeight());
-			//}	
-		}
 		
 		
 	}
@@ -245,10 +237,10 @@ public class Console {
 		if(gamePaused) { return; }		//Game being paused
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
-		checkCollision();
 		//getNextRoom();
 		
 		//Now you can move!
+		checkCollision();
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
@@ -266,45 +258,45 @@ public class Console {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
 			setCanMove(e);
-			keyDown[0] = true;
+			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
 			setCanMove(e);
 			//getNextRoom();
-			keyDown[1] = true;
+			//keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
 			//getNextRoom();
-			keyDown[2] = true;
+			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
 			//getNextRoom();
-			keyDown[3] = true;
+			//keyDown[3] = true;
 			break;
 		case KeyEvent.VK_E:
-			keyDown[4] = true;
+			//keyDown[4] = true;
 			user.cycleWeapon();
 			break;
 			//TODO fix this method, moves the user when changing weapons and shouldn't
 		case KeyEvent.VK_UP:
-			keyDown[5] = true;
+			//keyDown[5] = true;
 			generateHitbox(e);
 			break;
 		case KeyEvent.VK_LEFT:
-			keyDown[6] = true;
+			//keyDown[6] = true;
 			generateHitbox(e);
 			break;
 		case KeyEvent.VK_DOWN:
-			keyDown[7] = true;
+			//keyDown[7] = true;
 			generateHitbox(e);
 			break;
 		case KeyEvent.VK_RIGHT:
-			keyDown[8] = true;
+			//keyDown[8] = true;
 			generateHitbox(e);
 			break;
 		default:
@@ -317,7 +309,7 @@ public class Console {
 	public void keyReleasedManager(KeyEvent e) {
 
 		keyInput = e.getKeyCode();
-		
+		/*
 		if(keyInput == KeyEvent.VK_W) {
 			keyDown[0] = false;
 		}
@@ -366,22 +358,23 @@ public class Console {
 		if(!keyDown[1] && !keyDown[3]) {
 			user.setDX(0);
 		}
-		/*switch(keyInput) {
+		*/
+		switch(keyInput) {
 		case KeyEvent.VK_W:
-			keyDown[0] = false;
+			user.setDY(0);
 			break;
 		case KeyEvent.VK_A:
-			keyDown[1] = false;
+			user.setDX(0);
 			break;
 		case KeyEvent.VK_S:
-			keyDown[2] = false;
+			user.setDY(0);
 			break;
 		case KeyEvent.VK_D:
-			keyDown[3] = false;
+			user.setDX(0);
 			break;
 		default:
 			break;
-		}*/
+		}
 
 	}
 	
@@ -483,6 +476,7 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
+		System.out.println("Oh no, I hit a rock");
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
 				System.out.println("Oh no, I hit a rock");
@@ -493,10 +487,11 @@ public class Console {
 	}
 	
 	public boolean intCollisionTest(GImage image) {
-		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
-				&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
-				&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()
-				&& user.getCoordX() - image.getX() >= -user.getMoveSpeedStat());
+		System.out.println("im in the collision baybee");
+		return (user.getCoordY() - image.getY() <= 50
+			&& user.getCoordY() - image.getY() >= -50
+			&& user.getCoordX() - image.getX() <= 50
+			&& user.getCoordX() - image.getX() >= -50);
 	}
 	
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
