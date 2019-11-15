@@ -31,6 +31,7 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
+	ArrayList<Interactions> intArray = new ArrayList<Interactions>();
 	private Boolean[] keyDown = new Boolean[9];
 	private boolean canMove = true;
 
@@ -222,7 +223,6 @@ public class Console {
 			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
-
 	}
 
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
@@ -246,7 +246,6 @@ public class Console {
 			//Timer timer = new Timer(DELAY_MS, null);
 			//timer.start();
 		}
-
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -309,9 +308,6 @@ public class Console {
 
 		keyInput = e.getKeyCode();
 		/*
-=======
-
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		if(keyInput == KeyEvent.VK_W) {
 			keyDown[0] = false;
 		}
@@ -478,14 +474,22 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
-		System.out.println("Oh no, I hit a rock");
-		for(Interactions inter : interactionHash.keySet()) {
+		
+		 
+		for(int i = 0; i < intArray.size(); i++) {
+			if(intCollisionTest(intArray.get(i).getImage())) {
+				System.out.println("Oh no, I hit a rock");
+				user.setDX(intArray.get(i).getImage().getWidth());
+				user.setDY(intArray.get(i).getImage().getHeight());
+			}	
+		}
+		/*for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
 				System.out.println("Oh no, I hit a rock");
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
 			}	
-		}
+		}*/
 	}
 
 	public boolean intCollisionTest(GImage image) {
@@ -622,6 +626,7 @@ public class Console {
 
 	public void baseInit(String nextCurrRoom, String currFloor) {
 		resetRoom();
+		for(Interactions inter : interactionHash.keySet()) { intArray.add(inter); }
 		generateRoom(nextCurrRoom, currFloor);
 	}
 
