@@ -1,15 +1,18 @@
 package starter;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane {
 		private MainApplication program;
 		private GImage rock1, rock2, hole1, E1, background, userRep;
 		private ArrayList<GImage> elements = new ArrayList<GImage>();
-		
+		private ArrayList<GRect> space = new ArrayList<GRect>();
+		private GRect voidSpace;
 		
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -25,7 +28,12 @@ public class SomePane extends GraphicsPane {
 		hole1.setSize(75, 75);
 		E1.setSize(75, 75);
 		background.setSize(1125, 550);
+		voidSpace = new GRect(0,0);
+		voidSpace.setSize(1150,650);
+		voidSpace.setColor(Color.BLACK);
+		voidSpace.setFilled(true);
 		
+		space.add(voidSpace);
 		elements.add(background);
 		elements.add(rock1);
 		elements.add(rock2);
@@ -36,6 +44,7 @@ public class SomePane extends GraphicsPane {
 
 	@Override
 	public void showContents() {
+		program.add(space.get(0));
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
@@ -43,6 +52,7 @@ public class SomePane extends GraphicsPane {
 
 	@Override
 	public void hideContents() {
+		program.remove(space.get(0));
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}

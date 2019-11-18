@@ -23,7 +23,7 @@ public class mapBase_R8 extends GraphicsPane{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		rock1.setSize(75,75);
-		rock2.setSize(50,75);
+		rock2.setSize(75,75);
 		hole1.setSize(75, 75);
 		E14.setSize(75,75);
 		E15.setSize(75, 75);

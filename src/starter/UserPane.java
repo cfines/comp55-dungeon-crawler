@@ -1,25 +1,30 @@
 package starter;
 import acm.graphics.GImage;
 
-public class UserPane extends GraphicsPane
-{
+//Mainly just a test to see if making the user into a pane would work
+
+//Not final
+public class UserPane
+{	
 	private GImage userRep;
 	private MainApplication program;
 	private Console game;
 	
-	public UserPane(MainApplication app) 
+	public UserPane() 
 	{
-		userRep = new GImage("Rouge_(Sample User).gif",game.getUser().getCoordX(), game.getUser().getCoordY());
-		
+		game = new Console();
+		game.playGame();
+		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
+		userRep.setSize(75,75);
 	}
 	
-	@Override
-	public void showContents() {
-		
+	public void showUser() 
+	{
+		program.add(userRep);
 	}
 
-	@Override
-	public void hideContents() {
-			
+	public void hideUser() 
+	{
+		program.remove(userRep);
 	}
 }

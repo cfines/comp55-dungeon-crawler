@@ -57,7 +57,7 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToMenu() {
-		//playRandomSound();
+		playRandomSoundForever();
 		count++;
 		switchToScreen(menu);
 	}
