@@ -17,6 +17,8 @@ public class Map{
 	private HashMap <Boss, Coordinates> bossSpawn = new HashMap <Boss, Coordinates>();
 	private ArrayList<Coordinates> enteredEntries = new ArrayList<Coordinates>();
 	private HashMap<String, ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String, ArrayList<Coordinates>>();
+	private double area;
+	private HashMap <ArrayList<Coordinates>,Double> boundToDairy = new HashMap <ArrayList<Coordinates>,Double>();
 	
 	private Hardcoded bruhMoment = new Hardcoded();
 	
@@ -41,7 +43,30 @@ public class Map{
 		return enteredEntriesHash;
 	}
 	
+	//sets the area for any variable 
+	public void setArea(double x, double y, double total) 
+	{
+		total = x*y;
+	}
 	
+	//gets the area for any variable
+	//TO BE USED FOR SETTING THE BOUNDARIES
+	public double getArea() 
+	{
+		return area;
+	}
+	
+	//sets the boundaries, uses the arrayList of coordinates as the key and returns the area
+	//MUST BE SET WITH USING THE getArea() FUNCTION!
+	public void setBoundaries(double total, ArrayList<Coordinates> spot, HashMap <ArrayList<Coordinates>,Double> boundary) 
+	{
+		boundary.put(spot,total);
+	}
+	
+	//gets the boundaries that would be used for collision testing
+	public HashMap <ArrayList<Coordinates>,Double> getBoundaries() {
+		return boundToDairy;
+	}
 	
 	///////////////////////////////////////////
 	
@@ -191,6 +216,4 @@ public class Map{
 //		getRoomSpawns();
 		
 	}
-
-
 }

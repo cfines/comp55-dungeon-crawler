@@ -49,6 +49,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Overlay Stuff
 	public GImage creditsImg;
+	public GImage hiScore;
 	public GImage text;
 	public GImage weapon;
 	public GImage portrait;
@@ -61,7 +62,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
-	public GButton menuPlay, highScore, credits, exit,goBack;
+	public GButton menuPlay, highScore, credits, exit, goBack;
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
@@ -245,6 +246,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(toClick == highScore) 
 		{
 			removeAll();
+			runHighScore();
 		}
 		
 		//If "Credits" button is selected in main menu
@@ -333,6 +335,15 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		add(text);
 		add(goBack);
 		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
+	}
+	
+	public void runHighScore() 
+	{
+		hiScore = new GImage("High Scores.png",0,0);
+		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+		add(hiScore);
+		add(goBack);
 	}
 	
 	public void runPauseMenu() {

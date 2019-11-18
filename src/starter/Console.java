@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.swing.Timer;
@@ -31,7 +32,6 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
-	ArrayList<Interactions> intArray = new ArrayList<Interactions>();
 	private Boolean[] keyDown = new Boolean[9];
 	private boolean canMove = true;
 
@@ -223,6 +223,7 @@ public class Console {
 			tempEnemy.tick();
 			System.out.println("X: " + tempCoord.getX() + " Y: " + tempCoord.getY());
 		}
+
 	}
 
 	/////////////////////////////// END OF PLAY GAME /////////////////////////////////////////////
@@ -239,13 +240,14 @@ public class Console {
 		//getNextRoom();
 		System.out.println("lol");
 		//Now you can move!
-		checkCollision();
+		//checkCollision();
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
 			//Timer timer = new Timer(DELAY_MS, null);
 			//timer.start();
 		}
+
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -256,6 +258,7 @@ public class Console {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
 			setCanMove(e);
+			checkCollision();
 			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
@@ -311,6 +314,9 @@ public class Console {
 
 		keyInput = e.getKeyCode();
 		/*
+=======
+
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		if(keyInput == KeyEvent.VK_W) {
 			keyDown[0] = false;
 		}
@@ -477,14 +483,34 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
-		
+		/*
 		for(Interactions inter : interactionHash.keySet()) {
-			if(intCollisionTest(inter.getinteractionType().getImage())) {
+			if(intCollisionTest(inter.getImage()) {
 				//make for loop
 				System.out.println("touching interaction");
+		System.out.println("Oh no, I hit a rock");
+		*/
+		/*
+		for(Interactions inter : interactionHash.keySet()) {
+			if(intCollisionTest(inter.getImage())) {
+				System.out.println("in the for loop");
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
+<<<<<<< HEAD
 			}	
+=======
+			}
+				
+		}*/
+		for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
+			System.out.println("Key =  " + entry.getKey() + ", Value = " + entry.getValue());
+			
+			if(intCollisionTest(entry.getKey().getImage())) {
+				System.out.println("in the if loop");
+				user.setDX(entry.getKey().getImage().getWidth());
+				user.setDY(entry.getKey().getImage().getHeight());
+			}
 		}
 	}
 
@@ -622,7 +648,6 @@ public class Console {
 
 	public void baseInit(String nextCurrRoom, String currFloor) {
 		resetRoom();
-		for(Interactions inter : interactionHash.keySet()) { intArray.add(inter); }
 		generateRoom(nextCurrRoom, currFloor);
 	}
 
