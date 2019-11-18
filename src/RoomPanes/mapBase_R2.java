@@ -17,7 +17,7 @@ public class mapBase_R2 extends GraphicsPane{
 		rock1 = new GImage("obstacle_rock.png",100,9);
 		hole2 = new GImage("obstacle_hole.png",500,91);
 		hole1 = new GImage("obstacle_hole.png",575,400);
-		E2 = new GImage("entry_door_WEST.png",1040,300);
+		E2 = new GImage("entry_door_WEST.png",60,300);
 		E3 = new GImage("entry_door_EAST.png",1040,300);
 		enemy1 = new GImage("FIRESkull.png", 350,76);
 		enemy2 = new GImage("FIRESkull.png", 367,504);

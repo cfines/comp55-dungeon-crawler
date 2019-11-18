@@ -1,5 +1,7 @@
 package starter;
 
+import RoomPanes.mapBase_R2;
+import RoomPanes.mapBase_R3;
 import acm.graphics.GImage;
 
 public class MainApplication extends GraphicsApplication {
@@ -8,7 +10,9 @@ public class MainApplication extends GraphicsApplication {
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "nymano-skate-at-night-full-version.mp3" };
 
-	private SomePane somePane, mapBase_R2, mapBase_R3;
+	private SomePane somePane; 
+	private mapBase_R2 mapbase_R2; 
+	private mapBase_R3 mapbase_R3;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
@@ -23,17 +27,19 @@ public class MainApplication extends GraphicsApplication {
 
 	public void run() {
 		System.out.println("Hello, world!");
-		//somePane = new SomePane(this);
-		mapBase_R2 = new SomePane(this);
+		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		//mapbase_R3 = new mapBase_R3(this);
+		
 		
 		switchToMenu();
 	}
 
 	public void switchToMenu() {
-		playRandomSound();
+		//playRandomSound();
 		count++;
 		switchToScreen(menu);
 	}
@@ -52,11 +58,11 @@ public class MainApplication extends GraphicsApplication {
 	}
 	
 	public void switchToR2() {
-		switchToScreen(mapBase_R2);
+		switchToScreen(mapbase_R2);
 	}
 	
 	public void switchToR3() {
-		switchToScreen(mapBase_R3);
+		switchToScreen(mapbase_R3);
 	}
 
 	private void playRandomSound() {
