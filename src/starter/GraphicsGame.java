@@ -37,7 +37,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
 	public static final int DOOR_HEIGHT = 50;
-	public GRect entry;
+	public GImage entry;
 	public GImage stairs;
 	
 	//GRAPHICS Room Creation and Entity Representation
@@ -432,23 +432,23 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
 			
 			if(tempInteraction.getinteractionType() == interactionType.entry_door_NORTH) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.CYAN);
+				entry = new GImage("entry_door_NORTH",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
 				add(entry);
 			} 
 			else if(tempInteraction.getinteractionType() == interactionType.entry_door_EAST) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.CYAN);
+				entry = new GImage("entry_door_EAST.png",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
 				add(entry);
 			} 
 			else if(tempInteraction.getinteractionType() == interactionType.entry_door_SOUTH) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.CYAN);
+				entry = new GImage("entry_door_SOUTH",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
 				add(entry);
 			}
 			else if(tempInteraction.getinteractionType() == interactionType.entry_door_WEST) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.CYAN);
+				entry = new GImage("entry_door_WEST",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
 				add(entry);
 			} 
 			else {
