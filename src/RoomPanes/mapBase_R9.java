@@ -12,7 +12,7 @@ import starter.MainApplication;
 
 public class mapBase_R9 extends GraphicsPane{
 	private MainApplication program;
-	private GImage E16, ENext, boss, background;
+	private GImage E16, ENext, boss, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
@@ -23,7 +23,8 @@ public class mapBase_R9 extends GraphicsPane{
 		ENext = new GImage("entry_stair.png",575,300);
 		boss = new GImage("Kirb_BOSS.gif", 575,200);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		
+		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep.setSize(75, 75);
 		E16.setSize(75,75);
 		ENext.setSize(75, 75);
 		background.setSize(1125, 550);

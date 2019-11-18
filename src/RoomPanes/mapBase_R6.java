@@ -12,7 +12,7 @@ import starter.MainApplication;
 
 public class mapBase_R6 extends GraphicsPane{
 	private MainApplication program;
-	private GImage rock1, E11, key1, background;
+	private GImage rock1, E11, key1, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
@@ -23,7 +23,8 @@ public class mapBase_R6 extends GraphicsPane{
 		E11 = new GImage("entry_door_NORTH.png",575,60);
 		key1 = new GImage("item_gif_key.gif", 575,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		
+		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep.setSize(75, 75);
 		rock1.setSize(75,75);
 		key1.setSize(75, 75);
 		E11.setSize(75,75);

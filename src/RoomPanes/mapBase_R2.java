@@ -14,7 +14,7 @@ import starter.MainApplication;
 public class mapBase_R2 extends GraphicsPane{
 	private Console game;
 	private MainApplication program;
-	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2;
+	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
@@ -29,6 +29,8 @@ public class mapBase_R2 extends GraphicsPane{
 		E3 = new GImage("entry_door_EAST.png",1040,300);
 		enemy1 = new GImage("FIREBat.gif", 350,76);
 		enemy2 = new GImage("FIRESkull.png", 367,504);
+		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep.setSize(75, 75);
 		enemy1.setSize(75,75);
 		enemy2.setSize(75,75);
 		rock1.setSize(75,75);
