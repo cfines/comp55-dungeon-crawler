@@ -13,6 +13,7 @@ public class SomePane extends GraphicsPane {
 		private ArrayList<GImage> elements = new ArrayList<GImage>();
 		private ArrayList<GRect> space = new ArrayList<GRect>();
 		private GRect voidSpace;
+		private Console game;
 		
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -21,7 +22,7 @@ public class SomePane extends GraphicsPane {
 		rock2 = new GImage("obstacle_rock.png",890,200);
 		hole1 = new GImage("obstacle_hole.png",172,425);
 		E1 = new GImage("entry_door_EAST.png",1040,300);
-		userRep = new GImage("Rogue_(Sample User).gif", 575, 300);
+		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		rock1.setSize(75, 75);
 		rock2.setSize(75, 75);
@@ -32,6 +33,7 @@ public class SomePane extends GraphicsPane {
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
+		game = new Console();
 		
 		space.add(voidSpace);
 		elements.add(background);
@@ -48,6 +50,10 @@ public class SomePane extends GraphicsPane {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		game.playGame();
+		game.getUser().tick();
+		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		
 	}
 
 	@Override
@@ -68,4 +74,6 @@ public class SomePane extends GraphicsPane {
 			program.switchToMenu();
 		}
 	}
+	
+	
 }
