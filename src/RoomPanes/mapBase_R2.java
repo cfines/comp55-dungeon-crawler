@@ -25,7 +25,7 @@ public class mapBase_R2 extends GraphicsPane{
 		E3 = new GImage("entry_door_EAST.png",1040,300);
 		enemy1 = new GImage("FIRESkull.png", 350,76);
 		enemy2 = new GImage("FIRESkull.png", 367,504);
-		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
+		userRep = new GImage("Rogue_(Sample User).gif", 500, 500);
 		userRep.setSize(75, 75);
 		enemy2.setSize(50,50);
 		rock1.setSize(50, 50);
@@ -43,7 +43,7 @@ public class mapBase_R2 extends GraphicsPane{
 		elements.add(E3);
 		elements.add(enemy1);
 		elements.add(enemy2);
-		
+		elements.add(userRep);
 	}
 
 	@Override
