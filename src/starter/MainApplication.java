@@ -4,6 +4,8 @@ import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R3;
 import RoomPanes.mapBase_R4;
 import RoomPanes.mapBase_R5;
+import RoomPanes.mapBase_R6;
+import RoomPanes.mapBase_R7;
 import acm.graphics.GImage;
 
 public class MainApplication extends GraphicsApplication {
@@ -17,6 +19,8 @@ public class MainApplication extends GraphicsApplication {
 	private mapBase_R3 mapbase_R3;
 	private mapBase_R4 mapbase_R4;
 	private mapBase_R5 mapbase_R5;
+	private mapBase_R6 mapbase_R6;
+	private mapBase_R7 mapbase_R7;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
@@ -39,6 +43,8 @@ public class MainApplication extends GraphicsApplication {
 		mapbase_R3 = new mapBase_R3(this);
 		mapbase_R4 = new mapBase_R4(this);
 		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
 		
 		
 		switchToMenu();
@@ -77,6 +83,14 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void switchToR5() {
 		switchToScreen(mapbase_R5);
+	}
+	
+	public void switchToR6() {
+		switchToScreen(mapbase_R6);
+	}
+	
+	public void switchToR7() {
+		switchToScreen(mapbase_R7);
 	}
 
 	private void playRandomSoundForever() {
