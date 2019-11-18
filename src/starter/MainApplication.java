@@ -10,7 +10,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	public static final String MUSIC_FOLDER = "sounds";
-	private static final String[] SOUND_FILES = { "r2d2.mp3", "nymano-skate-at-night-full-version.mp3" };
+	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
@@ -79,8 +79,8 @@ public class MainApplication extends GraphicsApplication {
 		switchToScreen(mapbase_R5);
 	}
 
-	private void playRandomSound() {
+	private void playRandomSoundForever() {
 		AudioPlayer audio = AudioPlayer.getInstance();
-		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length],true);
 	}
 }
