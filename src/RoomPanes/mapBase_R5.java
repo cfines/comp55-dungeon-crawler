@@ -24,11 +24,11 @@ public class mapBase_R5 extends GraphicsPane{
 		E10 = new GImage("entry_door_EAST.png",1040,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
-		enemy1.setSize(50,50);
-		hole1.setSize(50, 50);
-		E8.setSize(50,50);
-		E9.setSize(50, 50);
-		E10.setSize(50, 50);
+		enemy1.setSize(75,75);
+		hole1.setSize(75,75);
+		E8.setSize(75,75);
+		E9.setSize(75,75);
+		E10.setSize(75,75);
 		background.setSize(1125, 550);
 		
 		elements.add(background);

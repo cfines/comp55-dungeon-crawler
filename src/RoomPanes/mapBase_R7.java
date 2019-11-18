@@ -23,12 +23,12 @@ public class mapBase_R7 extends GraphicsPane{
 		enemy3 = new GImage("EARTHSkull.png", 575,420);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
-		enemy1.setSize(50,50);
-		enemy2.setSize(50,50);
-		enemy3.setSize(50, 50);
-		E12.setSize(50,50);
-		E13.setSize(50, 50);
-		rock1.setSize(50, 50);
+		enemy1.setSize(75,75);
+		enemy2.setSize(75,75);
+		enemy3.setSize(75,75);
+		E12.setSize(75,75);
+		E13.setSize(75,75);
+		rock1.setSize(75,75);
 		background.setSize(1125, 550);
 		
 		elements.add(background);
@@ -63,8 +63,8 @@ public class mapBase_R7 extends GraphicsPane{
 		if (obj == E12) {
 			program.switchToR5();
 		}
-//		else if(obj == E13) {
-//			program.switchToR8();
-//		}
+		else if(obj == E13) {
+			program.switchToR8();
+		}
 	}
 }

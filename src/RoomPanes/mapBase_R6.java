@@ -20,9 +20,9 @@ public class mapBase_R6 extends GraphicsPane{
 		key1 = new GImage("item_gif_key.gif", 575,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
-		rock1.setSize(50,50);
+		rock1.setSize(75,75);
 		key1.setSize(75, 75);
-		E11.setSize(50, 50);
+		E11.setSize(75,75);
 		background.setSize(1125, 550);
 		
 		elements.add(background);

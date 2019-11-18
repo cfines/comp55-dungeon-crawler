@@ -8,44 +8,41 @@ import acm.graphics.GObject;
 import starter.GraphicsPane;
 import starter.MainApplication;
 
-public class mapBase_R3 extends GraphicsPane{
+public class mapBase_R8 extends GraphicsPane{
 	private MainApplication program;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background;
+	private GImage rock1, rock2, hole1, E14, E15, background;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
-	
-	public mapBase_R3(MainApplication app) {
+
+	public mapBase_R8(MainApplication app) {
 		this.program = app;
-		enemy1 = new GImage("EARTHSkull.png", 800,70);
-		enemy2 = new GImage("WATERSkull.png",575,487);
-		E4 = new GImage("entry_door_WEST.png",60,300);
-		E5 = new GImage("entry_door_EAST.png",1040,300);
-		rock1 = new GImage("obstacle_rock.png",575,325);
-		hole1 = new GImage("obstacle_hole.png",230,163);
+		rock1 = new GImage("obstacle_rock.png",150,425);
+		rock2 = new GImage("obstacle_rock.png",575,325);
+		hole1 = new GImage("obstacle_hole.png",901,325);
+		E14 = new GImage("entry_door_WEST.png",60,300);
+		E15 = new GImage("entry_door_NORTH.png",575,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		enemy1.setSize(75, 75);
-		enemy2.setSize(75,75);
-		E4.setSize(75, 75);
-		E5.setSize(75, 75);
-		rock1.setSize(75, 75);
+		
+		rock1.setSize(75,75);
+		rock2.setSize(50,75);
 		hole1.setSize(75, 75);
+		E14.setSize(75,75);
+		E15.setSize(75, 75);
 		background.setSize(1125, 550);
 		
 		elements.add(background);
-		elements.add(enemy1);
-		elements.add(enemy2);
-		elements.add(E4);
-		elements.add(E5);
 		elements.add(rock1);
+		elements.add(rock2);
 		elements.add(hole1);
+		elements.add(E14);
+		elements.add(E15);
 	}
-	
+
 	@Override
 	public void showContents() {
-		// TODO Auto-generated method stub
+		 // TODO Auto-generated method stub
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		
 	}
 
 	@Override
@@ -56,16 +53,15 @@ public class mapBase_R3 extends GraphicsPane{
 		}
 		
 	}
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == E4) {
-			program.switchToR2();
+		if (obj == E14) {
+			program.switchToR7();
 		}
-		else if(obj == E5) {
-			program.switchToR4();
-		}
+//		else if(obj == E13) {
+//			program.switchToR8();
+//		}
 	}
-
 }

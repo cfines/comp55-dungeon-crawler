@@ -27,13 +27,13 @@ public class mapBase_R2 extends GraphicsPane{
 		enemy2 = new GImage("FIRESkull.png", 367,504);
 		userRep = new GImage("Rogue_(Sample User).gif", 500, 500);
 		userRep.setSize(75, 75);
-		enemy1.setSize(50,50);
-		enemy2.setSize(50,50);
-		rock1.setSize(50, 50);
-		hole2.setSize(50, 50);
-		hole1.setSize(50, 50);
-		E2.setSize(50, 50);
-		E3.setSize(50, 50);
+		enemy1.setSize(75,75);
+		enemy2.setSize(75,75);
+		rock1.setSize(75,75);
+		hole2.setSize(75,75);
+		hole1.setSize(75,75);
+		E2.setSize(75,75);
+		E3.setSize(75,75);
 		background.setSize(1125, 550);
 		
 		elements.add(background);
