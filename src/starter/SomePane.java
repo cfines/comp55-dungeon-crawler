@@ -6,7 +6,6 @@ import acm.graphics.GObject;
 
 public class SomePane extends GraphicsPane {
 		private MainApplication program;
-	
 		private GImage rock1, rock2, hole1, E1, background;
 
 	public SomePane(MainApplication app) {
@@ -45,6 +44,9 @@ public class SomePane extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
+			program.switchToR2();
+		}
+		else if(obj == rock1) {
 			program.switchToMenu();
 		}
 	}

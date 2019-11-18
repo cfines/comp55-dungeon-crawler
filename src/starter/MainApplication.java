@@ -8,7 +8,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "nymano-skate-at-night-full-version.mp3" };
 
-	private SomePane somePane, mapBase_R2;
+	private SomePane somePane, mapBase_R2, mapBase_R3;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
@@ -47,12 +47,16 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToSome() {
-		playRandomSound();
+		//playRandomSound();
 		switchToScreen(somePane);
 	}
 	
 	public void switchToR2() {
 		switchToScreen(mapBase_R2);
+	}
+	
+	public void switchToR3() {
+		switchToScreen(mapBase_R3);
 	}
 
 	private void playRandomSound() {
