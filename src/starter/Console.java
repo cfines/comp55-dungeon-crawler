@@ -377,22 +377,22 @@ public class Console {
 			//System.out.println("String = " + inter + " Interaction = " + inter.getImage());
 			if(intCollisionTest(inter.getImage())) {
 				//make for loop
-				GImage h = inter.getImage();
+				String h = inter.getImage().toString();
 				System.out.println("touching interaction");
 				
-				if(h == tempWest.getImage()) 
+				if(h == tempWest.getImage().toString()) 
 				{
 					System.out.println("this is a west door");
 				}
-				else if(h == tempEast.getImage()) 
+				else if(h == tempEast.getImage().toString()) 
 				{
 					System.out.println("this is an east door");
 				}
-				else if(h == tempNorth.getImage()) 
+				else if(h == tempNorth.getImage().toString()) 
 				{
 					System.out.println("this is a north door");
 				}
-				else if(h == tempSouth.getImage()) 
+				else if(h == tempSouth.getImage().toString()) 
 				{
 					System.out.println("this is a south door");
 				}
