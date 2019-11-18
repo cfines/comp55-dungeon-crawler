@@ -271,14 +271,14 @@ public class Console {
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
-			checkCollision() ;
+			checkCollision();
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
-			checkCollision() ;
+			checkCollision();
 			//getNextRoom();
 			//keyDown[3] = true;
 			break;
