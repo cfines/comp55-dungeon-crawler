@@ -239,7 +239,7 @@ public class Console {
 		//getNextRoom();
 		System.out.println("lol");
 		//Now you can move!
-		//checkCollision();
+		checkCollision();
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
@@ -478,25 +478,18 @@ public class Console {
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
 		
-		 
-		for(int i = 0; i < intArray.size(); i++) {
-			if(intCollisionTest(intArray.get(i).getImage())) {
-				System.out.println("Oh no, I hit a rock");
-				user.setDX(intArray.get(i).getImage().getWidth());
-				user.setDY(intArray.get(i).getImage().getHeight());
-			}	
-		}
-		/*for(Interactions inter : interactionHash.keySet()) {
-			if(intCollisionTest(inter.getImage())) {
-				System.out.println("in the for loop");
+		for(Interactions inter : interactionHash.keySet()) {
+			if(intCollisionTest(inter.getinteractionType().getImage())) {
+				//make for loop
+				System.out.println("touching interaction");
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
 			}	
-		}*/
+		}
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		System.out.println("im in the collision baybee");
+		System.out.println("im testing collision");
 		return (user.getCoordY() - image.getY() <= 50
 			&& user.getCoordY() - image.getY() >= -50
 			&& user.getCoordX() - image.getX() <= 50

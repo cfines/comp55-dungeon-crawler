@@ -23,10 +23,10 @@ public class Interactions {
 	}
 
 	public void setImage(interactionType inter, int x, int y) {
-		image = new GImage(inter.toString() + ".png", x, y);
+		image = new GImage(inter + ".png", x, y);
 		image.setSize(75, 75);
 	}
-
+	
 	public GImage getImage() {
 		return image;
 	}
