@@ -1,6 +1,7 @@
 package starter;
 
 import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -279,7 +280,6 @@ public class Console {
 		default:
 			break;
 		}
-		//actionPerformed(e);
 
 	}
 
@@ -339,15 +339,19 @@ public class Console {
 		*/
 		switch(keyInput) {
 		case KeyEvent.VK_W:
+			checkCollision();
 			user.setDY(0);
 			break;
 		case KeyEvent.VK_A:
+			checkCollision();
 			user.setDX(0);
 			break;
 		case KeyEvent.VK_S:
+			checkCollision();
 			user.setDY(0);
 			break;
 		case KeyEvent.VK_D:
+			checkCollision();
 			user.setDX(0);
 			break;
 		default:
