@@ -367,31 +367,37 @@ public class Console {
 	//Stan's canMove(), conflicted with merge. Given new name for now, we'll discuss the 
 	//purpose of the function and all that later.
 	public void checkCollision() {
-		//TODO have some boundary checks called in here		
+		//TODO have some boundary checks called in here	
+		Interactions tempWest = new Interactions(interactionType.entry_door_WEST,0,0);
+		Interactions tempEast = new Interactions(interactionType.entry_door_EAST,0,0);
+		Interactions tempNorth = new Interactions(interactionType.entry_door_NORTH,0,0);
+		Interactions tempSouth = new Interactions(interactionType.entry_door_SOUTH,0,0);
+		
 		for(Interactions inter : interactionHash.keySet()) {
 			//System.out.println("String = " + inter + " Interaction = " + inter.getImage());
 			if(intCollisionTest(inter.getImage())) {
 				//make for loop
+				GImage h = inter.getImage();
 				System.out.println("touching interaction");
 				
-			/*	if(inter.getImage() == west) 
+				if(h == tempWest.getImage()) 
 				{
 					System.out.println("this is a west door");
 				}
-				else if(inter.getImage() == east) 
+				else if(h == tempEast.getImage()) 
 				{
 					System.out.println("this is an east door");
 				}
-				else if(inter.getImage() == north) 
+				else if(h == tempNorth.getImage()) 
 				{
 					System.out.println("this is a north door");
 				}
-				else if(inter.getImage() == south) 
+				else if(h == tempSouth.getImage()) 
 				{
 					System.out.println("this is a south door");
 				}
 				else 
-			*/	{
+				{
 					if(user.getDX() > 0) {
 						user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
 					}
