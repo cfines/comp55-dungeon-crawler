@@ -127,10 +127,6 @@ public class Console {
 		this.roomWeIn = roomWeIn;
 	}
 
-	public boolean getCanMove() {
-		return canMove;
-	}
-
 	//RESETS
 
 	public void resetRoom() {
@@ -256,27 +252,23 @@ public class Console {
 		switch(keyInput) {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
-			setCanMove(e);
 			checkCollision();
 			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(-user.getMoveSpeedStat());
-			setCanMove(e);
 			checkCollision();
 			//getNextRoom();
 			//keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
-			setCanMove(e);
 			checkCollision();
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
-			setCanMove(e);
 			checkCollision();
 			//getNextRoom();
 			//keyDown[3] = true;
@@ -390,93 +382,6 @@ public class Console {
 		}
 		enemy.move();
 	}*/
-
-	public void canMove() {};
-
-	public void setCanMove(KeyEvent e) {
-
-		keyInput = e.getKeyCode();
-		Coordinates foundInteractionCoordinates = new Coordinates();
-		boolean foundInteractionBool = false;
-
-		for(HashMap.Entry<Interactions, Coordinates> test : interactionHash.entrySet()) {
-
-			Coordinates tempCoord = interactionHash.get(test.getKey());
-
-			//UPWARDS MOVEMENT
-			if(keyInput == KeyEvent.VK_W) {
-
-				//X CHECK
-				//In front of user's leftmost point		//Behind user's rightmost point
-				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
-					//Y checks
-					//Interaction is above user					//Less than a move away
-					if((tempCoord.getY() > user.getCoordY()) && (tempCoord.getY() < (user.getCoordY() - user.getMoveSpeedStat()))) {
-						foundInteractionCoordinates = tempCoord;
-					}
-				}
-
-
-				//LEFT MOVEMENT
-			} else if(keyInput == KeyEvent.VK_A) {
-
-				//Y CHECK
-				//Below user's topmost point				//Above user's lowest point
-				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
-					//X checks
-					//Interaction is "behind" user					//Less than a move away
-					if((tempCoord.getX() < user.getCoordX()) && (tempCoord.getX() > (user.getCoordX() - user.getMoveSpeedStat()))) {
-						foundInteractionCoordinates = tempCoord;
-					}
-				}	
-
-				//DOWNWARDS MOVEMENT
-			} else if(keyInput == KeyEvent.VK_S) {
-
-				//X CHECK
-				//In front of user's leftmost point		//Behind user's rightmost point
-				if((tempCoord.getX() > user.getCoordX()) && (tempCoord.getX() < user.getCoordX() + 75)) {
-					//Y checks
-					//Interaction is below user							//Less than a move away
-					if((tempCoord.getY() < (user.getCoordY() + 75)) && (tempCoord.getY() > ((user.getCoordY() + 75) + user.getMoveSpeedStat()))) {
-						foundInteractionCoordinates = tempCoord;
-					}
-				}
-
-				//RIGHT MOVEMENT
-			} else if(keyInput == KeyEvent.VK_D) {
-
-				//Y CHECK
-				//Below user's topmost point				//Above user's lowest point
-				if((tempCoord.getY() < user.getCoordY()) && (tempCoord.getY() > user.getCoordY() + 75)) {
-					//X checks
-					//Interaction is in front of user					//Less than a move away
-					if((tempCoord.getX() > (user.getCoordX() + 75)) && (tempCoord.getX() < ((user.getCoordX() + 75) + user.getMoveSpeedStat()))) {
-						foundInteractionCoordinates = tempCoord;
-					}
-				}				
-
-			}
-
-		}
-
-		//This final check goes through our dedicated ArrayList of entries and sees if the
-		//coordinates match between the encountered interaction. If the two match up, that means
-		//the encountered interaction is an entry, and that the user should move. If not, it is
-		//either a rock or hole, and the user cannot move.
-		if(foundInteractionBool) {
-			for(int i = 0; i < entries.size(); i++) {
-				if(foundInteractionCoordinates == entries.get(i)) {
-					canMove = true;
-					return;
-				}
-			}
-			canMove = false;
-		} else {			
-			//If no interaction is found, then cool- we can move regardless.
-			canMove = true;
-		}
-	}
 
 	//Stan's canMove(), conflicted with merge. Given new name for now, we'll discuss the 
 	//purpose of the function and all that later.

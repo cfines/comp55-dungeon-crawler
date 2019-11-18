@@ -152,13 +152,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
 		}*/
-		if(inMenu || game.getGamePaused()) { return; }
-		
-		if((ae.getKeyCode() == KeyEvent.VK_W) || (ae.getKeyCode() == KeyEvent.VK_A) || (ae.getKeyCode() == KeyEvent.VK_S) || (ae.getKeyCode() == KeyEvent.VK_D)) {
-			game.setCanMove(ae);
-		}
-		if(!game.getCanMove()) { return; }
-		
+		if(inMenu || game.getGamePaused()) { return; }		
 		
 		
 		//These two lines are responsible for moving User and its respective image
@@ -185,8 +179,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
-		
-		System.out.println("Can move: " + game.getCanMove());
 		
 	}
 	
