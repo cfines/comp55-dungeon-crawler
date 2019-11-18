@@ -199,18 +199,8 @@ public class Console {
 
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
 	public void run() {
-		Console test = new Console();
-		//test.enemies = test.getEnemies();
-		//test.getNextRoom();
-		//test.generateEnemies();
-		/*for(int i = 0; i < test.enemies.size(); i++) {
-			//Timer timer = new Timer(DELAY_MS, null);
-			//timer.start();
-			System.out.println("X: " + test.enemies.get(i).getCoordX() + " Y: " + test.enemies.get(i).getCoordY());
-		}*/
 		Enemy tempEnemy = new Enemy(5,5,5,5,5,5,ElementType.FIRE);
-		HashMap<Enemy, Coordinates> enemyHash = test.getEnemyHash();
-		test.enemies = test.getEnemies();
+		HashMap<Enemy, Coordinates> enemyHash = getEnemyHash();
 
 		for(HashMap.Entry test2 : enemyHash.entrySet()) {
 
