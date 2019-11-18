@@ -483,13 +483,14 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
-		/*
 		for(Interactions inter : interactionHash.keySet()) {
-			if(intCollisionTest(inter.getImage()) {
+			System.out.println("Interaction = " + inter.getImage());
+			/*if(intCollisionTest(inter.getImage())) {
 				//make for loop
 				System.out.println("touching interaction");
-		System.out.println("Oh no, I hit a rock");
-		*/
+				System.out.println("Oh no, I hit a rock");
+			}*/
+		}
 		/*
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
@@ -503,24 +504,22 @@ public class Console {
 			}
 				
 		}*/
-		for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
+		/*for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
 			System.out.println("Key =  " + entry.getKey() + ", Value = " + entry.getValue());
 			
-			/*
-			 * if(intCollisionTest(entry.getKey().getImage())) {
-			 * System.out.println("in the if loop");
-			 * user.setDX(entry.getKey().getImage().getWidth());
-			 * user.setDY(entry.getKey().getImage().getHeight()); }
-			 */
-		}
+			 if(intCollisionTest(entry.getKey().getImage())) {
+			 System.out.println("in the if loop");
+			 user.setDX(entry.getKey().getImage().getWidth());
+			 user.setDY(entry.getKey().getImage().getHeight()); }
+		}*/
 	}
 
 	public boolean intCollisionTest(GImage image) {
 		System.out.println("im testing collision");
-		return (user.getCoordY() - image.getY() <= 50
-			&& user.getCoordY() - image.getY() >= -50
-			&& user.getCoordX() - image.getX() <= 50
-			&& user.getCoordX() - image.getX() >= -50);
+		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
+			&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
+			&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()
+			&& user.getCoordX() - image.getX() >= -user.getMoveSpeedStat());
 	}
 
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////

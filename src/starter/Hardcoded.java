@@ -89,8 +89,11 @@ public class Hardcoded
 				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
+				roomOneInteraction1.setImage(interactionType.obstacle_rock, 1, 1);
 				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
+				roomOneInteraction2.setImage(interactionType.obstacle_rock, 1, 2);
 				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
+				roomOneInteraction3.setImage(interactionType.obstacle_hole, 1, 3);
 				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
 				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
 				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
