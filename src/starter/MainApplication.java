@@ -25,9 +25,11 @@ public class MainApplication extends GraphicsApplication {
 	private mapBase_R7 mapbase_R7;
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
+	private TitleScreenPane tittle;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
+	private Console g;
 	
 	private GImage menuScreen;
 	private int count;
@@ -51,9 +53,14 @@ public class MainApplication extends GraphicsApplication {
 		mapbase_R7 = new mapBase_R7(this);
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
+		tittle = new TitleScreenPane(this);
 		
 		
-		switchToMenu();
+		switchToTitleScreen();
+	}
+	public void switchToTitleScreen() 
+	{
+		switchToScreen(tittle);
 	}
 
 	public void switchToMenu() {
