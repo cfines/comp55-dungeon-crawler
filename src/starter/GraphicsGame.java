@@ -33,6 +33,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean running = true;
 	public Timer timer;
 	public Floor f;
+	public MainApplication roomSwappin;
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;

@@ -24,6 +24,7 @@ public class Console {
 	private MapLayout layout = new MapLayout();
 	private Room room = new Room();
 	private boolean gamePaused = false;
+	private MainApplication swap;
 
 	//Enemy and Interaction Handling
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
@@ -42,7 +43,7 @@ public class Console {
 	private int keyInput;
 	private Timer timer;
 	public static final int DELAY_MS = 25;
-
+	
 	//Misc. Variables
 	//private String roomFromEntry = new String();
 
@@ -372,17 +373,37 @@ public class Console {
 			if(intCollisionTest(inter.getImage())) {
 				//make for loop
 				System.out.println("touching interaction");
-				if(user.getDX() > 0) {
-					user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
+				
+			/*	if(inter.getImage() == west) 
+				{
+					System.out.println("this is a west door");
 				}
-				else if(user.getDX() < 0) {
-					user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
+				else if(inter.getImage() == east) 
+				{
+					System.out.println("this is an east door");
 				}
-				else if(user.getDY() > 0) {
-					user.getUserStats().setCoordX(user.getCoordY() - user.getMoveSpeedStat());					
+				else if(inter.getImage() == north) 
+				{
+					System.out.println("this is a north door");
 				}
-				else if(user.getDY() < 0) {
-					user.getUserStats().setCoordX(user.getCoordY() + user.getMoveSpeedStat());					
+				else if(inter.getImage() == south) 
+				{
+					System.out.println("this is a south door");
+				}
+				else 
+			*/	{
+					if(user.getDX() > 0) {
+						user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
+					}
+					else if(user.getDX() < 0) {
+						user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
+					}
+					else if(user.getDY() > 0) {
+						user.getUserStats().setCoordX(user.getCoordY() - user.getMoveSpeedStat());					
+					}
+					else if(user.getDY() < 0) {
+						user.getUserStats().setCoordX(user.getCoordY() + user.getMoveSpeedStat());					
+					}
 				}
 			}
 		}
