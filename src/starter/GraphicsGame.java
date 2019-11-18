@@ -431,11 +431,27 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
 			
-			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
+			if(tempInteraction.getinteractionType() == interactionType.entry_door_NORTH) {
 				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
 				entry.setFillColor(Color.CYAN);
 				add(entry);
-			} else {
+			} 
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_EAST) {
+				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
+				entry.setFillColor(Color.CYAN);
+				add(entry);
+			} 
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_SOUTH) {
+				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
+				entry.setFillColor(Color.CYAN);
+				add(entry);
+			}
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_WEST) {
+				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
+				entry.setFillColor(Color.CYAN);
+				add(entry);
+			} 
+			else {
 				interactionRep = new GImage(tempInteraction.getinteractionType() + ".png", tempCoord.getX(), tempCoord.getY());
 				interactionRep.setSize(75, 75);
 				add(interactionRep);
