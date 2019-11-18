@@ -11,6 +11,7 @@ public class MainApplication extends GraphicsApplication {
 	private SomePane somePane;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
+	private CreditsPane creditsPane;
 	
 	private GImage menuScreen;
 	private int count;
@@ -21,10 +22,11 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void run() {
-		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		highScorePane = new HighScorePane(this);
+		creditsPane = new CreditsPane(this);
+		
 		switchToMenu();
 	}
 
@@ -36,6 +38,10 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void switchToHighScorePane() {
 		switchToScreen(highScorePane);
+	}
+	
+	public void switchToCreditsPane() {
+		switchToScreen(creditsPane);
 	}
 
 	public void switchToSome() {
