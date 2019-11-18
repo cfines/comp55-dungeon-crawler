@@ -62,17 +62,17 @@ public class User {
 	public void tick() {
 		userStats.setCoordX(userStats.getCoordX() + dx);
 		userStats.setCoordY(userStats.getCoordY() + dy);
-		if(userStats.getCoordX() <= 0) {
-			userStats.setCoordX(0);
+		if(userStats.getCoordX() <= 125-60) {
+			userStats.setCoordX(125-60);
 		}
-		if(userStats.getCoordX() >= 1155 - 60) {
-			userStats.setCoordX(1155 - 60);
+		if(userStats.getCoordX() >= 1065 - 60) {
+			userStats.setCoordX(1065 - 60);
 		}
-		if(userStats.getCoordY() <= 0) {
-			userStats.setCoordY(0);
+		if(userStats.getCoordY() <= 95-60) {
+			userStats.setCoordY(95-60);
 		}
-		if(userStats.getCoordY() >= 650 - 80) {
-			userStats.setCoordY(650 - 80);
+		if(userStats.getCoordY() >= 520-80) {
+			userStats.setCoordY(520-80);
 		}
 	}
 	
