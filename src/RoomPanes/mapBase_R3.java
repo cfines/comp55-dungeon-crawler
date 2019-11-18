@@ -16,7 +16,7 @@ public class mapBase_R3 extends GraphicsPane{
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		enemy1 = new GImage("EARTHSkull.png", 800,70);
-		enemy2 = new GImage("WATERSkull.png",575,487);
+		enemy2 = new GImage("WATERBat.gif",575,487);
 		E4 = new GImage("entry_door_WEST.png",60,300);
 		E5 = new GImage("entry_door_EAST.png",1040,300);
 		rock1 = new GImage("obstacle_rock.png",575,325);

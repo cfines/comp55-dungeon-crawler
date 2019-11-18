@@ -62,6 +62,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GRect weaponBox;
 	public GRect weaponBoxOutline;
 	public GRect emptySpace;
+	public GImage title;
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;

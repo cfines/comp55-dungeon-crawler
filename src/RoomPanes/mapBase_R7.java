@@ -19,7 +19,7 @@ public class mapBase_R7 extends GraphicsPane{
 		E12 = new GImage("entry_door_NORTH.png",60,300);
 		E13 = new GImage("entry_door_EAST.png",1040,300);
 		enemy1 = new GImage("EARTHSkull.png", 575,100);
-		enemy2 = new GImage("EARTHSkull.png", 575,250);
+		enemy2 = new GImage("EARTHBat.gif", 575,250);
 		enemy3 = new GImage("EARTHSkull.png", 575,420);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
