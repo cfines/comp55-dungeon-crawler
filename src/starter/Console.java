@@ -392,8 +392,18 @@ public class Console {
 			if(intCollisionTest(inter.getImage())) {
 				//make for loop
 				System.out.println("touching interaction");
-				user.getUserStats().setCoordX(user.getCoordX());
-				user.getUserStats().setCoordY(user.getCoordY());
+				if(user.getDX() > 0) {
+					user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
+				}
+				else if(user.getDX() < 0) {
+					user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
+				}
+				else if(user.getDY() > 0) {
+					user.getUserStats().setCoordX(user.getCoordY() - user.getMoveSpeedStat());					
+				}
+				else if(user.getDY() < 0) {
+					user.getUserStats().setCoordX(user.getCoordY() + user.getMoveSpeedStat());					
+				}
 			}
 		}
 	}
