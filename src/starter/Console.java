@@ -235,7 +235,7 @@ public class Console {
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		//getNextRoom();
 		//Now you can move!
-		//checkCollision();
+		checkCollision();
 		user.tick();
 		for(int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).tick();
@@ -297,7 +297,7 @@ public class Console {
 		default:
 			break;
 		}
-		actionPerformed(e);
+		//actionPerformed(e);
 
 	}
 
@@ -419,10 +419,10 @@ public class Console {
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
-			&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
-			&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()
-			&& user.getCoordX() - image.getX() >= -user.getMoveSpeedStat());
+		return (user.getCoordY() - image.getY() <= 75
+			&& user.getCoordY() - image.getY() >= -75
+			&& user.getCoordX() - image.getX() <= 75
+			&& user.getCoordX() - image.getX() >= -75);
 	}
 
 	/////////////////////////// END OF MOVEMENT AND INTERACTMENT ////////////////////////////
