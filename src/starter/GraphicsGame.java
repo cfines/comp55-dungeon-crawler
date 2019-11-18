@@ -532,7 +532,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		System.out.println("I'm attacking");
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			userRep.setImage("Rouge_Attack(Up).png");
+			userRep.setImage("Rogue_Attack(Up).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_LEFT:
