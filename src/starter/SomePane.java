@@ -12,6 +12,7 @@ public class SomePane extends GraphicsPane {
 		private GImage rock1, rock2, hole1, E1, background, userRep;
 		private ArrayList<GImage> elements = new ArrayList<GImage>();
 		private ArrayList<GRect> space = new ArrayList<GRect>();
+		private ArrayList<GImage> you = new ArrayList<GImage>();
 		private GRect voidSpace;
 		private Console game;
 		
@@ -41,7 +42,7 @@ public class SomePane extends GraphicsPane {
 		elements.add(rock2);
 		elements.add(hole1);
 		elements.add(E1);
-		elements.add(userRep);
+		you.add(userRep);
 	}
 
 	@Override
@@ -53,6 +54,7 @@ public class SomePane extends GraphicsPane {
 		game.playGame();
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		program.add(you.get(0));
 		
 	}
 
@@ -62,6 +64,7 @@ public class SomePane extends GraphicsPane {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		program.remove(you.get(0));
 	}
 
 	@Override
@@ -69,6 +72,7 @@ public class SomePane extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
 			program.switchToR2();
+			userRep.setLocation(70, 300);
 		}
 		else if(obj == rock1) {
 			program.switchToMenu();
