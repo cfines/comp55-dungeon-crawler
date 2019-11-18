@@ -506,11 +506,12 @@ public class Console {
 		for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
 			System.out.println("Key =  " + entry.getKey() + ", Value = " + entry.getValue());
 			
-			if(intCollisionTest(entry.getKey().getImage())) {
-				System.out.println("in the if loop");
-				user.setDX(entry.getKey().getImage().getWidth());
-				user.setDY(entry.getKey().getImage().getHeight());
-			}
+			/*
+			 * if(intCollisionTest(entry.getKey().getImage())) {
+			 * System.out.println("in the if loop");
+			 * user.setDX(entry.getKey().getImage().getWidth());
+			 * user.setDY(entry.getKey().getImage().getHeight()); }
+			 */
 		}
 	}
 
