@@ -72,7 +72,7 @@ public class SomePane extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
 			program.switchToR2();
-			userRep.setLocation(70, 300);
+			userRep.setLocation(90, 300);
 		}
 		else if(obj == rock1) {
 			program.switchToMenu();
