@@ -238,7 +238,6 @@ public class Console {
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		//getNextRoom();
-		System.out.println("lol");
 		//Now you can move!
 		//checkCollision();
 		user.tick();
@@ -484,12 +483,12 @@ public class Console {
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
 		for(Interactions inter : interactionHash.keySet()) {
-			System.out.println("Interaction = " + inter.getImage());
-			/*if(intCollisionTest(inter.getImage())) {
+			//System.out.println("String = " + inter + " Interaction = " + inter.getImage());
+			if(intCollisionTest(inter.getImage())) {
 				//make for loop
 				System.out.println("touching interaction");
 				System.out.println("Oh no, I hit a rock");
-			}*/
+			}
 		}
 		/*
 		for(Interactions inter : interactionHash.keySet()) {
@@ -515,7 +514,6 @@ public class Console {
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		System.out.println("im testing collision");
 		return (user.getCoordY() - image.getY() <= user.getMoveSpeedStat()
 			&& user.getCoordY() - image.getY() >= -user.getMoveSpeedStat()
 			&& user.getCoordX() - image.getX() <= user.getMoveSpeedStat()

@@ -95,6 +95,7 @@ public class Hardcoded
 				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
 				roomOneInteraction3.setImage(interactionType.obstacle_hole, 1, 3);
 				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door_EAST, 1, 4);
+				roomOneInteraction4.setImage(interactionType.entry_door_EAST, 1, 4);
 				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
 				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
 				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
