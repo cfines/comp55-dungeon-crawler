@@ -18,6 +18,7 @@ public class HighScorePane extends GraphicsPane {
 	public GButton goBack;
 	
 	public HighScorePane(MainApplication app) {
+		this.program = app;
 		hiScore = new GImage("High Scores.png",0,0);
 		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
@@ -33,6 +34,16 @@ public class HighScorePane extends GraphicsPane {
 	public void hideContents() {
 		program.remove(hiScore);
 		program.remove(goBack);
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) 
+	{
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if(obj == goBack) 
+		{
+			program.switchToMenu();
+		}
 	}
 	
 }

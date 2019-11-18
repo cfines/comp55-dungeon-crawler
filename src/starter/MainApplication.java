@@ -10,6 +10,8 @@ public class MainApplication extends GraphicsApplication {
 
 	private SomePane somePane;
 	private MenuPane menu;
+	private HighScorePane highScorePane;
+	
 	private GImage menuScreen;
 	private int count;
 	private GraphicsGame game;
@@ -22,6 +24,7 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
+		highScorePane = new HighScorePane(this);
 		switchToMenu();
 	}
 
@@ -29,6 +32,10 @@ public class MainApplication extends GraphicsApplication {
 		playRandomSound();
 		count++;
 		switchToScreen(menu);
+	}
+	
+	public void switchToHighScorePane() {
+		switchToScreen(highScorePane);
 	}
 
 	public void switchToSome() {
