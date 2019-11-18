@@ -1,10 +1,12 @@
 package RoomPanes;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 import starter.GraphicsPane;
 import starter.MainApplication;
 
@@ -12,6 +14,8 @@ public class mapBase_R3 extends GraphicsPane{
 	private MainApplication program;
 	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
+	private ArrayList<GRect> space = new ArrayList<GRect>();
+	private GRect voidSpace;
 	
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
@@ -29,7 +33,12 @@ public class mapBase_R3 extends GraphicsPane{
 		rock1.setSize(75, 75);
 		hole1.setSize(75, 75);
 		background.setSize(1125, 550);
+		voidSpace = new GRect(0,0);
+		voidSpace.setSize(1150,650);
+		voidSpace.setColor(Color.BLACK);
+		voidSpace.setFilled(true);
 		
+		space.add(voidSpace);
 		elements.add(background);
 		elements.add(enemy1);
 		elements.add(enemy2);
@@ -41,7 +50,7 @@ public class mapBase_R3 extends GraphicsPane{
 	
 	@Override
 	public void showContents() {
-		// TODO Auto-generated method stub
+		program.add(space.get(0));
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
@@ -50,7 +59,7 @@ public class mapBase_R3 extends GraphicsPane{
 
 	@Override
 	public void hideContents() {
-		// TODO Auto-generated method stub
+		program.remove(space.get(0));
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
