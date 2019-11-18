@@ -527,15 +527,19 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public void drawAttack(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
+			userRep = new GImage("Rogue_Attack(Up).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_LEFT:
+			userRep = new GImage("Rogue_Attack(Left).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_DOWN:
+			userRep = new GImage("Rogue_Attack(Down).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_RIGHT:
+			userRep = new GImage("Rogue_Attack(Right).png");
 			//add attack animation
 			break;
 		}
