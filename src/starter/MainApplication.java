@@ -31,12 +31,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
-	private Console g;
 	private AudioPlayer audio;
 	
-	private GImage menuScreen;
 	private int count;
-	private GraphicsGame game;
+	
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -57,7 +55,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
-		g = new Console();
 		switchToTitleScreen();
 	}
 	public void switchToTitleScreen() 
@@ -82,8 +79,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
-		g.playGame();
-		g.getUser().tick();
 	}
 	
 	public void switchToR2() {
