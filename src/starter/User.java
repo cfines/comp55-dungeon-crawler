@@ -83,7 +83,15 @@ public class User {
 	public void setDY(double input_dy) {
 		dy = input_dy;
 	}
-
+	
+	public double getDX() {
+		return dx;
+	}
+	
+	public double getDY() {
+		return dy;
+	}
+	
 	//GETTERS AND SETTERS//
 	
 	public Stats getUserStats() {

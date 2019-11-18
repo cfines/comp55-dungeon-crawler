@@ -248,28 +248,28 @@ public class Console {
 	public void keyPressedManager(KeyEvent e) {
 
 		keyInput = e.getKeyCode();
-
+		
 		switch(keyInput) {
 		case KeyEvent.VK_W:
-			user.setDY(-user.getMoveSpeedStat());
 			checkCollision();
+			user.setDY(-user.getMoveSpeedStat());
 			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
-			user.setDX(-user.getMoveSpeedStat());
 			checkCollision();
+			user.setDX(-user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
-			user.setDY(user.getMoveSpeedStat());
 			checkCollision();
+			user.setDY(user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
-			user.setDX(user.getMoveSpeedStat());
 			checkCollision();
+			user.setDX(user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[3] = true;
 			break;
@@ -392,30 +392,10 @@ public class Console {
 			if(intCollisionTest(inter.getImage())) {
 				//make for loop
 				System.out.println("touching interaction");
-				System.out.println("Oh no, I hit a rock");
+				user.getUserStats().setCoordX(user.getCoordX());
+				user.getUserStats().setCoordY(user.getCoordY());
 			}
 		}
-		/*
-		for(Interactions inter : interactionHash.keySet()) {
-			if(intCollisionTest(inter.getImage())) {
-				System.out.println("in the for loop");
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-				user.setDX(inter.getImage().getWidth());
-				user.setDY(inter.getImage().getHeight());
-<<<<<<< HEAD
-			}	
-=======
-			}
-				
-		}*/
-		/*for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
-			System.out.println("Key =  " + entry.getKey() + ", Value = " + entry.getValue());
-			
-			 if(intCollisionTest(entry.getKey().getImage())) {
-			 System.out.println("in the if loop");
-			 user.setDX(entry.getKey().getImage().getWidth());
-			 user.setDY(entry.getKey().getImage().getHeight()); }
-		}*/
 	}
 
 	public boolean intCollisionTest(GImage image) {
