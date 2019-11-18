@@ -1,17 +1,38 @@
 package starter;
 
-public class HighScorePane extends GraphicsPane {
+import java.awt.Color;
+import java.awt.event.MouseEvent;
 
+import acm.graphics.GImage;
+import acm.graphics.GLabel;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
+
+public class HighScorePane extends GraphicsPane {
+	public MainApplication program;
+	
+	public static final int WINDOW_WIDTH = 1155;
+	public static final int WINDOW_HEIGHT = 650;
+	
+	public GImage hiScore;
+	public GButton goBack;
+	
+	public HighScorePane(MainApplication app) {
+		hiScore = new GImage("High Scores.png",0,0);
+		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+	}
+	
 	@Override
 	public void showContents() {
-		// TODO Auto-generated method stub
-		
+		program.add(hiScore);
+		program.add(goBack);
 	}
 
 	@Override
 	public void hideContents() {
-		// TODO Auto-generated method stub
-		
+		program.remove(hiScore);
+		program.remove(goBack);
 	}
 	
 }
