@@ -123,8 +123,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			room = game.getLocalCurrRoom();
 			
 		}
-		enemyTimer = new Timer(DELAY_MS, this);
-		enemyTimer.start();
+		//enemyTimer = new Timer(DELAY_MS, this);
+		//enemyTimer.start();
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
@@ -186,8 +186,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(pressedKey == KeyEvent.VK_ESCAPE) {
 			runPauseMenu();
 		} else {			
-			//game.keyPressedManager(e);
-			//actionPerformed(e);		
+			game.keyPressedManager(e);
+			actionPerformed(e);		
 		}
 		
 		switch(pressedKey) {

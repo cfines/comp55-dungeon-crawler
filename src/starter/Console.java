@@ -233,24 +233,24 @@ public class Console {
 		
 		switch(keyInput) {
 		case KeyEvent.VK_W:
-			checkCollision();
+			//checkCollision();
 			user.setDY(-user.getMoveSpeedStat());
 			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
-			checkCollision();
+			//checkCollision();
 			user.setDX(-user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[1] = true;
 			break;
 		case KeyEvent.VK_S:
-			checkCollision();
+			//checkCollision();
 			user.setDY(user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
-			checkCollision();
+			//checkCollision();
 			user.setDX(user.getMoveSpeedStat());
 			//getNextRoom();
 			//keyDown[3] = true;
@@ -279,7 +279,7 @@ public class Console {
 		default:
 			break;
 		}
-		actionPerformed(e);
+		//actionPerformed(e);
 
 	}
 
