@@ -10,6 +10,8 @@ public class MainApplication extends GraphicsApplication {
 
 	private SomePane somePane, mapBase_R1;
 	private MenuPane menu;
+	private HighScorePane highScorePane;
+	
 	private GImage menuScreen;
 	private int count;
 	private GraphicsGame game;
@@ -23,6 +25,7 @@ public class MainApplication extends GraphicsApplication {
 		//somePane = new SomePane(this);
 		mapBase_R1 = new SomePane(this);
 		menu = new MenuPane(this);
+		highScorePane = new HighScorePane(this);
 		switchToMenu();
 	}
 
@@ -30,6 +33,10 @@ public class MainApplication extends GraphicsApplication {
 		playRandomSound();
 		count++;
 		switchToScreen(menu);
+	}
+	
+	public void switchToHighScorePane() {
+		switchToScreen(highScorePane);
 	}
 
 	public void switchToSome() {
