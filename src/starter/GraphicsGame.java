@@ -123,10 +123,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 				drawRoom();
 			}
 			room = game.getLocalCurrRoom();
-			
 		}
-		//enemyTimer = new Timer(DELAY_MS, this);
-		//enemyTimer.start();
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
