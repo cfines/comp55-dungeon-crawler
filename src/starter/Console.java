@@ -379,7 +379,7 @@ public class Console {
 				//make for loop
 				String h = inter.getImage().toString();
 				System.out.println("touching interaction");
-				
+				/*
 				if(h == tempWest.getImage().toString()) 
 				{
 					System.out.println("this is a west door");
@@ -397,7 +397,7 @@ public class Console {
 					System.out.println("this is a south door");
 				}
 				else 
-				{
+				{*/
 					if(user.getDX() > 0) {
 						user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
 					}
@@ -410,7 +410,7 @@ public class Console {
 					else if(user.getDY() < 0) {
 						user.getUserStats().setCoordX(user.getCoordY() + user.getMoveSpeedStat());					
 					}
-				}
+				//}
 			}
 		}
 	}
