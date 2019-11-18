@@ -264,14 +264,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			game.setGamePaused(false);
 		}
 		
-		//If "Return" button is select in Credits
+		//If "Return" button is selected
 		if(toClick == goBack) 
 		{
-			audio.stopSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
-			remove(emptySpace);
-			remove(creditsImg);
-			remove(text);
-			remove(goBack);
+			removeAll();
+			stopRandomSound();
 			runMainMenu();
 		}
 		

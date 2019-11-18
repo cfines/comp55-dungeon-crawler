@@ -238,7 +238,7 @@ public class Console {
 		//checkEnemyAttack();				//Enemy attacks
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		//getNextRoom();
-
+		System.out.println("lol");
 		//Now you can move!
 		//checkCollision();
 		user.tick();
@@ -258,6 +258,7 @@ public class Console {
 		case KeyEvent.VK_W:
 			user.setDY(-user.getMoveSpeedStat());
 			setCanMove(e);
+			checkCollision();
 			//keyDown[0] = true;
 			break;
 		case KeyEvent.VK_A:
@@ -270,14 +271,14 @@ public class Console {
 		case KeyEvent.VK_S:
 			user.setDY(user.getMoveSpeedStat());
 			setCanMove(e);
-			checkCollision() ;
+			checkCollision();
 			//getNextRoom();
 			//keyDown[2] = true;
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(user.getMoveSpeedStat());
 			setCanMove(e);
-			checkCollision() ;
+			checkCollision();
 			//getNextRoom();
 			//keyDown[3] = true;
 			break;
@@ -305,7 +306,7 @@ public class Console {
 		default:
 			break;
 		}
-		//actionPerformed(e);
+		actionPerformed(e);
 
 	}
 
@@ -482,29 +483,40 @@ public class Console {
 	//purpose of the function and all that later.
 	public void checkCollision() {
 		//TODO have some boundary checks called in here		
+		/*
+		for(Interactions inter : interactionHash.keySet()) {
+			if(intCollisionTest(inter.getImage()) {
+				//make for loop
+				System.out.println("touching interaction");
 		System.out.println("Oh no, I hit a rock");
+		*/
 		/*
 		for(Interactions inter : interactionHash.keySet()) {
 			if(intCollisionTest(inter.getImage())) {
 				System.out.println("in the for loop");
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 				user.setDX(inter.getImage().getWidth());
 				user.setDY(inter.getImage().getHeight());
+<<<<<<< HEAD
+			}	
+=======
 			}
 				
 		}*/
 		for(Entry<Interactions, Coordinates> entry : interactionHash.entrySet()) {
 			System.out.println("Key =  " + entry.getKey() + ", Value = " + entry.getValue());
 			
-			if(intCollisionTest(entry.getKey().getImage())) {
-				System.out.println("in the if loop");
-				user.setDX(entry.getKey().getImage().getWidth());
-				user.setDY(entry.getKey().getImage().getHeight());
-			}
+			/*
+			 * if(intCollisionTest(entry.getKey().getImage())) {
+			 * System.out.println("in the if loop");
+			 * user.setDX(entry.getKey().getImage().getWidth());
+			 * user.setDY(entry.getKey().getImage().getHeight()); }
+			 */
 		}
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		System.out.println("im in the collision baybee");
+		System.out.println("im testing collision");
 		return (user.getCoordY() - image.getY() <= 50
 			&& user.getCoordY() - image.getY() >= -50
 			&& user.getCoordX() - image.getX() <= 50
