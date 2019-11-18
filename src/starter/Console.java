@@ -192,8 +192,6 @@ public class Console {
 			enemies.get(i).tick();
 			enemies.get(i).setStartX((int)enemies.get(i).getCoordX()+5);
 			enemies.get(i).setStartY(0);
-			//Timer timer = new Timer(DELAY_MS, null);
-			//timer.start();
 		}
 	}
 
@@ -227,12 +225,6 @@ public class Console {
 		//Now you can move!
 		checkCollision();
 		user.tick();
-		for(int i = 0; i < enemies.size(); i++) {
-			enemies.get(i).tick();
-			//Timer timer = new Timer(DELAY_MS, null);
-			//timer.start();
-		}
-
 	}
 
 	public void keyPressedManager(KeyEvent e) {
@@ -287,7 +279,7 @@ public class Console {
 		default:
 			break;
 		}
-		//actionPerformed(e);
+		actionPerformed(e);
 
 	}
 
@@ -295,9 +287,7 @@ public class Console {
 
 		keyInput = e.getKeyCode();
 		/*
-=======
 
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		if(keyInput == KeyEvent.VK_W) {
 			keyDown[0] = false;
 		}

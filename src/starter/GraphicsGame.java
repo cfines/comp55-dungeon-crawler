@@ -46,6 +46,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage enemyRep;
 	public GImage interactionRep;
 	public GImage floor;
+	public Timer enemyTimer;
+	public static final int DELAY_MS = 50;
+	public int degree = 0;
 	
 	//GRAPHICS Overlay Stuff
 	public GImage creditsImg;
@@ -79,17 +82,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
-		
-		/*for(int i = 0; i < tempEnem.size(); i++){
-			tempEnem.get(i).tick();
-		}*/
-		/*ArrayList<Enemy> tempEnem = game.getEnemies();
-		
-		for(Enemy enemy : tempEnem) {
-			enemy.tick();
-			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
-		}*/
-		
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		requestFocus();
 	}
@@ -98,7 +90,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		playRandomSoundForever();
 		addKeyListeners();
 		addMouseListeners();
-		
+	
 		inMenu = true;
 		runMainMenu();
 		
@@ -107,11 +99,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		stopRandomSound();
 		drawRoom();
-		ArrayList<Enemy> tempEnem = game.getEnemies();
-		for(Enemy enemy : tempEnem) {
-			enemy.tick();
-			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
-		}
 		
 		while(running) {
 			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
@@ -136,6 +123,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			room = game.getLocalCurrRoom();
 			
 		}
+		enemyTimer = new Timer(DELAY_MS, this);
+		enemyTimer.start();
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
@@ -145,24 +134,27 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	////////////////////////// USER INTERACTION WITH GRAPHICSGAME /////////////////////////////
 	
 	public void actionPerformed(KeyEvent ae) {
-		
-		
-		/*for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
-			entry.getKey().
-			game.getEnemies().get(i).tick();
-			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}*/
 		if(inMenu || game.getGamePaused()) { return; }		
+		
+		ArrayList<Enemy> tempEnem = game.getEnemies();
+		for(Enemy enemy : tempEnem) {
+			//enemy.tick();
+			//enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+		}
+		//enemyRep.move(20, 0);
+		enemyRep.movePolar(30, degree);
+		degree+=10;
+		degree = degree % 360;
 		
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
-		for(int i = 0; i < game.getEnemies().size(); i++) {
+		/*for(int i = 0; i < game.getEnemies().size(); i++) {
 			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}
+		}*/
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	
@@ -194,8 +186,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(pressedKey == KeyEvent.VK_ESCAPE) {
 			runPauseMenu();
 		} else {			
-			game.keyPressedManager(e);
-			actionPerformed(e);		
+			//game.keyPressedManager(e);
+			//actionPerformed(e);		
 		}
 		
 		switch(pressedKey) {
@@ -220,7 +212,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(inMenu || game.getGamePaused()) { return; }
 		
 		game.keyReleasedManager(e);
-		actionPerformed(e);
+		//actionPerformed(e);
 		
 	}
 	
