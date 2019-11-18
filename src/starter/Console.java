@@ -224,7 +224,6 @@ public class Console {
 		//if(!getCanMove()) { return; }	//Interaction blocks
 		//getNextRoom();
 		//Now you can move!
-		checkCollision();
 		user.tick();
 	}
 
@@ -405,12 +404,11 @@ public class Console {
 						user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
 					}
 					else if(user.getDY() > 0) {
-						user.getUserStats().setCoordX(user.getCoordY() - user.getMoveSpeedStat());					
+						user.getUserStats().setCoordY(user.getCoordY() - user.getMoveSpeedStat());					
 					}
 					else if(user.getDY() < 0) {
-						user.getUserStats().setCoordX(user.getCoordY() + user.getMoveSpeedStat());					
+						user.getUserStats().setCoordY(user.getCoordY() + user.getMoveSpeedStat());					
 					}
-				//}
 			}
 		}
 	}
@@ -552,7 +550,6 @@ public class Console {
 	}
 
 	public void generateRoom(String nextCurrRoom, String currFloor) {
-
 
 		System.out.println("Current level: " + currFloor);
 		System.out.println("Current room: " + nextCurrRoom);
