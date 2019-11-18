@@ -55,5 +55,8 @@ public class MenuPane extends GraphicsPane {
 		else if(obj == highScore) {
 			program.switchToHighScorePane();
 		}
+		else if(obj == credits) {
+			program.switchToCreditsPane();
+		}
 	}
 }
