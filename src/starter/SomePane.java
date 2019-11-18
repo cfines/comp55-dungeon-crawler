@@ -1,5 +1,6 @@
 package starter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -7,6 +8,7 @@ import acm.graphics.GObject;
 public class SomePane extends GraphicsPane {
 		private MainApplication program;
 		private GImage rock1, rock2, hole1, E1, background;
+		private ArrayList<GImage> elements = new ArrayList<GImage>();
 
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -20,24 +22,26 @@ public class SomePane extends GraphicsPane {
 		hole1.setSize(50, 50);
 		E1.setSize(50, 50);
 		background.setSize(1125, 550);
+		
+		elements.add(background);
+		elements.add(rock1);
+		elements.add(rock2);
+		elements.add(hole1);
+		elements.add(E1);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(background);
-		program.add(rock1);
-		program.add(rock2);
-		program.add(hole1);
-		program.add(E1);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.add(elements.get(i));
+		}
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(background);
-		program.remove(rock1);
-		program.remove(rock2);
-		program.remove(hole1);
-		program.remove(E1);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.remove(elements.get(i));
+		}
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package starter;
 
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R3;
+import RoomPanes.mapBase_R4;
 import acm.graphics.GImage;
 
 public class MainApplication extends GraphicsApplication {
@@ -13,6 +14,7 @@ public class MainApplication extends GraphicsApplication {
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R3 mapbase_R3;
+	private mapBase_R4 mapbase_R4;
 	private MenuPane menu;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
@@ -32,7 +34,7 @@ public class MainApplication extends GraphicsApplication {
 		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
-		//mapbase_R3 = new mapBase_R3(this);
+		mapbase_R3 = new mapBase_R3(this);
 		
 		
 		switchToMenu();
@@ -63,6 +65,10 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void switchToR3() {
 		switchToScreen(mapbase_R3);
+	}
+	
+	public void switchToR4() {
+		switchToScreen(mapbase_R4);
 	}
 
 	private void playRandomSound() {
