@@ -32,7 +32,7 @@ public class MainApplication extends GraphicsApplication {
 	private GImage menuScreen;
 	private int count;
 	private GraphicsGame game;
-
+	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
