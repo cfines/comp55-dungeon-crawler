@@ -1,6 +1,6 @@
 package starter;
 
-public class HighScorePane extends GraphicsPane {
+public class MainMenuPane extends GraphicsPane {
 
 	@Override
 	public void showContents() {
@@ -13,5 +13,5 @@ public class HighScorePane extends GraphicsPane {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }
