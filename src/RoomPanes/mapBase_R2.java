@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import starter.Console;
 import starter.GraphicsPane;
 import starter.MainApplication;
 
 public class mapBase_R2 extends GraphicsPane{
+	private Console game;
 	private MainApplication program;
 	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2, userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
@@ -23,8 +25,8 @@ public class mapBase_R2 extends GraphicsPane{
 		E3 = new GImage("entry_door_EAST.png",1040,300);
 		enemy1 = new GImage("FIRESkull.png", 350,76);
 		enemy2 = new GImage("FIRESkull.png", 367,504);
-		userRep = new GImage("");
-		enemy1.setSize(50,50);
+		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
+		userRep.setSize(75, 75);
 		enemy2.setSize(50,50);
 		rock1.setSize(50, 50);
 		hole2.setSize(50, 50);
