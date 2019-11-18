@@ -8,33 +8,27 @@ import acm.graphics.GObject;
 import starter.GraphicsPane;
 import starter.MainApplication;
 
-public class mapBase_R8 extends GraphicsPane{
+public class mapBase_R9 extends GraphicsPane{
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E14, E15, background;
+	private GImage E16, ENext, boss, background;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 
-	public mapBase_R8(MainApplication app) {
+	public mapBase_R9(MainApplication app) {
 		this.program = app;
-		rock1 = new GImage("obstacle_rock.png",150,425);
-		rock2 = new GImage("obstacle_rock.png",575,325);
-		hole1 = new GImage("obstacle_hole.png",901,325);
-		E14 = new GImage("entry_door_WEST.png",60,300);
-		E15 = new GImage("entry_bossDoor.png",575,60);
+		E16 = new GImage("entry_door_SOUTH.png",575,500);
+		ENext = new GImage("entry_stair.png",575,300);
+		boss = new GImage("Kirb_BOSS.gif", 575,200);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
-		rock1.setSize(75,75);
-		rock2.setSize(50,75);
-		hole1.setSize(75, 75);
-		E14.setSize(75,75);
-		E15.setSize(75, 75);
+		E16.setSize(75,75);
+		ENext.setSize(75, 75);
 		background.setSize(1125, 550);
+		boss.setSize(100, 100);
 		
 		elements.add(background);
-		elements.add(rock1);
-		elements.add(rock2);
-		elements.add(hole1);
-		elements.add(E14);
-		elements.add(E15);
+		elements.add(E16);
+		elements.add(boss);
+		elements.add(ENext);
 	}
 
 	@Override
@@ -57,11 +51,8 @@ public class mapBase_R8 extends GraphicsPane{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == E14) {
-			program.switchToR7();
-		}
-		else if(obj == E15) {
-			program.switchToR9();
+		if (obj == ENext) {
+			program.switchToMenu();
 		}
 	}
 }
