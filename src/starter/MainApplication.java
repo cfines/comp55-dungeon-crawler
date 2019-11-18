@@ -8,7 +8,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "nymano-skate-at-night-full-version.mp3" };
 
-	private SomePane somePane;
+	private SomePane somePane, mapBase_R1;
 	private MenuPane menu;
 	private GImage menuScreen;
 	private int count;
@@ -20,7 +20,8 @@ public class MainApplication extends GraphicsApplication {
 
 	public void run() {
 		System.out.println("Hello, world!");
-		somePane = new SomePane(this);
+		//somePane = new SomePane(this);
+		mapBase_R1 = new SomePane(this);
 		menu = new MenuPane(this);
 		switchToMenu();
 	}
@@ -34,6 +35,10 @@ public class MainApplication extends GraphicsApplication {
 	public void switchToSome() {
 		playRandomSound();
 		switchToScreen(somePane);
+	}
+	
+	public void switchToR1() {
+		switchToScreen(mapBase_R1);
 	}
 
 	private void playRandomSound() {
