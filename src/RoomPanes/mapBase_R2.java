@@ -1,6 +1,7 @@
 package RoomPanes;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -10,6 +11,7 @@ import starter.MainApplication;
 public class mapBase_R2 extends GraphicsPane{
 	private MainApplication program;
 	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2;
+	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -29,33 +31,33 @@ public class mapBase_R2 extends GraphicsPane{
 		E2.setSize(50, 50);
 		E3.setSize(50, 50);
 		background.setSize(1125, 550);
+		
+		elements.add(background);
+		elements.add(rock1);
+		elements.add(hole1);
+		elements.add(hole2);
+		elements.add(E2);
+		elements.add(E3);
+		elements.add(enemy1);
+		elements.add(enemy2);
+		
 	}
 
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
-		program.add(background);
-		program.add(rock1);
-		program.add(hole1);
-		program.add(hole2);
-		program.add(E2);
-		program.add(E3);
-		program.add(enemy1);
-		program.add(enemy2);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.add(elements.get(i));
+		}
 		
 	}
 
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
-		program.remove(background);
-		program.remove(rock1);
-		program.remove(hole1);
-		program.remove(hole2);
-		program.remove(E2);
-		program.remove(E3);
-		program.remove(enemy1);
-		program.remove(enemy2);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.remove(elements.get(i));
+		}
 		
 	}
 	

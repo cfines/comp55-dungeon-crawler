@@ -32,7 +32,7 @@ public class MainApplication extends GraphicsApplication {
 		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
-		//mapbase_R3 = new mapBase_R3(this);
+		mapbase_R3 = new mapBase_R3(this);
 		
 		
 		switchToMenu();
