@@ -1,5 +1,7 @@
 package starter;
 
+import java.awt.event.ActionListener;
+
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R3;
 import RoomPanes.mapBase_R4;
@@ -10,7 +12,7 @@ import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
 import acm.graphics.GImage;
 
-public class MainApplication extends GraphicsApplication {
+public class MainApplication extends GraphicsApplication implements ActionListener{
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	public static final String MUSIC_FOLDER = "sounds";
@@ -30,6 +32,7 @@ public class MainApplication extends GraphicsApplication {
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private Console g;
+	private AudioPlayer audio;
 	
 	private GImage menuScreen;
 	private int count;
@@ -54,8 +57,7 @@ public class MainApplication extends GraphicsApplication {
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
-		
-		
+		g = new Console();
 		switchToTitleScreen();
 	}
 	public void switchToTitleScreen() 
@@ -64,7 +66,6 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToMenu() {
-		playRandomSoundForever();
 		count++;
 		switchToScreen(menu);
 	}
@@ -78,8 +79,11 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToSome() {
-		//playRandomSound();
 		switchToScreen(somePane);
+		audio = AudioPlayer.getInstance();
+		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
+		g.playGame();
+		g.getUser().tick();
 	}
 	
 	public void switchToR2() {
@@ -115,7 +119,7 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	private void playRandomSoundForever() {
-		AudioPlayer audio = AudioPlayer.getInstance();
+		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length],true);
 	}
 }
