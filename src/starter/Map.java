@@ -179,7 +179,7 @@ public class Map{
 		HashMap<Boss,Coordinates> bossHash1 = new HashMap<Boss,Coordinates>();
 		}
 		
-		bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee, enteredEntries, enteredEntriesHash,bossHash);
+		//bruhMoment.runBase(userRoomPosition, curFloor, bruhMap, h, eee, enteredEntries, enteredEntriesHash,bossHash);
 		
 	}
 	

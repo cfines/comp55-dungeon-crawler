@@ -1,11 +1,8 @@
 package starter;
 import java.awt.Color;
-<<<<<<< HEAD
 import java.awt.event.KeyEvent;
-=======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -13,11 +10,8 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 
-<<<<<<< HEAD
-public class SomePane extends GraphicsPane {
-=======
+
 public class SomePane extends GraphicsPane implements ActionListener {
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	private MainApplication program;
 	private Hardcoded code;
 	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
@@ -38,7 +32,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 890, 200);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.FIRE);
+		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.FIRE, enemyType.FIRESkull);
 		user = new User(5, 5, 1000, 1, 300, 300);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
@@ -96,7 +90,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
@@ -108,18 +101,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		}
 	}
 
-	public void actionPerformed(KeyEvent ae) {
-
-		//Checks for...
-		//if(gamePaused) { return; }		//Game being paused
-		//checkEnemyAttack();				//Enemy attacks
-		//if(!getCanMove()) { return; }	//Interaction blocks
-		//getNextRoom();
-		//Now you can move!
-=======
-	public void actionPerformed(KeyEvent e) {
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-		user.tick();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		user.tick();		
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -165,7 +149,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			break;
 		}
 		
-		actionPerformed(e);
+		//actionPerformed(e);
 		
 	}
 

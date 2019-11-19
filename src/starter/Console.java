@@ -199,7 +199,7 @@ public class Console {
 
 	//I'm not too sure why we need this but I won't remove it for the sake of someone testing
 	public void run() {
-		Enemy tempEnemy = new Enemy(5,5,5,5,5,5,ElementType.FIRE);
+		Enemy tempEnemy = new Enemy(5,5,5,5,5,5,ElementType.FIRE, enemyType.FIRESkull);
 		HashMap<Enemy, Coordinates> enemyHash = getEnemyHash();
 
 		for(HashMap.Entry test2 : enemyHash.entrySet()) {

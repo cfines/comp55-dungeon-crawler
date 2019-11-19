@@ -12,6 +12,7 @@ import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
+import starter.enemyType;
 import starter.interactionType;
 
 public class mapBase_R3 extends GraphicsPane{
@@ -26,8 +27,8 @@ public class mapBase_R3 extends GraphicsPane{
 	
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
-		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH);
-		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE);
+		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
+		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,575,325);
