@@ -100,10 +100,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		room = game.getLocalCurrRoom();
 		drawRoom();
 		ArrayList<Enemy> tempEnem = game.getEnemies();
-		for(Enemy enemy : tempEnem) {
-			enemy.tick();
-			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
-		}
 		
 		while(running) {
 			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
@@ -128,6 +124,8 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			room = game.getLocalCurrRoom();
 			
 		}
+		Timer timer = new Timer(100, this);
+		timer.start();
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
@@ -138,12 +136,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	
 	public void actionPerformed(KeyEvent ae) {
 		
-		
-		/*for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
+		/*
+		for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
 			entry.getKey().
 			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
 		}*/
+		
 		if(inMenu || game.getGamePaused()) { return; }
 		
 		if((ae.getKeyCode() == KeyEvent.VK_W) || (ae.getKeyCode() == KeyEvent.VK_A) || (ae.getKeyCode() == KeyEvent.VK_S) || (ae.getKeyCode() == KeyEvent.VK_D)) {
@@ -154,13 +153,14 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		
 		//These two lines are responsible for moving User and its respective image
-		game.getUser().tick();
+		game.getUser().updatePlayerLoc();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
 		for(int i = 0; i < game.getEnemies().size(); i++) {
-			game.getEnemies().get(i).tick();
+			game.getEnemies().get(i).updateEnemyLoc();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
 		}
+		
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	
@@ -196,7 +196,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			runPauseMenu();
 		} else {			
 			game.keyPressedManager(e);
-			actionPerformed(e);		
+			//actionPerformed(e);		
 		}
 		
 		switch(pressedKey) {
@@ -221,7 +221,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(inMenu || game.getGamePaused()) { return; }
 		
 		game.keyReleasedManager(e);
-		actionPerformed(e);
+		//actionPerformed(e);
 		
 	}
 	

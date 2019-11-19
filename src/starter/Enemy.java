@@ -45,9 +45,9 @@ public class Enemy {
 		return startUp.getY();
 	}
 	
-	public void tick() {
-		enemyStats.setCoordX(getCoordX() + 5);
-		enemyStats.setCoordY(getCoordY() + 5);
+	public void updateEnemyLoc() {
+		//enemyStats.setCoordX(getCoordX() + 5);
+		//enemyStats.setCoordY(getCoordY() + 5);
 		setStartX(getCoordX() + 5);
 		setStartY(getCoordY() + 5);
 	}
@@ -59,7 +59,7 @@ public class Enemy {
 		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
 		while(1<5) {
-			derp.tick();
+			derp.updateEnemyLoc();
 			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		}
 	}

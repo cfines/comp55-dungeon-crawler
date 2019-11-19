@@ -59,7 +59,7 @@ public class User {
 		
 	}
 	
-	public void tick() {
+	public void updatePlayerLoc() {
 		userStats.setCoordX(userStats.getCoordX() + dx);
 		userStats.setCoordY(userStats.getCoordY() + dy);
 		if(userStats.getCoordX() <= 0) {
