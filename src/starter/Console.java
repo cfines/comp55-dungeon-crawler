@@ -232,38 +232,7 @@ public class Console {
 		keyInput = e.getKeyCode();
 		
 		switch(keyInput) {
-		/*case KeyEvent.VK_W:
-			//	checkCollision();
-				boolean moveUp = true;
-				if(moveUp == true) 
-				{
-					userRep.move(0, -user.getMoveSpeedStat());
-				}
-				break;
-			case KeyEvent.VK_A:
-			//	checkCollision();
-				boolean moveLeft = true;
-				if(moveLeft==true) 
-				{	
-					userRep.move(-user.getMoveSpeedStat(),0);
-				}
-				break;
-			case KeyEvent.VK_S:
-			//	checkCollision();
-				boolean moveDown = true;
-				if(moveDown == true) 
-				{
-					userRep.move(0, user.getMoveSpeedStat());
-				}
-				break;
-			case KeyEvent.VK_D:
-				//checkCollision();
-				boolean moveRight = true;
-				if(moveRight == true) 
-				{
-					userRep.move(user.getMoveSpeedStat(),0);
-				}
-				*/
+		
 		case KeyEvent.VK_W:
 			checkCollision();
 			moveUp =true;
