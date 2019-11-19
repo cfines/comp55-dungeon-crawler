@@ -79,12 +79,12 @@ public class mapBase_R2 extends GraphicsPane{
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E2) {
-			userRep.setLocation(1010,300);
 			program.switchToSome();
+			userRep.setLocation(1010,300);
 		}
 		else if(obj == E3) {
-			userRep.setLocation(90,300);
 			program.switchToR3();
+			userRep.setLocation(90,300);
 		}
 	}
 
