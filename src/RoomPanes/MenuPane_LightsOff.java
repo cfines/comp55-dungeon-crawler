@@ -24,7 +24,7 @@ public class MenuPane_LightsOff extends GraphicsPane /*implements ActionListener
 	public MenuPane_LightsOff(MainApplication app) {
 		super();
 		program = app;
-		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
+		menuScreen = new GImage("Main Menu (Lights off).png", 0, 0);
 		menuScreen.setSize(1155, 650);
 		play = new GButton("Play", 200, WINDOW_HEIGHT - 75, 150, 50);
 		highScore = new GButton("High Scores", 387.5, WINDOW_HEIGHT - 75, 150, 50);

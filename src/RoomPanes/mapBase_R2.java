@@ -46,6 +46,7 @@ public class mapBase_R2 extends GraphicsPane{
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
+
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);

@@ -33,7 +33,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean running = true;
 	public Timer timer;
 	public Floor f;
-	public MainApplication roomSwappin;
+	public MainApplication screenSwappin;
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
@@ -230,11 +230,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		if(toClick == menuPlay) {
 			removeAll();
 			inMenu = false;
+			//screenSwappin.switchToSome();
 		}
 		
 		//If "High Scores" button is selected in main menu
 		if(toClick == highScore) 
 		{
+			//screenSwappin.switchToHighScorePane();;
 			removeAll();
 			runHighScore();
 		}
@@ -242,6 +244,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//If "Credits" button is selected in main menu
 		if(toClick == credits) 
 		{
+			//screenSwappin.switchToCreditsPane();
 			stopRandomSound();
 			removeAll();
 			runCredits();
@@ -257,6 +260,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//If "Return" button is selected
 		if(toClick == goBack) 
 		{
+			//screenSwappin.switchToMenu();
 			removeAll();
 			stopRandomSound();
 			runMainMenu();
@@ -378,20 +382,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		voidSpace.setFilled(true);
 		add(voidSpace);
 		
-		
 		floor = new GImage("Base_Floor (Tutorial Floor).png", 15, 30);
 		floor.setSize(WINDOW_WIDTH-30, WINDOW_HEIGHT-100);
 		add(floor);
-		
-		weaponBoxOutline = new GRect(0,WINDOW_HEIGHT-100, 110,110);
-		weaponBoxOutline.setColor(Color.GRAY);
-		weaponBoxOutline.setFilled(true);
-		add(weaponBoxOutline);
-		
-		weaponBox = new GRect(5,WINDOW_HEIGHT-100,101,101);
-		weaponBox.setColor(Color.WHITE);
-		weaponBox.setFilled(true);
-		add(weaponBox);
 		
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
@@ -399,8 +392,9 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 
 		drawInteraction();
 		drawEnemy();
-		
+		//screenSwappin.switchToSome();
 		drawOverlay();
+		
 		if(game.getCurrFloor() == "map_base1") 
 		{
 			AudioPlayer a = AudioPlayer.getInstance();
@@ -470,11 +464,20 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawOverlay() {
-		drawSword();
 		drawHealth();
 		drawLevelLabel();
 		drawRoomLabel();
 		drawPortrait();
+		weaponBoxOutline = new GRect(0,WINDOW_HEIGHT-100, 110,110);
+		weaponBoxOutline.setColor(Color.GRAY);
+		weaponBoxOutline.setFilled(true);
+		add(weaponBoxOutline);
+		
+		weaponBox = new GRect(5,WINDOW_HEIGHT-100,101,101);
+		weaponBox.setColor(Color.WHITE);
+		weaponBox.setFilled(true);
+		add(weaponBox);
+		drawSword();
 	}
 	
 	public void drawSword()	{
