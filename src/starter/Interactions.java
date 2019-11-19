@@ -6,15 +6,15 @@ import acm.graphics.GImage;
 //them like obstacles
 public class Interactions {
 	interactionType inter;
-	int roomNum;
-	int numInter;
+	int coordX;
+	int coordY;
 	GImage image;
 
-	public Interactions(interactionType type, int roomNum, int numInter)
+	public Interactions(interactionType type, int coordX, int coordY)
 	{
 		inter = type;
-		this.roomNum = roomNum;
-		this.numInter = numInter;
+		this.coordX = coordX;
+		this.coordY = coordY;
 	}
 
 	// gets the interaction type from the interactionType enum
@@ -33,7 +33,7 @@ public class Interactions {
 
 	@Override
 	public String toString() {
-		return "room" + roomNum + "interaction" + numInter;
+		return "x:" + coordX + "y:" + coordY;
 	}
 
 	//test code for getImage function
