@@ -23,9 +23,9 @@ public class mapBase_R5 extends GraphicsPane{
 		this.program = app;
 		enemy1 = new GImage("FIRESkull.png", 575,325);
 		hole1 = new GImage("obstacle_hole.png",230,325);
-		E8 = new GImage("entry_door_NORTH.png",575,60);
-		E9 = new GImage("entry_door_SOUTH.png",575,490);
-		E10 = new GImage("entry_door_EAST.png",1040,300);
+		E8 = new GImage("entry_door_NORTH.png",575,28);
+		E9 = new GImage("entry_door_SOUTH.png",575,505);
+		E10 = new GImage("entry_door_EAST.png",1050,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);

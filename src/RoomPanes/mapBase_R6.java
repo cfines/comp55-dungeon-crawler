@@ -20,7 +20,7 @@ public class mapBase_R6 extends GraphicsPane{
 	public mapBase_R6(MainApplication app) {
 		this.program = app;
 		rock1 = new GImage("obstacle_rock.png",900,150);
-		E11 = new GImage("entry_door_NORTH.png",575,60);
+		E11 = new GImage("entry_door_NORTH.png",575,28);
 		key1 = new GImage("item_gif_key.gif", 575,300);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");

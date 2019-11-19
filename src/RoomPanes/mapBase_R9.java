@@ -19,7 +19,7 @@ public class mapBase_R9 extends GraphicsPane{
 
 	public mapBase_R9(MainApplication app) {
 		this.program = app;
-		E16 = new GImage("entry_door_SOUTH.png",575,500);
+		E16 = new GImage("entry_door_SOUTH.png",575,505);
 		ENext = new GImage("entry_stair.png",575,300);
 		boss = new GImage("Kirb_BOSS.gif", 575,200);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);

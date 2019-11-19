@@ -24,8 +24,8 @@ public class mapBase_R4 extends GraphicsPane{
 		enemy3 = new GImage("EARTHSkull.png",863,434);
 		hole1 = new GImage("obstacle_hole.png",900,100);
 		rock1 = new GImage("obstacle_rock.png",230,490);
-		E6 = new GImage("entry_door_WEST.png",60,300);
-		E7 = new GImage("entry_door_SOUTH.png",575,490);
+		E6 = new GImage("entry_door_WEST.png",27,300);
+		E7 = new GImage("entry_door_SOUTH.png",575,505);
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
