@@ -32,7 +32,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
-
+	
 	private int count;
 	
 	
@@ -57,6 +57,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		tittle = new TitleScreenPane(this);
 		switchToTitleScreen();
 	}
+	
 	public void switchToTitleScreen() 
 	{
 		switchToScreen(tittle);
