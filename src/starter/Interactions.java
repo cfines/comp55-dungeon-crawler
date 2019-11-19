@@ -15,6 +15,7 @@ public class Interactions {
 		inter = type;
 		this.coordX = coordX;
 		this.coordY = coordY;
+		setImage(type);
 	}
 
 	// gets the interaction type from the interactionType enum

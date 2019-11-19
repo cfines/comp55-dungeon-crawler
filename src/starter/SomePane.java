@@ -69,7 +69,6 @@ public class SomePane extends GraphicsPane {
 		}
 		game.playGame();
 		game.getUser().tick();
-		game.actionPerformed(ae);
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		program.add(you.get(0));
 		
