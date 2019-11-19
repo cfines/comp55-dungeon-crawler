@@ -1,5 +1,7 @@
 package starter;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 
-public class SomePane extends GraphicsPane {
+public class SomePane extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private Hardcoded code;
 	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
@@ -21,7 +23,6 @@ public class SomePane extends GraphicsPane {
 	private Console game;
 	private int keyInput;
 	private User user;
-
 
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -44,6 +45,7 @@ public class SomePane extends GraphicsPane {
 		E1 = iE1.getImage();
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
+		userRep.setLocation(90, 300);
 		enemy1 = ienemy1.getImage();
 		background.setSize(1125, 550);
 
@@ -69,12 +71,8 @@ public class SomePane extends GraphicsPane {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		for (Interactions inter : listOfInter) {
-			program.add(inter.getImage());
-		}
 		program.add(enemy1);
 		program.add(you.get(0));
-
 	}
 
 	@Override
@@ -86,26 +84,9 @@ public class SomePane extends GraphicsPane {
 		program.remove(you.get(0));
 	}
 
+	
 	@Override
-	public void mousePressed(MouseEvent e) {
-		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == E1) {
-			userRep.setLocation(90, 300);
-			program.switchToR2();
-		}
-		else if(obj == rock1) {
-			program.switchToMenu();
-		}
-	}
-
-	public void actionPerformed(KeyEvent ae) {
-
-		//Checks for...
-		//if(gamePaused) { return; }		//Game being paused
-		//checkEnemyAttack();				//Enemy attacks
-		//if(!getCanMove()) { return; }	//Interaction blocks
-		//getNextRoom();
-		//Now you can move!
+	public void actionPerformed(ActionEvent e) {
 		user.tick();
 	}
 
