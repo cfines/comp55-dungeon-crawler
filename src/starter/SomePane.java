@@ -25,7 +25,6 @@ public class SomePane extends GraphicsPane {
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.FIRE);
-		User player = new User(2,2,2,2,2,2);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
@@ -68,9 +67,6 @@ public class SomePane extends GraphicsPane {
 			program.add(inter.getImage());
 		}
 		program.add(enemy1);
-		game.playGame();
-		
-		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		program.add(you.get(0));
 		
