@@ -12,14 +12,14 @@ import starter.GButton;
 import starter.GraphicsPane;
 import starter.MainApplication;
 
-public class MenuPane_LightsOff extends GraphicsPane implements ActionListener{
+public class MenuPane_LightsOff extends GraphicsPane /*implements ActionListener*/{
 	private MainApplication program; // you will use program to get access to
 	// all of the GraphicsProgram calls
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	public GImage menuScreen;
 	public GButton play, highScore, credits, exit;
-	public Timer timer = new Timer(5000, this);
+	//public Timer timer = new Timer(5000, this);
 
 	public MenuPane_LightsOff(MainApplication app) {
 		super();
@@ -30,7 +30,7 @@ public class MenuPane_LightsOff extends GraphicsPane implements ActionListener{
 		highScore = new GButton("High Scores", 387.5, WINDOW_HEIGHT - 75, 150, 50);
 		credits = new GButton("Credits", 575, WINDOW_HEIGHT - 75, 150, 50);
 		exit = new GButton("Exit", 762.5, WINDOW_HEIGHT - 75, 150, 50);
-		timer.start();
+		//timer.start();
 	}
 
 	@Override
@@ -68,10 +68,10 @@ public class MenuPane_LightsOff extends GraphicsPane implements ActionListener{
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		program.switchToMenu();
-		
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		// TODO Auto-generated method stub
+//		program.switchToMenu();
+//		
+//	}
 }

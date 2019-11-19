@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class MenuPane extends GraphicsPane implements ActionListener{
+public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	public static final int WINDOW_WIDTH = 1155;
@@ -63,8 +63,8 @@ public class MenuPane extends GraphicsPane implements ActionListener{
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		program.switchToLightsOff();
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		program.switchToLightsOff();
+//	}
 }
