@@ -22,8 +22,8 @@ public class Interactions {
 		return inter;
 	}
 
-	public void setImage(interactionType inter, int x, int y) {
-		image = new GImage(inter + ".png", x, y);
+	public void setImage(interactionType inter) {
+		image = new GImage(inter + ".png", coordX, coordY);
 		image.setSize(75, 75);
 	}
 	
@@ -39,7 +39,7 @@ public class Interactions {
 	//test code for getImage function
 	public static void main(String[] args) {
 		Interactions bruh = new Interactions(interactionType.obstacle_rock, 1, 1);
-		bruh.setImage(bruh.getinteractionType(), 20, 20);
+		bruh.setImage(bruh.getinteractionType());
 		System.out.println(bruh.getImage().getSize());
 		System.out.println(bruh.getImage());
 	}
