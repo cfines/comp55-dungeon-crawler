@@ -34,19 +34,14 @@ public class SomePane extends GraphicsPane {
 		listOfEnemies.add(ienemy1);
 	
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
-		rock1 = new GImage("obstacle_rock.png",170,189);
-		rock2 = new GImage("obstacle_rock.png",890,200);
-		hole1 = new GImage("obstacle_hole.png",172,425);
-		E1 = new GImage("entry_door_EAST.png",1040,300);
+		rock1 = irock1.getImage();
+		rock2 = irock2.getImage();
+		hole1 = ihole1.getImage();
+		E1 = iE1.getImage();
 		userRep = new GImage("Rogue_(Sample User).gif");
 		enemy1 = new GImage("FIREBat.gif", 350,76);
 		background.setSize(1125, 550);
-		rock1.setSize(75, 75);
-		rock2.setSize(75, 75);
-		hole1.setSize(75, 75);
-		E1.setSize(75, 75);
-		userRep.setSize(75, 75);
-		enemy1.setSize(75, 75);
+		
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
