@@ -8,8 +8,12 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 import starter.Console;
+import starter.ElementType;
+import starter.Enemy;
 import starter.GraphicsPane;
+import starter.Interactions;
 import starter.MainApplication;
+import starter.interactionType;
 
 public class mapBase_R2 extends GraphicsPane{
 	private Console game;
@@ -19,26 +23,29 @@ public class mapBase_R2 extends GraphicsPane{
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
 	private ArrayList<GImage> you = new ArrayList<GImage>();
+	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		rock1 = new GImage("obstacle_rock.png",100,9);
-		hole2 = new GImage("obstacle_hole.png",500,91);
-		hole1 = new GImage("obstacle_hole.png",575,400);
-		E2 = new GImage("entry_door_WEST.png",27,300);
-		E3 = new GImage("entry_door_EAST.png",1050,300);
-		enemy1 = new GImage("FIREBat.gif", 350,76);
-		enemy2 = new GImage("FIRESkull.png", 367,504);
+		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 100,9);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 500,91);
+		Interactions ihole2 = new Interactions(interactionType.obstacle_hole, 575,400);
+		Interactions iE2 = new Interactions(interactionType.entry_door_WEST,27,300);
+		Interactions iE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.EARTH);
+		Enemy ienemy2 = new Enemy(2,2,2,2,367,504, ElementType.WATER);
+		rock1 = irock1.getImage();
+		hole2 = ihole2.getImage();
+		hole1 = ihole1.getImage();
+		E2 = iE2.getImage();
+		E3 = iE3.getImage();
+		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
+		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		enemy1.setSize(75,75);
-		enemy2.setSize(75,75);
-		rock1.setSize(75,75);
-		hole2.setSize(75,75);
-		hole1.setSize(75,75);
-		E2.setSize(75,75);
-		E3.setSize(75,75);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
