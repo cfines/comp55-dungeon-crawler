@@ -18,8 +18,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	private ArrayList<GRect> space = new ArrayList<GRect>();
-	private ArrayList<GImage> you = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private Console game;
 	private int keyInput;
@@ -56,19 +54,18 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		voidSpace.setFilled(true);
 		game = new Console();
 
-		space.add(voidSpace);
 		elements.add(background);
 		elements.add(rock1);
 		elements.add(rock2);
 		elements.add(hole1);
 		elements.add(E1);
 		elements.add(enemy1);
-		you.add(userRep);
+		elements.add(userRep);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(space.get(0));
+		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
@@ -76,17 +73,15 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.add(inter.getImage());
 		}
 		program.add(enemy1);
-		program.add(you.get(0));
 
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(space.get(0));
+		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
-		program.remove(you.get(0));
 	}
 
 	@Override

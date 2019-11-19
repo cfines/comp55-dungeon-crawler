@@ -34,8 +34,7 @@ public class Console {
 	private HashMap<String,ArrayList<Coordinates>> enteredEntriesHash = new HashMap<String,ArrayList<Coordinates>>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private ArrayList<Coordinates> entries = new ArrayList<Coordinates>();
-	private Boolean[] keyDown = new Boolean[9];
-	private boolean canMove = true;
+	private boolean moveUp, moveLeft, moveRight, moveDown;
 
 	//Room Traversal
 	private String floorWeOn = new String();
@@ -233,28 +232,67 @@ public class Console {
 		keyInput = e.getKeyCode();
 		
 		switch(keyInput) {
+		/*case KeyEvent.VK_W:
+			//	checkCollision();
+				boolean moveUp = true;
+				if(moveUp == true) 
+				{
+					userRep.move(0, -user.getMoveSpeedStat());
+				}
+				break;
+			case KeyEvent.VK_A:
+			//	checkCollision();
+				boolean moveLeft = true;
+				if(moveLeft==true) 
+				{	
+					userRep.move(-user.getMoveSpeedStat(),0);
+				}
+				break;
+			case KeyEvent.VK_S:
+			//	checkCollision();
+				boolean moveDown = true;
+				if(moveDown == true) 
+				{
+					userRep.move(0, user.getMoveSpeedStat());
+				}
+				break;
+			case KeyEvent.VK_D:
+				//checkCollision();
+				boolean moveRight = true;
+				if(moveRight == true) 
+				{
+					userRep.move(user.getMoveSpeedStat(),0);
+				}
+				*/
 		case KeyEvent.VK_W:
 			checkCollision();
+			moveUp =true;
+			if(moveUp == true) 
+			{
 			user.setDY(-user.getMoveSpeedStat());
-			//keyDown[0] = true;
+			}
 			break;
 		case KeyEvent.VK_A:
 			checkCollision();
+			moveLeft = true;
+			if(moveLeft==true) 
+			{
 			user.setDX(-user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[1] = true;
+			}
 			break;
 		case KeyEvent.VK_S:
 			checkCollision();
+			moveDown = true;
+			if(moveDown == true) {
 			user.setDY(user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[2] = true;
+			}
 			break;
 		case KeyEvent.VK_D:
 			checkCollision();
+			moveRight = true;
+			if(moveRight == true) {
 			user.setDX(user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[3] = true;
+			}
 			break;
 		case KeyEvent.VK_E:
 			//keyDown[4] = true;
@@ -286,21 +324,21 @@ public class Console {
 	public void keyReleasedManager(KeyEvent e) {
 
 		keyInput = e.getKeyCode();
-		/*
+		
 
 		if(keyInput == KeyEvent.VK_W) {
-			keyDown[0] = false;
+			moveUp = false;
 		}
 		if(keyInput == KeyEvent.VK_A) {
-			keyDown[1] = false;
+			moveLeft = false;
 		}
 		if(keyInput == KeyEvent.VK_S) {
-			keyDown[2] = false;
+			moveDown = false;
 		}
 		if(keyInput == KeyEvent.VK_D) {
-			keyDown[3] = false;
+			moveRight = false;
 		}
-		if(keyInput == KeyEvent.VK_E) {
+		/*if(keyInput == KeyEvent.VK_E) {
 			keyDown[4] = false;
 		}
 		if(keyInput == KeyEvent.VK_UP) {

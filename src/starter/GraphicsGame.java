@@ -83,6 +83,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public HashMap<Enemy, Coordinates> ggEnemyHash;
 	public ArrayList<Enemy> ggEnemyArray;
 	public Move moveEnem;
+	public User user;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -151,7 +152,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
-		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
+		userRep.move(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
 		/*for(int i = 0; i < game.getEnemies().size(); i++) {
 			game.getEnemies().get(i).tick();
@@ -175,7 +176,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 		
 	}
-	
+	@Override
 	public void keyPressed(KeyEvent e) {
 	
 		if(game.getGamePaused() && (pressedKey == KeyEvent.VK_ESCAPE)) {
@@ -191,6 +192,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			game.keyPressedManager(e);
 			actionPerformed(e);		
 		}
+		
 		
 		switch(pressedKey) {
 		case KeyEvent.VK_UP:

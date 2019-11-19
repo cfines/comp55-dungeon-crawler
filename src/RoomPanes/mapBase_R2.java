@@ -21,9 +21,7 @@ public class mapBase_R2 extends GraphicsPane{
 	private MainApplication program;
 	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
-	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
-	private ArrayList<GImage> you = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	
@@ -64,7 +62,6 @@ public class mapBase_R2 extends GraphicsPane{
 		voidSpace.setFilled(true);
 		background.setSize(1125, 550);
 		
-		space.add(voidSpace);
 		elements.add(background);
 		elements.add(rock1);
 		elements.add(hole1);
@@ -73,25 +70,23 @@ public class mapBase_R2 extends GraphicsPane{
 		elements.add(E3);
 		elements.add(enemy1);
 		elements.add(enemy2);
-		you.add(userRep);
+		elements.add(userRep);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(space.get(0));
+		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.add(you.get(0));
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(space.get(0));
+		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
-		program.remove(you.get(0));
 	}
 	
 	@Override
