@@ -1,5 +1,7 @@
 package starter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
@@ -7,13 +9,14 @@ import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class MenuPane extends GraphicsPane {
+public class MenuPane extends GraphicsPane implements ActionListener{
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	public GImage menuScreen;
 	public GButton play, highScore, credits, exit;
+	//public Timer timer = new Timer(5000, this);
 
 	public MenuPane(MainApplication app) {
 		super();
@@ -33,6 +36,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(highScore);
 		program.add(credits);
 		program.add(exit);
+		//timer.start();
 	}
 
 	@Override
@@ -59,5 +63,10 @@ public class MenuPane extends GraphicsPane {
 		else if(obj == credits) {
 			program.switchToCreditsPane();
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		program.switchToLightsOff();
 	}
 }

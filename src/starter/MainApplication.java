@@ -2,6 +2,7 @@ package starter;
 
 import java.awt.event.ActionListener;
 
+import RoomPanes.MenuPane_LightsOff;
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R3;
 import RoomPanes.mapBase_R4;
@@ -10,7 +11,6 @@ import RoomPanes.mapBase_R6;
 import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
-import acm.graphics.GImage;
 
 public class MainApplication extends GraphicsApplication implements ActionListener{
 	public static final int WINDOW_WIDTH = 1155;
@@ -29,6 +29,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R9 mapbase_R9;
 	private TitleScreenPane tittle;
 	private MenuPane menu;
+	private MenuPane_LightsOff lightsoff;
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
@@ -44,6 +45,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
 		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
@@ -111,6 +113,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR9() {
 		switchToScreen(mapbase_R9);
+	}
+	
+	public void switchToLightsOff() {
+		switchToScreen(lightsoff);
 	}
 
 	private void playRandomSoundForever() {
