@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.ElementType;
+import starter.Enemy;
 import starter.GraphicsPane;
+import starter.Interactions;
 import starter.MainApplication;
+import starter.interactionType;
 
 public class mapBase_R3 extends GraphicsPane{
 	private MainApplication program;
@@ -17,23 +21,36 @@ public class mapBase_R3 extends GraphicsPane{
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
 	private ArrayList<GImage> you = new ArrayList<GImage>();
+	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
-		enemy1 = new GImage("EARTHSkull.png", 800,70);
-		enemy2 = new GImage("WATERBat.gif",575,487);
-		E4 = new GImage("entry_door_WEST.png",27,300);
-		E5 = new GImage("entry_door_EAST.png",1050,300);
-		rock1 = new GImage("obstacle_rock.png",575,325);
-		hole1 = new GImage("obstacle_hole.png",230,163);
+		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH);
+		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE);
+		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
+		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		Interactions irock1 = new Interactions(interactionType.obstacle_rock,575,325);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,230,163);
+		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
+		E4 = iE4.getImage();
+		E5 = iE5.getImage();
+		rock1 = irock1.getImage();
+		hole1 = ihole1.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
+		
+		listOfEnemies.add(ienemy2);
+		listOfEnemies.add(ienemy1);
+		
+		listOfInter.add(ihole1);
+		listOfInter.add(iE5);
+		listOfInter.add(iE4);
+		listOfInter.add(irock1);
+
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		enemy1.setSize(75, 75);
-		enemy2.setSize(75,75);
-		E4.setSize(75, 75);
-		E5.setSize(75, 75);
-		rock1.setSize(75, 75);
+
 		hole1.setSize(200, 200);
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);

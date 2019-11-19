@@ -12,7 +12,8 @@ public class Enemy {
 	private Stats enemyStats;
 	private int moveSpeedStat;
 	private double powerStat;
-	private ElementType enemyType;
+	private ElementType elementType;
+	private enemyType EnemyType;
 	private int dx, dy;
 	private GImage image;
 	public int degree = 0;
@@ -20,7 +21,7 @@ public class Enemy {
 	Enemy(){};
 	
 	public Enemy (int input_HP_cur, int input_HP_tot, int atkTime,
-			int input_dmg, int input_x, int input_y, ElementType bossType)
+			int input_dmg, int input_x, int input_y, ElementType element, enemyType enemy)
 	{
 		startUp = new Coordinates(input_x, input_y);
 		dx = input_x;
@@ -28,17 +29,18 @@ public class Enemy {
 		enemyStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		moveSpeedStat = 5;
 		powerStat = 5;
-		this.enemyType = bossType;
-		setImage(bossType);
+		elementType = element;
+		EnemyType = enemy;
+		setImage(enemy);
 	}
 	
 	public ElementType getEnemyType() 
 	{
-		return enemyType;
+		return elementType;
 	}
 	
-	public void setImage(ElementType type) {
-		image = new GImage(type + "Skull.png", dx, dy);
+	public void setImage(enemyType type) {
+			image = new GImage(type + ".png", dx, dy);
 		image.setSize(75, 75);
 	}
 	
@@ -74,7 +76,7 @@ public class Enemy {
 	}
 	
 	public static void main(String[] args) {
-		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE);
+		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
 		derp.setStartX(10);
 		derp.setStartY(5);
 		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());

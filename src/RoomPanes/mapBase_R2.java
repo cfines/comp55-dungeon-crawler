@@ -13,6 +13,7 @@ import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
+import starter.enemyType;
 import starter.interactionType;
 
 public class mapBase_R2 extends GraphicsPane{
@@ -34,15 +35,25 @@ public class mapBase_R2 extends GraphicsPane{
 		Interactions ihole2 = new Interactions(interactionType.obstacle_hole, 575,400);
 		Interactions iE2 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.EARTH);
-		Enemy ienemy2 = new Enemy(2,2,2,2,367,504, ElementType.WATER);
+		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.EARTH, enemyType.EARTHSkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,367,504, ElementType.WATER, enemyType.WATERSkull);
 		rock1 = irock1.getImage();
 		hole2 = ihole2.getImage();
 		hole1 = ihole1.getImage();
 		E2 = iE2.getImage();
 		E3 = iE3.getImage();
+		
+		listOfInter.add(irock1);
+		listOfInter.add(ihole1);
+		listOfInter.add(ihole2);
+		listOfInter.add(iE2);
+		listOfInter.add(iE3);
+		
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
+		
+		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
