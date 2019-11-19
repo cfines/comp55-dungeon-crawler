@@ -14,8 +14,6 @@ public class fire_R1 extends GraphicsPane{
 	private MainApplication program;
 	private GImage E1, background, userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
-	private ArrayList<GImage> you = new ArrayList<GImage>();
-	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
 
 	public fire_R1(MainApplication app) {
@@ -30,28 +28,25 @@ public class fire_R1 extends GraphicsPane{
 		voidSpace.setFilled(true);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		space.add(voidSpace);
 		elements.add(background);
 		elements.add(E1);
-		you.add(userRep);
+		elements.add(userRep);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(space.get(0));
+		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.add(you.get(0));
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(space.get(0));
+		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
-		program.remove(you.get(0));
 	}
 
 	@Override
