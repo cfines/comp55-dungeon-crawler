@@ -34,7 +34,7 @@ public class mapBase_R3 extends GraphicsPane{
 		E4.setSize(75, 75);
 		E5.setSize(75, 75);
 		rock1.setSize(75, 75);
-		hole1.setSize(75, 75);
+		hole1.setSize(200, 200);
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);

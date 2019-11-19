@@ -36,7 +36,7 @@ public class SomePane extends GraphicsPane {
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
-		userRep = new GImage("Rogue_(Sample User).gif", 275,300);
+		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		enemy1 = ienemy1.getImage();
 		background.setSize(1125, 550);
@@ -84,8 +84,8 @@ public class SomePane extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
-			program.switchToR2();
 			userRep.setLocation(90, 300);
+			program.switchToR2();
 		}
 		else if(obj == rock1) {
 			program.switchToMenu();

@@ -35,7 +35,7 @@ public class mapBase_R2 extends GraphicsPane{
 		enemy1.setSize(75,75);
 		enemy2.setSize(75,75);
 		rock1.setSize(75,75);
-		hole2.setSize(75,75);
+		hole2.setSize(200,200);
 		hole1.setSize(75,75);
 		E2.setSize(75,75);
 		E3.setSize(75,75);
@@ -79,12 +79,12 @@ public class mapBase_R2 extends GraphicsPane{
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E2) {
-			program.switchToSome();
 			userRep.setLocation(1010,300);
+			program.switchToSome();
 		}
 		else if(obj == E3) {
-			program.switchToR3();
 			userRep.setLocation(90,300);
+			program.switchToR3();
 		}
 	}
 

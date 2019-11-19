@@ -30,7 +30,7 @@ public class mapBase_R8 extends GraphicsPane{
 		userRep.setSize(75, 75);
 		rock1.setSize(75,75);
 		rock2.setSize(75,75);
-		hole1.setSize(75, 75);
+		hole1.setSize(200, 200);
 		E14.setSize(75,75);
 		E15.setSize(75, 75);
 		background.setSize(1125, 550);

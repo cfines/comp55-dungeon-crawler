@@ -11,6 +11,7 @@ import RoomPanes.mapBase_R6;
 import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
+import acm.graphics.GImage;
 
 public class MainApplication extends GraphicsApplication implements ActionListener{
 	public static final int WINDOW_WIDTH = 1155;
@@ -33,6 +34,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
+	private GImage userRep;
 	
 	private int count;
 	
@@ -57,6 +59,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
+		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep.setSize(75, 75);
 		switchToTitleScreen(); //change which screen you want to switch to
 	}
 	
@@ -79,6 +83,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
+		userRep.setLocation(275,290);
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
