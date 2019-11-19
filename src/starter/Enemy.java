@@ -23,10 +23,13 @@ public class Enemy {
 			int input_dmg, int input_x, int input_y, ElementType bossType)
 	{
 		startUp = new Coordinates(input_x, input_y);
+		dx = input_x;
+		dy = input_y;
 		enemyStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		moveSpeedStat = 5;
 		powerStat = 5;
 		this.enemyType = bossType;
+		setImage(bossType);
 	}
 	
 	public ElementType getEnemyType() 
@@ -34,8 +37,8 @@ public class Enemy {
 		return enemyType;
 	}
 	
-	public void setImage(ElementType type, int x, int y) {
-		image = new GImage(type + "Skull.png", x, y);
+	public void setImage(ElementType type) {
+		image = new GImage(type + "Skull.png", dx, dy);
 		image.setSize(75, 75);
 	}
 	
