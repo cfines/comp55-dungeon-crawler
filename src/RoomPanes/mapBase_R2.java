@@ -35,7 +35,7 @@ public class mapBase_R2 extends GraphicsPane{
 		enemy1.setSize(75,75);
 		enemy2.setSize(75,75);
 		rock1.setSize(75,75);
-		hole2.setSize(75,75);
+		hole2.setSize(200,200);
 		hole1.setSize(75,75);
 		E2.setSize(75,75);
 		E3.setSize(75,75);
