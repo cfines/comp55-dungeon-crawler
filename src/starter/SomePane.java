@@ -21,10 +21,12 @@ public class SomePane extends GraphicsPane {
 		
 	public SomePane(MainApplication app) {
 		this.program = app;
-		Interactions  = new Interactions(interactionType.obstacle_rock, 1, 2);
-		Interactions  = new Interactions(interactionType.obstacle_hole, 1, 3);
-		Interactions  = new Interactions(interactionType.entry_door_EAST, 1, 4);
-		Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
+		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 170,189);
+		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 890, 200);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
+		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
+		Enemy ienemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
+		User player = new User(2,2,2,2,2,2);
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
 		rock1 = new GImage("obstacle_rock.png",170,189);
 		rock2 = new GImage("obstacle_rock.png",890,200);
