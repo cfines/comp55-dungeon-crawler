@@ -61,7 +61,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		tittle = new TitleScreenPane(this);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		switchToTitleScreen(); //change which screen you want to switch to
+		switchToSome(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 

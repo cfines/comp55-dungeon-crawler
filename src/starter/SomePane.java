@@ -44,7 +44,6 @@ public class SomePane extends GraphicsPane {
 		E1 = iE1.getImage();
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		enemy1 = ienemy1.getImage();
 		background.setSize(1125, 550);
 
@@ -108,7 +107,6 @@ public class SomePane extends GraphicsPane {
 		//getNextRoom();
 		//Now you can move!
 		user.tick();
-		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 	}
 
 	public void keyPressed(KeyEvent e) {
