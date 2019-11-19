@@ -40,7 +40,12 @@ public class Enemy {
 	}
 	
 	public void setImage(enemyType type) {
+		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat) {
+			image = new GImage(type + ".gif", dx, dy);
+		}
+		else {
 			image = new GImage(type + ".png", dx, dy);
+		}
 		image.setSize(75, 75);
 	}
 	
