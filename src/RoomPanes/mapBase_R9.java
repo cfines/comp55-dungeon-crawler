@@ -64,5 +64,8 @@ public class mapBase_R9 extends GraphicsPane{
 		if (obj == ENext) {
 			program.switchToMenu();
 		}
+		else if(obj == E16) {
+			program.switchToR8();
+		}
 	}
 }

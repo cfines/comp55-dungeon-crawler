@@ -1,7 +1,8 @@
 package starter;
 
-import java.awt.Color;
 import java.awt.event.MouseEvent;
+
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;

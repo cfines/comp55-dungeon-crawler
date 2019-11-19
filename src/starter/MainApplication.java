@@ -32,7 +32,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
-	
+
 	private int count;
 	
 	
