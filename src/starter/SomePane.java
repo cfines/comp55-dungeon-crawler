@@ -40,6 +40,7 @@ public class SomePane extends GraphicsPane {
 		E1 = iE1.getImage();
 		userRep = new GImage("Rogue_(Sample User).gif");
 		enemy1 = ienemy1.getImage();
+		userRep.setSize(75, 75);
 		background.setSize(1125, 550);
 		
 		voidSpace = new GRect(0,0);
@@ -69,6 +70,7 @@ public class SomePane extends GraphicsPane {
 		}
 		program.add(enemy1);
 		game.playGame();
+		
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		program.add(you.get(0));
