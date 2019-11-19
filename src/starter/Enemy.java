@@ -1,12 +1,18 @@
 package starter;
 
-public class Enemy {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import acm.graphics.GImage;
+
+public class Enemy implements ActionListener{
 	private Coordinates startUp;
 	private Stats enemyStats;
 	private int moveSpeedStat;
 	private double powerStat;
 	private ElementType enemyType;
 	private int dx, dy;
+	private GImage image;
 	
 	Enemy(){};
 	
@@ -23,6 +29,15 @@ public class Enemy {
 	public ElementType getEnemyType() 
 	{
 		return enemyType;
+	}
+	
+	public void setImage(ElementType type, int x, int y) {
+		image = new GImage(type + "Skull.png", x, y);
+		image.setSize(75, 75);
+	}
+	
+	public GImage getImage() {
+		return image;
 	}
 	
 	public Stats getEnemyStats() {
@@ -45,9 +60,9 @@ public class Enemy {
 		return startUp.getY();
 	}
 	
-	public void updateEnemyLoc() {
-		//enemyStats.setCoordX(getCoordX() + 5);
-		//enemyStats.setCoordY(getCoordY() + 5);
+	public void tick() {
+		enemyStats.setCoordX(getCoordX() + 5);
+		enemyStats.setCoordY(getCoordY() + 5);
 		setStartX(getCoordX() + 5);
 		setStartY(getCoordY() + 5);
 	}
@@ -59,8 +74,14 @@ public class Enemy {
 		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
 		while(1<5) {
-			derp.updateEnemyLoc();
+			derp.tick();
 			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

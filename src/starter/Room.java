@@ -79,88 +79,35 @@ public class Room {
 		return map.getBossSpawn();
 	}
 	
-	/*
+	
 	public void testCase() {
 		String currMapTest = "map_base1";
-		Coordinates dang = new Coordinates(30,50);
-		Coordinates inTheWay = new Coordinates (25,70);
-		Enemy badGuy = new Enemy(1, 1, 1, 1, 1, 1, ElementType.FIRE);
-		HashMap <Enemy, Coordinates> eS = new HashMap <Enemy, Coordinates>();
-		HashMap<Interactions,Coordinates> ree = new HashMap<Interactions,Coordinates>();
-		Map map = new Map();
-		Interactions inter = new Interactions(interactionType.obstacle_rock);
-		map.setInteractions(inter, inTheWay, ree);
-		System.out.println("The current room the user is in is: " + currMapTest);
-		System.out.println("There is an enemy that is of type: " + badGuy.getEnemyType());
-		//The functions commented out only work in the Map class and nowhere else, not even here
-		map.setEnemySpawn(badGuy, dang, eS);	
-		System.out.println("This enemy is located on: \nX = " + eS.get(badGuy).getX());
-		//System.out.println(map.getEnemyRoomX());
-		System.out.println("Y = " + eS.get(badGuy).getY());
-		//System.out.println(map.getEnemyRoomY());
-		System.out.println("There is an interaction that is of this type: " + inter.getinteractionType());
-		System.out.println("This interaction is located on: X = " + ree.get(inter).getX() + " Y = " + ree.get(inter).getY());
-		System.out.println("\nNow testing for 2!\n");                                         
-		Enemy thirteenPercent = new Enemy(50,99,44,22,11,69,ElementType.EARTH);                      
-		Coordinates majorityOfCrime = new Coordinates(69,420);   
-		map.setEnemySpawn(thirteenPercent, majorityOfCrime, eS);
-		System.out.println("This new enemy is of type: " + thirteenPercent.getEnemyType());
-		System.out.println("This new enemy is located on: \nX = " + eS.get(thirteenPercent).getX());
-		System.out.println("X = " + eS.get(thirteenPercent).getY());
-		Interactions interracial = new Interactions(interactionType.obstacle_wallShort);
-		Coordinates bruhItsInTheWay = new Coordinates(77,777);
-		map.setInteractions(interracial, bruhItsInTheWay, ree);
-		System.out.println("There is now a new interaction. It is of type: " + interracial.getinteractionType());
-		System.out.println("This interaction is located on: X = " + ree.get(interracial).getX() + " Y = " + ree.get(interracial).getY());
-		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		HashMap<String, String> mapHashCurrMap;
-		int temp;
 		MapLayout layout = new MapLayout();
+		HashMap<String, String> mapHashCurrMap;
+		ArrayList<String> numOfEntries;
+		
 		layout.setEntryAmountBasedonLayout(currMapTest);
-		temp = layout.getEntryAmountofLayout();
+		int temp = layout.getEntryAmountofLayout();
 		layout.setEntryAmount(temp);
 		layout.setMapHash(currMapTest);
 		mapHashCurrMap = layout.getMapHash(currMapTest);
 		
-		System.out.println("\nThe current map (which would be recieved from Floor) is 'map_base1'.");
-		System.out.println("The amount of entries is: " + temp);
-		System.out.println("The size of the ArrayList for entries is: " + layout.getEntryAmount().size());
-		System.out.println("The player enters E1 of 'map_base1' and should exit out of E2. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(0)));
-		System.out.println("The player enters E2 of 'map_base1' and should exit out of E1. Does it?: " + mapHashCurrMap.get(layout.getEntryAmount().get(1)));
-		
-		/*
-		int temp2;
-		MapRooms rooms = new MapRooms();
-		HashMap<String, String> mapHashCurrMap2;
-		rooms.setRoomAmountBasedonLayout(currMapTest);
-		temp2 = rooms.getRoomAmountofLayout();
-		rooms.setRoomAmount(temp2);
-		rooms.setMapRoomHash(currMapTest);
-		mapHashCurrMap2 = rooms.getMapRoomHash(currMapTest);
-		
-		System.out.println("\nCurrent map is 'map_base1'");
-		System.out.println("The amount of entries is: " + temp2);
-		System.out.println("The size of the ArrayList for entries is: " + rooms.getRoomAmount().size());
-		System.out.println("User enters E1 and exits from E2. E2 should be in R2. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(1)));
-		System.out.println("User enters E2 and exits from E1. E1 should be in R1. Is it?: " + mapHashCurrMap2.get(rooms.getRoomAmount().get(0)));
-		
-		
-		ArrayList<String> entriesInRoom = new ArrayList<String>();
-		String currRoom = "R2";
-		System.out.println("\nThe current room is R2. Which entries are in R2?");
-		System.out.println("Entry amount size: " + layout.getEntryAmount());
-		
+		String nextEntry, nextRoom;
+		nextEntry = mapHashCurrMap.get(layout.getEntryAmount().get(2));
+		System.out.println("E1 to E2?: " + mapHashCurrMap.get(layout.getEntryAmount().get(0)));
+		System.out.println("E2 to E1?: " + mapHashCurrMap.get(layout.getEntryAmount().get(1)));
+		System.out.println("E3 to E4?: " + mapHashCurrMap.get(layout.getEntryAmount().get(2)));
+		System.out.println("E4 to E3?: " + mapHashCurrMap.get(layout.getEntryAmount().get(3)));
 		
 		setEntryToRoom(currMapTest);
-		entriesInRoom = setEtoRAmount(layout.getEntryAmount(), currRoom);
+		numOfEntries = setEtoRAmount(layout.getEntryAmount(), currMapTest);
 		
-		for (int i = 0; i <= entriesInRoom.size() - 1; i++) {
-			System.out.println("Entries: " + entriesInRoom.get(i));
-		}
+		System.out.println("E1 to R1?: " + getMapBaseEtoR().get("E1"));
+		System.out.println("E2 to R2?: " + getMapBaseEtoR().get("E2"));
+		System.out.println("E3 to R2?: " + getMapBaseEtoR().get("E3"));
+		System.out.println("E4 to R3?: " + getMapBaseEtoR().get("E4"));
 	}
-	*/
+
 	
 	private HashMap <String, String> mapBaseEtoR = new HashMap<String, String>();
 	
@@ -187,6 +134,7 @@ public class Room {
 			getMapBaseEtoR().put("E2", "R2"); 
 			getMapBaseEtoR().put("E3", "R2");
 			getMapBaseEtoR().put("E4", "R3");
+			/*
 			getMapBaseEtoR().put("E5", "R3");
 			getMapBaseEtoR().put("E6", "R4");
 			getMapBaseEtoR().put("E7", "R4");
@@ -199,6 +147,7 @@ public class Room {
 			getMapBaseEtoR().put("E14", "R8");
 			getMapBaseEtoR().put("E15", "R8");
 			getMapBaseEtoR().put("E16", "R9");//TBD
+			*/
 		}
 		else if(currLayout == "map_fire") {
 			//TBD
@@ -222,6 +171,6 @@ public class Room {
 	
 	public static void main(String[] args) {
 		Room test = new Room();
-		//test.testCase();
+		test.testCase();
 	}	
 }

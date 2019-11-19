@@ -89,9 +89,13 @@ public class Hardcoded
 				Coordinates enemy1 = new Coordinates(400,209);
 				bruhMap.setEnteredEntries("E1", E1, enteredEntriesArrayList, enteredEntriesHash);
 				Interactions roomOneInteraction1 = new Interactions(interactionType.obstacle_rock, 1, 1);
+				roomOneInteraction1.setImage(interactionType.obstacle_rock, 170, 189);
 				Interactions roomOneInteraction2 = new Interactions(interactionType.obstacle_rock, 1, 2);
+				roomOneInteraction2.setImage(interactionType.obstacle_rock, 890, 200);
 				Interactions roomOneInteraction3 = new Interactions(interactionType.obstacle_hole, 1, 3);
-				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door, 1, 4);
+				roomOneInteraction3.setImage(interactionType.obstacle_hole, 172, 425);
+				Interactions roomOneInteraction4 = new Interactions(interactionType.entry_door_EAST, 1, 4);
+				roomOneInteraction4.setImage(interactionType.entry_door_EAST, 1040, 300);
 				Enemy roomOneEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
 				bruhMap.setInteractions(roomOneInteraction1, rock1, h);
 				bruhMap.setInteractions(roomOneInteraction2, rock2, h);
@@ -116,8 +120,8 @@ public class Hardcoded
 				Interactions roomTwoInteraction3 = new Interactions(interactionType.obstacle_hole, 2, 3);
 				Enemy roomTwoEnemy1 = new Enemy(2, 2, 2, 2, 2, 2, ElementType.EARTH);
 				Enemy roomTwoEnemy2 = new Enemy(2,2,2,2,2,2, ElementType.FIRE);
-				Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door, 2, 4);
-				Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door, 2, 5);
+				Interactions roomTwoInteraction4 = new Interactions(interactionType.entry_door_WEST, 2, 4);
+				Interactions roomTwoInteraction5 = new Interactions(interactionType.entry_door_EAST, 2, 5);
 				bruhMap.setInteractions(roomTwoInteraction1, rock1, h);
 				bruhMap.setInteractions(roomTwoInteraction2, hole1, h);
 				bruhMap.setInteractions(roomTwoInteraction3, hole2, h);
@@ -141,8 +145,8 @@ public class Hardcoded
 			Coordinates hole1 = new Coordinates (230,163);
 			Enemy roomThreeEnemy1 = new Enemy(2,2,2,2,2,2, ElementType.WATER);
 			Enemy roomThreeEnemy2 = new Enemy(2,2,2,2,2,2, ElementType.WATER);
-			Interactions roomThreeInteraction1 = new Interactions(interactionType.entry_door, 3,1);
-			Interactions roomThreeInteraction2 = new Interactions(interactionType.entry_door,3,2);
+			Interactions roomThreeInteraction1 = new Interactions(interactionType.entry_door_WEST, 3,1);
+			Interactions roomThreeInteraction2 = new Interactions(interactionType.entry_door_EAST,3,2);
 			Interactions roomThreeInteraction3 = new Interactions(interactionType.obstacle_rock, 3, 3);
 			Interactions roomThreeInteraction4 = new Interactions(interactionType.obstacle_hole, 3,4);
 			bruhMap.setInteractions(roomThreeInteraction1, E4, h);
@@ -170,8 +174,8 @@ public class Hardcoded
 			Enemy roomFourEnemy3 = new Enemy(2,2,2,2,2,2, ElementType.EARTH);
 			Interactions roomFourInteraction1 = new Interactions(interactionType.obstacle_hole,4,1);
 			Interactions roomFourInteraction2 = new Interactions(interactionType.obstacle_rock,4,2);
-			Interactions roomFourInteraction3 = new Interactions(interactionType.entry_door, 4,3);
-			Interactions roomFourInteraction4 = new Interactions(interactionType.entry_door,4,4);
+			Interactions roomFourInteraction3 = new Interactions(interactionType.entry_door_WEST, 4,3);
+			Interactions roomFourInteraction4 = new Interactions(interactionType.entry_door_SOUTH,4,4);
 			bruhMap.setEnemySpawn(roomFourEnemy1, enemy1, eee);
 			bruhMap.setEnemySpawn(roomFourEnemy2, enemy2, eee);
 			bruhMap.setEnemySpawn(roomFourEnemy3, enemy3, eee);
@@ -194,9 +198,9 @@ public class Hardcoded
 			bruhMap.setEnteredEntries("E10", E10, enteredEntriesArrayList, enteredEntriesHash);
 			Enemy roomFiveEnemy1 = new Enemy(2,2,2,2,2,2,ElementType.EARTH);
 			Interactions roomFiveInteraction1 = new Interactions(interactionType.obstacle_hole,5,1);
-			Interactions roomFiveInteraction2 = new Interactions(interactionType.entry_door,5,2);
-			Interactions roomFiveInteraction3 = new Interactions(interactionType.entry_door,5,3);
-			Interactions roomFiveInteraction4 = new Interactions(interactionType.entry_door,5,4);
+			Interactions roomFiveInteraction2 = new Interactions(interactionType.entry_door_NORTH,5,2);
+			Interactions roomFiveInteraction3 = new Interactions(interactionType.entry_door_SOUTH,5,3);
+			Interactions roomFiveInteraction4 = new Interactions(interactionType.entry_door_EAST,5,4);
 			bruhMap.setEnemySpawn(roomFiveEnemy1, enemy1, eee);
 			bruhMap.setInteractions(roomFiveInteraction1, hole1, h);
 			bruhMap.setInteractions(roomFiveInteraction2, E8, h);
@@ -212,7 +216,7 @@ public class Hardcoded
 			bruhMap.setEnteredEntries("E11", E11, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates key1 = new Coordinates(575,300);
 			Interactions roomSixInteraction1 = new Interactions(interactionType.obstacle_rock,6,1);
-			Interactions roomSixInteraction2 = new Interactions(interactionType.entry_door,6,2);
+			Interactions roomSixInteraction2 = new Interactions(interactionType.entry_door_NORTH,6,2);
 			Interactions roomSixInteraction3 = new Interactions(interactionType.item_gif_key,6,3);
 			bruhMap.setInteractions(roomSixInteraction1, rock1, h);
 			bruhMap.setInteractions(roomSixInteraction2, E11, h);
@@ -231,8 +235,8 @@ public class Hardcoded
 			Coordinates enemy2 = new Coordinates(575,250);
 			Coordinates enemy3 = new Coordinates(575,420);
 			Interactions roomSevenInteraction1 = new Interactions(interactionType.obstacle_rock,7,1);
-			Interactions roomSevenInteraction2 = new Interactions(interactionType.entry_door,7,2);
-			Interactions roomSevenInteraction3 = new Interactions(interactionType.entry_door,7,3);
+			Interactions roomSevenInteraction2 = new Interactions(interactionType.entry_door_WEST,7,2);
+			Interactions roomSevenInteraction3 = new Interactions(interactionType.entry_door_EAST,7,3);
 			Enemy roomSevenEnemy1 = new Enemy (2,2,2,2,2,2, ElementType.FIRE);
 			Enemy roomSevenEnemy2 = new Enemy (2,2,2,2,2,2, ElementType.EARTH);
 			Enemy roomSevenEnemy3 = new Enemy (2,2,2,2,2,2, ElementType.FIRE);
@@ -257,7 +261,7 @@ public class Hardcoded
 			Interactions roomEightInteraction1 = new Interactions(interactionType.obstacle_rock,8,1);
 			Interactions roomEightInteraction2 = new Interactions(interactionType.obstacle_rock,8,2);
 			Interactions roomEightInteraction3 = new Interactions(interactionType.obstacle_hole,8,3);
-			Interactions roomEightInteraction4 = new Interactions(interactionType.entry_door,8,4);
+			Interactions roomEightInteraction4 = new Interactions(interactionType.entry_door_WEST,8,4);
 			Interactions roomEightInteraction5 = new Interactions(interactionType.entry_bossDoor,8,5);
 			bruhMap.setInteractions(roomEightInteraction1, rock1, h);
 			bruhMap.setInteractions(roomEightInteraction2, rock2, h);
@@ -274,7 +278,7 @@ public class Hardcoded
 			bruhMap.setEnteredEntries("E16", E16, enteredEntriesArrayList, enteredEntriesHash);
 			Coordinates stairs1 = new Coordinates(575, 100);	//TODO make sure that these don't appear until the boss is dead
 			//Boss roomNineBoss1 = new Boss(10,10,2,2,2,2, ElementType.EARTH);	//TODO decide which boss we want first
-			Interactions roomNineInteraction1 = new Interactions(interactionType.entry_door,9,1);
+			Interactions roomNineInteraction1 = new Interactions(interactionType.entry_door_SOUTH,9,1);
 			Interactions roomNineInteraction2 = new Interactions(interactionType.entry_stair,9,2);
 			//bruhMap.setBossSpawn(roomNineBoss1, boss1, bbb);
 			bruhMap.setInteractions(roomNineInteraction1, E16, h);

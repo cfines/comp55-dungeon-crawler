@@ -3,7 +3,7 @@ package starter;
 import java.util.ArrayList;
 
 public class Floor {
-
+	
 	private Map curMap;
 	//private PowerUps key;
 	//private PowerUps drop;
@@ -15,11 +15,6 @@ public class Floor {
 	}
 	
 	//this is for key placement
-	//there can only be 1 key per floor
-	private void placeKey() 
-	{
-		
-	}
 	
 	private int levelCounter = 0;
 	private ArrayList<String> map = new ArrayList<String>();

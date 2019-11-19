@@ -1,12 +1,14 @@
 package starter;
 
 
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 
 import acm.program.GraphicsProgram;
 
-public abstract class GraphicsApplication extends GraphicsProgram {
+public abstract class GraphicsApplication extends GraphicsProgram implements ActionListener, KeyListener  {
 	private GraphicsPane curScreen;
 	
 	public GraphicsApplication() {
