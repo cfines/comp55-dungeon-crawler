@@ -73,9 +73,11 @@ public class mapBase_R3 extends GraphicsPane{
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E4) {
 			program.switchToR2();
+			userRep.setLocation(1010,300);
 		}
 		else if(obj == E5) {
 			program.switchToR4();
+			userRep.setLocation(90,300);
 		}
 	}
 

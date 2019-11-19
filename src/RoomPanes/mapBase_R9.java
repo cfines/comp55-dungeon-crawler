@@ -66,6 +66,7 @@ public class mapBase_R9 extends GraphicsPane{
 		}
 		else if(obj == E16) {
 			program.switchToR8();
+			userRep.setLocation(575,485);
 		}
 	}
 }
