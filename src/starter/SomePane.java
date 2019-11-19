@@ -9,7 +9,6 @@ import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane {
 		private MainApplication program;
-		private Hardcoded code;
 		private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
 		private ArrayList<GImage> elements = new ArrayList<GImage>();
 		private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
