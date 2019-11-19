@@ -82,6 +82,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public String room;
 	public HashMap<Enemy, Coordinates> ggEnemyHash;
 	public ArrayList<Enemy> ggEnemyArray;
+	public Move moveEnem;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -137,14 +138,16 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		ArrayList<Enemy> tempEnem = game.getEnemies();
 		for(Enemy enemy : tempEnem) {
-			//enemy.tick();
+			enemy.tick();
+			
 			//enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
+			
 		}
-		//enemyRep.move(20, 0);
+		/*
 		enemyRep.movePolar(30, degree);
 		degree+=10;
 		degree = degree % 360;
-		
+		*/
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();

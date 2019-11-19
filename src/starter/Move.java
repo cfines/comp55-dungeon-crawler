@@ -5,16 +5,17 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
-import starter.Enemy;
 
 public class Move implements ActionListener {
 	GImage enemyRep;
 	private Timer enemTimer = new Timer(50, this);
 	public int degree = 0;
 	
-	public Move() {
+	public Move(GImage enemyRep) {
+		this.enemyRep = enemyRep;
 		enemTimer.start();
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -22,5 +23,4 @@ public class Move implements ActionListener {
 		degree+=10;
 		degree = degree % 360;
 	}
-	
 }

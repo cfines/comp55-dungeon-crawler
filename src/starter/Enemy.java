@@ -3,9 +3,11 @@ package starter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Timer;
+
 import acm.graphics.GImage;
 
-public class Enemy implements ActionListener{
+public class Enemy {
 	private Coordinates startUp;
 	private Stats enemyStats;
 	private int moveSpeedStat;
@@ -13,6 +15,7 @@ public class Enemy implements ActionListener{
 	private ElementType enemyType;
 	private int dx, dy;
 	private GImage image;
+	public int degree = 0;
 	
 	Enemy(){};
 	
@@ -78,10 +81,5 @@ public class Enemy implements ActionListener{
 			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		}
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
