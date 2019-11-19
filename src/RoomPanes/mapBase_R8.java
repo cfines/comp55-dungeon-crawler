@@ -16,6 +16,7 @@ public class mapBase_R8 extends GraphicsPane{
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
+	private ArrayList<GImage> you = new ArrayList<GImage>();
 	
 	public mapBase_R8(MainApplication app) {
 		this.program = app;
@@ -45,6 +46,7 @@ public class mapBase_R8 extends GraphicsPane{
 		elements.add(hole1);
 		elements.add(E14);
 		elements.add(E15);
+		you.add(userRep);
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class mapBase_R8 extends GraphicsPane{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.add(you.get(0));
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class mapBase_R8 extends GraphicsPane{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
-		
+		program.remove(you.get(0));
 	}
 
 	@Override

@@ -16,6 +16,7 @@ public class mapBase_R7 extends GraphicsPane{
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<GRect> space = new ArrayList<GRect>();
 	private GRect voidSpace;
+	private ArrayList<GImage> you = new ArrayList<GImage>();
 
 	public mapBase_R7(MainApplication app) {
 		this.program = app;
@@ -48,6 +49,7 @@ public class mapBase_R7 extends GraphicsPane{
 		elements.add(rock1);
 		elements.add(E12);
 		elements.add(E13);
+		you.add(userRep);
 	}
 
 	@Override
@@ -56,6 +58,7 @@ public class mapBase_R7 extends GraphicsPane{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.add(you.get(0));
 	}
 
 	@Override
@@ -64,7 +67,7 @@ public class mapBase_R7 extends GraphicsPane{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
-		
+		program.remove(you.get(0));
 	}
 
 	@Override

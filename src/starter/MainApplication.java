@@ -57,7 +57,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
-		switchToSome(); //change which screen you want to switch to
+		switchToTitleScreen(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 

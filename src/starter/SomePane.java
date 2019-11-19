@@ -36,7 +36,7 @@ public class SomePane extends GraphicsPane {
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
-		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep = new GImage("Rogue_(Sample User).gif", 275,300);
 		userRep.setSize(75, 75);
 		enemy1 = ienemy1.getImage();
 		background.setSize(1125, 550);
@@ -67,7 +67,6 @@ public class SomePane extends GraphicsPane {
 			program.add(inter.getImage());
 		}
 		program.add(enemy1);
-		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		program.add(you.get(0));
 		
 	}
