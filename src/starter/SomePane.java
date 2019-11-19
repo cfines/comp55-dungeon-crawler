@@ -37,8 +37,8 @@ public class SomePane extends GraphicsPane {
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
 		userRep = new GImage("Rogue_(Sample User).gif");
-		enemy1 = ienemy1.getImage();
 		userRep.setSize(75, 75);
+		enemy1 = ienemy1.getImage();
 		background.setSize(1125, 550);
 		
 		voidSpace = new GRect(0,0);
