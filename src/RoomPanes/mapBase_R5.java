@@ -78,7 +78,7 @@ public class mapBase_R5 extends GraphicsPane{
 		}
 		else if(obj == E9) {
 			program.switchToR6();
-			userRep.setLocation(575,485);
+			userRep.setLocation(575,435);
 		}
 		else if(obj == E10) {
 			program.switchToR7();
