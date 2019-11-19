@@ -32,11 +32,13 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public boolean firstSwordCall = true;
 	public boolean running = true;
 	public Timer timer;
+	public Floor f;
+	public MainApplication roomSwappin;
 	
 	//GRAPHICS Door/Entries
 	public static final int DOOR_WIDTH = 50;
 	public static final int DOOR_HEIGHT = 50;
-	public GRect entry;
+	public GImage entry;
 	public GImage stairs;
 	
 	//GRAPHICS Room Creation and Entity Representation
@@ -45,25 +47,35 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public GImage enemyRep;
 	public GImage interactionRep;
 	public GImage floor;
+	public Timer enemyTimer;
+	public static final int DELAY_MS = 50;
+	public int degree = 0;
 	
 	//GRAPHICS Overlay Stuff
+	public GImage creditsImg;
+	public GImage hiScore;
+	public GImage text;
 	public GImage weapon;
+	public GImage portrait;
 	public GLabel health;
 	public GLabel levelLabel;
 	public GLabel roomLabel;
 	public GRect weaponBox;
 	public GRect weaponBoxOutline;
+	public GRect emptySpace;
+	public GImage title;
 	
 	//GRAPHICS Menu Stuff
 	public GImage menuScreen;
-	public GButton menuPlay, highScore, credits, exit;
+	public GButton menuPlay, highScore, credits, exit, goBack;
 	public GRect menuPause;
 	public GButton menuPauseReturn;
 	
 	//AUDIO Sound Stuff
 	public static final String MUSIC_FOLDER = "sounds";
-	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
+	private static final String[] SOUND_FILES = { "main_menu_background.mp3"};
 	private int count;
+	public AudioPlayer audio = AudioPlayer.getInstance();
 	
 	//Misc. Important Stuff
 	public GObject toClick;
@@ -72,34 +84,23 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	public ArrayList<Enemy> ggEnemyArray;
 	
 	public void init() {
-		
-		/*for(int i = 0; i < tempEnem.size(); i++){
-			tempEnem.get(i).tick();
-		}*/
-		/*ArrayList<Enemy> tempEnem = game.getEnemies();
-		
-		for(Enemy enemy : tempEnem) {
-			enemy.tick();
-			enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
-		}*/
-		
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		requestFocus();
 	}
 	
 	public void run() {
-		playRandomSound();
+		playRandomSoundForever();
 		addKeyListeners();
 		addMouseListeners();
-		
+	
 		inMenu = true;
 		runMainMenu();
 		
 		game = new Console();
 		game.playGame();
 		room = game.getLocalCurrRoom();
+		stopRandomSound();
 		drawRoom();
-		ArrayList<Enemy> tempEnem = game.getEnemies();
 		
 		while(running) {
 			//System.out.println("USER LOCATION: X=" + game.getUser().getCoordX() + ", Y=" + game.getUser().getCoordY());
@@ -122,10 +123,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 				drawRoom();
 			}
 			room = game.getLocalCurrRoom();
-			
 		}
-		Timer timer = new Timer(100, this);
-		timer.start();
 	}
 	
 	////////////////////////// END OF INSTANCE VARIABLES AND RUN /////////////////////////////
@@ -135,32 +133,27 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	////////////////////////// USER INTERACTION WITH GRAPHICSGAME /////////////////////////////
 	
 	public void actionPerformed(KeyEvent ae) {
+		if(inMenu || game.getGamePaused()) { return; }		
 		
-		/*
-		for(HashMap.Entry<Enemy, Coordinates> entry : ggEnemyHash.entrySet()) {
-			entry.getKey().
-			game.getEnemies().get(i).tick();
-			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}*/
-		
-		if(inMenu || game.getGamePaused()) { return; }
-		
-		if((ae.getKeyCode() == KeyEvent.VK_W) || (ae.getKeyCode() == KeyEvent.VK_A) || (ae.getKeyCode() == KeyEvent.VK_S) || (ae.getKeyCode() == KeyEvent.VK_D)) {
-			game.setCanMove(ae);
+		ArrayList<Enemy> tempEnem = game.getEnemies();
+		for(Enemy enemy : tempEnem) {
+			//enemy.tick();
+			//enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
 		}
-		if(!game.getCanMove()) { return; }
-		
+		//enemyRep.move(20, 0);
+		enemyRep.movePolar(30, degree);
+		degree+=10;
+		degree = degree % 360;
 		
 		
 		//These two lines are responsible for moving User and its respective image
-		game.getUser().updatePlayerLoc();
+		game.getUser().tick();
 		userRep.setLocation(game.getUser().getCoordX(), game.getUser().getCoordY());
 		
-		for(int i = 0; i < game.getEnemies().size(); i++) {
-			game.getEnemies().get(i).updateEnemyLoc();
+		/*for(int i = 0; i < game.getEnemies().size(); i++) {
+			game.getEnemies().get(i).tick();
 			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}
-		
+		}*/
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	
@@ -178,14 +171,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		//System.out.println("IMAGE LOCATION: X=" + userRep.getX() + ", Y=" + userRep.getY());
 		//System.out.println("USER WEAPON: " + game.getUser().getWeaponEquipedString());
 		
-		System.out.println("Can move: " + game.getCanMove());
-		
 	}
 	
 	public void keyPressed(KeyEvent e) {
 	
 		if(game.getGamePaused() && (pressedKey == KeyEvent.VK_ESCAPE)) {
-
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
@@ -196,21 +186,25 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			runPauseMenu();
 		} else {			
 			game.keyPressedManager(e);
-			//actionPerformed(e);		
+			actionPerformed(e);		
 		}
 		
 		switch(pressedKey) {
 		case KeyEvent.VK_UP:
 			drawAttack(e);
+			System.out.println("up");
 			break;
 		case KeyEvent.VK_LEFT:
 			drawAttack(e);
+			System.out.println("left");
 			break;
 		case KeyEvent.VK_DOWN:
 			drawAttack(e);
+			System.out.println("down");
 			break;
 		case KeyEvent.VK_RIGHT:
 			drawAttack(e);
+			System.out.println("right");
 			break;
 		}
 		
@@ -235,11 +229,34 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			inMenu = false;
 		}
 		
+		//If "High Scores" button is selected in main menu
+		if(toClick == highScore) 
+		{
+			removeAll();
+			runHighScore();
+		}
+		
+		//If "Credits" button is selected in main menu
+		if(toClick == credits) 
+		{
+			stopRandomSound();
+			removeAll();
+			runCredits();
+		}
+		
 		//If "Return" button is selected in pause menu
 		if(toClick == menuPauseReturn) {
 			remove(menuPause);
 			remove(menuPauseReturn);
 			game.setGamePaused(false);
+		}
+		
+		//If "Return" button is selected
+		if(toClick == goBack) 
+		{
+			removeAll();
+			stopRandomSound();
+			runMainMenu();
 		}
 		
 	}
@@ -278,10 +295,39 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		while(inMenu) {
 			
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
-
+			//System.out.println("You are in the menu!");
+			String yes = new String();
+			yes = " ";
+			
 					
 		}
+	}
+	
+	public void runCredits() 
+	{
+		int WINDOW_WIDTH = 1155, WINDOW_HEIGHT = 650;
+		creditsImg = new GImage("Credits.gif", 25,0);
+		text = new GImage("Credits text.png", 10,0);
+		creditsImg.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+		AudioPlayer audio = AudioPlayer.getInstance();
+		emptySpace = new GRect(1155,650);
+		emptySpace.setColor(Color.black);
+		emptySpace.setFilled(true);
+		add(emptySpace);
+		add(creditsImg);
+		add(text);
+		add(goBack);
+		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
+	}
+	
+	public void runHighScore() 
+	{
+		hiScore = new GImage("High Scores.png",0,0);
+		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		goBack = new GButton("Return", 1000,0, 150,50);
+		add(hiScore);
+		add(goBack);
 	}
 	
 	public void runPauseMenu() {
@@ -300,16 +346,20 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		add(menuPauseReturn);
 		
 		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
+		//functionality of this is that it doens't update character location.
+		//inMenu is mainly used to let the game know that we aren't playing the game yet- the most important
 		//functionality of this is that it doens't update character location. 
 		while(inMenu) {
 					
 			//DO NOT REMOVE- GImages for testDraw() don't work without this message for whatever reason
-			System.out.println("You are in the menu!");
 					
+			//System.out.println("You are in the menu!");
+				String yes = new String();
+				yes = " ";
 		}
-		
-		
 	}
+		
+		
 	
 	//////////////////////////// END OF MENU CALLS ///////////////////////////////////////////////////
 	
@@ -340,7 +390,6 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		
-		
 		userRep = new GImage("Rogue_(Sample User).gif", game.getUser().getCoordX(), game.getUser().getCoordY());
 		userRep.setSize(75, 75);
 		add(userRep);
@@ -349,7 +398,11 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawEnemy();
 		
 		drawOverlay();
-
+		if(game.getCurrFloor() == "map_base1") 
+		{
+			AudioPlayer a = AudioPlayer.getInstance();
+			a.playSoundWithOptions(MUSIC_FOLDER, "Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3", true);
+		}
 		
 	}
 	
@@ -365,11 +418,27 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			
 			// TODO: check if the entry's hard coded coordinates actually correspond to where theyre placed.
 			
-			if(tempInteraction.getinteractionType() == interactionType.entry_door) {
-				entry = new GRect(tempCoord.getX(), tempCoord.getY(), DOOR_WIDTH, DOOR_HEIGHT);
-				entry.setFillColor(Color.CYAN);
+			if(tempInteraction.getinteractionType() == interactionType.entry_door_NORTH) {
+				entry = new GImage("entry_door_NORTH",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
 				add(entry);
-			} else {
+			} 
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_EAST) {
+				entry = new GImage("entry_door_EAST.png",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
+				add(entry);
+			} 
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_SOUTH) {
+				entry = new GImage("entry_door_SOUTH",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
+				add(entry);
+			}
+			else if(tempInteraction.getinteractionType() == interactionType.entry_door_WEST) {
+				entry = new GImage("entry_door_WEST",tempCoord.getX(), tempCoord.getY());
+				entry.setSize(DOOR_WIDTH, DOOR_HEIGHT);
+				add(entry);
+			} 
+			else {
 				interactionRep = new GImage(tempInteraction.getinteractionType() + ".png", tempCoord.getX(), tempCoord.getY());
 				interactionRep.setSize(75, 75);
 				add(interactionRep);
@@ -390,7 +459,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			Coordinates tempCoord = ggEnemyHash.get(test.getKey());
 			
 			
-			enemyRep = new GImage(tempEnemy.getEnemyType() + "Skull.png", tempCoord.getX(), tempCoord.getY());
+			enemyRep = new GImage(tempEnemy.getEnemyType() + "Bat.gif", tempCoord.getX(), tempCoord.getY());
 			enemyRep.setSize(75, 75);
 			add(enemyRep);
 		}
@@ -402,6 +471,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		drawHealth();
 		drawLevelLabel();
 		drawRoomLabel();
+		drawPortrait();
 	}
 	
 	public void drawSword()	{
@@ -424,22 +494,29 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		}
 	}
 	
+	public void drawPortrait() 
+	{
+		portrait = new GImage("User_Portrait.png", 0,20);
+		portrait.setSize(75,75);
+		add(portrait);
+	}
+	
 	public void drawHealth() {
-		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 10, 50);
+		health = new GLabel("HP: " + game.getUser().getUserStats().getHP_cur() + " / " + game.getUser().getUserStats().getHP_tot(), 76, 50);
 		health.setFont("Arial-Bold-22");
 		health.setColor(Color.red);
 		add(health);
 	}
 	
 	public void drawLevelLabel() {
-		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 10, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + game.getLevelCounter(), 76, 70);
 		levelLabel.setFont("Arial-Bold-22");
 		levelLabel.setColor(Color.red);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel() {
-		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 10, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + game.getLocalCurrRoom(), 76, 90);
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
@@ -451,17 +528,22 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	}
 	
 	public void drawAttack(KeyEvent e) {
+		System.out.println("I'm attacking");
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
+			userRep.setImage("Rogue_Attack(Up).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_LEFT:
+			userRep.setImage("Rogue_Attack(Left).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_DOWN:
+			userRep.setImage("Rogue_Attack(Down).png");
 			//add attack animation
 			break;
 		case KeyEvent.VK_RIGHT:
+			userRep.setImage("Rogue_Attack(Right).png");
 			//add attack animation
 			break;
 		}
@@ -476,6 +558,17 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void stopRandomSound() {
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.stopSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
+	}
+	
+	private void playRandomSoundForever() 
+	{
+		AudioPlayer audio = AudioPlayer.getInstance();
+		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length], true);
 	}
 	
 	///////////////////////////// END OF AUDIO CALLS //////////////////////////////////////////////
