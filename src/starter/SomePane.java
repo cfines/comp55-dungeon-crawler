@@ -2,7 +2,6 @@ package starter;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -10,7 +9,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 
-public class SomePane extends GraphicsPane implements ActionListener{
+public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private Hardcoded code;
 	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
@@ -31,7 +30,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.FIRE);
-		user = new User(2,2,2,2,2,2);
+		user = new User(5, 5, 1000, 1, 300, 300);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
@@ -86,7 +85,7 @@ public class SomePane extends GraphicsPane implements ActionListener{
 
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(KeyEvent e) {
 		user.tick();
 	}
 
@@ -132,6 +131,8 @@ public class SomePane extends GraphicsPane implements ActionListener{
 		default:
 			break;
 		}
+		
+		actionPerformed(e);
 		
 	}
 
