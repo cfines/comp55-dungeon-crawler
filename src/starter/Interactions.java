@@ -24,7 +24,12 @@ public class Interactions {
 	}
 
 	public void setImage(interactionType inter) {
-		image = new GImage(inter + ".png", coordX, coordY);
+		if(inter == interactionType.item_gif_key) {
+			image = new GImage(inter + ".gif", coordX, coordY);
+		}
+		else {
+			image = new GImage(inter + ".png", coordX, coordY);
+		}
 		image.setSize(75, 75);
 	}
 	

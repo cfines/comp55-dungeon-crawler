@@ -7,40 +7,56 @@ import java.util.ArrayList;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.ElementType;
+import starter.Enemy;
 import starter.GraphicsPane;
+import starter.Interactions;
 import starter.MainApplication;
+import starter.enemyType;
+import starter.interactionType;
 
 public class mapBase_R4 extends GraphicsPane{
 	private MainApplication program;
 	private GImage enemy1, enemy2, enemy3, hole1, rock1, E6, E7, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
+	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
-		enemy1 = new GImage("FIRESkull.png", 575,216);
-		enemy2 = new GImage("WATERBat.gif",575,434);
-		enemy3 = new GImage("EARTHSkull.png",863,434);
-		hole1 = new GImage("obstacle_hole.png",900,100);
-		rock1 = new GImage("obstacle_rock.png",230,490);
-		E6 = new GImage("entry_door_WEST.png",27,300);
-		E7 = new GImage("entry_door_SOUTH.png",575,505);
+		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,575,434, ElementType.WATER, enemyType.WATERBat);
+		Enemy ienemy3 = new Enemy(2,2,2,2,500,420, ElementType.EARTH, enemyType.EARTHSkull);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,900,100); 
+		Interactions irock1 = new Interactions(interactionType.obstacle_rock,230,490);
+		Interactions iE6 = new Interactions(interactionType.entry_door_WEST,27,300);
+		Interactions iE7 = new Interactions(interactionType.entry_door_SOUTH,575,505);
+		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
+		enemy3 = ienemy3.getImage();
+		hole1 = ihole1.getImage();
+		rock1 = irock1.getImage();
+		E6 = iE6.getImage();
+		E7 = iE7.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		
-		enemy1.setSize(75,75);
-		enemy2.setSize(75,75);
-		enemy3.setSize(75,75);
-		hole1.setSize(75, 75);
-		rock1.setSize(75, 75);
-		E6.setSize(75,75);
-		E7.setSize(75, 75);
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
+		
+		listOfEnemies.add(ienemy3);
+		listOfEnemies.add(ienemy2);
+		listOfEnemies.add(ienemy1);
+		
+		listOfInter.add(iE7);
+		listOfInter.add(iE6);
+		listOfInter.add(ihole1);
+		listOfInter.add(irock1);
 		
 		elements.add(background);
 		elements.add(enemy1);

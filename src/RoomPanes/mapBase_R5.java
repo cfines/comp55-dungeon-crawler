@@ -4,40 +4,52 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.ElementType;
+import starter.Enemy;
 import starter.GraphicsPane;
+import starter.Interactions;
 import starter.MainApplication;
+import starter.enemyType;
+import starter.interactionType;
 
 public class mapBase_R5 extends GraphicsPane{
 	private MainApplication program;
 	private GImage enemy1, hole1, E8, E9, E10, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
+	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	
 	public mapBase_R5(MainApplication app) {
 		this.program = app;
-		enemy1 = new GImage("FIRESkull.png", 575,325);
-		hole1 = new GImage("obstacle_hole.png",230,325);
-		E8 = new GImage("entry_door_NORTH.png",575,28);
-		E9 = new GImage("entry_door_SOUTH.png",575,505);
-		E10 = new GImage("entry_door_EAST.png",1050,300);
+		Enemy ienemy1 = new Enemy(2,2,2,2,575,325, ElementType.FIRE, enemyType.FIRESkull);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
+		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,28);
+		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,505);
+		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		enemy1 = ienemy1.getImage();
+		hole1 = ihole1.getImage();
+		E8 = iE8.getImage();
+		E9 = iE9.getImage();
+		E10 = iE10.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
-		enemy1.setSize(75,75);
-		hole1.setSize(75,75);
-		E8.setSize(75,75);
-		E9.setSize(75,75);
-		E10.setSize(75,75);
+		
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
+		
+		listOfEnemies.add(ienemy1);
+		listOfInter.add(iE10);
+		listOfInter.add(iE9);
+		listOfInter.add(iE8);
+		listOfInter.add(ihole1);
 		
 		elements.add(background);
 		elements.add(enemy1);
