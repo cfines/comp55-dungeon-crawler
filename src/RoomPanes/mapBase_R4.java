@@ -75,8 +75,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(E7);
 		elements.add(userRep);
 		isUserInPain();
-		Timer t = new Timer(game.getUser().getUserStats().getAtkTimer(), this);
-		t.start();
+		//TODO insert timer based on attack speed
 	}
 	private void userUP() {
 		userRep.move(0, -5);
