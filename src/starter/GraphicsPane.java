@@ -22,7 +22,7 @@ import acm.graphics.GObject;
 public abstract class GraphicsPane implements Interfaceable {
 	private GImage userRep;
 	private User user;
-	private boolean moveUp,moveDown,moveLeft,moveRight;
+	private boolean moveUp,moveDown,moveLeft,moveRight,swapWep,atkUp,atkDown,atkLeft,atkRight;
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	
 	@Override
@@ -63,7 +63,7 @@ public abstract class GraphicsPane implements Interfaceable {
 		{
 		case KeyEvent.VK_W:
 			checkCollision();
-			boolean moveUp = true;
+			moveUp = true;
 			if(moveUp == true) 
 			{
 				userRep.move(0, -user.getMoveSpeedStat());
@@ -71,7 +71,7 @@ public abstract class GraphicsPane implements Interfaceable {
 			break;
 		case KeyEvent.VK_A:
 			checkCollision();
-			boolean moveLeft = true;
+			moveLeft = true;
 			if(moveLeft==true) 
 			{	
 				userRep.move(-user.getMoveSpeedStat(),0);
@@ -79,7 +79,7 @@ public abstract class GraphicsPane implements Interfaceable {
 			break;
 		case KeyEvent.VK_S:
 			checkCollision();
-			boolean moveDown = true;
+			moveDown = true;
 			if(moveDown == true) 
 			{
 				userRep.move(0, user.getMoveSpeedStat());
@@ -87,12 +87,24 @@ public abstract class GraphicsPane implements Interfaceable {
 			break;
 		case KeyEvent.VK_D:
 			checkCollision();
-			boolean moveRight = true;
+			moveRight = true;
 			if(moveRight == true) 
 			{
 				userRep.move(user.getMoveSpeedStat(),0);
 			}
 			//TODO attacks go here
+		case KeyEvent.VK_E:
+			break;
+		case KeyEvent.VK_UP:
+			break;
+		case KeyEvent.VK_LEFT:
+			break;
+		case KeyEvent.VK_DOWN:
+			break;
+		case KeyEvent.VK_RIGHT:
+			break;
+		default:
+			break;	
 		}
 	}
 
@@ -112,6 +124,21 @@ public abstract class GraphicsPane implements Interfaceable {
 		}
 		if(keyInput == KeyEvent.VK_D) {
 			moveRight = false;
+		}
+		if(keyInput == KeyEvent.VK_E) {
+			swapWep = false;
+		}
+		if(keyInput == KeyEvent.VK_UP) {
+			atkUp = false;		
+		}
+		if(keyInput == KeyEvent.VK_LEFT) {
+			atkLeft = false;
+		}
+		if(keyInput == KeyEvent.VK_DOWN) {
+			atkDown = false;
+		}
+		if(keyInput == KeyEvent.VK_RIGHT) {
+			atkRight = false;
 		}
 		//TODO attacks go here
 	}
