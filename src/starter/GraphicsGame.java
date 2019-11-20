@@ -152,7 +152,7 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
-		userRep.move(game.getUser().getX(), game.getUser().getY());
+		userRep.setLocation(game.getUser().getX(), game.getUser().getY());
 		
 		/*for(int i = 0; i < game.getEnemies().size(); i++) {
 			game.getEnemies().get(i).tick();

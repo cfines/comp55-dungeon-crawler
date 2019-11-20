@@ -20,10 +20,11 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public abstract class GraphicsPane implements Interfaceable {
-	private GImage userRep = new GImage ("Rogue_(Sample User).gif");
-	private User user;
-	private boolean moveUp,moveDown,moveLeft,moveRight,atkUp,atkDown,atkLeft,atkRight;
-	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
+	/*
+	 * private GImage userRep; private User user; private boolean
+	 * moveUp,moveDown,moveLeft,moveRight; private HashMap<Interactions,
+	 * Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
+	 */
 	
 	@Override
 	public abstract void showContents();
@@ -58,156 +59,34 @@ public abstract class GraphicsPane implements Interfaceable {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keyInput = e.getKeyCode();
-		switch(keyInput) 
-		{
-		case KeyEvent.VK_W:
-			checkCollision();
-			moveUp = true;
-			if(moveUp == true) 
-			{
-				userRep.move(0, -user.getMoveSpeedStat());
-			}
-			break;
-		case KeyEvent.VK_A:
-			checkCollision();
-			moveLeft = true;
-			if(moveLeft==true) 
-			{	
-				userRep.move(-user.getMoveSpeedStat(),0);
-			}
-			break;
-		case KeyEvent.VK_S:
-			checkCollision();
-			moveDown = true;
-			if(moveDown == true) 
-			{
-				userRep.move(0, user.getMoveSpeedStat());
-			}
-			break;
-		case KeyEvent.VK_D:
-			checkCollision();
-			moveRight = true;
-			if(moveRight == true) 
-			{
-				userRep.move(user.getMoveSpeedStat(),0);
-			}
-			//TODO attacks go here
-		case KeyEvent.VK_E:
-			user.cycleWeapon();
-			break;
-			
-		// for starting attack
-		case KeyEvent.VK_UP:
-			atkUp = true;
-			if(atkUp == true) 
-			{
-				userRep.setImage("Rogue_Attack(Up).png");
-			}
-			break;
-		case KeyEvent.VK_LEFT:
-			atkLeft = true;
-			if(atkLeft == true) 
-			{
-				userRep.setImage("Rogue_Attack(Left).png");
-			}
-			break;
-		case KeyEvent.VK_DOWN:
-			atkDown = true;
-			if(atkDown == true) 
-			{
-				userRep.setImage("Rogue_Attack(Down).png");
-			}
-			break;
-		case KeyEvent.VK_RIGHT:
-			atkRight = true;
-			if(atkRight == true) 
-			{
-				userRep.setImage("Rogue_Attack(Right).png");
-			}
-			break;
-		default:
-			break;	
-		}
+		/*
+		 * int keyInput = e.getKeyCode(); switch(keyInput) { case KeyEvent.VK_W:
+		 * checkCollision(); boolean moveUp = true; if(moveUp == true) { userRep.move(0,
+		 * user.getMoveSpeedStat()); } break; case KeyEvent.VK_A: checkCollision();
+		 * boolean moveLeft = true; if(moveLeft==true) {
+		 * userRep.move(-user.getMoveSpeedStat(),0); } break; case KeyEvent.VK_S:
+		 * checkCollision(); boolean moveDown = true; if(moveDown == true) {
+		 * userRep.move(0, -user.getMoveSpeedStat()); } break; case KeyEvent.VK_D:
+		 * checkCollision(); boolean moveRight = true; if(moveRight == true) {
+		 * userRep.move(user.getMoveSpeedStat(),0); } //TODO attacks go here }
+		 */
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
-		int keyInput = e.getKeyCode();
-		
-		if(keyInput == KeyEvent.VK_W) {
-			moveUp = false;
-		}
-		if(keyInput == KeyEvent.VK_A) {
-			moveLeft = false;
-		}
-		if(keyInput == KeyEvent.VK_S) {
-			moveDown = false;
-		}
-		if(keyInput == KeyEvent.VK_D) {
-			moveRight = false;
-		}
-		if(keyInput == KeyEvent.VK_E) {}
-		
-		// for stopping attack 
-		if(keyInput == KeyEvent.VK_UP) {
-			atkUp = false;
-			if(atkUp == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-			}
-		}
-		if(keyInput == KeyEvent.VK_LEFT) {
-			atkLeft = false;
-			if(atkLeft == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-			}
-		}
-		if(keyInput == KeyEvent.VK_DOWN) {
-			atkDown = false;
-			if(atkDown == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-			}
-		}
-		if(keyInput == KeyEvent.VK_RIGHT) {
-			atkRight = false;
-			if(atkRight == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-			}
-		}
+		/*
+		 * int keyInput = e.getKeyCode();
+		 * 
+		 * if(keyInput == KeyEvent.VK_W) { moveUp = false; } if(keyInput ==
+		 * KeyEvent.VK_A) { moveLeft = false; } if(keyInput == KeyEvent.VK_S) { moveDown
+		 * = false; } if(keyInput == KeyEvent.VK_D) { moveRight = false; }
+		 */
+		//TODO attacks go here
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-	}
-	
-	public void checkCollision() 
-	{
-		for(Interactions inter : interactionHash.keySet()) {	
-			if(user.getX() > 0) {
-				user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
-			}
-			else if(user.getX() < 0) {
-				user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
-			}
-			else if(user.getY() > 0) {
-				user.getUserStats().setCoordY(user.getCoordY() - user.getMoveSpeedStat());					
-			}
-			else if(user.getY() < 0) {
-				user.getUserStats().setCoordY(user.getCoordY() + user.getMoveSpeedStat());					
-			}
-		}
-	}
-	
-	public boolean intCollisionTest(GImage image) {
-		return (user.getCoordY() - image.getY() <= 75
-			&& user.getCoordY() - image.getY() >= -75
-			&& user.getCoordX() - image.getX() <= 75
-			&& user.getCoordX() - image.getX() >= -75);
 	}
 }

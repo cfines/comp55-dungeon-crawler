@@ -14,7 +14,8 @@ public class User {
 	private int atkSpeedStat;
 	private double dx = 0;
 	private double dy = 0;
-	private double x, y;
+	private double x;
+	private double y;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -29,8 +30,6 @@ public class User {
 	
 	//Default Constructor
 	User(){
-		x = 0;
-		y = 0;
 		moveSpeedStat = 7;
 		powerStat = 1;
 		atkSpeedStat = 1;
@@ -72,17 +71,17 @@ public class User {
 		 * userStats.setCoordX(userStats.getCoordX() + dx);
 		 * userStats.setCoordY(userStats.getCoordY() + dy);
 		 */
-		if(userStats.getCoordX() <= 125-60) {
-			userStats.setCoordX(125-60);
+		if(getX() <= 125-60) {
+			setX(125-60);
 		}
-		if(userStats.getCoordX() >= 1065 - 60) {
-			userStats.setCoordX(1065 - 60);
+		if(getX() >= 1065 - 60) {
+			setX(1065 - 60);
 		}
-		if(userStats.getCoordY() <= 95-60) {
-			userStats.setCoordY(95-60);
+		if(getY() <= 95-60) {
+			setY(95-60);
 		}
-		if(userStats.getCoordY() >= 520-80) {
-			userStats.setCoordY(520-80);
+		if(getY() >= 520-80) {
+			setY(520-80);
 		}
 	}
 	

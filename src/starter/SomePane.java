@@ -250,16 +250,16 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
 				if(user.getX() > 0) {
-					user.setX(user.getX() - user.getMoveSpeedStat());					
+					user.setY(user.getY() + user.getMoveSpeedStat());					
 				}
 				if(user.getX() < 0) {
 					user.setX(user.getX() + user.getMoveSpeedStat());					
 				}
 				if(user.getY() > 0) {
-					user.setY(user.getY() - user.getMoveSpeedStat());					
+					user.setX(user.getX() + user.getMoveSpeedStat());					
 				}
 				if(user.getY() < 0) {
-					user.setY(user.getY() + user.getMoveSpeedStat());					
+					user.setX(user.getX() - user.getMoveSpeedStat());					
 				}
 			}
 		}
