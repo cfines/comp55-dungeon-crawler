@@ -115,25 +115,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		double enemyX = enemy1.getX();
 		double enemyY = enemy1.getY();
 		double slope = (enemyY - tempUserY) / (enemyX - tempUserX);
-		double perpenSlope = -1/slope;
-		double temp1 = perpenSlope * tempUserX;
-		double temp2 = perpenSlope * enemyX;
-		double temp4 = temp1 + temp2;
-		
-		if(enemyY > 0) {
-			temp4 -= enemyY;
-		}
-		else if(enemyY < 0) {
-			temp4+=enemyY;
-		}
-
-		if(tempUserY > temp4) {
-			System.out.println("behind");
-		}
-		else if(tempUserY < temp4) {
-			System.out.println("in front");
-		}
+		//double temp1 = enemyY
 	}
+
 	
 	private void userUP() {
 		user.setDY(user.getCoordY() - 5);
