@@ -1,9 +1,12 @@
 package RoomPanes;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -17,7 +20,7 @@ import starter.MainApplication;
 import starter.enemyType;
 import starter.interactionType;
 
-public class mapBase_R4 extends GraphicsPane{
+public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage enemy1, enemy2, enemy3, hole1, rock1, E6, E7, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
@@ -72,6 +75,8 @@ public class mapBase_R4 extends GraphicsPane{
 		elements.add(E7);
 		elements.add(userRep);
 		isUserInPain();
+		Timer t = new Timer(game.getUser().getUserStats().getAtkTimer(), this);
+		t.start();
 	}
 	private void userUP() {
 		userRep.move(0, -5);
@@ -88,6 +93,28 @@ public class mapBase_R4 extends GraphicsPane{
 	private void userRIGHT() {
 		userRep.move(5, 0);
 		isUserInPain();
+	}
+	
+	private void attackUp() {
+		userRep.setImage("Rogue_Attack(Up).png");
+		userRep.setSize(75,75);
+	}
+	private void attackDown() {
+		userRep.setImage("Rogue_Attack(Down).png");
+		userRep.setSize(75,75);
+		}
+	private void attackLeft() {
+		userRep.setImage("Rogue_Attack(Left).png");
+		userRep.setSize(75,75);
+	}
+	private void attackRight() {
+		userRep.setImage("Rogue_Attack(Right).png");
+		userRep.setSize(75,75);
+	}
+	
+	private void attackReset() {
+		userRep.setImage("Rogue_(Sample User).gif");
+		userRep.setSize(75,75);
 	}
 
 	
@@ -139,32 +166,28 @@ public class mapBase_R4 extends GraphicsPane{
 			atkUp = true;
 			if(atkUp == true) 
 			{
-				userRep.setImage("Rogue_Attack(Up).png");
-				userRep.setSize(75,75);
+				attackUp();
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			atkLeft = true;
 			if(atkLeft == true) 
 			{
-				userRep.setImage("Rogue_Attack(Left).png");
-				userRep.setSize(75,75);
+				attackLeft();
 			}
 			break;
 		case KeyEvent.VK_DOWN:
 			atkDown = true;
 			if(atkDown == true) 
 			{
-				userRep.setImage("Rogue_Attack(Down).png");
-				userRep.setSize(75,75);
+				attackDown();
 			}
 			break;
 		case KeyEvent.VK_RIGHT:
 			atkRight = true;
 			if(atkRight == true) 
 			{
-				userRep.setImage("Rogue_Attack(Right).png");
-				userRep.setSize(75,75);
+				attackRight();
 			}
 			break;
 		}
@@ -179,8 +202,7 @@ public class mapBase_R4 extends GraphicsPane{
 			atkUp = false;
 			if(atkUp == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -188,8 +210,7 @@ public class mapBase_R4 extends GraphicsPane{
 			atkLeft = false;
 			if(atkLeft == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -197,8 +218,7 @@ public class mapBase_R4 extends GraphicsPane{
 			atkDown = false;
 			if(atkDown == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -206,8 +226,7 @@ public class mapBase_R4 extends GraphicsPane{
 			atkRight = false;
 			if(atkRight == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 		}
@@ -230,5 +249,10 @@ public class mapBase_R4 extends GraphicsPane{
 		{
 			System.out.println("User is not taking damage.");
 		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
