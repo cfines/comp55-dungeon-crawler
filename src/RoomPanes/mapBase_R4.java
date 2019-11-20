@@ -1,6 +1,7 @@
 package RoomPanes;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -22,7 +23,8 @@ public class mapBase_R4 extends GraphicsPane{
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-
+	private boolean atkUp,atkLeft,atkDown,atkRight;
+	
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
 		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
@@ -68,7 +70,20 @@ public class mapBase_R4 extends GraphicsPane{
 		elements.add(E7);
 		elements.add(userRep);
 	}
+	private void userUP() {
+		userRep.move(0, -5);
+	}
+	private void userDOWN() {
+		userRep.move(0, 5);
+	}
+	private void userLEFT() {
+		userRep.move(-5, 0);
+	}
+	private void userRIGHT() {
+		userRep.move(5, 0);
+	}
 
+	
 	@Override
 	public void showContents() {
 		program.add(voidSpace);
@@ -95,6 +110,99 @@ public class mapBase_R4 extends GraphicsPane{
 		else if(obj == E7) {
 			program.switchToR5();
 			userRep.setLocation(575,435);
+		}
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			userUP();
+			break;
+		case KeyEvent.VK_S:
+			userDOWN();
+			break;
+		case KeyEvent.VK_A:
+			userLEFT();
+			break;
+		case KeyEvent.VK_D:
+			userRIGHT();
+			break;
+		case KeyEvent.VK_UP:
+			atkUp = true;
+			if(atkUp == true) 
+			{
+				userRep.setImage("Rogue_Attack(Up).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_LEFT:
+			atkLeft = true;
+			if(atkLeft == true) 
+			{
+				userRep.setImage("Rogue_Attack(Left).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_DOWN:
+			atkDown = true;
+			if(atkDown == true) 
+			{
+				userRep.setImage("Rogue_Attack(Down).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_RIGHT:
+			atkRight = true;
+			if(atkRight == true) 
+			{
+				userRep.setImage("Rogue_Attack(Right).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) 
+	{
+		switch (e.getKeyCode()) {
+		// for stopping attack 
+		case KeyEvent.VK_UP:
+			atkUp = false;
+			if(atkUp == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_LEFT:
+			atkLeft = false;
+			if(atkLeft == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_DOWN: 
+			atkDown = false;
+			if(atkDown == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_RIGHT: 
+			atkRight = false;
+			if(atkRight == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
 		}
 	}
 }
