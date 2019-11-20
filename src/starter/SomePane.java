@@ -23,7 +23,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
-	Timer t = new Timer(50, this);
+	Timer t = new Timer(30, this);
 
 
 	public SomePane(MainApplication app) {
@@ -249,26 +249,26 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
-				if(user.getX() - inter.getImage().getX() <= 0) {
-					user.setX(user.getX() - user.getMoveSpeedStat());	
+				if(user.getX() - inter.getImage().getX() > 0) {
+					user.setX(user.getX() + user.getMoveSpeedStat());	
 				}
-				if(user.getX() - inter.getImage().getX() >= 0) {
-					user.setX(user.getX() + user.getMoveSpeedStat());		
+				if(user.getX() - inter.getImage().getX() < 0) {
+					user.setX(user.getX() - user.getMoveSpeedStat());		
 				}
-				if(user.getY() - inter.getImage().getY() <= 0) {
-					user.setY(user.getY() - user.getMoveSpeedStat());		
+				if(user.getY() - inter.getImage().getY() > 0) {
+					user.setY(user.getY() + user.getMoveSpeedStat());		
 				}
-				if(user.getY() - inter.getImage().getY() >= 0) {
-					user.setY(user.getY() + user.getMoveSpeedStat());	
+				if(user.getY() - inter.getImage().getY() < 0) {
+					user.setY(user.getY() - user.getMoveSpeedStat());	
 				}
 			}
 		}
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		return (user.getY() - image.getY() <= 60
-				&& user.getY() - image.getY() >= -60
-				&& user.getX() - image.getX() <= 60
-				&& user.getX() - image.getX() >= -60);
+		return (user.getY() - image.getY() <= 75
+				&& user.getY() - image.getY() >= -75
+				&& user.getX() - image.getX() <= 75
+				&& user.getX() - image.getX() >= -75);
 	}
 }
