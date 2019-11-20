@@ -75,15 +75,19 @@ public class mapBase_R4 extends GraphicsPane{
 	}
 	private void userUP() {
 		userRep.move(0, -5);
+		isUserInPain();
 	}
 	private void userDOWN() {
 		userRep.move(0, 5);
+		isUserInPain();
 	}
 	private void userLEFT() {
 		userRep.move(-5, 0);
+		isUserInPain();
 	}
 	private void userRIGHT() {
 		userRep.move(5, 0);
+		isUserInPain();
 	}
 
 	
@@ -217,8 +221,8 @@ public class mapBase_R4 extends GraphicsPane{
 		double userY = userRep.getY() + 75;
 		if(userX >= enemy1.getX() && userY >= enemy1.getY() && userX <= enemy1.getX() + 75 && userY <= enemy1.getY() + 75) 
 		{
-			newHealth = game.getUser().getUserStats().getHP_cur() - 1;
-			game.getUser().getUserStats().setHP_cur(newHealth);
+			//newHealth = game.getUser().getUserStats().getHP_cur() - 1;
+			//game.getUser().getUserStats().setHP_cur(newHealth);
 			System.out.println("User takes 1 damage, ouch.");
 			//TODO insert user getting hurt here
 		}
