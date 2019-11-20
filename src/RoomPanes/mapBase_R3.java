@@ -1,6 +1,9 @@
 package RoomPanes;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -15,7 +18,7 @@ import starter.MainApplication;
 import starter.enemyType;
 import starter.interactionType;
 
-public class mapBase_R3 extends GraphicsPane{
+public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
@@ -67,6 +70,37 @@ public class mapBase_R3 extends GraphicsPane{
 		elements.add(userRep);
 	}
 	
+	private void userUP() {
+		userRep.move(0, -5);
+	}
+	private void userDOWN() {
+		userRep.move(0, 5);
+	}
+	private void userLEFT() {
+		userRep.move(-5, 0);
+	}
+	private void userRIGHT() {
+		userRep.move(5, 0);
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			userUP();
+			break;
+		case KeyEvent.VK_S:
+			userDOWN();
+			break;
+		case KeyEvent.VK_A:
+			userLEFT();
+			break;
+		case KeyEvent.VK_D:
+			userRIGHT();
+			break;
+		}
+	}
+	
 	@Override
 	public void showContents() {
 		program.add(voidSpace);
@@ -94,6 +128,12 @@ public class mapBase_R3 extends GraphicsPane{
 			program.switchToR4();
 			userRep.setLocation(1010,300);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
