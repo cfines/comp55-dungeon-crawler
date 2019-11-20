@@ -1,8 +1,13 @@
 package RoomPanes;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -13,17 +18,19 @@ import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
+import starter.User;
 import starter.enemyType;
 import starter.interactionType;
 
-public class mapBase_R2 extends GraphicsPane{
-	private Console game;
+public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
+	private int degree;
+	private User user;
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -53,6 +60,7 @@ public class mapBase_R2 extends GraphicsPane{
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
 		
+		user = new User(5, 5, 1000, 1, 300, 300);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 
@@ -71,6 +79,56 @@ public class mapBase_R2 extends GraphicsPane{
 		elements.add(enemy1);
 		elements.add(enemy2);
 		elements.add(userRep);
+		
+		Timer t = new Timer(50, this);
+		t.start();
+	}
+	
+	private void nextRoom() {
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 75 && userY <= E2.getY() + 75) {
+			program.switchToSome();
+		}
+	}
+	
+	private void userUP() {
+		user.setDY(user.getCoordY() - 10);
+		userRep.move(0, -10);
+		nextRoom();
+	}
+	private void userDOWN() {
+		user.setDY(user.getCoordY() + 10);
+		userRep.move(0, 10);
+		nextRoom();
+	}
+	private void userLEFT() {
+		user.setDX(user.getCoordX() - 10);
+		userRep.move(-10, 0);
+		nextRoom();
+	}
+	private void userRIGHT() {
+		user.setDX(user.getCoordX() + 10);
+		userRep.move(10, 0);
+		nextRoom();
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			userUP();
+			break;
+		case KeyEvent.VK_S:
+			userDOWN();
+			break;
+		case KeyEvent.VK_A:
+			userLEFT();
+			break;
+		case KeyEvent.VK_D:
+			userRIGHT();
+			break;
+		}
 	}
 
 	@Override
@@ -100,6 +158,25 @@ public class mapBase_R2 extends GraphicsPane{
 			program.switchToR3();
 			userRep.setLocation(90,300);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		enemy1.movePolar(4, degree);
+		degree+=50;
+		degree%=360;
+		
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double enemyX = enemy1.getX();
+		double enemyY = enemy1.getY();
+		double distX = enemyX - userX;
+		double distY = enemyY - userY;
+		double moveX = (distX * 2) / 100;
+		double moveY = (distY * 2) / 100;
+		System.out.println("oh lord he coming");
+		enemy1.move(-moveX, 0);
+		enemy1.move(0, -moveY);		
 	}
 
 }

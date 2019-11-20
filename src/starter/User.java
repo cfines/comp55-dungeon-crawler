@@ -41,7 +41,7 @@ public class User {
 	}
 	
 	//General Constructor
-	User(int input_HP_cur, int input_HP_tot, int atkTime,
+	public User(int input_HP_cur, int input_HP_tot, int atkTime,
 			int input_dmg, double input_x, double input_y){
 		
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
