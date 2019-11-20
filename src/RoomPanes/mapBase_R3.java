@@ -15,11 +15,13 @@ import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
+import starter.User;
 import starter.enemyType;
 import starter.interactionType;
 
 public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
+	private User user;
 	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -163,7 +165,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			break;
 		}
 	}
-	@Override
+	
 	public void keyReleased(KeyEvent e) 
 	{
 		switch (e.getKeyCode()) {
@@ -209,7 +211,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		userRep.move(user.getX(), user.getY());
 	}
 }
 

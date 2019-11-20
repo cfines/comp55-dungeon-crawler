@@ -71,10 +71,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		for (Interactions inter : listOfInter) {
-			program.add(inter.getImage());
-		}
-		program.add(enemy1);
 	}
 
 	@Override
@@ -103,6 +99,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		degree+=50;
 		degree%=360;
 		
+		user.tick();
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double enemyX = enemy1.getX();
@@ -111,10 +108,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		double distY = enemyY - userY;
 		double moveX = (distX * 2) / 100;
 		double moveY = (distY * 2) / 100;
-		System.out.println("oh lord he coming");
 		enemy1.move(-moveX, 0);
 		enemy1.move(0, -moveY);
-		
 	}
 	
 	private void nextRoom() {
@@ -126,24 +121,24 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 	
 	private void userUP() {
-		user.setDY(user.getCoordY() - 10);
-		userRep.move(0, -10);
-		nextRoom();
+		user.setDY(user.getMoveSpeedStat());
+		userRep.move(user.getX(), user.getY());
+		//nextRoom();
 	}
 	private void userDOWN() {
-		user.setDY(user.getCoordY() + 10);
-		userRep.move(0, 10);
-		nextRoom();
+		user.setDY(-user.getMoveSpeedStat());
+		userRep.move(user.getX(), user.getY());
+		//nextRoom();
 	}
 	private void userLEFT() {
-		user.setDX(user.getCoordX() - 10);
-		userRep.move(-10, 0);
-		nextRoom();
+		user.setDX(user.getMoveSpeedStat());
+		userRep.move(user.getX(), user.getY());
+		//nextRoom();
 	}
 	private void userRIGHT() {
-		user.setDX(user.getCoordX() + 10);
-		userRep.move(10, 0);
-		nextRoom();
+		user.setDX(-user.getMoveSpeedStat());
+		userRep.move(user.getX(), user.getY());
+		//nextRoom();
 	}
 	
 	@Override
@@ -160,6 +155,24 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			break;
+		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(0);
 			break;
 		}
 	}

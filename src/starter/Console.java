@@ -294,19 +294,6 @@ public class Console {
 
 		keyInput = e.getKeyCode();
 		
-
-		if(keyInput == KeyEvent.VK_W) {
-			user.setDY(0);
-		}
-		if(keyInput == KeyEvent.VK_A) {
-			user.setDX(0);
-		}
-		if(keyInput == KeyEvent.VK_S) {
-			user.setDY(0);
-		}
-		if(keyInput == KeyEvent.VK_D) {
-			user.setDX(0);
-		}
 		/*if(keyInput == KeyEvent.VK_E) {
 			keyDown[4] = false;
 		}
