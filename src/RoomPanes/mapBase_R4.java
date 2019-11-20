@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.Console;
 import starter.ElementType;
 import starter.Enemy;
 import starter.GraphicsPane;
@@ -24,6 +25,7 @@ public class mapBase_R4 extends GraphicsPane{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkDown,atkRight;
+	private Console game;
 	
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
@@ -69,6 +71,7 @@ public class mapBase_R4 extends GraphicsPane{
 		elements.add(E6);
 		elements.add(E7);
 		elements.add(userRep);
+		isUserInPain();
 	}
 	private void userUP() {
 		userRep.move(0, -5);
@@ -203,6 +206,25 @@ public class mapBase_R4 extends GraphicsPane{
 				userRep.setSize(75,75);
 			}
 			break;
+		}
+	}
+	
+	//currently testing for one enemy
+	public void isUserInPain() 
+	{
+		int newHealth;
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		if(userX >= enemy1.getX() && userY >= enemy1.getY() && userX <= enemy1.getX() + 75 && userY <= enemy1.getY() + 75) 
+		{
+			newHealth = game.getUser().getUserStats().getHP_cur() - 1;
+			game.getUser().getUserStats().setHP_cur(newHealth);
+			System.out.println("User takes 1 damage, ouch.");
+			//TODO insert user getting hurt here
+		}
+		else 
+		{
+			System.out.println("User is not taking damage.");
 		}
 	}
 }
