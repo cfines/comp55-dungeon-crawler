@@ -101,7 +101,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		enemyMovement();
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("X: " + user.getX() + " Y: " + user.getY());
 	}
 	
 	private void nextRoom() {
