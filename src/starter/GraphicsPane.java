@@ -55,7 +55,7 @@ public abstract class GraphicsPane implements Interfaceable {
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyInput = e.getKeyCode();
@@ -86,7 +86,7 @@ public abstract class GraphicsPane implements Interfaceable {
 			}
 			break;
 		case KeyEvent.VK_D:
-			//checkCollision();
+			checkCollision();
 			boolean moveRight = true;
 			if(moveRight == true) 
 			{
