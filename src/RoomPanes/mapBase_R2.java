@@ -251,18 +251,21 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());
 	}
-	
+
 	public void enemyMovement() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
-		double enemyX = enemy1.getX();
-		double enemyY = enemy1.getY();
-		double distX = enemyX - userX;
-		double distY = enemyY - userY;
-		double moveX = (distX * 2) / 100;
-		double moveY = (distY * 2) / 100;
-		for (Enemy enem : listOfEnemies)
-			enem.getImage().move(-moveX, -moveY);
+
+		for(Enemy enem : listOfEnemies) {
+			double enemyX = enem.getCoordX();
+			double enemyY = enem.getCoordY();
+			double distX = enemyX - userX;
+			double distY = enemyY - userY;
+			double moveX = (distX * 2) / 100;
+			double moveY = (distY * 2) / 100;
+			for (Enemy enem2 : listOfEnemies)
+				enem2.getImage().move(-moveX, -moveY);
+		}
 	}
 
 }
