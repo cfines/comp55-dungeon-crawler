@@ -1,10 +1,11 @@
 package starter;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -13,14 +14,12 @@ import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private Hardcoded code;
 	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private GRect voidSpace;
-	private Console game;
-	private int keyInput;
+	private int degree;
 	private User user;
 
 
@@ -30,7 +29,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 890, 200);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,350,300, ElementType.FIRE, enemyType.FIRESkull);
 		user = new User(5, 5, 1000, 1, 300, 300);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
@@ -52,7 +51,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		game = new Console();
 
 		elements.add(background);
 		elements.add(rock1);
@@ -61,6 +59,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(E1);
 		elements.add(enemy1);
 		elements.add(userRep);
+		
+		Timer t = new Timer(25, this);
+		t.start();
 	}
 
 	@Override
@@ -98,116 +99,11 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		user.tick();		
+			enemy1.movePolar(10, degree);
+			degree+=5;
+			degree%=360;
 	}
-
-	public void keyPressed(KeyEvent e) {
-
-		keyInput = e.getKeyCode();
-
-		switch(keyInput) {
-		case KeyEvent.VK_W:
-			checkCollision();
-			user.setDY(-user.getMoveSpeedStat());
-			//keyDown[0] = true;
-			break;
-		case KeyEvent.VK_A:
-			checkCollision();
-			user.setDX(-user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[1] = true;
-			break;
-		case KeyEvent.VK_S:
-			checkCollision();
-			user.setDY(user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[2] = true;
-			break;
-		case KeyEvent.VK_D:
-			checkCollision();
-			user.setDX(user.getMoveSpeedStat());
-			//getNextRoom();
-			//keyDown[3] = true;
-			break;
-		case KeyEvent.VK_E:
-			//keyDown[4] = true;
-			user.cycleWeapon();
-			break;
-			//TODO fix this method, moves the user when changing weapons and shouldn't
-			/*
-			 * case KeyEvent.VK_UP: //keyDown[5] = true; generateHitbox(e); break; case
-			 * KeyEvent.VK_LEFT: //keyDown[6] = true; generateHitbox(e); break; case
-			 * KeyEvent.VK_DOWN: //keyDown[7] = true; generateHitbox(e); break; case
-			 * KeyEvent.VK_RIGHT: //keyDown[8] = true; generateHitbox(e); break;
-			 */
-		default:
-			break;
-		}
-		
-		//actionPerformed(e);
-		
-	}
-
-	public void keyReleased(KeyEvent e) {
-
-		keyInput = e.getKeyCode();
-		
-		switch(keyInput) {
-		case KeyEvent.VK_W:
-			checkCollision();
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_A:
-			checkCollision();
-			user.setDX(0);
-			break;
-		case KeyEvent.VK_S:
-			checkCollision();
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_D:
-			checkCollision();
-			user.setDX(0);
-			break;
-		default:
-			break;
-		}
-
-	}
-
-	public void checkCollision() {
-		//TODO have some boundary checks called in here	
-		Interactions tempWest = new Interactions(interactionType.entry_door_WEST,0,0);
-		Interactions tempEast = new Interactions(interactionType.entry_door_EAST,0,0);
-		Interactions tempNorth = new Interactions(interactionType.entry_door_NORTH,0,0);
-		Interactions tempSouth = new Interactions(interactionType.entry_door_SOUTH,0,0);
-
-		for(Interactions inter : listOfInter) {
-			//System.out.println("String = " + inter + " Interaction = " + inter.getImage());
-			if(intCollisionTest(inter.getImage())) {
-				//make for loop
-				System.out.println("touching interaction");
-				if(user.getDX() > 0) {
-					user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
-				}
-				else if(user.getDX() < 0) {
-					user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
-				}
-				else if(user.getDY() > 0) {
-					user.getUserStats().setCoordY(user.getCoordY() - user.getMoveSpeedStat());					
-				}
-				else if(user.getDY() < 0) {
-					user.getUserStats().setCoordY(user.getCoordY() + user.getMoveSpeedStat());					
-				}
-			}
-		}
-	}
-
-	public boolean intCollisionTest(GImage image) {
-		return (user.getCoordY() - image.getY() <= 75
-				&& user.getCoordY() - image.getY() >= -75
-				&& user.getCoordX() - image.getX() <= 75
-				&& user.getCoordX() - image.getX() >= -75);
-	}
+	
+	
 
 }
