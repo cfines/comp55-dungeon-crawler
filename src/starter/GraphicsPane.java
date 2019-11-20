@@ -20,7 +20,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public abstract class GraphicsPane implements Interfaceable {
-	private GImage userRep;
+	private GImage userRep = new GImage ("Rogue_(Sample User).gif");
 	private User user;
 	private boolean moveUp,moveDown,moveLeft,moveRight,atkUp,atkDown,atkLeft,atkRight;
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
