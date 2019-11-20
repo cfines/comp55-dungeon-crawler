@@ -22,6 +22,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	private GRect voidSpace;
 	private int degree;
 	private User user;
+	private boolean atkUp,atkDown,atkLeft,atkRight;
 
 
 	public SomePane(MainApplication app) {
@@ -143,6 +144,38 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		case KeyEvent.VK_D:
 			userRIGHT();
 			break;
+		case KeyEvent.VK_UP:
+			atkUp = true;
+			if(atkUp == true) 
+			{
+				userRep.setImage("Rogue_Attack(Up).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_LEFT:
+			atkLeft = true;
+			if(atkLeft == true) 
+			{
+				userRep.setImage("Rogue_Attack(Left).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_DOWN:
+			atkDown = true;
+			if(atkDown == true) 
+			{
+				userRep.setImage("Rogue_Attack(Down).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_RIGHT:
+			atkRight = true;
+			if(atkRight == true) 
+			{
+				userRep.setImage("Rogue_Attack(Right).png");
+				userRep.setSize(75,75);
+			}
+			break;
 		}
 	}
 	
@@ -160,6 +193,41 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(0);
+			break;
+		case KeyEvent.VK_UP:
+			atkUp = false;
+			if(atkUp == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_LEFT:
+			atkLeft = false;
+			if(atkLeft == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_DOWN: 
+			atkDown = false;
+			if(atkDown == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_RIGHT: 
+			atkRight = false;
+			if(atkRight == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
 			break;
 		}
 	}
