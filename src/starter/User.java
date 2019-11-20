@@ -67,7 +67,7 @@ public class User {
 	
 	public void tick() {
 		x+= dx;
-		x+= dy;
+		y+= dy;
 		/*
 		 * userStats.setCoordX(userStats.getCoordX() + dx);
 		 * userStats.setCoordY(userStats.getCoordY() + dy);

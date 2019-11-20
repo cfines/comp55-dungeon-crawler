@@ -113,19 +113,19 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 	
 	private void userUP() {
-		user.setDY(user.getMoveSpeedStat());
-		//nextRoom();
-	}
-	private void userDOWN() {
 		user.setDY(-user.getMoveSpeedStat());
 		//nextRoom();
 	}
+	private void userDOWN() {
+		user.setDY(user.getMoveSpeedStat());
+		//nextRoom();
+	}
 	private void userLEFT() {
-		user.setDX(user.getMoveSpeedStat());
+		user.setDX(-user.getMoveSpeedStat());
 		//nextRoom();
 	}
 	private void userRIGHT() {
-		user.setDX(-user.getMoveSpeedStat());
+		user.setDX(user.getMoveSpeedStat());
 		//nextRoom();
 	}
 	
