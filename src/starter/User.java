@@ -12,7 +12,9 @@ public class User {
 	private int moveSpeedStat;
 	private double powerStat;
 	private int atkSpeedStat;
-	private double dx, dy, x, y;
+	private double dx = 0;
+	private double dy = 0;
+	private double x, y;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -27,6 +29,8 @@ public class User {
 	
 	//Default Constructor
 	User(){
+		x = 0;
+		y = 0;
 		moveSpeedStat = 7;
 		powerStat = 1;
 		atkSpeedStat = 1;
@@ -88,6 +92,14 @@ public class User {
 	
 	public void setDY(double dy) {
 		this.dy = dy;
+	}
+	
+	public void setX(double x) {
+		this.x = x;
+	}
+	
+	public void setY(double y) {
+		this.y = y;
 	}
 	
 	public double getX() {
