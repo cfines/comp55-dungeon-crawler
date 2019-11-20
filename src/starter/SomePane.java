@@ -234,13 +234,11 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 
 	public void enemyMovement() {
-		double enemyX = enemy1.getX();
-		double enemyY = enemy1.getY();
-		double distX = enemyX - userRep.getX();
-		double distY = enemyY - userRep.getY();
-		double moveX = (distX * 2) / 100;
-		double moveY = (distY * 2) / 100;
 		for (Enemy enem : listOfEnemies) {
+			double distX = enem.getImage().getX() - userRep.getX();
+			double distY = enem.getImage().getY() - userRep.getY();
+			double moveX = (distX * 2) / 100;
+			double moveY = (distY * 2) / 100;
 			enem.getImage().move(-moveX, -moveY);
 			enem.getImage().movePolar(4, degree);
 			degree+=50;
