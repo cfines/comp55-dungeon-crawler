@@ -15,7 +15,7 @@ import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1;
+	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1, enemy2;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -32,21 +32,26 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,300, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,350,450, ElementType.FIRE, enemyType.FIRESkull);
+
 		user = new User(5, 5, 1000, 1, 300, 300);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
 		listOfInter.add(iE1);
 		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
 
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
 		rock1 = irock1.getImage();
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
+		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
 		background.setSize(1125, 550);
 
 		voidSpace = new GRect(0,0);
@@ -60,8 +65,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(hole1);
 		elements.add(E1);
 		elements.add(enemy1);
+		elements.add(enemy2);
 		elements.add(userRep);
-		
+
 		Timer t = new Timer(50, this);
 		t.start();
 	}
@@ -86,7 +92,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
-			userRep.setLocation(90, 300);
+			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
 		}
 		else if(obj == rock1) {
@@ -96,14 +102,13 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemy1.movePolar(4, degree);
-		degree+=50;
-		degree%=360;
 		enemyMovement();
+		checkCollision();
+		nextRoom();
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());
 	}
-	
+
 	private void nextRoom() {
 		double userX = userRep.getX() + 75;
 		double userY = userRep.getY() + 75;
@@ -111,24 +116,20 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.switchToR2();
 		}
 	}
-	
+
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userDOWN() {
 		user.setDY(user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userLEFT() {
 		user.setDX(-user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
-		//nextRoom();
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -178,7 +179,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -231,17 +232,45 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			break;
 		}
 	}
-	
+
 	public void enemyMovement() {
-		double userX = userRep.getX();
-		double userY = userRep.getY();
 		double enemyX = enemy1.getX();
 		double enemyY = enemy1.getY();
-		double distX = enemyX - userX;
-		double distY = enemyY - userY;
+		double distX = enemyX - userRep.getX();
+		double distY = enemyY - userRep.getY();
 		double moveX = (distX * 2) / 100;
 		double moveY = (distY * 2) / 100;
-		for (Enemy enem : listOfEnemies)
+		for (Enemy enem : listOfEnemies) {
 			enem.getImage().move(-moveX, -moveY);
+			enem.getImage().movePolar(4, degree);
+			degree+=50;
+			degree%=360;
+		}
+	}
+
+	public void checkCollision() {
+		for(Interactions inter : listOfInter) {	
+			if(intCollisionTest(inter.getImage())) {
+				if(user.getX() > 0) {
+					user.setX(user.getX() - user.getMoveSpeedStat());					
+				}
+				if(user.getX() < 0) {
+					user.setX(user.getX() + user.getMoveSpeedStat());					
+				}
+				if(user.getY() > 0) {
+					user.setY(user.getY() - user.getMoveSpeedStat());					
+				}
+				if(user.getY() < 0) {
+					user.setY(user.getY() + user.getMoveSpeedStat());					
+				}
+			}
+		}
+	}
+
+	public boolean intCollisionTest(GImage image) {
+		return (user.getY() - image.getY() <= 75
+				&& user.getY() - image.getY() >= -75
+				&& user.getX() - image.getX() <= 75
+				&& user.getX() - image.getX() >= -75);
 	}
 }
