@@ -60,7 +60,7 @@ public class User {
 		
 		numConsumable = 0;
 		hasKey = false;
-		currRoom = "R1";
+		//currRoom = "R1";
 		
 	}
 	

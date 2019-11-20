@@ -17,6 +17,7 @@ import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
+import starter.User;
 import starter.enemyType;
 import starter.interactionType;
 
@@ -29,9 +30,13 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkDown,atkRight;
 	private Console game;
+	private int degree;
+	private User user;
+	private Timer timer = new Timer(50, this);
 	
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
+		user = program.getUser();
 		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
 		Enemy ienemy2 = new Enemy(2,2,2,2,575,434, ElementType.WATER, enemyType.WATERBat);
 		Enemy ienemy3 = new Enemy(2,2,2,2,500,420, ElementType.EARTH, enemyType.EARTHSkull);
@@ -47,7 +52,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		E6 = iE6.getImage();
 		E7 = iE7.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userRep.setSize(75, 75);
 		
 		background.setSize(1125, 550);
@@ -76,24 +81,20 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(userRep);
 		isUserInPain();
 		//TODO insert timer based on attack speed
+		
 	}
 	private void userUP() {
-		userRep.move(0, -5);
-		isUserInPain();
+		user.setDY(-user.getMoveSpeedStat());
 	}
 	private void userDOWN() {
-		userRep.move(0, 5);
-		isUserInPain();
+		user.setDY(user.getMoveSpeedStat());
 	}
 	private void userLEFT() {
-		userRep.move(-5, 0);
-		isUserInPain();
+		user.setDX(-user.getMoveSpeedStat());
 	}
 	private void userRIGHT() {
-		userRep.move(5, 0);
-		isUserInPain();
+		user.setDX(user.getMoveSpeedStat());
 	}
-	
 	private void attackUp() {
 		userRep.setImage("Rogue_Attack(Up).png");
 		userRep.setSize(75,75);
@@ -119,14 +120,18 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void showContents() {
+		timer.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.drawOverlay(4, 1);
 	}
 
 	@Override
 	public void hideContents() {
+		timer.stop();
+		program.setUser(user);
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
@@ -160,6 +165,10 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			break;
+		case KeyEvent.VK_E:
+			program.getUser().cycleWeapon();
+			program.drawSword();
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
@@ -196,6 +205,18 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	public void keyReleased(KeyEvent e) 
 	{
 		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(0);
+			break;
 		// for stopping attack 
 		case KeyEvent.VK_UP:
 			atkUp = false;
@@ -255,7 +276,61 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		enemyMovement();
+		checkCollision();
+		nextRoom();
+		user.tick();
+		userRep.setLocation(user.getX(), user.getY());
 	}
+	
+	public void checkCollision() {
+		for(Interactions inter : listOfInter) {	
+			if(intCollisionTest(inter.getImage())) {
+				if(user.getX() - inter.getImage().getX() <= 0) {
+					user.setX(user.getX() - user.getMoveSpeedStat());	
+				}
+				if(user.getX() - inter.getImage().getX() >= -75) {
+					user.setX(user.getX() + user.getMoveSpeedStat());		
+				}
+				if(user.getY() - inter.getImage().getY() <= 0) {
+					user.setY(user.getY() - user.getMoveSpeedStat());		
+				}
+				if(user.getY() - inter.getImage().getY() >= -75) {
+					user.setY(user.getY() + user.getMoveSpeedStat());	
+				}
+			}
+		}
+	}
+
+	public boolean intCollisionTest(GImage image) {
+		return (user.getY() - image.getY() <= 60
+				&& user.getY() - image.getY() >= -60
+				&& user.getX() - image.getX() <= 60
+				&& user.getX() - image.getX() >= -60);
+	}
+	
+	public void enemyMovement() {
+		for (Enemy enem : listOfEnemies) {
+			double distX = enem.getImage().getX() - userRep.getX();
+			double distY = enem.getImage().getY() - userRep.getY();
+			double moveX = (distX * 2) / 100;
+			double moveY = (distY * 2) / 100;
+			enem.getImage().move(-moveX, -moveY);
+			enem.getImage().movePolar(4, degree);
+			degree+=50;
+			degree%=360;
+		}
+	}
+	
+	private void nextRoom() {
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		if(userX >= E6.getX() && userY >= E6.getY() && userX <= E6.getX() + 75 && userY <= E6.getY() + 75) {
+			program.switchToR3();
+		}
+		if(userX >= E7.getX() && userY >= E7.getY() && userX <= E7.getX() + 75 && userY <= E7.getY() + 75) {
+			program.switchToR5();
+		}
+	}
+	
 }
