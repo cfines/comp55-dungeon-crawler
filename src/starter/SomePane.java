@@ -100,6 +100,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		degree%=360;
 		enemyMovement();
 		user.tick();
+		userRep.setLocation(user.getX(), user.getY());
+		System.out.println("X: " + user.getX() + " Y: " + user.getY());
 	}
 	
 	private void nextRoom() {
@@ -112,22 +114,18 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	
 	private void userUP() {
 		user.setDY(user.getMoveSpeedStat());
-		userRep.move(user.getX(), user.getY());
 		//nextRoom();
 	}
 	private void userDOWN() {
 		user.setDY(-user.getMoveSpeedStat());
-		userRep.move(user.getX(), user.getY());
 		//nextRoom();
 	}
 	private void userLEFT() {
 		user.setDX(user.getMoveSpeedStat());
-		userRep.move(user.getX(), user.getY());
 		//nextRoom();
 	}
 	private void userRIGHT() {
 		user.setDX(-user.getMoveSpeedStat());
-		userRep.move(user.getX(), user.getY());
 		//nextRoom();
 	}
 	
