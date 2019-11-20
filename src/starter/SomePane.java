@@ -252,13 +252,13 @@ public class SomePane extends GraphicsPane implements ActionListener {
 				if(user.getX() - inter.getImage().getX() <= 0) {
 					user.setX(user.getX() - user.getMoveSpeedStat());	
 				}
-				if(user.getX() - inter.getImage().getX() >= -75) {
+				if(user.getX() - inter.getImage().getX() >= 0) {
 					user.setX(user.getX() + user.getMoveSpeedStat());		
 				}
 				if(user.getY() - inter.getImage().getY() <= 0) {
 					user.setY(user.getY() - user.getMoveSpeedStat());		
 				}
-				if(user.getY() - inter.getImage().getY() >= -75) {
+				if(user.getY() - inter.getImage().getY() >= 0) {
 					user.setY(user.getY() + user.getMoveSpeedStat());	
 				}
 			}
