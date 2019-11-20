@@ -31,6 +31,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private int degree;
 	private User user;
+	private boolean atkUp,atkDown,atkLeft,atkRight;
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -93,24 +94,20 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	}
 	
 	private void userUP() {
-		user.setDY(user.getCoordY() - 10);
-		userRep.move(0, -10);
-		nextRoom();
+		user.setDY(-user.getMoveSpeedStat());
+		//nextRoom();
 	}
 	private void userDOWN() {
-		user.setDY(user.getCoordY() + 10);
-		userRep.move(0, 10);
-		nextRoom();
+		user.setDY(user.getMoveSpeedStat());
+		//nextRoom();
 	}
 	private void userLEFT() {
-		user.setDX(user.getCoordX() - 10);
-		userRep.move(-10, 0);
-		nextRoom();
+		user.setDX(-user.getMoveSpeedStat());
+		//nextRoom();
 	}
 	private void userRIGHT() {
-		user.setDX(user.getCoordX() + 10);
-		userRep.move(10, 0);
-		nextRoom();
+		user.setDX(user.getMoveSpeedStat());
+		//nextRoom();
 	}
 	
 	@Override
@@ -127,6 +124,91 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			break;
+		case KeyEvent.VK_UP:
+			atkUp = true;
+			if(atkUp == true) 
+			{
+				userRep.setImage("Rogue_Attack(Up).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_LEFT:
+			atkLeft = true;
+			if(atkLeft == true) 
+			{
+				userRep.setImage("Rogue_Attack(Left).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_DOWN:
+			atkDown = true;
+			if(atkDown == true) 
+			{
+				userRep.setImage("Rogue_Attack(Down).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_RIGHT:
+			atkRight = true;
+			if(atkRight == true) 
+			{
+				userRep.setImage("Rogue_Attack(Right).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_UP:
+			atkUp = false;
+			if(atkUp == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_LEFT:
+			atkLeft = false;
+			if(atkLeft == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_DOWN: 
+			atkDown = false;
+			if(atkDown == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_RIGHT: 
+			atkRight = false;
+			if(atkRight == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
 			break;
 		}
 	}
@@ -161,11 +243,16 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		enemy1.movePolar(4, degree);
 		degree+=50;
 		degree%=360;
-		
+		enemyMovement();
+		user.tick();
+		userRep.setLocation(user.getX(), user.getY());
+	}
+	
+	public void enemyMovement() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double enemyX = enemy1.getX();
@@ -174,9 +261,8 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		double distY = enemyY - userY;
 		double moveX = (distX * 2) / 100;
 		double moveY = (distY * 2) / 100;
-		System.out.println("oh lord he coming");
-		enemy1.move(-moveX, 0);
-		enemy1.move(0, -moveY);		
+		for (Enemy enem : listOfEnemies)
+			enem.getImage().move(-moveX, -moveY);
 	}
 
 }
