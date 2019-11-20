@@ -166,6 +166,10 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		case KeyEvent.VK_D:
 			userRIGHT();
 			break;
+		case KeyEvent.VK_E:
+			program.getUser().cycleWeapon();
+			program.drawSword();
+			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
 			if(atkUp == true) 
