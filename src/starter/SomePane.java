@@ -23,6 +23,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
+	Timer t = new Timer(50, this);
 
 
 	public SomePane(MainApplication app) {
@@ -67,13 +68,11 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(enemy1);
 		elements.add(enemy2);
 		elements.add(userRep);
-
-		Timer t = new Timer(50, this);
-		t.start();
 	}
 
 	@Override
 	public void showContents() {
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
@@ -82,6 +81,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void hideContents() {
+		t.stop();
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
