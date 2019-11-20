@@ -266,9 +266,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		return (user.getY() - image.getY() <= 75
-				&& user.getY() - image.getY() >= -75
-				&& user.getX() - image.getX() <= 75
-				&& user.getX() - image.getX() >= -75);
+		return (user.getY() - image.getY() <= 60
+				&& user.getY() - image.getY() >= -60
+				&& user.getX() - image.getX() <= 60
+				&& user.getX() - image.getX() >= -60);
 	}
 }
