@@ -37,7 +37,6 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		
 		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
 		Enemy ienemy2 = new Enemy(2,2,2,2,575,434, ElementType.WATER, enemyType.WATERBat);
 		Enemy ienemy3 = new Enemy(2,2,2,2,500,420, ElementType.EARTH, enemyType.EARTHSkull);
@@ -126,6 +125,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.drawOverlay(4, 1);
 	}
 
 	@Override
@@ -165,6 +165,10 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			break;
+		case KeyEvent.VK_E:
+			program.getUser().cycleWeapon();
+			program.drawSword();
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
