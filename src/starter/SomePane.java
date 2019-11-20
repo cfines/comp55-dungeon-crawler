@@ -98,18 +98,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		enemy1.movePolar(4, degree);
 		degree+=50;
 		degree%=360;
-		
+		enemyMovement();
 		user.tick();
-		double userX = userRep.getX();
-		double userY = userRep.getY();
-		double enemyX = enemy1.getX();
-		double enemyY = enemy1.getY();
-		double distX = enemyX - userX;
-		double distY = enemyY - userY;
-		double moveX = (distX * 2) / 100;
-		double moveY = (distY * 2) / 100;
-		enemy1.move(-moveX, 0);
-		enemy1.move(0, -moveY);
 	}
 	
 	private void nextRoom() {
@@ -175,5 +165,18 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			user.setDX(0);
 			break;
 		}
+	}
+	
+	public void enemyMovement() {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double enemyX = enemy1.getX();
+		double enemyY = enemy1.getY();
+		double distX = enemyX - userX;
+		double distY = enemyY - userY;
+		double moveX = (distX * 2) / 100;
+		double moveY = (distY * 2) / 100;
+		for (Enemy enem : listOfEnemies)
+			enem.getImage().move(-moveX, -moveY);
 	}
 }
