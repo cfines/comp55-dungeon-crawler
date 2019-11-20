@@ -124,16 +124,16 @@ public abstract class GraphicsPane implements Interfaceable {
 	public void checkCollision() 
 	{
 		for(Interactions inter : interactionHash.keySet()) {	
-			if(user.getDX() > 0) {
+			if(user.getX() > 0) {
 				user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
 			}
-			else if(user.getDX() < 0) {
+			else if(user.getX() < 0) {
 				user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
 			}
-			else if(user.getDY() > 0) {
+			else if(user.getY() > 0) {
 				user.getUserStats().setCoordY(user.getCoordY() - user.getMoveSpeedStat());					
 			}
-			else if(user.getDY() < 0) {
+			else if(user.getY() < 0) {
 				user.getUserStats().setCoordY(user.getCoordY() + user.getMoveSpeedStat());					
 			}
 		}
