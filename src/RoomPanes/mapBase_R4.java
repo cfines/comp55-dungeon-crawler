@@ -237,17 +237,21 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		int newHealth;
 		double userX = userRep.getX() + 75;
 		double userY = userRep.getY() + 75;
-		if(userX >= enemy1.getX() && userY >= enemy1.getY() && userX <= enemy1.getX() + 75 && userY <= enemy1.getY() + 75) 
-		{
-			//newHealth = game.getUser().getUserStats().getHP_cur() - 1;
-			//game.getUser().getUserStats().setHP_cur(newHealth);
-			System.out.println("User takes 1 damage, ouch.");
-			//TODO insert user getting hurt here
-		}
-		else 
-		{
-			System.out.println("User is not taking damage.");
-		}
+		for(int i = 0; i < listOfEnemies.size(); i++)
+			if(userX >= listOfEnemies.get(i).getCoordX() && 
+				userY >= listOfEnemies.get(i).getCoordY() && 
+				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
+				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+			{
+				//newHealth = game.getUser().getUserStats().getHP_cur() - 1;
+				//game.getUser().getUserStats().setHP_cur(newHealth);
+				System.out.println("User takes 1 damage, ouch.");
+				//TODO insert user getting hurt here
+			}
+			else 
+			{
+				System.out.println("User is not taking damage.");
+			}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
