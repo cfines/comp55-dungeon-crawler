@@ -144,20 +144,10 @@ public class GraphicsGame extends GraphicsProgram implements ActionListener, Key
 			//enemyRep.setLocation(enemy.getCoordX(), enemy.getCoordY());
 			
 		}
-		/*
-		enemyRep.movePolar(30, degree);
-		degree+=10;
-		degree = degree % 360;
-		*/
 		
 		//These two lines are responsible for moving User and its respective image
 		game.getUser().tick();
 		userRep.setLocation(game.getUser().getX(), game.getUser().getY());
-		
-		/*for(int i = 0; i < game.getEnemies().size(); i++) {
-			game.getEnemies().get(i).tick();
-			enemyRep.setLocation(game.getEnemies().get(i).getCoordX(), game.getEnemies().get(i).getCoordY());
-		}*/
 		if(ae.getKeyCode() == KeyEvent.VK_E) {
 			drawSword();
 		}	

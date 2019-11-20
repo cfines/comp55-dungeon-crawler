@@ -93,6 +93,14 @@ public class User {
 		this.dy = dy;
 	}
 	
+	public double getDX() {
+		return dx;
+	}
+	
+	public double getDY() {
+		return dy;
+	}
+	
 	public void setX(double x) {
 		this.x = x;
 	}
