@@ -1,5 +1,6 @@
 package starter;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
@@ -12,6 +13,8 @@ import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
+import acm.graphics.GRect;
 
 public class MainApplication extends GraphicsApplication implements ActionListener{
 	public static final int WINDOW_WIDTH = 1155;
@@ -36,6 +39,21 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	private GImage userRep;
+	
+	//GRAPHICS Overlay Stuff
+		public GImage creditsImg;
+		public GImage hiScore;
+		public GImage text;
+		public GImage weapon;
+		public GImage portrait;
+		public GLabel health;
+		public GLabel levelLabel;
+		public GLabel roomLabel;
+		public GRect weaponBox;
+		public GRect weaponBoxOutline;
+		public GRect emptySpace;
+		public GImage title;
+		public boolean firstSwordCall = true;
 	
 	private int count;
 	private User user;
@@ -139,6 +157,73 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setUser(User Buser) {
 		this.user = Buser;
+	}
+	
+	/////////////////////////////////////////////
+	
+	public void drawOverlay(int roomNum, int floorNum) {
+		drawHealth();
+		drawLevelLabel(floorNum);
+		drawRoomLabel(roomNum);
+		drawPortrait();
+		weaponBoxOutline = new GRect(0,WINDOW_HEIGHT-100, 110,110);
+		weaponBoxOutline.setColor(Color.GRAY);
+		weaponBoxOutline.setFilled(true);
+		add(weaponBoxOutline);
+		
+		weaponBox = new GRect(5,WINDOW_HEIGHT-100,101,101);
+		weaponBox.setColor(Color.WHITE);
+		weaponBox.setFilled(true);
+		add(weaponBox);
+		drawSword();
+	}
+	
+	public void drawSword()	{
+		
+		if(!firstSwordCall) { remove(weapon); }
+		firstSwordCall = false;
+		
+		if(user.getWeaponEquiped() == 0) {
+			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else if (user.getWeaponEquiped() == 1) {
+			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		} else {
+			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
+			weapon.setSize(100,100);
+			add(weapon);
+		}
+	}
+	
+	public void drawPortrait() 
+	{
+		portrait = new GImage("User_Portrait.png", 0,20);
+		portrait.setSize(75,75);
+		add(portrait);
+	}
+	
+	public void drawHealth() {
+		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 50);
+		health.setFont("Arial-Bold-22");
+		health.setColor(Color.red);
+		add(health);
+	}
+	
+	public void drawLevelLabel(int floorNum) {
+		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
+		levelLabel.setFont("Arial-Bold-22");
+		levelLabel.setColor(Color.red);
+		add(levelLabel);
+	}
+	
+	public void drawRoomLabel(int roomNum) {
+		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 90);
+		roomLabel.setFont("Arial-Bold-22");
+		roomLabel.setColor(Color.red);
+		add(roomLabel);
 	}
 	
 }
