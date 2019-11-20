@@ -25,7 +25,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	
+	private boolean atkUp,atkLeft,atkRight,atkDown;
+
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
@@ -41,10 +42,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		rock1 = irock1.getImage();
 		hole1 = ihole1.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		
+
 		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy1);
-		
+
 		listOfInter.add(ihole1);
 		listOfInter.add(iE5);
 		listOfInter.add(iE4);
@@ -59,7 +60,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		
+
 		elements.add(background);
 		elements.add(enemy1);
 		elements.add(enemy2);
@@ -69,7 +70,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		elements.add(hole1);
 		elements.add(userRep);
 	}
-	
+
 	private void userUP() {
 		userRep.move(0, -5);
 	}
@@ -82,6 +83,36 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private void userRIGHT() {
 		userRep.move(5, 0);
 	}
+
+	@Override
+	public void showContents() {
+		program.add(voidSpace);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.add(elements.get(i));
+		}
+	}
+
+	@Override
+	public void hideContents() {
+		program.remove(voidSpace);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.remove(elements.get(i));
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if (obj == E4) {
+			program.switchToR2();
+			userRep.setLocation(90,300);
+		}
+		else if(obj == E5) {
+			program.switchToR4();
+			userRep.setLocation(1010,300);
+		}
+	}
+
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -98,42 +129,87 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		case KeyEvent.VK_D:
 			userRIGHT();
 			break;
+		case KeyEvent.VK_UP:
+			atkUp = true;
+			if(atkUp == true) 
+			{
+				userRep.setImage("Rogue_Attack(Up).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_LEFT:
+			atkLeft = true;
+			if(atkLeft == true) 
+			{
+				userRep.setImage("Rogue_Attack(Left).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_DOWN:
+			atkDown = true;
+			if(atkDown == true) 
+			{
+				userRep.setImage("Rogue_Attack(Down).png");
+				userRep.setSize(75,75);
+			}
+			break;
+		case KeyEvent.VK_RIGHT:
+			atkRight = true;
+			if(atkRight == true) 
+			{
+				userRep.setImage("Rogue_Attack(Right).png");
+				userRep.setSize(75,75);
+			}
+			break;
 		}
 	}
-	
 	@Override
-	public void showContents() {
-		program.add(voidSpace);
-		for (int i = 0; i <= elements.size() - 1; i++) {
-			program.add(elements.get(i));
+	public void keyReleased(KeyEvent e) 
+	{
+		switch (e.getKeyCode()) {
+		// for stopping attack 
+		case KeyEvent.VK_UP:
+			atkUp = false;
+			if(atkUp == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_LEFT:
+			atkLeft = false;
+			if(atkLeft == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_DOWN: 
+			atkDown = false;
+			if(atkDown == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
+
+		case KeyEvent.VK_RIGHT: 
+			atkRight = false;
+			if(atkRight == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+				userRep.setSize(75,75);
+			}
+			break;
 		}
 	}
 
 	@Override
-	public void hideContents() {
-		program.remove(voidSpace);
-		for (int i = 0; i <= elements.size() - 1; i++) {
-			program.remove(elements.get(i));
-		}
-	}
-	
-	@Override
-	public void mousePressed(MouseEvent e) {
-		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == E4) {
-			program.switchToR2();
-			userRep.setLocation(90,300);
-		}
-		else if(obj == E5) {
-			program.switchToR4();
-			userRep.setLocation(1010,300);
-		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
+
