@@ -25,7 +25,7 @@ public class mapBase_R5 extends GraphicsPane{
 	
 	public mapBase_R5(MainApplication app) {
 		this.program = app;
-		Enemy ienemy1 = new Enemy(2,2,2,2,575,325, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,575,325, ElementType.WATER, enemyType.WATERSkull);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
 		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,28);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,505);

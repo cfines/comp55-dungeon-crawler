@@ -8,7 +8,7 @@ public enum enemyType {
 			case EARTHBat: return "EARTHBat";
 			case FIREBat: return "FIREBat";
 			case WATERBat: return "WATERBat";
-			case EARTHSkull: return "FIRESkull";
+			case EARTHSkull: return "EARTHSkull";
 			case FIRESkull: return "FIRESkull";
 			case WATERSkull: return "WATERSkull";
 		}

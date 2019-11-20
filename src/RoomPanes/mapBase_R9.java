@@ -8,30 +8,41 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 import starter.GraphicsPane;
+import starter.Interactions;
 import starter.MainApplication;
+import starter.interactionType;
 
 public class mapBase_R9 extends GraphicsPane{
 	private MainApplication program;
 	private GImage E16, ENext, boss, background,userRep;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
+	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 
 	public mapBase_R9(MainApplication app) {
 		this.program = app;
-		E16 = new GImage("entry_door_SOUTH.png",575,505);
-		ENext = new GImage("entry_stair.png",575,300);
+		Interactions iE16 = new Interactions(interactionType.entry_door_SOUTH,575,505);
+		Interactions iENext = new Interactions(interactionType.entry_stair,575,300);
+		E16 = iE16.getImage();
+		ENext = iENext.getImage();
+		
+		// TODO: handle boss like how entries and enemies are handled
 		boss = new GImage("Kirb_BOSS.gif", 575,200);
+		boss.setSize(100, 100);
+		
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		E16.setSize(75,75);
 		ENext.setSize(75, 75);
 		background.setSize(1125, 550);
-		boss.setSize(100, 100);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
+		
+		listOfInter.add(iENext);
+		listOfInter.add(iE16);
 		
 		elements.add(background);
 		elements.add(E16);
