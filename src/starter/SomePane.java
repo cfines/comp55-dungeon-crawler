@@ -99,6 +99,12 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.switchToMenu();
 		}
 	}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		user.setX(e.getX());
+		user.setY(e.getY());
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -250,16 +256,22 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
 				if(user.getX() - inter.getImage().getX() > 0) {
+					System.out.println("right");
 					user.setX(user.getX() + user.getMoveSpeedStat());	
 				}
-				if(user.getX() - inter.getImage().getX() < 0) {
+				else if(user.getX() - inter.getImage().getX() < 0) {
+					System.out.println("left");
 					user.setX(user.getX() - user.getMoveSpeedStat());		
 				}
-				if(user.getY() - inter.getImage().getY() > 0) {
+				else if(user.getY() - inter.getImage().getY() > 0) {
+					System.out.println("up");
 					user.setY(user.getY() + user.getMoveSpeedStat());		
+					user.setX(user.getX());
 				}
-				if(user.getY() - inter.getImage().getY() < 0) {
+				else if(user.getY() - inter.getImage().getY() < 0) {
+					System.out.println("down");
 					user.setY(user.getY() - user.getMoveSpeedStat());	
+					user.setX(user.getX());
 				}
 			}
 		}

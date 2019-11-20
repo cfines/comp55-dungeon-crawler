@@ -64,7 +64,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		
-		switchToR4(); //change which screen you want to switch to
+		switchToSome(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -86,7 +86,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
-		userRep.setLocation(275,290);
+		//userRep.setLocation(275,290);
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
