@@ -2,6 +2,7 @@ package starter;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -60,7 +61,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(enemy1);
 		elements.add(userRep);
 		
-		Timer t = new Timer(25, this);
+		Timer t = new Timer(2000, this);
 		t.start();
 	}
 
@@ -99,11 +100,73 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			enemy1.movePolar(10, degree);
-			degree+=5;
-			degree%=360;
+//			enemy1.movePolar(10, degree);
+//			degree+=5;
+//			degree%=360;
+		
+		//what im trying to do here is to use the point slope formula in order to find
+		// the distance between the user and the enemy.
+		// based off of that distance, i'll have the enemy move in the direction of the user
+		// based on that distance, checking if it should go up or down the slope of the line i found.
+		
+		System.out.println("x: " + userRep.getX() + " y: " + userRep.getY());
+		double tempUserX = userRep.getX();
+		double tempUserY = userRep.getY();
+		double enemyX = enemy1.getX();
+		double enemyY = enemy1.getY();
+		double slope = (enemyY - tempUserY) / (enemyX - tempUserX);
+		double perpenSlope = -1/slope;
+		double temp1 = perpenSlope * tempUserX;
+		double temp2 = perpenSlope * enemyX;
+		double temp4 = temp1 + temp2;
+		
+		if(enemyY > 0) {
+			temp4 -= enemyY;
+		}
+		else if(enemyY < 0) {
+			temp4+=enemyY;
+		}
+
+		if(tempUserY > temp4) {
+			System.out.println("behind");
+		}
+		else if(tempUserY < temp4) {
+			System.out.println("in front");
+		}
 	}
 	
+	private void userUP() {
+		user.setDY(user.getCoordY() - 5);
+		userRep.move(0, -5);
+	}
+	private void userDOWN() {
+		user.setDY(user.getCoordY() + 5);
+		userRep.move(0, 5);
+	}
+	private void userLEFT() {
+		user.setDX(user.getCoordX() - 5);
+		userRep.move(-5, 0);
+	}
+	private void userRIGHT() {
+		user.setDX(user.getCoordX() + 5);
+		userRep.move(5, 0);
+	}
 	
-
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			userUP();
+			break;
+		case KeyEvent.VK_S:
+			userDOWN();
+			break;
+		case KeyEvent.VK_A:
+			userLEFT();
+			break;
+		case KeyEvent.VK_D:
+			userRIGHT();
+			break;
+		}
+	}
 }
