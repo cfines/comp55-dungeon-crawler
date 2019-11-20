@@ -22,7 +22,7 @@ import acm.graphics.GObject;
 public abstract class GraphicsPane implements Interfaceable {
 	private GImage userRep;
 	private User user;
-	private boolean moveUp,moveDown,moveLeft,moveRight,swapWep,atkUp,atkDown,atkLeft,atkRight;
+	private boolean moveUp,moveDown,moveLeft,moveRight,atkUp,atkDown,atkLeft,atkRight;
 	private HashMap<Interactions, Coordinates> interactionHash = new HashMap<Interactions, Coordinates>();
 	
 	@Override
@@ -94,14 +94,37 @@ public abstract class GraphicsPane implements Interfaceable {
 			}
 			//TODO attacks go here
 		case KeyEvent.VK_E:
+			user.cycleWeapon();
 			break;
+			
+		// for starting attack
 		case KeyEvent.VK_UP:
+			atkUp = true;
+			if(atkUp == true) 
+			{
+				userRep.setImage("Rogue_Attack(Up).png");
+			}
 			break;
 		case KeyEvent.VK_LEFT:
+			atkLeft = true;
+			if(atkLeft == true) 
+			{
+				userRep.setImage("Rogue_Attack(Left).png");
+			}
 			break;
 		case KeyEvent.VK_DOWN:
+			atkDown = true;
+			if(atkDown == true) 
+			{
+				userRep.setImage("Rogue_Attack(Down).png");
+			}
 			break;
 		case KeyEvent.VK_RIGHT:
+			atkRight = true;
+			if(atkRight == true) 
+			{
+				userRep.setImage("Rogue_Attack(Right).png");
+			}
 			break;
 		default:
 			break;	
@@ -125,22 +148,37 @@ public abstract class GraphicsPane implements Interfaceable {
 		if(keyInput == KeyEvent.VK_D) {
 			moveRight = false;
 		}
-		if(keyInput == KeyEvent.VK_E) {
-			swapWep = false;
-		}
+		if(keyInput == KeyEvent.VK_E) {}
+		
+		// for stopping attack 
 		if(keyInput == KeyEvent.VK_UP) {
-			atkUp = false;		
+			atkUp = false;
+			if(atkUp == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+			}
 		}
 		if(keyInput == KeyEvent.VK_LEFT) {
 			atkLeft = false;
+			if(atkLeft == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+			}
 		}
 		if(keyInput == KeyEvent.VK_DOWN) {
 			atkDown = false;
+			if(atkDown == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+			}
 		}
 		if(keyInput == KeyEvent.VK_RIGHT) {
 			atkRight = false;
+			if(atkRight == false) 
+			{
+				userRep.setImage("Rogue_(Sample User).gif");
+			}
 		}
-		//TODO attacks go here
 	}
 
 	@Override
