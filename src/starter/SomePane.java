@@ -75,7 +75,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.add(inter.getImage());
 		}
 		program.add(enemy1);
-
 	}
 
 	@Override
@@ -104,7 +103,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		degree+=50;
 		degree%=360;
 		
-		
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double enemyX = enemy1.getX();
@@ -113,28 +111,39 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		double distY = enemyY - userY;
 		double moveX = (distX * 2) / 100;
 		double moveY = (distY * 2) / 100;
-		
+		System.out.println("oh lord he coming");
 		enemy1.move(-moveX, 0);
 		enemy1.move(0, -moveY);
 		
 	}
-
+	
+	private void nextRoom() {
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
+			program.switchToR2();
+		}
+	}
 	
 	private void userUP() {
-		user.setDY(user.getCoordY() - 5);
-		userRep.move(0, -5);
+		user.setDY(user.getCoordY() - 10);
+		userRep.move(0, -10);
+		nextRoom();
 	}
 	private void userDOWN() {
-		user.setDY(user.getCoordY() + 5);
-		userRep.move(0, 5);
+		user.setDY(user.getCoordY() + 10);
+		userRep.move(0, 10);
+		nextRoom();
 	}
 	private void userLEFT() {
-		user.setDX(user.getCoordX() - 5);
-		userRep.move(-5, 0);
+		user.setDX(user.getCoordX() - 10);
+		userRep.move(-10, 0);
+		nextRoom();
 	}
 	private void userRIGHT() {
-		user.setDX(user.getCoordX() + 5);
-		userRep.move(5, 0);
+		user.setDX(user.getCoordX() + 10);
+		userRep.move(10, 0);
+		nextRoom();
 	}
 	
 	@Override
