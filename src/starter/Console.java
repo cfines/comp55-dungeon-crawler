@@ -235,33 +235,33 @@ public class Console {
 		
 		case KeyEvent.VK_W:
 			checkCollision();
-			moveUp =true;
-			if(moveUp == true) 
-			{
-			user.setDY(-user.getMoveSpeedStat());
-			}
+			/*
+			 * moveUp =true; if(moveUp == true) { user.setDY(-user.getMoveSpeedStat()); }
+			 */
+			user.setDY(user.getMoveSpeedStat());
 			break;
 		case KeyEvent.VK_A:
 			checkCollision();
-			moveLeft = true;
-			if(moveLeft==true) 
-			{
+			/*
+			 * moveLeft = true; if(moveLeft==true) { user.setDX(-user.getMoveSpeedStat()); }
+			 */
 			user.setDX(-user.getMoveSpeedStat());
-			}
 			break;
 		case KeyEvent.VK_S:
 			checkCollision();
-			moveDown = true;
-			if(moveDown == true) {
-			user.setDY(user.getMoveSpeedStat());
-			}
+			/*
+			 * moveDown = true; if(moveDown == true) { user.setDY(user.getMoveSpeedStat());
+			 * }
+			 */
+			user.setDY(-user.getMoveSpeedStat());
 			break;
 		case KeyEvent.VK_D:
 			checkCollision();
-			moveRight = true;
-			if(moveRight == true) {
+			/*
+			 * moveRight = true; if(moveRight == true) {
+			 * user.setDX(user.getMoveSpeedStat()); }
+			 */
 			user.setDX(user.getMoveSpeedStat());
-			}
 			break;
 		case KeyEvent.VK_E:
 			//keyDown[4] = true;
@@ -296,16 +296,16 @@ public class Console {
 		
 
 		if(keyInput == KeyEvent.VK_W) {
-			moveUp = false;
+			user.setDY(0);
 		}
 		if(keyInput == KeyEvent.VK_A) {
-			moveLeft = false;
+			user.setDX(0);
 		}
 		if(keyInput == KeyEvent.VK_S) {
-			moveDown = false;
+			user.setDY(0);
 		}
 		if(keyInput == KeyEvent.VK_D) {
-			moveRight = false;
+			user.setDX(0);
 		}
 		/*if(keyInput == KeyEvent.VK_E) {
 			keyDown[4] = false;
@@ -408,16 +408,16 @@ public class Console {
 				}
 				else 
 				{*/
-					if(user.getDX() > 0) {
+					if(user.getX() > 0) {
 						user.getUserStats().setCoordX(user.getCoordX() - user.getMoveSpeedStat());					
 					}
-					else if(user.getDX() < 0) {
+					else if(user.getX() < 0) {
 						user.getUserStats().setCoordX(user.getCoordX() + user.getMoveSpeedStat());					
 					}
-					else if(user.getDY() > 0) {
+					else if(user.getY() > 0) {
 						user.getUserStats().setCoordY(user.getCoordY() - user.getMoveSpeedStat());					
 					}
-					else if(user.getDY() < 0) {
+					else if(user.getY() < 0) {
 						user.getUserStats().setCoordY(user.getCoordY() + user.getMoveSpeedStat());					
 					}
 			}

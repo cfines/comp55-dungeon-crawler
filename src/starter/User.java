@@ -12,7 +12,7 @@ public class User {
 	private int moveSpeedStat;
 	private double powerStat;
 	private int atkSpeedStat;
-	private double dx, dy;
+	private double dx, dy, x, y;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -45,6 +45,8 @@ public class User {
 			int input_dmg, double input_x, double input_y){
 		
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
+		x = input_x;
+		y = input_y;
 		moveSpeedStat = 7;
 		powerStat = 1;
 		atkSpeedStat = 1;
@@ -60,8 +62,12 @@ public class User {
 	}
 	
 	public void tick() {
-		userStats.setCoordX(userStats.getCoordX() + dx);
-		userStats.setCoordY(userStats.getCoordY() + dy);
+		x+= dx;
+		x+= dy;
+		/*
+		 * userStats.setCoordX(userStats.getCoordX() + dx);
+		 * userStats.setCoordY(userStats.getCoordY() + dy);
+		 */
 		if(userStats.getCoordX() <= 125-60) {
 			userStats.setCoordX(125-60);
 		}
@@ -76,21 +82,22 @@ public class User {
 		}
 	}
 	
-	public void setDX(double input_dx) {
-		dx = input_dx;
+	public void setDX(double dx) {
+		this.dx = dx;
 	}
 	
-	public void setDY(double input_dy) {
-		dy = input_dy;
+	public void setDY(double dy) {
+		this.dy = dy;
 	}
 	
-	public double getDX() {
-		return dx;
+	public double getX() {
+		return x;
 	}
 	
-	public double getDY() {
-		return dy;
+	public double getY() {
+		return y;
 	}
+	
 	
 	//GETTERS AND SETTERS//
 	
