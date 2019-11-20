@@ -38,12 +38,16 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private GImage userRep;
 	
 	private int count;
+	private User user;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
 
 	public void run() {
+		user = new User(5, 5, 1000, 1, 300, 300);
+		//userRep = new GImage("Rogue_(Sample User).gif");
+		//userRep.setSize(75, 75);
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
@@ -59,9 +63,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
-		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
-		switchToSome(); //change which screen you want to switch to
+		
+		switchToR4(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -129,4 +132,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length],true);
 	}
+	
+	public User getUser() {
+		return this.user;
+	}
+	
+	public void setUser(User Buser) {
+		this.user = Buser;
+	}
+	
 }
