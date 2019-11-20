@@ -61,7 +61,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(enemy1);
 		elements.add(userRep);
 		
-		Timer t = new Timer(2000, this);
+		Timer t = new Timer(50, this);
 		t.start();
 	}
 
@@ -100,22 +100,23 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//			enemy1.movePolar(10, degree);
-//			degree+=5;
-//			degree%=360;
+		enemy1.movePolar(4, degree);
+		degree+=50;
+		degree%=360;
 		
-		//what im trying to do here is to use the point slope formula in order to find
-		// the distance between the user and the enemy.
-		// based off of that distance, i'll have the enemy move in the direction of the user
-		// based on that distance, checking if it should go up or down the slope of the line i found.
 		
-		System.out.println("x: " + userRep.getX() + " y: " + userRep.getY());
-		double tempUserX = userRep.getX();
-		double tempUserY = userRep.getY();
+		double userX = userRep.getX();
+		double userY = userRep.getY();
 		double enemyX = enemy1.getX();
 		double enemyY = enemy1.getY();
-		double slope = (enemyY - tempUserY) / (enemyX - tempUserX);
-		//double temp1 = enemyY
+		double distX = enemyX - userX;
+		double distY = enemyY - userY;
+		double moveX = (distX * 2) / 100;
+		double moveY = (distY * 2) / 100;
+		
+		enemy1.move(-moveX, 0);
+		enemy1.move(0, -moveY);
+		
 	}
 
 	
