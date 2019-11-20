@@ -50,7 +50,7 @@ public class User {
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		x = input_x;
 		y = input_y;
-		moveSpeedStat = 7;
+		moveSpeedStat = 10;
 		powerStat = 1;
 		atkSpeedStat = 1;
 		

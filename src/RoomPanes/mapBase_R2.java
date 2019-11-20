@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
-import starter.Console;
 import starter.ElementType;
 import starter.Enemy;
 import starter.GraphicsPane;
@@ -32,6 +32,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
+
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -253,18 +254,28 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-		double userX = userRep.getX();
-		double userY = userRep.getY();
-
-		for(Enemy enem : listOfEnemies) {
-			double enemyX = enem.getCoordX();
-			double enemyY = enem.getCoordY();
-			double distX = enemyX - userX;
-			double distY = enemyY - userY;
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			for (Enemy enem2 : listOfEnemies)
-				enem2.getImage().move(-moveX, -moveY);
+		for (Enemy enem : listOfEnemies) {
+			double distX = enem.getImage().getX() - userRep.getX();
+			double distY = enem.getImage().getY() - userRep.getY();
+			
+			Random rand = new Random();
+			int rand1 = rand.nextInt(5);
+			
+			if(rand1 % 2 == 0) {
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+				enem.getImage().movePolar(5, degree);
+				degree+=10;
+			}
+			else {
+				double moveX = (distX * 4) / 100;
+				double moveY = (distY * 4) / 100;
+				enem.getImage().move(-moveX, -moveY);
+				enem.getImage().movePolar(10, degree);
+				degree+=5;
+			}
+			degree%=360;
 		}
 	}
 

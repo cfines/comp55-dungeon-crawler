@@ -39,7 +39,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	private int count;
 	
-	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
