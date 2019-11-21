@@ -249,6 +249,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
+				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					System.out.println("bottom"); 
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
