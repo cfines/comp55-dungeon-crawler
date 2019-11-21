@@ -274,14 +274,18 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 	
 	private void nextRoom() {
-		double userX = userRep.getX() + 80;
-		double userY = userRep.getY() + 80;
+		double userX = userRep.getX();
+		double userY = userRep.getY();
 		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
 			program.switchToR2();
 			userRep.setLocation(1030,300);
 		}
-		if(userX >= E5.getX() && userY >= E5.getY() && userX <= E5.getX() + 75 && userY <= E5.getY() + 75) {
-			program.switchToR3();
+		
+		userX = userRep.getX() + 80;
+		userY = userRep.getY() + 80;
+		
+		if(userX >= E5.getX() && userY >= E5.getY() && userX + 80 <= E5.getX() + 75 && userY + 80 <= E5.getY() + 75) {
+			program.switchToR4();
 			userRep.setLocation(40,300);
 		}
 	}
