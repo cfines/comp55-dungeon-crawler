@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.Timer;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
@@ -28,9 +30,14 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
+	Timer t = new Timer(30, this);
+	private int degree;
+	private int timerCont = 0;
+	private boolean move = true;
 
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
+		user = program.getUser();
 		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
 		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
@@ -53,7 +60,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iE4);
 		listOfInter.add(irock1);
 
-		userRep = new GImage("Rogue_(Sample User).gif");
+		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userRep.setSize(75, 75);
 
 		hole1.setSize(200, 200);
@@ -64,30 +71,18 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		voidSpace.setFilled(true);
 
 		elements.add(background);
+		elements.add(rock1);
+		elements.add(hole1);
 		elements.add(enemy1);
 		elements.add(enemy2);
 		elements.add(E4);
 		elements.add(E5);
-		elements.add(rock1);
-		elements.add(hole1);
 		elements.add(userRep);
-	}
-
-	private void userUP() {
-		userRep.move(0, -5);
-	}
-	private void userDOWN() {
-		userRep.move(0, 5);
-	}
-	private void userLEFT() {
-		userRep.move(-5, 0);
-	}
-	private void userRIGHT() {
-		userRep.move(5, 0);
 	}
 
 	@Override
 	public void showContents() {
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
@@ -96,6 +91,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void hideContents() {
+		t.stop();
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
@@ -121,61 +117,75 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
+			//isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			//isUserInPain();
+			break;
+		case KeyEvent.VK_E:
+			program.getUser().cycleWeapon();
+			program.drawSword();
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
 			if(atkUp == true) 
 			{
-				userRep.setImage("Rogue_Attack(Up).png");
-				userRep.setSize(75,75);
+				attackUp();
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			atkLeft = true;
 			if(atkLeft == true) 
 			{
-				userRep.setImage("Rogue_Attack(Left).png");
-				userRep.setSize(75,75);
+				attackLeft();
 			}
 			break;
 		case KeyEvent.VK_DOWN:
 			atkDown = true;
 			if(atkDown == true) 
 			{
-				userRep.setImage("Rogue_Attack(Down).png");
-				userRep.setSize(75,75);
+				attackDown();
 			}
 			break;
 		case KeyEvent.VK_RIGHT:
 			atkRight = true;
 			if(atkRight == true) 
 			{
-				userRep.setImage("Rogue_Attack(Right).png");
-				userRep.setSize(75,75);
+				attackRight();
 			}
 			break;
 		}
 	}
-	
-	public void keyReleased(KeyEvent e) 
-	{
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		// for stopping attack 
+		case KeyEvent.VK_W:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_S:
+			user.setDY(0);
+			break;
+		case KeyEvent.VK_A:
+			user.setDX(0);
+			break;
+		case KeyEvent.VK_D:
+			user.setDX(0);
+			break;
 		case KeyEvent.VK_UP:
 			atkUp = false;
 			if(atkUp == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -183,8 +193,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			atkLeft = false;
 			if(atkLeft == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -192,8 +201,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			atkDown = false;
 			if(atkDown == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 
@@ -201,17 +209,232 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			atkRight = false;
 			if(atkRight == false) 
 			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
+				attackReset();
 			}
 			break;
 		}
 	}
 
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		userRep.move(user.getX(), user.getY());
+		enemyMovement();
+		isUserInPain();
+		checkCollision();
+		nextRoom();
+		user.tick();
+		userRep.setLocation(user.getX(), user.getY());
+	}
+	
+	public void isUserInPain() 
+	{
+		int newHealth;
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(userX >= listOfEnemies.get(i).getCoordX() && 
+				userY >= listOfEnemies.get(i).getCoordY() && 
+				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
+				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+			{
+				//if the user is fighting
+				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
+				{
+					//damage dealt to enemy
+					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					{
+						//should remove an enemy
+						int tempX = (int)listOfEnemies.get(i).getCoordX();
+						int tempY = (int)listOfEnemies.get(i).getCoordY();
+						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
+						program.add(rip2.getImage());
+						program.add(rip.getImage());
+						listOfEnemies.remove(i);
+					}
+				}
+				//if user is not attacking
+				else{
+					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+					program.getUser().getUserStats().setHP_cur(newHealth);
+					System.out.println("User takes 1 damage, ouch.");
+					program.refreshOverlay();
+					program.drawOverlay(4, 1);
+				}
+				//TODO insert user getting hurt here
+			}
+			if (program.getUser().getUserStats().getHP_cur() == 0) {
+				program.switchToGameOver();
+
+			}
+		}
+	}
+	
+	private void nextRoom() {
+		double userX = userRep.getX() + 80;
+		double userY = userRep.getY() + 80;
+		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
+			program.switchToR2();
+			userRep.setLocation(1030,300);
+		}
+		if(userX >= E5.getX() && userY >= E5.getY() && userX <= E5.getX() + 75 && userY <= E5.getY() + 75) {
+			program.switchToR3();
+			userRep.setLocation(40,300);
+		}
+	}
+	
+	private void userUP() {
+		user.setDY(-user.getMoveSpeedStat());
+	}
+	private void userDOWN() {
+		user.setDY(user.getMoveSpeedStat());
+	}
+	private void userLEFT() {
+		user.setDX(-user.getMoveSpeedStat());
+	}
+	private void userRIGHT() {
+		user.setDX(user.getMoveSpeedStat());
+	}
+	
+	public void checkCollision() {
+		for(Interactions inter : listOfInter) {	
+			if(intCollisionTest(inter.getImage())) {
+				//TODO Set these comparisons to booleans
+				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
+					System.out.println("bottom"); 
+					user.setY(user.getY() + user.getMoveSpeedStat()); 
+				} 
+				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
+					System.out.println("top"); 
+					user.setY(user.getY() - user.getMoveSpeedStat());
+				}
+				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
+					System.out.println("right"); 
+					user.setX(user.getX() + user.getMoveSpeedStat()); 
+				} 
+				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
+					System.out.println("left"); 
+					user.setX(user.getX() - user.getMoveSpeedStat());
+				} 
+			}
+		}
+	}
+	
+	public boolean intCollisionTest(GImage image) {
+		return (user.getY() - image.getY() <= 60
+				&& user.getY() - image.getY() >= -60
+				&& user.getX() - image.getX() <= 60
+				&& user.getX() - image.getX() >= -60);
+	}
+	
+	private void attackUp() {
+
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+	}
+	private void attackDown() {
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+	}
+	private void attackLeft() {
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+	}
+	private void attackRight() {
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+	}
+
+	private void attackReset() {
+		userRep.setImage("Rogue_(Sample User).gif");
+		userRep.setSize(75,75);
+	}
+	
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+
+			enem.getImage().movePolar(5, degree);
+			degree+=5;
+			degree%=360;
+			if(enem.getEnemyType() == enemyType.EARTHBat) {
+				if(move) {
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 4) / 100;
+					double moveY = (distY * 4) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}else {enem.getImage().move(0, 0);}
+			}
+			else if(enem.getEnemyType() == enemyType.FIRESkull) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+		}
+	}
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
 	}
 }
 
