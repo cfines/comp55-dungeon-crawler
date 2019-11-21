@@ -177,6 +177,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		drawSword();
 	}
 	
+	public void refreshOverlay() 
+	{
+		remove(health);
+		remove(levelLabel);
+		remove(roomLabel);
+	}
+	
 	public void drawSword()	{
 		
 		if(!firstSwordCall) { remove(weapon); }
