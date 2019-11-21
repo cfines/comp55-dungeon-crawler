@@ -63,7 +63,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userRep.setSize(75, 75);
 
-		hole1.setSize(200, 200);
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -266,10 +265,12 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 				}
 				//TODO insert user getting hurt here
 			}
-			if (program.getUser().getUserStats().getHP_cur() == 0) {
-				program.switchToGameOver();
-
-			}
+			/*
+			 * if (program.getUser().getUserStats().getHP_cur() == 0) {
+			 * program.switchToGameOver();
+			 * 
+			 * }
+			 */
 		}
 	}
 	
