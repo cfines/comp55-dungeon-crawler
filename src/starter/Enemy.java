@@ -14,7 +14,7 @@ public class Enemy {
 	private double powerStat;
 	private ElementType elementType;
 	private enemyType EnemyType;
-	private int dx, dy;
+	private double dx, dy;
 	private GImage image;
 	public int degree = 0;
 	
@@ -34,16 +34,21 @@ public class Enemy {
 		setImage(enemy);
 	}
 	
-	public ElementType getEnemyType() 
+	public ElementType getElementType() 
 	{
 		return elementType;
+	}
+	
+	public enemyType getEnemyType() 
+	{
+		return EnemyType;
 	}
 	
 	public void setImage(enemyType type) {
 		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat) {
 			image = new GImage(type + ".gif", dx, dy);
 		}
-		else {
+		else if (type == enemyType.rip2 || type == enemyType.EARTHSkull || type == enemyType.FIRESkull || type == enemyType.WATERSkull) {
 			image = new GImage(type + ".png", dx, dy);
 		}
 		image.setSize(75, 75);
@@ -58,19 +63,19 @@ public class Enemy {
 	}
 	
 	public void setStartX(double x) {
-		startUp.setX(x);
+		dx = x;
 	}
 	
 	public void setStartY(double y) {
-		startUp.setY(y);
+		dy = y;
 	}
 	
 	public double getCoordX() {
-		return startUp.getX();
+		return dx;
 	}
 	
 	public double getCoordY() {
-		return startUp.getY();
+		return dy;
 	}
 	
 	public void tick() {
@@ -81,15 +86,15 @@ public class Enemy {
 	}
 	
 	public static void main(String[] args) {
-		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
-		derp.setStartX(10);
-		derp.setStartY(5);
-		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+	//	Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
+	//	derp.setStartX(10);
+	//	derp.setStartY(5);
+	//	System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
-		while(1<5) {
-			derp.tick();
-			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-		}
+	//	while(1<5) {
+	//		derp.tick();
+	//		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+	//	}
 	}
 	
 }

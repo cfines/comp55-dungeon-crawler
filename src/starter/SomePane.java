@@ -29,9 +29,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public SomePane(MainApplication app) {
 		this.program = app;
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 170,189);
-		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 890, 200);
+		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
-		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1040,300);
+		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,300, ElementType.FIRE, enemyType.FIRESkull);
 		Enemy ienemy2 = new Enemy(2,2,2,2,350,450, ElementType.FIRE, enemyType.FIRESkull);
 
@@ -48,7 +48,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
-		
+
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		enemy1 = ienemy1.getImage();
@@ -92,8 +92,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
-			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
+			userRep.setLocation(70,300);
 		}
 		else if(obj == rock1) {
 			program.switchToMenu();
@@ -109,15 +109,15 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();
-		checkCollision();
 		nextRoom();
 		user.tick();
+		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	private void nextRoom() {
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
+		double userX = userRep.getX() + 80;
+		double userY = userRep.getY() + 80;
 		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
 			program.switchToR2();
 		}
@@ -255,32 +255,48 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
-				if(user.getX() - inter.getImage().getX() > 0) {
-					System.out.println("right");
-					user.setX(user.getX() + user.getMoveSpeedStat());	
+				//TODO Set these comparisons to booleans
+				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
+					System.out.println("bottom"); 
+					user.setY(user.getY() + user.getMoveSpeedStat()); 
+				} 
+				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
+					System.out.println("top"); 
+					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
-				else if(user.getX() - inter.getImage().getX() < 0) {
-					System.out.println("left");
-					user.setX(user.getX() - user.getMoveSpeedStat());		
-				}
-				else if(user.getY() - inter.getImage().getY() > 0) {
-					System.out.println("up");
-					user.setY(user.getY() + user.getMoveSpeedStat());		
-					user.setX(user.getX());
-				}
-				else if(user.getY() - inter.getImage().getY() < 0) {
-					System.out.println("down");
-					user.setY(user.getY() - user.getMoveSpeedStat());	
-					user.setX(user.getX());
+				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
+					System.out.println("right"); 
+					user.setX(user.getX() + user.getMoveSpeedStat()); 
+				} 
+				if (user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
+					System.out.println("left"); 
+					user.setX(user.getX() - user.getMoveSpeedStat());
+				} 
+			}
+		}
+	}
+
+	public void enemyCollision() {
+		for(Interactions inter : listOfInter) {
+			for(Enemy enem : listOfEnemies) {
+				if(enemyCollisionTest(enem, inter.getImage())) {
+					
 				}
 			}
 		}
 	}
 
 	public boolean intCollisionTest(GImage image) {
-		return (user.getY() - image.getY() <= 75
-				&& user.getY() - image.getY() >= -75
-				&& user.getX() - image.getX() <= 75
-				&& user.getX() - image.getX() >= -75);
+		return (user.getY() - image.getY() <= 60
+				&& user.getY() - image.getY() >= -60
+				&& user.getX() - image.getX() <= 60
+				&& user.getX() - image.getX() >= -60);
+	}
+
+	public boolean enemyCollisionTest(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
 	}
 }

@@ -32,8 +32,9 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
-	Timer t = new Timer(50, this);
-
+	private Timer t = new Timer(30, this);
+	private int timerCont = 0;
+	private boolean move = true;
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -85,28 +86,36 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	}
 	
 	private void nextRoom() {
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
-		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX()&& userY <= E2.getY()) {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userRep.getX() + 75;
+		double userY2 = userRep.getY() + 75;
+		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 75 && userY <= E2.getY() + 75) {
 			program.switchToSome();
+			userRep.setLocation(1030,300);
 		}
+		else if(userX2 >= E3.getX() && userY2 >= E3.getY() && userY2 <= E2.getY() + 75) {
+			program.switchToR3();
+			userRep.setLocation(40,300);
+		}
+		
 	}
 	
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userDOWN() {
 		user.setDY(user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userLEFT() {
 		user.setDX(-user.getMoveSpeedStat());
-		//nextRoom();
 	}
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
-		//nextRoom();
+	}
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
 	}
 	
 	@Override
@@ -245,37 +254,38 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemy1.movePolar(4, degree);
-		degree+=50;
-		degree%=360;
+		timerCont++;
+		nextRoom();
 		enemyMovement();
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
 		for (Enemy enem : listOfEnemies) {
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
-			
-			Random rand = new Random();
-			int rand1 = rand.nextInt(5);
-			
-			if(rand1 % 2 == 0) {
+
+			enem.getImage().movePolar(5, degree);
+			degree+=5;
+			degree%=360;
+			if(enem.getEnemyType() == enemyType.EARTHSkull) {
+				if(move) {
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 2) / 100;
+					double moveY = (distY * 2) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}else {enem.getImage().move(0, 0);}
+			}
+			else if(enem.getEnemyType() == enemyType.WATERSkull) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;
 				double moveY = (distY * 2) / 100;
 				enem.getImage().move(-moveX, -moveY);
-				enem.getImage().movePolar(5, degree);
-				degree+=10;
 			}
-			else {
-				double moveX = (distX * 4) / 100;
-				double moveY = (distY * 4) / 100;
-				enem.getImage().move(-moveX, -moveY);
-				enem.getImage().movePolar(10, degree);
-				degree+=5;
-			}
-			degree%=360;
 		}
 	}
 

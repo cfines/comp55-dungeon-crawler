@@ -29,10 +29,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkDown,atkRight;
-	private Console game;
 	private int degree;
 	private User user;
-	private Timer timer = new Timer(50, this);
+	private Timer timer = new Timer(30, this);
 	
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
@@ -79,7 +78,6 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(E6);
 		elements.add(E7);
 		elements.add(userRep);
-		isUserInPain();
 		//TODO insert timer based on attack speed
 		
 	}
@@ -96,22 +94,75 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		user.setDX(user.getMoveSpeedStat());
 	}
 	private void attackUp() {
-		userRep.setImage("Rogue_Attack(Up).png");
-		userRep.setSize(75,75);
+
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
 	}
 	private void attackDown() {
-		userRep.setImage("Rogue_Attack(Down).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Down).png");
+			userRep.setSize(55,115);
 		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+	}
 	private void attackLeft() {
-		userRep.setImage("Rogue_Attack(Left).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
 	}
 	private void attackRight() {
-		userRep.setImage("Rogue_Attack(Right).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
 	}
-	
+
 	private void attackReset() {
 		userRep.setImage("Rogue_(Sample User).gif");
 		userRep.setSize(75,75);
@@ -156,15 +207,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
+			//isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_E:
 			program.getUser().cycleWeapon();
@@ -258,25 +313,52 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		int newHealth;
 		double userX = userRep.getX() + 75;
 		double userY = userRep.getY() + 75;
-		for(int i = 0; i < listOfEnemies.size(); i++)
+		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(userX >= listOfEnemies.get(i).getCoordX() && 
 				userY >= listOfEnemies.get(i).getCoordY() && 
 				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
 				userY <= listOfEnemies.get(i).getCoordY() + 75) 
 			{
-				//newHealth = game.getUser().getUserStats().getHP_cur() - 1;
-				//game.getUser().getUserStats().setHP_cur(newHealth);
-				System.out.println("User takes 1 damage, ouch.");
+				//if the user is fighting
+				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
+				{
+					//damage dealt to enemy
+					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					{
+						//should remove an enemy
+						int tempX = (int)listOfEnemies.get(i).getCoordX();
+						int tempY = (int)listOfEnemies.get(i).getCoordY();
+						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
+						program.add(rip2.getImage());
+						program.add(rip.getImage());
+						listOfEnemies.remove(i);
+					}
+				}
+				//if user is not attacking
+				else{
+					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+					program.getUser().getUserStats().setHP_cur(newHealth);
+					System.out.println("User takes 1 damage, ouch.");
+					program.refreshOverlay();
+					program.drawOverlay(4, 1);
+				}
 				//TODO insert user getting hurt here
 			}
-			else 
-			{
-				System.out.println("User is not taking damage.");
+			//User can now successfully die in room 4
+			if (program.getUser().getUserStats().getHP_cur() == 0) {
+				program.switchToGameOver();
+
 			}
+		}
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();
+		isUserInPain();
 		checkCollision();
 		nextRoom();
 		user.tick();
@@ -313,14 +395,16 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		for (Enemy enem : listOfEnemies) {
 			double distX = enem.getImage().getX() - userRep.getX();
 			double distY = enem.getImage().getY() - userRep.getY();
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 			double moveX = (distX * 2) / 100;
 			double moveY = (distY * 2) / 100;
 			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
+			//enem.getImage().movePolar(4, degree);
 			degree+=50;
 			degree%=360;
+			}
 		}
-	}
 	
 	private void nextRoom() {
 		double userX = userRep.getX() + 75;
