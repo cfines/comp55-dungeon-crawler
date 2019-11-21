@@ -92,8 +92,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E1) {
-			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
+			userRep.setLocation(70,300);
 		}
 		else if(obj == rock1) {
 			program.switchToMenu();

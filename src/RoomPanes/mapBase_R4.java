@@ -325,16 +325,31 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
 				userY <= listOfEnemies.get(i).getCoordY() + 75) 
 			{
+				//if the user is fighting
+				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
+				{
+					//damage dealt to enemy
+					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					{
+						//should remove an enemy
+						listOfEnemies.remove(i);
+					}
+				}
+				//if user is not attacking
+				else{
 				newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				System.out.println("User takes 1 damage, ouch.");
 				program.refreshOverlay();
 				program.drawOverlay(4, 1);
+				}
 				//TODO insert user getting hurt here
 			}
 			else 
 			{
-				System.out.println("User is not taking damage.");
+				System.out.println("User is not overlapping with an enemy.");
 			}
 		
 		//User can now successfully die in room 4
