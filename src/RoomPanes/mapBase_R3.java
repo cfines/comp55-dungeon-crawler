@@ -431,6 +431,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 				double moveY = (distY * 2) / 100;
 				enem.getImage().move(-moveX, -moveY);
 			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 		}
 	}
 	
