@@ -262,10 +262,20 @@ public class SomePane extends GraphicsPane implements ActionListener {
 					System.out.println("right"); 
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
-				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
+				if (user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					System.out.println("left"); 
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
+			}
+		}
+	}
+
+	public void enemyCollision() {
+		for(Interactions inter : listOfInter) {
+			for(Enemy enem : listOfEnemies) {
+				if(enemyCollisionTest(enem, inter.getImage())) {
+					
+				}
 			}
 		}
 	}
@@ -275,5 +285,12 @@ public class SomePane extends GraphicsPane implements ActionListener {
 				&& user.getY() - image.getY() >= -60
 				&& user.getX() - image.getX() <= 60
 				&& user.getX() - image.getX() >= -60);
+	}
+
+	public boolean enemyCollisionTest(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
 	}
 }
