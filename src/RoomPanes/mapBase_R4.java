@@ -209,15 +209,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
+			isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
+			isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
+			isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
+			isUserInPain();
 			break;
 		case KeyEvent.VK_E:
 			program.getUser().cycleWeapon();
@@ -260,15 +264,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			user.setDY(0);
+			isUserInPain();
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(0);
+			isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(0);
+			isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(0);
+			isUserInPain();
 			break;
 		// for stopping attack 
 		case KeyEvent.VK_UP:
@@ -317,8 +325,8 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
 				userY <= listOfEnemies.get(i).getCoordY() + 75) 
 			{
-				//newHealth = game.getUser().getUserStats().getHP_cur() - 1;
-				//game.getUser().getUserStats().setHP_cur(newHealth);
+				newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
 				System.out.println("User takes 1 damage, ouch.");
 				//TODO insert user getting hurt here
 			}
