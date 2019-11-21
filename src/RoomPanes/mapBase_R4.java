@@ -333,6 +333,8 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 						int tempX = (int)listOfEnemies.get(i).getCoordX();
 						int tempY = (int)listOfEnemies.get(i).getCoordY();
 						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
+						program.add(rip2.getImage());
 						program.add(rip.getImage());
 						listOfEnemies.remove(i);
 					}
