@@ -330,29 +330,28 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						//should remove an enemy
+						int tempX = (int)listOfEnemies.get(i).getCoordX();
+						int tempY = (int)listOfEnemies.get(i).getCoordY();
+						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+						program.add(rip.getImage());
 						listOfEnemies.remove(i);
 					}
 				}
 				//if user is not attacking
 				else{
-				newHealth = program.getUser().getUserStats().getHP_cur() - 1;
-				program.getUser().getUserStats().setHP_cur(newHealth);
-				System.out.println("User takes 1 damage, ouch.");
-				program.refreshOverlay();
-				program.drawOverlay(4, 1);
+					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+					program.getUser().getUserStats().setHP_cur(newHealth);
+					System.out.println("User takes 1 damage, ouch.");
+					program.refreshOverlay();
+					program.drawOverlay(4, 1);
 				}
 				//TODO insert user getting hurt here
 			}
-			else 
-			{
-				//System.out.println("User is not overlapping with an enemy.");
+			//User can now successfully die in room 4
+			if (program.getUser().getUserStats().getHP_cur() == 0) {
+				program.switchToGameOver();
 			}
 		}	
-		//User can now successfully die in room 4
-//		if (program.getUser().getUserStats().getHP_cur() == 0) 
-//		{
-//			program.switchToGameOver();
-//		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
