@@ -327,19 +327,19 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					System.out.println("bottom"); 
-					user.setY(user.getY() + user.getMoveSpeedStat()); 
+					user.setY(user.getY() + 50); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					System.out.println("top"); 
-					user.setY(user.getY() - user.getMoveSpeedStat());
+					user.setY(user.getY() - 50);
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					System.out.println("right"); 
-					user.setX(user.getX() + user.getMoveSpeedStat()); 
+					user.setX(user.getX() + 50); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					System.out.println("left"); 
-					user.setX(user.getX() - user.getMoveSpeedStat());
+					user.setX(user.getX() - 50);
 				} 
 			}
 		}
