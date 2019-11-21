@@ -29,7 +29,6 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkDown,atkRight;
-	private Console game;
 	private int degree;
 	private User user;
 	private Timer timer = new Timer(30, this);
@@ -79,7 +78,6 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(E6);
 		elements.add(E7);
 		elements.add(userRep);
-		//isUserInPain();
 		//TODO insert timer based on attack speed
 		
 	}
@@ -96,7 +94,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		user.setDX(user.getMoveSpeedStat());
 	}
 	private void attackUp() {
-		
+
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("FIREUser Attack (Up).png");
@@ -129,7 +127,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			userRep.setImage("EARTHUser Attack (Down).png");
 			userRep.setSize(55,115);
 		}
-		}
+	}
 	private void attackLeft() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
@@ -164,7 +162,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			userRep.setSize(125,75);
 		}
 	}
-	
+
 	private void attackReset() {
 		userRep.setImage("Rogue_(Sample User).gif");
 		userRep.setSize(75,75);
@@ -356,6 +354,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			}
 		}
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();

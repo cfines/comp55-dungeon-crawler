@@ -29,7 +29,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public SomePane(MainApplication app) {
 		this.program = app;
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 170,189);
-		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 890, 200);
+		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,300, ElementType.FIRE, enemyType.FIRESkull);
