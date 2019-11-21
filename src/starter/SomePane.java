@@ -110,8 +110,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 
 	private void nextRoom() {
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
+		double userX = userRep.getX() + 80;
+		double userY = userRep.getY() + 80;
 		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
 			program.switchToR2();
 		}
