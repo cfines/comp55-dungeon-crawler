@@ -328,6 +328,8 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 				newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				System.out.println("User takes 1 damage, ouch.");
+				program.refreshOverlay();
+				program.drawOverlay(4, 1);
 				//TODO insert user getting hurt here
 			}
 			else 
