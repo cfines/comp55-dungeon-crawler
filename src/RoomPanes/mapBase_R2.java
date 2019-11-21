@@ -95,19 +95,15 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
-		nextRoom();
 	}
 	private void userDOWN() {
 		user.setDY(user.getMoveSpeedStat());
-		nextRoom();
 	}
 	private void userLEFT() {
 		user.setDX(-user.getMoveSpeedStat());
-		nextRoom();
 	}
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
-		nextRoom();
 	}
 	
 	public boolean everyXSeconds(double x) {
@@ -251,6 +247,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
+		nextRoom();
 		enemyMovement();
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());

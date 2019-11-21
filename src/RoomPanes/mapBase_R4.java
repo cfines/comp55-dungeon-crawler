@@ -264,19 +264,15 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			user.setDY(0);
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(0);
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(0);
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(0);
-			//isUserInPain();
 			break;
 		// for stopping attack 
 		case KeyEvent.VK_UP:
