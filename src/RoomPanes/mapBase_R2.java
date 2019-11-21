@@ -34,7 +34,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
-
+	private boolean move = true;
 	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
@@ -257,15 +257,30 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
 		for (Enemy enem : listOfEnemies) {
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			enem.getImage().move(-moveX, -moveY);
+
 			enem.getImage().movePolar(5, degree);
-			degree+=10;
+			degree+=5;
 			degree%=360;
+			if(enem.getEnemyType() == enemyType.EARTHSkull) {
+				if(move) {
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 2) / 100;
+					double moveY = (distY * 2) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}else {enem.getImage().move(0, 0);}
+			}
+			else if(enem.getEnemyType() == enemyType.WATERSkull) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
 		}
 	}
 

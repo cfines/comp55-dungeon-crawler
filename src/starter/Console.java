@@ -500,11 +500,11 @@ public class Console {
 		int attackBoost = 0;
 
 		//Checks for elemental damage boosts
-		if((tempSword.getWepType() == ElementType.FIRE) && (enemyBeingAttacked.getEnemyType() == ElementType.EARTH)) {
+		if((tempSword.getWepType() == ElementType.FIRE) && (enemyBeingAttacked.getElementType() == ElementType.EARTH)) {
 			attackBoost += 1;
-		} else if((tempSword.getWepType() == ElementType.WATER) && (enemyBeingAttacked.getEnemyType() == ElementType.FIRE)) {
+		} else if((tempSword.getWepType() == ElementType.WATER) && (enemyBeingAttacked.getElementType() == ElementType.FIRE)) {
 			attackBoost += 1;
-		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getEnemyType() == ElementType.WATER)) {
+		} else if((tempSword.getWepType() == ElementType.EARTH) && (enemyBeingAttacked.getElementType() == ElementType.WATER)) {
 			attackBoost += 1;
 		}
 

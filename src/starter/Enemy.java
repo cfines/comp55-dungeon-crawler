@@ -34,9 +34,14 @@ public class Enemy {
 		setImage(enemy);
 	}
 	
-	public ElementType getEnemyType() 
+	public ElementType getElementType() 
 	{
 		return elementType;
+	}
+	
+	public enemyType getEnemyType() 
+	{
+		return EnemyType;
 	}
 	
 	public void setImage(enemyType type) {
