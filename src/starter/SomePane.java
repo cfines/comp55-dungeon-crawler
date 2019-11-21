@@ -265,8 +265,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 					System.out.println("top"); 
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
-
-
 			}
 		}
 	}
