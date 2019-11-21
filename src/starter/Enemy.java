@@ -86,15 +86,15 @@ public class Enemy {
 	}
 	
 	public static void main(String[] args) {
-		Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
-		derp.setStartX(10);
-		derp.setStartY(5);
-		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+	//	Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
+	//	derp.setStartX(10);
+	//	derp.setStartY(5);
+	//	System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
 		//Checking if tick updates enemy location
-		while(1<5) {
-			derp.tick();
-			System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-		}
+	//	while(1<5) {
+	//		derp.tick();
+	//		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
+	//	}
 	}
 	
 }
