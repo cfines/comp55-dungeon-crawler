@@ -249,32 +249,22 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
-				if(user.getDX() < 0) { 
+				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
+					System.out.println("bottom"); 
+					user.setY(user.getY() + user.getMoveSpeedStat()); 
+				} 
+				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
+					System.out.println("top"); 
+					user.setY(user.getY() - user.getMoveSpeedStat());
+				}
+				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					System.out.println("right"); 
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
-				else if(user.getDX() > 0) {
+				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					System.out.println("left"); 
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
-				else if(user.getDY() < 0) {
-					System.out.println("bottom"); 
-					user.setY(user.getY() + user.getMoveSpeedStat()); 
-				} 
-				else if(user.getDY() > 0) {
-					System.out.println("top"); 
-					user.setY(user.getY() - user.getMoveSpeedStat());
-				}
-				/*
-				else if(user.getY() > inter.getImage().getY()) {
-					System.out.println("bottom"); 
-					user.setY(user.getY() + user.getMoveSpeedStat()); 
-				} 
-				else if(user.getY() < inter.getImage().getY()) {
-					System.out.println("top"); 
-					user.setY(user.getY() - user.getMoveSpeedStat());
-				}
-				*/
 			}
 		}
 	}
