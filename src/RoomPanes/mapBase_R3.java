@@ -97,6 +97,15 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			program.remove(elements.get(i));
 		}
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		enemyMovement();
+		isUserInPain();
+		nextRoom();
+		user.tick();
+		checkCollision();
+		userRep.setLocation(user.getX(), user.getY());
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -216,15 +225,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		enemyMovement();
-		isUserInPain();
-		checkCollision();
-		nextRoom();
-		user.tick();
-		userRep.setLocation(user.getX(), user.getY());
-	}
 	
 	public void isUserInPain() 
 	{
