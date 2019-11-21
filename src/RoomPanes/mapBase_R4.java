@@ -388,8 +388,8 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			enem.getImage().movePolar(4, degree);
 			degree+=50;
 			degree%=360;
+			}
 		}
-	}
 	
 	private void nextRoom() {
 		double userX = userRep.getX() + 75;
