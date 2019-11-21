@@ -32,7 +32,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private Console game;
 	private int degree;
 	private User user;
-	private Timer timer = new Timer(50, this);
+	private Timer timer = new Timer(30, this);
 	
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
@@ -79,7 +79,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(E6);
 		elements.add(E7);
 		elements.add(userRep);
-		isUserInPain();
+		//isUserInPain();
 		//TODO insert timer based on attack speed
 		
 	}
@@ -209,19 +209,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
-			isUserInPain(); 
+			//isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_E:
 			program.getUser().cycleWeapon();
@@ -264,19 +264,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			user.setDY(0);
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_S:
 			user.setDY(0);
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			user.setDX(0);
-			isUserInPain();
+			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			user.setDX(0);
-			isUserInPain();
+			//isUserInPain();
 			break;
 		// for stopping attack 
 		case KeyEvent.VK_UP:
@@ -319,7 +319,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		int newHealth;
 		double userX = userRep.getX() + 75;
 		double userY = userRep.getY() + 75;
-		for(int i = 0; i < listOfEnemies.size(); i++)
+		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(userX >= listOfEnemies.get(i).getCoordX() && 
 				userY >= listOfEnemies.get(i).getCoordY() && 
 				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
@@ -349,18 +349,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			}
 			else 
 			{
-				System.out.println("User is not overlapping with an enemy.");
+				//System.out.println("User is not overlapping with an enemy.");
 			}
-		
+		}	
 		//User can now successfully die in room 4
-		if (program.getUser().getUserStats().getHP_cur() == 0) 
-		{
-			program.switchToGameOver();
-		}
+//		if (program.getUser().getUserStats().getHP_cur() == 0) 
+//		{
+//			program.switchToGameOver();
+//		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();
+		isUserInPain();
 		checkCollision();
 		nextRoom();
 		user.tick();
@@ -397,10 +398,12 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		for (Enemy enem : listOfEnemies) {
 			double distX = enem.getImage().getX() - userRep.getX();
 			double distY = enem.getImage().getY() - userRep.getY();
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 			double moveX = (distX * 2) / 100;
 			double moveY = (distY * 2) / 100;
 			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
+			//enem.getImage().movePolar(4, degree);
 			degree+=50;
 			degree%=360;
 			}

@@ -14,7 +14,7 @@ public class Enemy {
 	private double powerStat;
 	private ElementType elementType;
 	private enemyType EnemyType;
-	private int dx, dy;
+	private double dx, dy;
 	private GImage image;
 	public int degree = 0;
 	
@@ -63,19 +63,19 @@ public class Enemy {
 	}
 	
 	public void setStartX(double x) {
-		startUp.setX(x);
+		dx = x;
 	}
 	
 	public void setStartY(double y) {
-		startUp.setY(y);
+		dy = y;
 	}
 	
 	public double getCoordX() {
-		return startUp.getX();
+		return dx;
 	}
 	
 	public double getCoordY() {
-		return startUp.getY();
+		return dy;
 	}
 	
 	public void tick() {
