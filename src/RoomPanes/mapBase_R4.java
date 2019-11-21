@@ -350,8 +350,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			//User can now successfully die in room 4
 			if (program.getUser().getUserStats().getHP_cur() == 0) {
 				program.switchToGameOver();
+
 			}
-		}	
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
