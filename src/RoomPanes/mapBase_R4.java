@@ -96,20 +96,73 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		user.setDX(user.getMoveSpeedStat());
 	}
 	private void attackUp() {
-		userRep.setImage("Rogue_Attack(Up).png");
-		userRep.setSize(75,75);
+		
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Up).png");
+			userRep.setSize(55,115);
+		}
 	}
 	private void attackDown() {
-		userRep.setImage("Rogue_Attack(Down).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Down).png");
+			userRep.setSize(55,115);
+		}
 		}
 	private void attackLeft() {
-		userRep.setImage("Rogue_Attack(Left).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Left).png");
+			userRep.setSize(125,75);
+		}
 	}
 	private void attackRight() {
-		userRep.setImage("Rogue_Attack(Right).png");
-		userRep.setSize(75,75);
+		if(program.getUser().getWeaponEquiped() == 0)
+		{
+			userRep.setImage("FIREUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 1) 
+		{
+			userRep.setImage("WaterUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
+		if(program.getUser().getWeaponEquiped() == 2) 
+		{
+			userRep.setImage("EARTHUser Attack (Right).png");
+			userRep.setSize(125,75);
+		}
 	}
 	
 	private void attackReset() {
