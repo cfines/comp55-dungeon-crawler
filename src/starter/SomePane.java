@@ -48,7 +48,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		E1 = iE1.getImage();
-		
+
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		enemy1 = ienemy1.getImage();
@@ -249,18 +249,24 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
-				if(user.getX() - inter.getImage().getX() > 0) {
-					user.setX(user.getX() + user.getMoveSpeedStat());	
+				if(user.getDX() < 0) { 
+					System.out.println("right"); 
+					user.setX(user.getX() + user.getMoveSpeedStat()); 
+				} 
+				else if(user.getDX() > 0) {
+					System.out.println("left"); 
+					user.setX(user.getX() - user.getMoveSpeedStat());
+				} 
+				else if(user.getY() > inter.getImage().getY()) {
+					System.out.println("bottom"); 
+					user.setY(user.getY() + user.getMoveSpeedStat()); 
+				} 
+				else if(user.getY() < inter.getImage().getY()) {
+					System.out.println("top"); 
+					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
-				else if(user.getX() - inter.getImage().getX() < 0) {
-					user.setX(user.getX() - user.getMoveSpeedStat());		
-				}
-				else if(user.getY() - inter.getImage().getY() > 0) {
-					user.setY(user.getY() + user.getMoveSpeedStat());		
-				}
-				else if(user.getY() - inter.getImage().getY() < 0) {
-					user.setY(user.getY() - user.getMoveSpeedStat());	
-				}
+
+
 			}
 		}
 	}
