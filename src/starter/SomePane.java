@@ -103,9 +103,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();
-		checkCollision();
 		nextRoom();
 		user.tick();
+		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
