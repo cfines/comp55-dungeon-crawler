@@ -32,7 +32,8 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
-	Timer t = new Timer(50, this);
+	private Timer t = new Timer(30, this);
+	private int timerCont = 0;
 
 	
 	public mapBase_R2(MainApplication app) {
@@ -107,6 +108,10 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
 		//nextRoom();
+	}
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
 	}
 	
 	@Override
@@ -245,9 +250,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemy1.movePolar(4, degree);
-		degree+=50;
-		degree%=360;
+		timerCont++;
 		enemyMovement();
 		user.tick();
 		userRep.setLocation(user.getX(), user.getY());
@@ -257,24 +260,11 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		for (Enemy enem : listOfEnemies) {
 			double distX = enem.getImage().getX() - userRep.getX();
 			double distY = enem.getImage().getY() - userRep.getY();
-			
-			Random rand = new Random();
-			int rand1 = rand.nextInt(5);
-			
-			if(rand1 % 2 == 0) {
-				double moveX = (distX * 2) / 100;
-				double moveY = (distY * 2) / 100;
-				enem.getImage().move(-moveX, -moveY);
-				enem.getImage().movePolar(5, degree);
-				degree+=10;
-			}
-			else {
-				double moveX = (distX * 4) / 100;
-				double moveY = (distY * 4) / 100;
-				enem.getImage().move(-moveX, -moveY);
-				enem.getImage().movePolar(10, degree);
-				degree+=5;
-			}
+			double moveX = (distX * 2) / 100;
+			double moveY = (distY * 2) / 100;
+			enem.getImage().move(-moveX, -moveY);
+			enem.getImage().movePolar(5, degree);
+			degree+=10;
 			degree%=360;
 		}
 	}
