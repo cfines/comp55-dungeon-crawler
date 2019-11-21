@@ -345,14 +345,14 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			}
 			else 
 			{
-				//System.out.println("User is not overlapping with an enemy.");
+				System.out.println("User is not overlapping with an enemy.");
 			}
-		}	
 		//User can now successfully die in room 4
-//		if (program.getUser().getUserStats().getHP_cur() == 0) 
-//		{
-//			program.switchToGameOver();
-//		}
+		if (program.getUser().getUserStats().getHP_cur() == 0) 
+		{
+			program.switchToGameOver();
+		}
+		}	
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
