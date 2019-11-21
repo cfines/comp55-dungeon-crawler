@@ -337,6 +337,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 				System.out.println("User is not taking damage.");
 			}
 		
+		//User can now successfully die in room 4
 		if (program.getUser().getUserStats().getHP_cur() == 0) 
 		{
 			program.switchToGameOver();
