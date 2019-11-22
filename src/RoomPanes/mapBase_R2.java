@@ -54,7 +54,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		Interactions iE2 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.EARTH, enemyType.EARTHSkull);
-		Enemy ienemy2 = new Enemy(2,2,2,2,367,504, ElementType.WATER, enemyType.WATERSkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,367,504, ElementType.WATER, enemyType.WATERSpooder);
 		rock1 = irock1.getImage();
 		hole2 = ihole2.getImage();
 		hole1 = ihole1.getImage();
@@ -209,7 +209,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
-			else if(enem.getEnemyType() == enemyType.WATERSkull) {
+			else if(enem.getEnemyType() == enemyType.WATERSpooder) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;
