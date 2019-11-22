@@ -171,7 +171,7 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR6();
+			program.switchToR5();
 		}
 		else if(userX2 >= E13.getX() && userY2 >= E13.getY()) {
 			user.setX(150);
@@ -203,7 +203,5 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 		mover.checkCollision();
 		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
-		
 	}
 }

@@ -119,7 +119,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		user.tick();
 		mover.checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 
 	private void nextRoom() {

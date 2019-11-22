@@ -3,6 +3,7 @@ package RoomPanes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -29,8 +30,6 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
-	private int timerCont = 0;
-	private boolean move = true;
 
 	private KeyPressedManager mover;
 
@@ -82,36 +81,49 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX2 >= E14.getX() && userY2 >= E14.getY()) {
-			user.setX(150);
+		if(userX >= E14.getX() && userY >= E14.getY() && userX <= E14.getX() + 80 && userY <= E14.getY() + 80) {
+			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
-		else if(userX >= E15.getX() && userY >= E15.getY() && userX2 <= E15.getX()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToR7();
+		else if(userX >= E15.getX() && userY >= E15.getY() && userX <= E15.getX() + 75 && userY <= E15.getY() + 75) {
+			user.setX(575);
+			user.setY(410);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR9();
 		}
 		
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		mover.notReallyKeyPressed(e);
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		mover.notReallyKeyReleased(e);
+	}
 
 	@Override
 	public void showContents() {
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.drawOverlay(8, 1);
 	}
 
 	@Override
 	public void hideContents() {
+		t.stop();
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		program.refreshOverlay();
 	}
 
 	@Override
@@ -131,13 +143,13 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		timerCont++;
 		mover.updateWeaponLoc();
 		mover.userCombat();
+		mover.enemyCombat();
 		nextRoom();
 		user.tick();
 		mover.checkCollision();
+		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 }

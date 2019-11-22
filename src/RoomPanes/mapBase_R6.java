@@ -118,7 +118,6 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		mover.checkCollision();
 		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 	
 	public void enemyMovement() {
@@ -139,7 +138,6 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
-		double userY2 = userRep.getY() + 80;
 		if(userX >= E11.getX() && userY >= E11.getY() && userX <= E11.getX() + 75 && userY <= E11.getY() + 75) {
 			user.setX(575);
 			user.setY(410);

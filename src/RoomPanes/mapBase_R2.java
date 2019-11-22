@@ -189,7 +189,6 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		mover.checkCollision();
 		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 
 	public void enemyMovement() {

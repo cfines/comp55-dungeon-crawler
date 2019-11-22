@@ -139,7 +139,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		mover.checkCollision();
 		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 
 	private void nextRoom() {
