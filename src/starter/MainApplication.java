@@ -45,7 +45,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage creditsImg;
 		public GImage hiScore;
 		public GImage text;
-		public GImage weapon;
+		public GImage weaponFire = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
 		public GLabel health;
 		public GLabel levelLabel;
@@ -68,6 +70,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
+		
+		weaponFire.setSize(100, 100);
+		weaponWater.setSize(100, 100);
+		weaponEarth.setSize(100, 100);
+		
 		user = new User(5, 5, 1000, 1, 300, 300);
 		//userRep = new GImage("Rogue_(Sample User).gif");
 		//userRep.setSize(75, 75);
@@ -241,21 +248,19 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void drawSword()	{
 		
-		if(!firstSwordCall) { remove(weapon); }
+		if(!firstSwordCall) { 
+			remove(weaponFire); 
+			remove(weaponWater); 
+			remove(weaponEarth); 
+		}
 		firstSwordCall = false;
 		
 		if(user.getWeaponEquiped() == 0) {
-			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponFire);
 		} else if (user.getWeaponEquiped() == 1) {
-			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponWater);
 		} else {
-			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponEarth);
 		}
 	}
 	
