@@ -376,16 +376,16 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			if(enemyCollisionTest(enem, userRep)) {
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
-					tempEnem.setLocation(tempEnem.getX(), tempEnem.getY() - 50);
-					if(atkDown) {
-						tempEnem.setLocation(tempEnem.getX(), tempEnem.getY() + 50);
-					}
-					if(atkLeft) {
-						tempEnem.setLocation(tempEnem.getX() - 50, tempEnem.getY());
-					}
-					if(atkRight) {
-						tempEnem.setLocation(tempEnem.getX() + 50, tempEnem.getY());
-					}
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
+				}
+				if(atkDown) {
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() + 50);
+				}
+				if(atkLeft) {
+					enem.getImage().setLocation(tempEnem.getX() - 50, tempEnem.getY());
+				}
+				if(atkRight) {
+					enem.getImage().setLocation(tempEnem.getX() + 50, tempEnem.getY());
 				}
 			}
 	}
