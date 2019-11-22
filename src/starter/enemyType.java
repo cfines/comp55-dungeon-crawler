@@ -25,7 +25,7 @@ public enum enemyType {
 			case FIREDrawing: return "FIREDrawing";
 			case xokStill: return "xokStill";
 			case xokAttack: return "xokAttack";
-			case rip: return "rip";
+			case rip: return "Nullified";
 		}
 		return "n/a";
 	}
