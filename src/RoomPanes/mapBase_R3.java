@@ -107,7 +107,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
-		userWeapon.setLocation(user.getX(), user.getY());
+		//userWeapon.setLocation(user.getX(), user.getY());
 	}
 
 	@Override
@@ -368,10 +368,11 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Up).png");
-			userWeapon.setImage("Fire Sword(UP).png");
-			userWeapon.setLocation(user.getX() - 20, user.getY() - 20);
-			program.add(userWeapon);
 			userRep.setSize(75,75);
+			userWeapon.setLocation(user.getX() + 20, user.getY() - 50);
+			userWeapon.setImage("Fire Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
