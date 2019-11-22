@@ -101,13 +101,16 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(atkUp) {userWeapon.setLocation(user.getX() + 20, user.getY() - 50);}
+		if(atkDown) {userWeapon.setLocation(user.getX() + 20, user.getY() + 50);}
+		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
+		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
 		enemyMovement();
 		isUserInPain();
 		nextRoom();
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
-		//userWeapon.setLocation(user.getX(), user.getY());
 	}
 
 	@Override
@@ -228,13 +231,19 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public void isUserInPain() 
 	{
 		int newHealth;
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
+		double weaponX = userWeapon.getX() + 75;
+		double weaponY = userWeapon.getY() + 75;
+		double weaponX2 = userWeapon.getX();
+		double weaponY2 = userWeapon.getY();
 		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(userX >= listOfEnemies.get(i).getCoordX() && 
-				userY >= listOfEnemies.get(i).getCoordY() && 
-				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
-				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+			if(weaponX >= listOfEnemies.get(i).getCoordX() && 
+				weaponY >= listOfEnemies.get(i).getCoordY() && 
+				weaponX <= listOfEnemies.get(i).getCoordX() + 75 && 
+				weaponY <= listOfEnemies.get(i).getCoordY() + 75 ||
+				weaponX2 >= listOfEnemies.get(i).getCoordX() &&
+				weaponY2 >= listOfEnemies.get(i).getCoordY() &&
+				weaponY2 <= listOfEnemies.get(i).getCoordY() + 75 &&
+				weaponX2 <= listOfEnemies.get(i).getCoordX() + 75) 
 			{
 				//if the user is fighting
 				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
@@ -369,7 +378,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		{
 			userRep.setImage("Rogue_Attack(Up).png");
 			userRep.setSize(75,75);
-			userWeapon.setLocation(user.getX() + 20, user.getY() - 50);
 			userWeapon.setImage("Fire Sword(UP).png");
 			userWeapon.setSize(40, 75);
 			program.add(userWeapon);
@@ -389,9 +397,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Down).png");
-			userWeapon.setImage("Fire Sword(DOWN).png");
-			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -408,9 +417,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Left).png");
-			userWeapon.setImage("Fire Sword(LEFT).png");
-			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -427,9 +437,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Right).png");
-			userWeapon.setImage("Fire Sword(RIGHT).png");
-			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -446,6 +457,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private void attackReset() {
 		userRep.setImage("Rogue_(Sample User).gif");
 		userRep.setSize(75,75);
+		program.remove(userWeapon);
 	}
 	
 	
