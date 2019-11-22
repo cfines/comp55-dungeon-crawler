@@ -1,10 +1,13 @@
 package starter;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -22,6 +25,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	private String userName;
 	private int lastFloorNum;
 	private File file;
+	private GLabel text;
 	
 	public GameOverPane(MainApplication app) 
 	{
@@ -32,16 +36,18 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		file = new File("highestScore.txt");
 		userName = "";
 		lastFloorNum = 0;
-	
-	}
-		/*BufferedReader ob = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter name:");
+		text = new GLabel("Enter name of the fallen: ");
+		text.setColor(Color.red);
+		text.setLocation(575,325);
 		try {
+			BufferedReader ob = new BufferedReader(new FileReader(file));
 			userName = ob.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
-	*/
+			ob.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public File getFile() 
 	{
 		return file;
@@ -51,12 +57,14 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	public void showContents() {
 		program.add(gameOver);
 		program.add(returnMenu);
+		program.add(text);
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(gameOver);
 		program.remove(returnMenu);
+		program.remove(text);
 	}
 	
 	public void mousePressed(MouseEvent e) {
