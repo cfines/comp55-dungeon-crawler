@@ -54,11 +54,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
 		public GImage title;
+		
 		public boolean firstSwordCall = true;
 		public boolean restartGame = true;
 	
 	private int count;
 	private User user;
+	public boolean comingFromBoss = false;
+	private int floorNum = 0;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -85,7 +88,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToR8(); //change which screen you want to switch to
+		switchToMenu(); //change which screen you want to switch to
 
 	}
 	
@@ -135,6 +138,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			tittle = new TitleScreenPane(this);
 			playerDied = new GameOverPane(this);
 			restartGame = false;
+			floorNum = 1;
+		}
+		
+		if(comingFromBoss) {
+			floorNum++;
+			comingFromBoss = false;
 		}
 		
 		switchToScreen(somePane);
@@ -267,6 +276,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
+	}
+	
+	public int getFloorNum() {
+		return floorNum;
+	}
+	
+	public void setComingFromBoss(boolean coming) {
+		this.comingFromBoss = coming;
 	}
 	
 }
