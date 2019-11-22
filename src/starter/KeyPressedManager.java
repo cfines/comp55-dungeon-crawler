@@ -25,24 +25,27 @@ public class KeyPressedManager {
 
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep;
-	private ArrayList<GImage> elements = new ArrayList<GImage>();
-	private GRect voidSpace;
+	private GImage userRep;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
-	Timer t = new Timer(30, this);
-	private int degree;
-	private int timerCont = 0;
-	private boolean move = true;
 	
-	KeyPressedManager(){
-		
+	KeyPressedManager(MainApplication program, User user, GImage userRep,
+						ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
+						boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown){
+		this.program = program;
+		this.user = user;
+		this.userRep = userRep;
+		this.listOfEnemies = listOfEnemies;
+		this.listOfInter = listOfInter;
+		this.atkUp = atkUp;
+		this.atkDown = atkDown;
+		this.atkLeft = atkLeft;
+		this.atkRight = atkRight;
 	}
 	
 	public void notReallyActionPerformed(ActionEvent e) {
 		isUserInPain();
-		nextRoom();
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
@@ -52,19 +55,15 @@ public class KeyPressedManager {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
-			//isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_E:
 			program.getUser().cycleWeapon();
@@ -195,23 +194,6 @@ public class KeyPressedManager {
 			 * 
 			 * }
 			 */
-		}
-	}
-	
-	private void nextRoom() {
-		double userX = userRep.getX();
-		double userY = userRep.getY();
-		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			program.switchToR2();
-			userRep.setLocation(1030,300);
-		}
-		
-		userX = userRep.getX() + 80;
-		userY = userRep.getY() + 80;
-		
-		if(userX >= E5.getX() && userY >= E5.getY() && userX + 80 <= E5.getX() + 75 && userY + 80 <= E5.getY() + 75) {
-			program.switchToR4();
-			userRep.setLocation(40,300);
 		}
 	}
 	
