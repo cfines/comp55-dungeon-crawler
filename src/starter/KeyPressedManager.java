@@ -159,7 +159,7 @@ public class KeyPressedManager {
 					//damage dealt to enemy
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
-					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						//should remove an enemy
 //						int tempX = (int)listOfEnemies.get(i).getCoordX();
