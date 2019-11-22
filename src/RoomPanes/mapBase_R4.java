@@ -161,16 +161,33 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
+			if(enem.getEnemyType() == enemyType.EARTHSkull) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 1) / 100;
+				double moveY = (distY * 1) / 100;
+				enem.getImage().movePolar(5, degree);
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.WATERBat) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 3) / 100;
+				double moveY = (distY * 3) / 100;
+				enem.getImage().movePolar(3, degree);
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.FIRESkull) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 3) / 100;
+				double moveY = (distY * 3) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			enem.getImage().move(-moveX, -moveY);
 			}
 		}
 	

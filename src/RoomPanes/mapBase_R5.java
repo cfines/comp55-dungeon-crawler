@@ -149,7 +149,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		double userY2 = userRep.getY() + 80;
 		if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 75 && userY <= E8.getY() + 75) {
 			user.setX(575);
-			user.setY(385);
+			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR4();
 		}
@@ -165,7 +165,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
-
 	}
 
 	public boolean everyXSeconds(double x) {
