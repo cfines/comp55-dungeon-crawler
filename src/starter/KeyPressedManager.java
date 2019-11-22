@@ -393,8 +393,7 @@ public class KeyPressedManager {
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");
-				program.refreshOverlay();
-				program.drawOverlay(3, 1);
+				program.combatRefreshOverlay();
 			}
 		}
 	}

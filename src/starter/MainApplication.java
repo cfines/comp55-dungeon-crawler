@@ -118,7 +118,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void switchToSome() {
 		
-		if(restartGame) {
+		if(restartGame || comingFromBoss) {
 			user = new User(5, 5, 1000, 1, 300, 300);
 			System.out.println("Hello, world! New game!");
 			somePane = new SomePane(this);
@@ -137,14 +137,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mapbase_R9 = new mapBase_R9(this);
 			tittle = new TitleScreenPane(this);
 			playerDied = new GameOverPane(this);
-			restartGame = false;
-			floorNum = 1;
+			
+			if(comingFromBoss) {
+				floorNum++;
+				comingFromBoss = false;
+			} else {
+				floorNum = 1;
+				restartGame = false;
+			}
 		}
 		
-		if(comingFromBoss) {
-			floorNum++;
-			comingFromBoss = false;
-		}
+		
 		
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
@@ -228,6 +231,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		remove(health);
 		remove(levelLabel);
 		remove(roomLabel);
+	}
+	
+	public void combatRefreshOverlay() 
+	{
+		remove(health);
+		drawHealth();
 	}
 	
 	public void drawSword()	{
