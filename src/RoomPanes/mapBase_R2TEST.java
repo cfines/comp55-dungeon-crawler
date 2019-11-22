@@ -107,15 +107,15 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
+		//mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
+		//mover.userCombat();
+		//mover.enemyCombat();
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
+		//user.tick();
+		//mover.checkCollision();
+		//mover.knockBack();
+		//userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
 

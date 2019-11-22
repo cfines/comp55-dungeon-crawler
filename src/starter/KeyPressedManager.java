@@ -34,9 +34,12 @@ public class KeyPressedManager {
 	}
 
 	public void notReallyActionPerformed(ActionEvent e) {
+		updateWeaponLoc();
 		userCombat();
+		enemyCombat();
 		user.tick();
 		checkCollision();
+		knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
