@@ -1,7 +1,7 @@
 package starter;
 
 public enum enemyType {
-	EARTHBat, FIREBat, WATERBat, EARTHSkull, FIRESkull, WATERSkull, rip2;
+	EARTHBat, FIREBat, WATERBat, EARTHSkull, FIRESkull, WATERSkull, rip;
 	
 	public String toString() {
 		switch(this) {
@@ -11,7 +11,7 @@ public enum enemyType {
 			case EARTHSkull: return "EARTHSkull";
 			case FIRESkull: return "FIRESkull";
 			case WATERSkull: return "WATERSkull";
-			case rip2: return "rip2";
+			case rip: return "rip";
 		}
 		return "n/a";
 	}

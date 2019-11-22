@@ -48,7 +48,7 @@ public class Enemy {
 		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat) {
 			image = new GImage(type + ".gif", dx, dy);
 		}
-		else if (type == enemyType.rip2 || type == enemyType.EARTHSkull || type == enemyType.FIRESkull || type == enemyType.WATERSkull) {
+		else if (type == enemyType.rip || type == enemyType.EARTHSkull || type == enemyType.FIRESkull || type == enemyType.WATERSkull) {
 			image = new GImage(type + ".png", dx, dy);
 		}
 		image.setSize(75, 75);

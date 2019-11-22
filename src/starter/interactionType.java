@@ -2,7 +2,8 @@ package starter;
 
 public enum interactionType {
 	entry_door_EAST, entry_door_NORTH, entry_door_SOUTH, entry_door_WEST, entry_stair, 
-	entry_bossDoor, obstacle_rock, obstacle_hole, item_gif_key, rip, rip2;
+	entry_bossDoor, obstacle_rock, obstacle_hole, item_gif_key, rip, rip2, obstacle_concrete_rocks,
+	obstacle_concrete_rubble;
 	
 	public String toString() {
 		switch(this) {
@@ -17,6 +18,8 @@ public enum interactionType {
 			case entry_bossDoor: return "entry_bossDoor";
 			case rip: return "rip";
 			case rip2: return "rip2";
+			case obstacle_concrete_rocks: return "obstacle_concrete_rocks";
+			case obstacle_concrete_rubble: return "obstacle_concrete_rubble";
 		}
 		return "n/a";
 	}

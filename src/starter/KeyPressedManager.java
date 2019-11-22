@@ -21,10 +21,10 @@ public class KeyPressedManager {
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
-	
+
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
-						ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
-						boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown, GImage userWeapon){
+			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
+			boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown, GImage userWeapon){
 		this.program = program;
 		this.user = user;
 		this.userRep = userRep;
@@ -36,14 +36,14 @@ public class KeyPressedManager {
 		this.atkRight = atkRight;
 		this.userWeapon = userWeapon;
 	}
-	
+
 	public void notReallyActionPerformed(ActionEvent e) {
 		userCombat();
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
 	}
-	
+
 	public void notReallyKeyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
@@ -147,7 +147,7 @@ public class KeyPressedManager {
 		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
 		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
 	}
-	
+
 	public void userCombat() 
 	{
 		int newHealth;
@@ -163,12 +163,14 @@ public class KeyPressedManager {
 					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						//should remove an enemy
-						int tempX = (int)listOfEnemies.get(i).getCoordX();
-						int tempY = (int)listOfEnemies.get(i).getCoordY();
-						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
-						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
-						program.add(rip2.getImage());
-						program.add(rip.getImage());
+//						int tempX = (int)listOfEnemies.get(i).getCoordX();
+//						int tempY = (int)listOfEnemies.get(i).getCoordY();
+						listOfEnemies.get(i).setImage(enemyType.rip);
+						program.add(listOfEnemies.get(i).getImage());
+//						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+//						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
+//						program.add(rip2.getImage());
+//						program.add(rip.getImage());
 						listOfEnemies.remove(i);
 					}
 				}
@@ -182,7 +184,7 @@ public class KeyPressedManager {
 
 		}
 	}
-	
+
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
 	}
@@ -195,7 +197,7 @@ public class KeyPressedManager {
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
 	}
-	
+
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
@@ -218,7 +220,7 @@ public class KeyPressedManager {
 				} 
 			}
 		}
-		
+
 		for(Enemy enem : listOfEnemies) {
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
@@ -240,21 +242,21 @@ public class KeyPressedManager {
 			}
 		}
 	}
-	
+
 	public boolean intCollisionTest(GImage image) {
 		return (user.getY() - image.getY() <= 60
 				&& user.getY() - image.getY() >= -60
 				&& user.getX() - image.getX() <= 60
 				&& user.getX() - image.getX() >= -60);
 	}
-	
+
 	public boolean enemyCollisionTest(Enemy enem, GImage image) {
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
-	
+
 	private void attackUp() {
 
 		if(program.getUser().getWeaponEquiped() == 0)
@@ -366,7 +368,7 @@ public class KeyPressedManager {
 		userRep.setSize(75,75);
 		program.remove(userWeapon);
 	}
-	
+
 	public void knockBack() {
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
@@ -385,7 +387,7 @@ public class KeyPressedManager {
 				}
 			}
 	}
-	
+
 	public void enemyCombat() {
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 

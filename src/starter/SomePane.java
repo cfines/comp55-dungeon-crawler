@@ -31,8 +31,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	public SomePane(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 170,189);
-		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 700, 150);
+		Interactions irock1 = new Interactions(interactionType.obstacle_concrete_rocks, 170,189);
+		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.FIRE, enemyType.FIRESkull);
@@ -114,10 +114,10 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		enemyMovement();
 		mover.userCombat();
 		mover.enemyCombat();
+		mover.knockBack();
 		nextRoom();
 		user.tick();
 		mover.checkCollision();
-		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
