@@ -18,11 +18,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.Scanner;
 
+import com.sun.glass.events.KeyEvent;
+
 public class GameOverPane extends GraphicsPane implements ActionListener {
 	private GImage gameOver;
 	private MainApplication program;
 	private GButton returnMenu;
-	private String userName;
+	private GLabel userName;
 	private int lastFloorNum;
 	private File file;
 	private GLabel text;
@@ -34,14 +36,13 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 		file = new File("highestScore.txt");
-		userName = "";
+		userName = new GLabel ("");
 		lastFloorNum = 0;
 		text = new GLabel("Enter name of the fallen: ",100,100);
 		text.setColor(Color.red);
 		text.setLocation(500,325);
 		try {
 			BufferedReader ob = new BufferedReader(new FileReader(file));
-			userName = ob.readLine();
 			ob.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -70,6 +71,15 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	}
 	
 	
+	public void keyPressed(KeyEvent e) 
+	{
+		
+	}
+	
+	public void KeyReleased(KeyEvent e) 
+	{
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
