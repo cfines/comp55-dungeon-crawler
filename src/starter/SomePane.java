@@ -111,6 +111,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		nextRoom();
 		user.tick();
 		checkCollision();
+		knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
@@ -320,7 +321,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
-	
+
 	public void isUserInPain() 
 	{
 		int newHealth;
@@ -328,9 +329,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		double userY = userRep.getY() + 75;
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(userX >= listOfEnemies.get(i).getCoordX() && 
-				userY >= listOfEnemies.get(i).getCoordY() && 
-				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
-				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+					userY >= listOfEnemies.get(i).getCoordY() && 
+					userX <= listOfEnemies.get(i).getCoordX() + 75 && 
+					userY <= listOfEnemies.get(i).getCoordY() + 75) 
 			{
 				//if the user is fighting
 				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
@@ -368,5 +369,24 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			 */
 		}
 	}
-	
+
+	public void knockBack() {
+		for(Enemy enem : listOfEnemies)
+			if(enemyCollisionTest(enem, userRep)) {
+				GImage tempEnem = enem.getImage();
+				if(atkUp) {
+					tempEnem.setLocation(tempEnem.getX(), tempEnem.getY() - 50);
+					if(atkDown) {
+						tempEnem.setLocation(tempEnem.getX(), tempEnem.getY() + 50);
+					}
+					if(atkLeft) {
+						tempEnem.setLocation(tempEnem.getX() - 50, tempEnem.getY());
+					}
+					if(atkRight) {
+						tempEnem.setLocation(tempEnem.getX() + 50, tempEnem.getY());
+					}
+				}
+			}
+	}
+
 }
