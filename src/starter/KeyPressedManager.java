@@ -201,19 +201,19 @@ public class KeyPressedManager {
 			if(intCollisionTest(inter.getImage())) {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
-					System.out.println("bottom"); 
+					//System.out.println("bottom"); 
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
-					System.out.println("top"); 
+					//System.out.println("top"); 
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
-					System.out.println("right"); 
+					//System.out.println("right"); 
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
-					System.out.println("left"); 
+					//System.out.println("left"); 
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
 			}
@@ -222,19 +222,19 @@ public class KeyPressedManager {
 		for(Enemy enem : listOfEnemies) {
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
-					System.out.println("bottom"); 
+					//System.out.println("bottom"); 
 					user.setY(user.getY() + 50); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
-					System.out.println("top"); 
+					//System.out.println("top"); 
 					user.setY(user.getY() - 50);
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
-					System.out.println("right"); 
+					//System.out.println("right"); 
 					user.setX(user.getX() + 50); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
-					System.out.println("left"); 
+					//System.out.println("left"); 
 					user.setX(user.getX() - 50);
 				} 
 			}
@@ -391,7 +391,7 @@ public class KeyPressedManager {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
-				System.out.println("User takes 1 damage, ouch.");
+				//System.out.println("User takes 1 damage, ouch.");
 				program.refreshOverlay();
 				program.drawOverlay(3, 1);
 			}
