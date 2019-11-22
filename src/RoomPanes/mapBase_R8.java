@@ -82,11 +82,11 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E14.getX() && userY >= E14.getY() && userX <= E14.getX() + 75 && userY <= E14.getY() + 75) {
-			user.setX(900);
+		if(userX2 >= E14.getX() && userY2 >= E14.getY()) {
+			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR9();
+			program.switchToR7();
 		}
 		else if(userX >= E15.getX() && userY >= E15.getY() && userX2 <= E15.getX()) {
 			user.setX(150);
