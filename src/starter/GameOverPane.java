@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -30,8 +32,16 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		file = new File("highestScore.txt");
 		userName = "";
 		lastFloorNum = 0;
-	}
 	
+	}
+		/*BufferedReader ob = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter name:");
+		try {
+			userName = ob.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	*/
 	public File getFile() 
 	{
 		return file;
