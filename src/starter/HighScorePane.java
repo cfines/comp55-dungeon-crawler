@@ -35,10 +35,9 @@ public class HighScorePane extends GraphicsPane {
 		hiScore = new GImage("High Scores Image.png",0,0);
 		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
-		file = new File("temp.txt");
+		file = new File("highestScore.txt");
 		
 		try {
-			//file = fileTransfer.getFile();
 			PrintWriter output = new PrintWriter(file);
 			output.close();
 		}catch (FileNotFoundException ex) 

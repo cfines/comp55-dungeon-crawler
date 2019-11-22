@@ -36,9 +36,9 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		file = new File("highestScore.txt");
 		userName = "";
 		lastFloorNum = 0;
-		text = new GLabel("Enter name of the fallen: ");
+		text = new GLabel("Enter name of the fallen: ",100,100);
 		text.setColor(Color.red);
-		text.setLocation(575,325);
+		text.setLocation(500,325);
 		try {
 			BufferedReader ob = new BufferedReader(new FileReader(file));
 			userName = ob.readLine();
@@ -46,11 +46,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	}
-	
-	public File getFile() 
-	{
-		return file;
 	}
 	
 	@Override
