@@ -20,6 +20,7 @@ public class HighScorePane extends GraphicsPane {
 	public File file;
 	public int floorNum;
 	public String userName;
+	public GameOverPane fileTransfer;
 	
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
@@ -28,14 +29,16 @@ public class HighScorePane extends GraphicsPane {
 	public GButton goBack;
 	public GLabel highestScore;
 	
+	
 	public HighScorePane(MainApplication app) {
 		this.program = app;
 		hiScore = new GImage("High Scores Image.png",0,0);
 		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
-		file = new File("highest score.txt");
+		file = new File("temp.txt");
 		
 		try {
+			//file = fileTransfer.getFile();
 			PrintWriter output = new PrintWriter(file);
 			output.close();
 		}catch (FileNotFoundException ex) 

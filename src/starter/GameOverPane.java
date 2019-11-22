@@ -4,15 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import java.io.File;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GLabel;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.util.Scanner;
 
 public class GameOverPane extends GraphicsPane implements ActionListener {
 	private GImage gameOver;
 	private MainApplication program;
 	private GButton returnMenu;
 	private String userName;
+	private int lastFloorNum;
+	private File file;
 	
 	public GameOverPane(MainApplication app) 
 	{
@@ -20,7 +27,14 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver = new GImage ("Game Over Screen.png",0,0);
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
-		
+		file = new File("highestScore.txt");
+		userName = "";
+		lastFloorNum = 0;
+	}
+	
+	public File getFile() 
+	{
+		return file;
 	}
 	
 	@Override
