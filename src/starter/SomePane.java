@@ -15,7 +15,7 @@ import acm.graphics.GRect;
 
 public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1, enemy2;
+	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1, enemy2, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -25,17 +25,19 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 
+	private KeyPressedManager mover;
+
 
 	public SomePane(MainApplication app) {
 		this.program = app;
+		user = program.getUser();
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 170,189);
 		Interactions irock2 = new Interactions(interactionType.obstacle_rock, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,350,300, ElementType.FIRE, enemyType.FIRESkull);
-		Enemy ienemy2 = new Enemy(2,2,2,2,350,450, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,900,450, ElementType.FIRE, enemyType.FIRESkull);
 
-		user = new User(5, 5, 1000, 1, 300, 300);
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
@@ -51,6 +53,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
+		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		background.setSize(1125, 550);
@@ -68,6 +71,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(enemy1);
 		elements.add(enemy2);
 		elements.add(userRep);
+
+		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
+				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
 
 	@Override
@@ -77,6 +83,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.drawOverlay(1, 1);
 	}
 
 	@Override
@@ -86,6 +93,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		program.refreshOverlay();
 	}
 
 	@Override
@@ -100,144 +108,39 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		}
 	}
 
-	/*
-	 * @Override public void mouseMoved(MouseEvent e) { user.setX(e.getX());
-	 * user.setY(e.getY()); }
-	 */
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		mover.updateWeaponLoc();
 		enemyMovement();
-		isUserInPain();
+		mover.userCombat();
+		mover.enemyCombat();
 		nextRoom();
 		user.tick();
-		checkCollision();
-		knockBack();
+		mover.checkCollision();
+		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
+		mover.notReallyActionPerformed(e);
 	}
 
 	private void nextRoom() {
 		double userX = userRep.getX() + 80;
 		double userY = userRep.getY() + 80;
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
+		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
 		}
 	}
 
-	private void userUP() {
-		user.setDY(-user.getMoveSpeedStat());
-	}
-	private void userDOWN() {
-		user.setDY(user.getMoveSpeedStat());
-	}
-	private void userLEFT() {
-		user.setDX(-user.getMoveSpeedStat());
-	}
-	private void userRIGHT() {
-		user.setDX(user.getMoveSpeedStat());
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			userUP();
-			break;
-		case KeyEvent.VK_S:
-			userDOWN();
-			break;
-		case KeyEvent.VK_A:
-			userLEFT();
-			break;
-		case KeyEvent.VK_D:
-			userRIGHT();
-			break;
-		case KeyEvent.VK_UP:
-			atkUp = true;
-			if(atkUp == true) 
-			{
-				userRep.setImage("Rogue_Attack(Up).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_LEFT:
-			atkLeft = true;
-			if(atkLeft == true) 
-			{
-				userRep.setImage("Rogue_Attack(Left).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_DOWN:
-			atkDown = true;
-			if(atkDown == true) 
-			{
-				userRep.setImage("Rogue_Attack(Down).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_RIGHT:
-			atkRight = true;
-			if(atkRight == true) 
-			{
-				userRep.setImage("Rogue_Attack(Right).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		}
+		mover.notReallyKeyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_S:
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_A:
-			user.setDX(0);
-			break;
-		case KeyEvent.VK_D:
-			user.setDX(0);
-			break;
-		case KeyEvent.VK_UP:
-			atkUp = false;
-			if(atkUp == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_LEFT:
-			atkLeft = false;
-			if(atkLeft == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_DOWN: 
-			atkDown = false;
-			if(atkDown == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_RIGHT: 
-			atkRight = false;
-			if(atkRight == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-		}
+		mover.notReallyKeyReleased(e);
 	}
 
 	public void enemyMovement() {
@@ -250,144 +153,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			enem.getImage().movePolar(4, degree);
 			degree+=50;
 			degree%=360;
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 		}
 	}
-
-	public void checkCollision() {
-		for(Interactions inter : listOfInter) {	
-			if(intCollisionTest(inter.getImage())) {
-				//TODO Set these comparisons to booleans
-				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
-					System.out.println("bottom"); 
-					user.setY(user.getY() + user.getMoveSpeedStat()); 
-				} 
-				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
-					System.out.println("top"); 
-					user.setY(user.getY() - user.getMoveSpeedStat());
-				}
-				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
-					System.out.println("right"); 
-					user.setX(user.getX() + user.getMoveSpeedStat()); 
-				} 
-				if (user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
-					System.out.println("left"); 
-					user.setX(user.getX() - user.getMoveSpeedStat());
-				} 
-			}
-		}
-
-		for(Enemy enem : listOfEnemies) {
-			if(enemyCollisionTest(enem, userRep)) {
-				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
-					System.out.println("bottom"); 
-					user.setY(user.getY() + 50); 
-				} 
-				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
-					System.out.println("top"); 
-					user.setY(user.getY() - 50);
-				}
-				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
-					System.out.println("right"); 
-					user.setX(user.getX() + 50); 
-				} 
-				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
-					System.out.println("left"); 
-					user.setX(user.getX() - 50);
-				} 
-			}
-		}
-
-	}
-
-	public void enemyCollision() {
-		for(Interactions inter : listOfInter) {
-			for(Enemy enem : listOfEnemies) {
-				if(enemyCollisionTest(enem, inter.getImage())) {
-
-				}
-			}
-		}
-	}
-
-	public boolean intCollisionTest(GImage image) {
-		return (user.getY() - image.getY() <= 60
-				&& user.getY() - image.getY() >= -60
-				&& user.getX() - image.getX() <= 60
-				&& user.getX() - image.getX() >= -60);
-	}
-
-	public boolean enemyCollisionTest(Enemy enem, GImage image) {
-		return (enem.getImage().getY() - image.getY() <= 60
-				&& enem.getImage().getY() - image.getY() >= -60
-				&& enem.getImage().getX() - image.getX() <= 60
-				&& enem.getImage().getX() - image.getX() >= -60);
-	}
-
-	public void isUserInPain() 
-	{
-		int newHealth;
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
-		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(userX >= listOfEnemies.get(i).getCoordX() && 
-					userY >= listOfEnemies.get(i).getCoordY() && 
-					userX <= listOfEnemies.get(i).getCoordX() + 75 && 
-					userY <= listOfEnemies.get(i).getCoordY() + 75) 
-			{
-				//if the user is fighting
-				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
-				{
-					//damage dealt to enemy
-					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
-					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
-					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
-					{
-						//should remove an enemy
-						int tempX = (int)listOfEnemies.get(i).getCoordX();
-						int tempY = (int)listOfEnemies.get(i).getCoordY();
-						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
-						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
-						program.add(rip2.getImage());
-						program.add(rip.getImage());
-						listOfEnemies.remove(i);
-					}
-				}
-				//if user is not attacking
-				else{
-					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
-					program.getUser().getUserStats().setHP_cur(newHealth);
-					System.out.println("User takes 1 damage, ouch.");
-					program.refreshOverlay();
-					program.drawOverlay(3, 1);
-				}
-				//TODO insert user getting hurt here
-			}
-			/*
-			 * if (program.getUser().getUserStats().getHP_cur() == 0) {
-			 * program.switchToGameOver();
-			 * 
-			 * }
-			 */
-		}
-	}
-
-	public void knockBack() {
-		for(Enemy enem : listOfEnemies)
-			if(enemyCollisionTest(enem, userRep)) {
-				GImage tempEnem = enem.getImage();
-				if(atkUp) {
-					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
-				}
-				if(atkDown) {
-					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() + 50);
-				}
-				if(atkLeft) {
-					enem.getImage().setLocation(tempEnem.getX() - 50, tempEnem.getY());
-				}
-				if(atkRight) {
-					enem.getImage().setLocation(tempEnem.getX() + 50, tempEnem.getY());
-				}
-			}
-	}
-
 }

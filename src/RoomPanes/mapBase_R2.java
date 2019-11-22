@@ -17,6 +17,7 @@ import starter.ElementType;
 import starter.Enemy;
 import starter.GraphicsPane;
 import starter.Interactions;
+import starter.KeyPressedManager;
 import starter.MainApplication;
 import starter.User;
 import starter.enemyType;
@@ -24,7 +25,7 @@ import starter.interactionType;
 
 public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep;
+	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -36,8 +37,11 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private int timerCont = 0;
 	private boolean move = true;
 	
+	private KeyPressedManager mover;
+	
 	public mapBase_R2(MainApplication app) {
 		this.program = app;
+		user = program.getUser();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 100,9);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 500,91);
@@ -64,9 +68,9 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
 		
-		user = new User(5, 5, 1000, 1, 300, 300);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
+		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -83,142 +87,43 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		elements.add(enemy1);
 		elements.add(enemy2);
 		elements.add(userRep);
+		
+		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
+				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
 	
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
-		double userX2 = userRep.getX() + 75;
-		double userY2 = userRep.getY() + 75;
+		double userX2 = userRep.getX() + 80;
+		double userY2 = userRep.getY() + 80;
 		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 75 && userY <= E2.getY() + 75) {
+			user.setX(900);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
 			program.switchToSome();
-			userRep.setLocation(1030,300);
 		}
-		else if(userX2 >= E3.getX() && userY2 >= E3.getY() && userY2 <= E2.getY() + 75) {
+		else if(userX2 >= E3.getX() && userY2 >= E3.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(),user.getY());
 			program.switchToR3();
-			userRep.setLocation(40,300);
 		}
 		
 	}
-	
-	private void userUP() {
-		user.setDY(-user.getMoveSpeedStat());
-	}
-	private void userDOWN() {
-		user.setDY(user.getMoveSpeedStat());
-	}
-	private void userLEFT() {
-		user.setDX(-user.getMoveSpeedStat());
-	}
-	private void userRIGHT() {
-		user.setDX(user.getMoveSpeedStat());
-	}
-	
+
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			userUP();
-			break;
-		case KeyEvent.VK_S:
-			userDOWN();
-			break;
-		case KeyEvent.VK_A:
-			userLEFT();
-			break;
-		case KeyEvent.VK_D:
-			userRIGHT();
-			break;
-		case KeyEvent.VK_UP:
-			atkUp = true;
-			if(atkUp == true) 
-			{
-				userRep.setImage("Rogue_Attack(Up).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_LEFT:
-			atkLeft = true;
-			if(atkLeft == true) 
-			{
-				userRep.setImage("Rogue_Attack(Left).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_DOWN:
-			atkDown = true;
-			if(atkDown == true) 
-			{
-				userRep.setImage("Rogue_Attack(Down).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		case KeyEvent.VK_RIGHT:
-			atkRight = true;
-			if(atkRight == true) 
-			{
-				userRep.setImage("Rogue_Attack(Right).png");
-				userRep.setSize(75,75);
-			}
-			break;
-		}
+		mover.notReallyKeyPressed(e);
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_S:
-			user.setDY(0);
-			break;
-		case KeyEvent.VK_A:
-			user.setDX(0);
-			break;
-		case KeyEvent.VK_D:
-			user.setDX(0);
-			break;
-		case KeyEvent.VK_UP:
-			atkUp = false;
-			if(atkUp == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_LEFT:
-			atkLeft = false;
-			if(atkLeft == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_DOWN: 
-			atkDown = false;
-			if(atkDown == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-
-		case KeyEvent.VK_RIGHT: 
-			atkRight = false;
-			if(atkRight == false) 
-			{
-				userRep.setImage("Rogue_(Sample User).gif");
-				userRep.setSize(75,75);
-			}
-			break;
-		}
+		mover.notReallyKeyReleased(e);
 	}
 
 	@Override
@@ -228,6 +133,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.drawOverlay(2, 1);
 	}
 
 	@Override
@@ -237,6 +143,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		program.refreshOverlay();
 	}
 	
 	@Override
@@ -255,10 +162,16 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		nextRoom();
+		mover.updateWeaponLoc();
 		enemyMovement();
+		mover.userCombat();
+		mover.enemyCombat();
+		nextRoom();
 		user.tick();
+		mover.checkCollision();
+		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
+		mover.notReallyActionPerformed(e);
 	}
 
 	public void enemyMovement() {
@@ -286,6 +199,8 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 				double moveY = (distY * 2) / 100;
 				enem.getImage().move(-moveX, -moveY);
 			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 		}
 	}
 
