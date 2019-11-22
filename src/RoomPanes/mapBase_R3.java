@@ -38,7 +38,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(2,2,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
+		Enemy ienemy1 = new Enemy(100,100,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
 		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
@@ -234,10 +234,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public void isUserInPain() 
 	{
 		int newHealth;
-		double weaponX = userWeapon.getX() + 75;
-		double weaponY = userWeapon.getY() + 75;
-		double weaponX2 = userWeapon.getX();
-		double weaponY2 = userWeapon.getY();
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
 			{
