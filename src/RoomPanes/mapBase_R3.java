@@ -61,9 +61,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		listOfInter.add(irock1);
 
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
-		userWeapon = new GImage("Fire Sword(RIGHT).png", user.getX(), user.getY());
+		//userWeapon = new GImage("Fire Sword(RIGHT).png", user.getX(), user.getY());
 		userRep.setSize(75, 75);
-		userWeapon.setSize(75,20);
 
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
