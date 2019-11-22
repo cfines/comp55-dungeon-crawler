@@ -35,9 +35,9 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
 	private boolean move = true;
-	
+
 	private KeyPressedManager mover;
-	
+
 	public mapBase_R5(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
@@ -55,19 +55,19 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		
+
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		
+
 		listOfEnemies.add(ienemy1);
 		listOfInter.add(iE10);
 		listOfInter.add(iE9);
 		listOfInter.add(iE8);
 		listOfInter.add(ihole1);
-		
+
 		elements.add(background);
 		elements.add(enemy1);
 		elements.add(hole1);
@@ -75,7 +75,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		elements.add(E9);
 		elements.add(E10);
 		elements.add(userRep);
-		
+
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
@@ -116,17 +116,17 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(90,300);
 		}
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		mover.notReallyKeyPressed(e);
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) { 
-	mover.notReallyKeyReleased(e);
+		mover.notReallyKeyReleased(e);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
@@ -141,7 +141,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
-	
+
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
@@ -149,29 +149,29 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		double userY2 = userRep.getY() + 80;
 		if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 75 && userY <= E8.getY() + 75) {
 			user.setX(575);
-			user.setY(200);
+			user.setY(385);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR4();
 		}
-		else if(userX2 >= E10.getX() && userY2 >= E10.getY()) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToR7();
-		}
-		else if(userX2 >= E9.getX() && userY2 >= E9.getY()) {
-			user.setX(675);
-			user.setY(300);
+		else if(userX >= E9.getX() && userY <= E9.getY() - 50 && userY2 >= E9.getY()) {
+			user.setX(575);
+			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
 			program.switchToR6();
 		}
-		
+		else if(userX2 >= E10.getX() && userY2 >= E10.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR7();
+		}
+
 	}
-	
+
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
 	}
-	
+
 	public void enemyMovement() {
 		if(everyXSeconds(20)) {
 			move = !move;
@@ -181,16 +181,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
-			if(enem.getEnemyType() == enemyType.EARTHSkull) {
-				if(move) {
-					double distX = enem.getImage().getX() - userRep.getX();
-					double distY = enem.getImage().getY() - userRep.getY();
-					double moveX = (distX * 2) / 100;
-					double moveY = (distY * 2) / 100;
-					enem.getImage().move(-moveX, -moveY);
-				}else {enem.getImage().move(0, 0);}
-			}
-			else if(enem.getEnemyType() == enemyType.WATERSkull) {
+			if(enem.getEnemyType() == enemyType.WATERSkull) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;
