@@ -37,22 +37,10 @@ public class HighScorePane extends GraphicsPane {
 		
 		try {
 			PrintWriter output = new PrintWriter(file);
-			output.println(userName);
-			output.println(floorNum);
 			output.close();
 		}catch (FileNotFoundException ex) 
 		{
 			System.out.printf("ERROR: %s\n", ex);
-		}
-		
-		try {
-			Scanner input = new Scanner(file);
-			//int lastFloor = input.nextInt();
-			String lastName = input.next();
-			//System.out.printf("Someone by the name of " + userName + " was last seen on Floor" + lastFloor);
-			input.close();
-		}catch (IOException ex) {
-			System.err.println("ERROR puting stuff into file");
 		}
 	}
 	

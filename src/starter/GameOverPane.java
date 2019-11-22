@@ -6,11 +6,13 @@ import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import acm.graphics.GLabel;
 
 public class GameOverPane extends GraphicsPane implements ActionListener {
 	private GImage gameOver;
 	private MainApplication program;
 	private GButton returnMenu;
+	private String userName;
 	
 	public GameOverPane(MainApplication app) 
 	{
@@ -18,6 +20,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver = new GImage ("Game Over Screen.png",0,0);
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
+		
 	}
 	
 	@Override
