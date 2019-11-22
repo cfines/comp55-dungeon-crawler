@@ -113,12 +113,16 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == E6) {
+			user.setX(900);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR3();
-			userRep.setLocation(1010,300);
 		}
 		else if(obj == E7) {
+			user.setX(675);
+			user.setY(300);
+			userRep.setLocation(user.getX(),user.getY());
 			program.switchToR5();
-			userRep.setLocation(575,435);
 		}
 	}
 	
@@ -156,7 +160,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			double moveX = (distX * 2) / 100;
 			double moveY = (distY * 2) / 100;
 			enem.getImage().move(-moveX, -moveY);
-			//enem.getImage().movePolar(4, degree);
+			enem.getImage().movePolar(4, degree);
 			degree+=50;
 			degree%=360;
 			}
@@ -172,9 +176,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR3();
 		}
-		if(userX >= E7.getX() && userY2 >= E7.getY()) {
+		if(userX >= E7.getX() && userY <= E7.getY() - 50 && userY2 >= E7.getY()) {
 			user.setX(575);
-			user.setY(150);
+			user.setY(120);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR5();
 		}
