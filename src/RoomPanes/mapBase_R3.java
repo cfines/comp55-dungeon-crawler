@@ -24,7 +24,7 @@ import starter.interactionType;
 public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep;
+	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -61,7 +61,9 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		listOfInter.add(irock1);
 
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
+		userWeapon = new GImage("Fire Sword(RIGHT).png", user.getX(), user.getY());
 		userRep.setSize(75, 75);
+		userWeapon.setSize(75,20);
 
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
@@ -105,6 +107,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
+		userWeapon.setLocation(user.getX(), user.getY());
 	}
 
 	@Override
@@ -126,19 +129,15 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
 			userUP();
-			//isUserInPain(); 
 			break;
 		case KeyEvent.VK_S:
 			userDOWN();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_A:
 			userLEFT();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_D:
 			userRIGHT();
-			//isUserInPain();
 			break;
 		case KeyEvent.VK_E:
 			program.getUser().cycleWeapon();
@@ -369,6 +368,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Up).png");
+			userWeapon.setImage("Fire Sword(UP).png");
+			userWeapon.setLocation(user.getX() - 20, user.getY() - 20);
+			userWeapon.setSize(75, 75);
+			program.add(userWeapon);
 			userRep.setSize(75,75);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
@@ -386,6 +389,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Down).png");
+			userWeapon.setImage("Fire Sword(DOWN).png");
+			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
@@ -403,6 +408,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Left).png");
+			userWeapon.setImage("Fire Sword(LEFT).png");
+			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
@@ -420,6 +427,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userRep.setImage("Rogue_Attack(Right).png");
+			userWeapon.setImage("Fire Sword(RIGHT).png");
+			userWeapon.setSize(75, 75);
 			userRep.setSize(75,75);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
