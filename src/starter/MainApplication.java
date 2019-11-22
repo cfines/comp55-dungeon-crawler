@@ -112,6 +112,25 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
+		user = new User(5, 5, 1000, 1, 300, 300);
+		System.out.println("Hello, world! New game!");
+		somePane = new SomePane(this);
+		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
+		highScorePane = new HighScorePane(this);
+		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
+		mapbase_R3 = new mapBase_R3(this);
+		mapbase_R4 = new mapBase_R4(this);
+		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
+		mapbase_R8 = new mapBase_R8(this);
+		mapbase_R9 = new mapBase_R9(this);
+		tittle = new TitleScreenPane(this);
+		playerDied = new GameOverPane(this);
+		
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
