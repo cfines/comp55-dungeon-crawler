@@ -174,12 +174,12 @@ public class KeyPressedManager {
 				}
 				//TODO insert user getting hurt here
 			}
-			/*
-			 * if (program.getUser().getUserStats().getHP_cur() == 0) {
-			 * program.switchToGameOver();
-			 * 
-			 * }
-			 */
+
+			if (program.getUser().getUserStats().getHP_cur() == 0) {
+				program.switchToGameOver();
+
+			}
+
 		}
 	}
 	
