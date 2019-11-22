@@ -196,7 +196,6 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-
 			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
@@ -220,5 +219,4 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			enem.setStartY(enem.getImage().getY());
 		}
 	}
-
 }
