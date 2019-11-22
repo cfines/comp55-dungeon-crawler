@@ -165,7 +165,7 @@ public class KeyPressedManager {
 //						int tempX = (int)listOfEnemies.get(i).getCoordX();
 //						int tempY = (int)listOfEnemies.get(i).getCoordY();
 						listOfEnemies.get(i).setImage(enemyType.rip);
-						program.add(listOfEnemies.get(i).getImage());
+						//program.add(listOfEnemies.get(i).getImage());
 //						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
 //						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
 //						program.add(rip2.getImage());
