@@ -28,7 +28,7 @@ public class HighScorePane extends GraphicsPane {
 	
 	public HighScorePane(MainApplication app) {
 		this.program = app;
-		hiScore = new GImage("High Scores.png",0,0);
+		hiScore = new GImage("High Scores Image.png",0,0);
 		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
 		file = new File("highest score.txt");
