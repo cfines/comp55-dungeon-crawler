@@ -92,7 +92,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(3, 1);
+		program.drawOverlay(99, 1);
 	}
 
 	@Override
