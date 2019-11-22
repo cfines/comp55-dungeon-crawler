@@ -487,7 +487,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	
 	public void knockBack() {
 		for(Enemy enem : listOfEnemies)
-			if(enemyCollisionTest(enem, userRep)) {
+			if(enemyCollisionTest(enem, userWeapon)) {
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
 					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
