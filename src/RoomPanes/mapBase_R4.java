@@ -31,6 +31,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkDown,atkRight;
 	private int degree;
+	private int timerCont = 0;
 	private User user;
 	private Timer t = new Timer(30, this);
 	private boolean move = true;
@@ -41,8 +42,8 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
-		Enemy ienemy2 = new Enemy(2,2,2,2,575,434, ElementType.WATER, enemyType.WATERBat);
-		Enemy ienemy3 = new Enemy(2,2,2,2,500,420, ElementType.EARTH, enemyType.EARTHSkull);
+		Enemy ienemy2 = new Enemy(2,2,2,2,575,200, ElementType.WATER, enemyType.WATERBat);
+		Enemy ienemy3 = new Enemy(2,2,2,2,500,100, ElementType.EARTH, enemyType.EARTHSkull);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,900,100); 
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,230,490);
 		Interactions iE6 = new Interactions(interactionType.entry_door_WEST,27,300);
@@ -55,7 +56,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		E6 = iE6.getImage();
 		E7 = iE7.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
+		userRep = new GImage("Rogue_(Sample User).gif", 0, 0);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		userRep.setSize(75, 75);
 		
@@ -138,6 +139,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		timerCont++;
 		mover.updateWeaponLoc();
 		enemyMovement();
 		mover.userCombat();
@@ -149,10 +151,19 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
-
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
+	}
 	
 	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
 		for (Enemy enem : listOfEnemies) {
+			enem.getImage().movePolar(5, degree);
+			degree+=5;
+			degree%=360;
 			double distX = enem.getImage().getX() - userRep.getX();
 			double distY = enem.getImage().getY() - userRep.getY();
 			enem.setStartX(enem.getImage().getX());
@@ -160,9 +171,6 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			double moveX = (distX * 2) / 100;
 			double moveY = (distY * 2) / 100;
 			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
-			degree+=50;
-			degree%=360;
 			}
 		}
 	
@@ -176,9 +184,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR3();
 		}
-		if(userX >= E7.getX() && userY <= E7.getY() - 50 && userY2 >= E7.getY()) {
+		else if(userX >= E7.getX() && userY <= E7.getY() - 50 && userY2 >= E7.getY()) {
 			user.setX(575);
-			user.setY(120);
+			user.setY(110);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR5();
 		}
