@@ -6,19 +6,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
-import javax.swing.Timer;
-
 import acm.graphics.GImage;
-import acm.graphics.GObject;
-import acm.graphics.GRect;
-import starter.ElementType;
 import starter.Enemy;
-import starter.GraphicsPane;
 import starter.Interactions;
 import starter.MainApplication;
 import starter.User;
-import starter.enemyType;
 import starter.interactionType;
 
 public class KeyPressedManager {
@@ -30,7 +22,7 @@ public class KeyPressedManager {
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	
-	KeyPressedManager(MainApplication program, User user, GImage userRep,
+	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 						ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
 						boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown){
 		this.program = program;

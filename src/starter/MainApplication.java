@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
 import RoomPanes.mapBase_R2;
+import RoomPanes.mapBase_R2TEST;
 import RoomPanes.mapBase_R3;
 import RoomPanes.mapBase_R4;
 import RoomPanes.mapBase_R5;
@@ -25,6 +26,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private GraphicsPane graphicsPane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
+	private mapBase_R2TEST testPane;
 	private mapBase_R3 mapbase_R3;
 	private mapBase_R4 mapbase_R4;
 	private mapBase_R5 mapbase_R5;
@@ -74,6 +76,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
 		mapbase_R3 = new mapBase_R3(this);
 		mapbase_R4 = new mapBase_R4(this);
 		mapbase_R5 = new mapBase_R5(this);
@@ -83,7 +86,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToSome(); //change which screen you want to switch to
+		switchToTest(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -118,6 +121,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR2() {
 		switchToScreen(mapbase_R2);
+	}
+	
+	public void switchToTest() {
+		switchToScreen(testPane);
 	}
 	
 	public void switchToR3() {

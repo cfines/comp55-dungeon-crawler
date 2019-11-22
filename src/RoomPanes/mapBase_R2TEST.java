@@ -80,6 +80,9 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		elements.add(E4);
 		elements.add(E5);
 		elements.add(userRep);
+		
+		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, atkUp, atkLeft, atkRight, atkDown);
+		
 	}
 
 	@Override
