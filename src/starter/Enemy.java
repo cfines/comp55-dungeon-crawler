@@ -45,7 +45,7 @@ public class Enemy {
 	}
 	
 	public void setImage(enemyType type) {
-		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat) {
+		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || type == enemyType.WATERSpider || type == enemyType.EARTHSpooder || type == enemyType.FIRESpooder || type == enemyType.WATERSpooder) {
 			image = new GImage(type + ".gif", dx, dy);
 		}
 		else if (type == enemyType.rip || type == enemyType.EARTHSkull || type == enemyType.FIRESkull || type == enemyType.WATERSkull) {
