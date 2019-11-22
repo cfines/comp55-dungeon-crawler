@@ -84,7 +84,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToSome(); //change which screen you want to switch to
+		switchToR3(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 

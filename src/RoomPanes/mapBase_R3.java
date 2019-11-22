@@ -25,7 +25,7 @@ import starter.interactionType;
 public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background, userRep, userWeapon;
+	private GImage enemy1, enemy2, E4, E5, rock1, rock2, hole1, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -47,11 +47,13 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,575,325);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,230,163);
+		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks,650,250);
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		E4 = iE4.getImage();
 		E5 = iE5.getImage();
 		rock1 = irock1.getImage();
+		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 
@@ -62,7 +64,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iE5);
 		listOfInter.add(iE4);
 		listOfInter.add(irock1);
-
+		listOfInter.add(irock2);
+		
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		userRep.setSize(75, 75);
@@ -81,6 +84,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		elements.add(E4);
 		elements.add(E5);
 		elements.add(userRep);
+		elements.add(rock2);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
