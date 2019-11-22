@@ -102,8 +102,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		user.setX(e.getX());
-		user.setY(e.getY());
+		//user.setX(e.getX());
+		//user.setY(e.getY());
 	}
 
 	@Override
