@@ -103,7 +103,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		updateWeaponLoc();
 		enemyMovement();
-		isUserInPain();
+		userCombat();
+		enemyCombat();
 		nextRoom();
 		user.tick();
 		checkCollision();
@@ -124,7 +125,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		}
 	}
 
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -230,8 +231,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
 		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
 	}
-	
-	public void isUserInPain() 
+
+	public void userCombat() 
 	{
 		int newHealth;
 		for(int i = 0; i < listOfEnemies.size(); i++) {
@@ -255,14 +256,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 						listOfEnemies.remove(i);
 					}
 				}
-				//if user is not attacking
-				else{
-					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
-					program.getUser().getUserStats().setHP_cur(newHealth);
-					System.out.println("User takes 1 damage, ouch.");
-					program.refreshOverlay();
-					program.drawOverlay(3, 1);
-				}
 				//TODO insert user getting hurt here
 			}
 			/*
@@ -273,7 +266,19 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			 */
 		}
 	}
-	
+
+	public void enemyCombat() {
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				System.out.println("User takes 1 damage, ouch.");
+				program.refreshOverlay();
+				program.drawOverlay(3, 1);
+			}
+		}
+	}
+
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
@@ -281,16 +286,16 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			program.switchToR2();
 			userRep.setLocation(1030,300);
 		}
-		
+
 		userX = userRep.getX() + 80;
 		userY = userRep.getY() + 80;
-		
+
 		if(userX >= E5.getX() && userY >= E5.getY() && userX + 80 <= E5.getX() + 75 && userY + 80 <= E5.getY() + 75) {
 			program.switchToR4();
 			userRep.setLocation(40,300);
 		}
 	}
-	
+
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
 	}
@@ -303,7 +308,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private void userRIGHT() {
 		user.setDX(user.getMoveSpeedStat());
 	}
-	
+
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
 			if(intCollisionTest(inter.getImage())) {
@@ -326,7 +331,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 				} 
 			}
 		}
-		
+
 		for(Enemy enem : listOfEnemies) {
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
@@ -349,21 +354,21 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			}
 		}
 	}
-	
+
 	public boolean intCollisionTest(GImage image) {
 		return (user.getY() - image.getY() <= 60
 				&& user.getY() - image.getY() >= -60
 				&& user.getX() - image.getX() <= 60
 				&& user.getX() - image.getX() >= -60);
 	}
-	
+
 	public boolean enemyCollisionTest(Enemy enem, GImage image) {
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
-	
+
 	private void attackUp() {
 
 		if(program.getUser().getWeaponEquiped() == 0)
@@ -451,8 +456,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		userRep.setSize(75,75);
 		program.remove(userWeapon);
 	}
-	
-	
+
+
 	public void enemyMovement() {
 		if(everyXSeconds(20)) {
 			move = !move;
@@ -484,7 +489,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			enem.setStartY(enem.getImage().getY());
 		}
 	}
-	
+
 	public void knockBack() {
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
@@ -503,7 +508,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 				}
 			}
 	}
-	
+
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
 	}
