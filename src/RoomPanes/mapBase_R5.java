@@ -130,14 +130,9 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
+		mover.notReallyActionPerformed(e);
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 

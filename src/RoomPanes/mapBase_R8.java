@@ -31,7 +31,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 
-	private KeyPressedManager mover;
+	private KeyPressedManager mover; 
 
 	public mapBase_R8(MainApplication app) {
 		this.program = app;
@@ -143,13 +143,8 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
-		mover.userCombat();
-		mover.enemyCombat();
+		mover.notReallyActionPerformed(e);
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 }

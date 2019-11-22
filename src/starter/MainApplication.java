@@ -33,7 +33,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R7 mapbase_R7;
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
-	private TitleScreenPane tittle;
+	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
 	private MenuPane_LightsOff lightsoff;
@@ -85,7 +85,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToTest(); //change which screen you want to switch to
+		switchToR8(); //change which screen you want to switch to
 
 	}
 	

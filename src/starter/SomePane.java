@@ -30,7 +30,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	public SomePane(MainApplication app) {
 		this.program = app;
-		user = program.getUser();
+		user = program.getUser(); 
 		Interactions irock1 = new Interactions(interactionType.obstacle_concrete_rocks, 170,189);
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
@@ -110,14 +110,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		mover.knockBack();
+		mover.notReallyActionPerformed(e);
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
