@@ -118,7 +118,6 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		mover.checkCollision();
 		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
-		mover.notReallyActionPerformed(e);
 	}
 	
 	public boolean everyXSeconds(double x) {
@@ -149,11 +148,10 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-		if(everyXSeconds(35)) {
+		if(everyXSeconds(40)) {
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-
 			enem.getImage().movePolar(2, degree);
 			degree+=80;
 			degree%=360;
@@ -163,7 +161,6 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 					double distY = enem.getImage().getY() - userRep.getY();
 					double moveX = (distX * 8) / 100;
 					double moveY = (distY * 8) / 100;
-					//enem.setImage(enemyType.xokAttack);
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
