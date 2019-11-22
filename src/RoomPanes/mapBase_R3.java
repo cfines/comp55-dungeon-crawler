@@ -24,7 +24,7 @@ import starter.interactionType;
 public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep, userWeapon;
+	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -61,7 +61,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		listOfInter.add(irock1);
 
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
-		//userWeapon = new GImage("Fire Sword(RIGHT).png", user.getX(), user.getY());
+		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		userWeapon.setSize(75, 75);
 		userRep.setSize(75, 75);
 
 		background.setSize(1125, 550);
@@ -369,7 +370,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			userRep.setImage("Rogue_Attack(Up).png");
 			userWeapon.setImage("Fire Sword(UP).png");
 			userWeapon.setLocation(user.getX() - 20, user.getY() - 20);
-			userWeapon.setSize(75, 75);
 			program.add(userWeapon);
 			userRep.setSize(75,75);
 		}
