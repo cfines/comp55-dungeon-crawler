@@ -41,8 +41,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(10,10,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
-		Enemy ienemy2 = new Enemy(5,5,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(10,10,2,2,800,70,ElementType.EARTH, enemyType.EARTHDrawing);
+		Enemy ienemy2 = new Enemy(5,5,2,2,575,70,ElementType.FIRE, enemyType.FIREBat);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,575,325);
@@ -171,7 +171,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-			if(enem.getEnemyType() == enemyType.EARTHBat) {
+			if(enem.getEnemyType() == enemyType.EARTHDrawing) {
 				if(move) {
 					degree+=5;
 					degree%=360;
@@ -183,7 +183,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
-			else if(enem.getEnemyType() == enemyType.FIRESkull) {
+			else if(enem.getEnemyType() == enemyType.FIREBat) {
 				degree+=2;
 				degree%=360;
 				enem.getImage().movePolar(6, degree);

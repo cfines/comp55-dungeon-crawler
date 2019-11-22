@@ -35,8 +35,8 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.FIRE, enemyType.FIRESkull);
-		Enemy ienemy2 = new Enemy(2,2,2,2,900,450, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.WATER, enemyType.WATERSpider);
+		Enemy ienemy2 = new Enemy(2,2,2,2,900,450, ElementType.FIRE, enemyType.FIREDrawing);
 
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);

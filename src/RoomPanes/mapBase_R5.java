@@ -41,7 +41,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	public mapBase_R5(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(2,2,2,2,1000,500, ElementType.WATER, enemyType.WATERSkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,1000,500, ElementType.WATER, enemyType.WATERSpooder);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
 		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,28);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,505);
@@ -181,7 +181,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
-			if(enem.getEnemyType() == enemyType.WATERSkull) {
+			if(enem.getEnemyType() == enemyType.WATERSpooder) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;

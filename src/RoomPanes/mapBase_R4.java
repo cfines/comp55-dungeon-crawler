@@ -41,9 +41,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	public mapBase_R4(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.FIREDrawing);
 		Enemy ienemy2 = new Enemy(2,2,2,2,575,200, ElementType.WATER, enemyType.WATERBat);
-		Enemy ienemy3 = new Enemy(2,2,2,2,500,100, ElementType.EARTH, enemyType.EARTHSkull);
+		Enemy ienemy3 = new Enemy(2,2,2,2,500,100, ElementType.EARTH, enemyType.EARTHSpider);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,900,100); 
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,230,490);
 		Interactions iE6 = new Interactions(interactionType.entry_door_WEST,27,300);
