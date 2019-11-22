@@ -135,7 +135,7 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
-			if(enem.getEnemyType() == enemyType.EARTHSkull) {
+			if(enem.getEnemyType() == enemyType.EARTHSpooder) {
 				if(move) {
 					double distX = enem.getImage().getX() - userRep.getX();
 					double distY = enem.getImage().getY() - userRep.getY();
@@ -144,11 +144,18 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
-			else if(enem.getEnemyType() == enemyType.WATERSkull) {
+			else if(enem.getEnemyType() == enemyType.WATERDrawing) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 2) / 100;
-				double moveY = (distY * 2) / 100;
+				double moveX = (distX * 4) / 100;
+				double moveY = (distY * 4) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.FIRESpider) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 3) / 100;
+				double moveY = (distY * 3) / 100;
 				enem.getImage().move(-moveX, -moveY);
 			}
 			enem.setStartX(enem.getImage().getX());
