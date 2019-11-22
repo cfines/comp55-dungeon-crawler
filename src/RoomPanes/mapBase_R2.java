@@ -35,7 +35,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
-	private boolean move = true, canAttack = true;
+	private boolean move = true;
 	
 	private KeyPressedManager mover;
 	
