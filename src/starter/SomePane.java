@@ -99,6 +99,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.switchToMenu();
 		}
 	}
+
 	/*
 	 * @Override public void mouseMoved(MouseEvent e) { user.setX(e.getX());
 	 * user.setY(e.getY()); }
