@@ -99,16 +99,16 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			program.switchToMenu();
 		}
 	}
-	
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		//user.setX(e.getX());
-		//user.setY(e.getY());
-	}
+
+	/*
+	 * @Override public void mouseMoved(MouseEvent e) { user.setX(e.getX());
+	 * user.setY(e.getY()); }
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		enemyMovement();
+		isUserInPain();
 		nextRoom();
 		user.tick();
 		checkCollision();
@@ -274,13 +274,35 @@ public class SomePane extends GraphicsPane implements ActionListener {
 				} 
 			}
 		}
+
+		for(Enemy enem : listOfEnemies) {
+			if(enemyCollisionTest(enem, userRep)) {
+				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
+					System.out.println("bottom"); 
+					user.setY(user.getY() + 50); 
+				} 
+				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
+					System.out.println("top"); 
+					user.setY(user.getY() - 50);
+				}
+				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
+					System.out.println("right"); 
+					user.setX(user.getX() + 50); 
+				} 
+				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
+					System.out.println("left"); 
+					user.setX(user.getX() - 50);
+				} 
+			}
+		}
+
 	}
 
 	public void enemyCollision() {
 		for(Interactions inter : listOfInter) {
 			for(Enemy enem : listOfEnemies) {
 				if(enemyCollisionTest(enem, inter.getImage())) {
-					
+
 				}
 			}
 		}
@@ -299,4 +321,53 @@ public class SomePane extends GraphicsPane implements ActionListener {
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
+	
+	public void isUserInPain() 
+	{
+		int newHealth;
+		double userX = userRep.getX() + 75;
+		double userY = userRep.getY() + 75;
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(userX >= listOfEnemies.get(i).getCoordX() && 
+				userY >= listOfEnemies.get(i).getCoordY() && 
+				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
+				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+			{
+				//if the user is fighting
+				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
+				{
+					//damage dealt to enemy
+					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					{
+						//should remove an enemy
+						int tempX = (int)listOfEnemies.get(i).getCoordX();
+						int tempY = (int)listOfEnemies.get(i).getCoordY();
+						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
+						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
+						program.add(rip2.getImage());
+						program.add(rip.getImage());
+						listOfEnemies.remove(i);
+					}
+				}
+				//if user is not attacking
+				else{
+					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+					program.getUser().getUserStats().setHP_cur(newHealth);
+					System.out.println("User takes 1 damage, ouch.");
+					program.refreshOverlay();
+					program.drawOverlay(3, 1);
+				}
+				//TODO insert user getting hurt here
+			}
+			/*
+			 * if (program.getUser().getUserStats().getHP_cur() == 0) {
+			 * program.switchToGameOver();
+			 * 
+			 * }
+			 */
+		}
+	}
+	
 }
