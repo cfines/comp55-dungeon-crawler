@@ -68,6 +68,8 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			program.switchToTitleScreen();
 		}
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
