@@ -18,13 +18,15 @@ import java.io.PrintWriter;
 public class HighScorePane extends GraphicsPane {
 	public MainApplication program;
 	public File file;
-	public int floorNum = 0;
+	public int floorNum;
+	public String userName;
 	
 	public static final int WINDOW_WIDTH = 1155;
 	public static final int WINDOW_HEIGHT = 650;
 	
 	public GImage hiScore;
 	public GButton goBack;
+	public GLabel highestScore;
 	
 	public HighScorePane(MainApplication app) {
 		this.program = app;
@@ -35,6 +37,7 @@ public class HighScorePane extends GraphicsPane {
 		
 		try {
 			PrintWriter output = new PrintWriter(file);
+			output.println(userName);
 			output.println(floorNum);
 			output.close();
 		}catch (FileNotFoundException ex) 
@@ -45,7 +48,8 @@ public class HighScorePane extends GraphicsPane {
 		try {
 			Scanner input = new Scanner(file);
 			int lastFloor = input.nextInt();
-			System.out.printf("Last Floor: %d\n", lastFloor);
+			String lastName = input.next();
+			System.out.printf("Someone by the name of " + userName + " was last seen on Floor" + lastFloor);
 			input.close();
 		}catch (IOException ex) {
 			System.err.println("ERROR puting stuff into file");
