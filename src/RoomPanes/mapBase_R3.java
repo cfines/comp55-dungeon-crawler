@@ -85,7 +85,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		elements.add(E5);
 		elements.add(userRep);
 		elements.add(rock2);
-		
+		   
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
@@ -111,14 +111,10 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
+		timerCont++;
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
+		mover.notReallyActionPerformed(e);
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
