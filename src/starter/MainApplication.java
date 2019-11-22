@@ -23,7 +23,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
-	private GraphicsPane graphicsPane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R2TEST testPane;
@@ -41,7 +40,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
-	private GImage userRep;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -86,7 +84,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToR3(); //change which screen you want to switch to
+		switchToTest(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -113,7 +111,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
-		//userRep.setLocation(275,290);
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);

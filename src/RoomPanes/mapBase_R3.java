@@ -38,8 +38,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(100,100,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
-		Enemy ienemy2 = new Enemy(2,2,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
+		Enemy ienemy1 = new Enemy(10,10,2,2,800,70,ElementType.EARTH, enemyType.EARTHBat);
+		Enemy ienemy2 = new Enemy(5,5,2,2,575,70,ElementType.FIRE, enemyType.FIRESkull);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,575,325);
@@ -62,7 +62,6 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		userWeapon.setSize(75, 75);
 		userRep.setSize(75, 75);
 
 		background.setSize(1125, 550);
@@ -383,11 +382,17 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		{
 			userRep.setImage("Rogue_Attack(Up).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
 			userRep.setImage("Rogue_Attack(Up).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 	}
 	private void attackDown() {
@@ -403,11 +408,17 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		{
 			userRep.setImage("Rogue_Attack(Down).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
 			userRep.setImage("Rogue_Attack(Down).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 	}
 	private void attackLeft() {
@@ -423,11 +434,17 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		{
 			userRep.setImage("Rogue_Attack(Left).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
 			userRep.setImage("Rogue_Attack(Left).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 	}
 	private void attackRight() {
@@ -443,11 +460,17 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		{
 			userRep.setImage("Rogue_Attack(Right).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
 			userRep.setImage("Rogue_Attack(Right).png");
 			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 	}
 

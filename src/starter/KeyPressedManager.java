@@ -17,14 +17,14 @@ public class KeyPressedManager {
 
 	private MainApplication program;
 	private User user;
-	private GImage userRep;
+	private GImage userRep, userWeapon;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 						ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
-						boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown){
+						boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown, GImage userWeapon){
 		this.program = program;
 		this.user = user;
 		this.userRep = userRep;
@@ -34,10 +34,11 @@ public class KeyPressedManager {
 		this.atkDown = atkDown;
 		this.atkLeft = atkLeft;
 		this.atkRight = atkRight;
+		this.userWeapon = userWeapon;
 	}
 	
 	public void notReallyActionPerformed(ActionEvent e) {
-		isUserInPain();
+		userCombat();
 		user.tick();
 		checkCollision();
 		userRep.setLocation(user.getX(), user.getY());
@@ -140,17 +141,18 @@ public class KeyPressedManager {
 		}
 	}
 
+	public void updateWeaponLoc() {
+		if(atkUp) {userWeapon.setLocation(user.getX() + 20, user.getY() - 50);}
+		if(atkDown) {userWeapon.setLocation(user.getX() + 20, user.getY() + 50);}
+		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
+		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
+	}
 	
-	public void isUserInPain() 
+	public void userCombat() 
 	{
 		int newHealth;
-		double userX = userRep.getX() + 75;
-		double userY = userRep.getY() + 75;
 		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(userX >= listOfEnemies.get(i).getCoordX() && 
-				userY >= listOfEnemies.get(i).getCoordY() && 
-				userX <= listOfEnemies.get(i).getCoordX() + 75 && 
-				userY <= listOfEnemies.get(i).getCoordY() + 75) 
+			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
 			{
 				//if the user is fighting
 				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
@@ -170,19 +172,15 @@ public class KeyPressedManager {
 						listOfEnemies.remove(i);
 					}
 				}
-				//if user is not attacking
-				else{
-					newHealth = program.getUser().getUserStats().getHP_cur() - 1;
-					program.getUser().getUserStats().setHP_cur(newHealth);
-					System.out.println("User takes 1 damage, ouch.");
-					program.refreshOverlay();
-					program.drawOverlay(3, 1);
-				}
 				//TODO insert user getting hurt here
 			}
-			 if (program.getUser().getUserStats().getHP_cur() == 0) {
-			 program.switchToGameOver();
-		}}
+			/*
+			 * if (program.getUser().getUserStats().getHP_cur() == 0) {
+			 * program.switchToGameOver();
+			 * 
+			 * }
+			 */
+		}
 	}
 	
 	private void userUP() {
@@ -261,75 +259,142 @@ public class KeyPressedManager {
 
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("FIREUser Attack (Up).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Up).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("WaterUser Attack (Up).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Up).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("EARTHUser Attack (Up).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Up).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(UP).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 	}
 	private void attackDown() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("FIREUser Attack (Down).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Down).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("WaterUser Attack (Down).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Down).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("EARTHUser Attack (Down).png");
-			userRep.setSize(55,115);
+			userRep.setImage("Rogue_Attack(Down).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(DOWN).png");
+			userWeapon.setSize(40, 75);
+			program.add(userWeapon);
 		}
 	}
 	private void attackLeft() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("FIREUser Attack (Left).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Left).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("WaterUser Attack (Left).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Left).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("EARTHUser Attack (Left).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Left).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(LEFT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 	}
 	private void attackRight() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("FIREUser Attack (Right).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Right).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Fire Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("WaterUser Attack (Right).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Right).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Water Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("EARTHUser Attack (Right).png");
-			userRep.setSize(125,75);
+			userRep.setImage("Rogue_Attack(Right).png");
+			userRep.setSize(75,75);
+			userWeapon.setImage("Earth Sword(RIGHT).png");
+			userWeapon.setSize(75, 40);
+			program.add(userWeapon);
 		}
 	}
 
 	private void attackReset() {
 		userRep.setImage("Rogue_(Sample User).gif");
 		userRep.setSize(75,75);
+		program.remove(userWeapon);
 	}
 	
+	public void knockBack() {
+		for(Enemy enem : listOfEnemies)
+			if(enemyCollisionTest(enem, userWeapon)) {
+				GImage tempEnem = enem.getImage();
+				if(atkUp) {
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
+				}
+				if(atkDown) {
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() + 50);
+				}
+				if(atkLeft) {
+					enem.getImage().setLocation(tempEnem.getX() - 50, tempEnem.getY());
+				}
+				if(atkRight) {
+					enem.getImage().setLocation(tempEnem.getX() + 50, tempEnem.getY());
+				}
+			}
+	}
+	
+	public void enemyCombat() {
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				System.out.println("User takes 1 damage, ouch.");
+				program.refreshOverlay();
+				program.drawOverlay(3, 1);
+			}
+		}
+	}
 }

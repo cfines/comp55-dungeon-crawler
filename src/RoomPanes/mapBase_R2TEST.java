@@ -25,7 +25,7 @@ import starter.interactionType;
 public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep;
+	private GImage enemy1, enemy2, E4, E5, rock1, hole1, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -65,6 +65,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userRep.setSize(75, 75);
+		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
 		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
@@ -81,7 +82,8 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		elements.add(E5);
 		elements.add(userRep);
 		
-		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, atkUp, atkLeft, atkRight, atkDown);
+		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
+				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 		
 	}
 
@@ -105,8 +107,15 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		mover.updateWeaponLoc();
 		enemyMovement();
+		mover.userCombat();
+		mover.enemyCombat();
 		nextRoom();
+		user.tick();
+		mover.checkCollision();
+		mover.knockBack();
+		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
 
@@ -164,8 +173,8 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 				if(move) {
 					double distX = enem.getImage().getX() - userRep.getX();
 					double distY = enem.getImage().getY() - userRep.getY();
-					double moveX = (distX * 4) / 100;
-					double moveY = (distY * 4) / 100;
+					double moveX = (distX * 2) / 100;
+					double moveY = (distY * 2) / 100;
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
