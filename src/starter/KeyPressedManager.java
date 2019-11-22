@@ -1,17 +1,13 @@
 package starter;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import javax.swing.Timer;
+
 import acm.graphics.GImage;
-import starter.Enemy;
-import starter.Interactions;
-import starter.MainApplication;
-import starter.User;
-import starter.interactionType;
 
 public class KeyPressedManager {
 

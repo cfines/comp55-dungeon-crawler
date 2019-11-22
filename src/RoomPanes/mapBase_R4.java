@@ -32,7 +32,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkLeft,atkDown,atkRight;
 	private int degree;
 	private User user;
-	private Timer timer = new Timer(30, this);
+	private Timer t = new Timer(30, this);
 	private boolean move = true;
 	
 	private KeyPressedManager mover;
@@ -90,7 +90,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void showContents() {
-		timer.start();
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
@@ -100,7 +100,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void hideContents() {
-		timer.stop();
+		t.stop();
 		program.setUser(user);
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
