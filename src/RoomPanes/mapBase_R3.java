@@ -331,19 +331,20 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					System.out.println("bottom"); 
-					user.setY(user.getY() + 50); 
+					user.setY(user.getY() + 35);
+					for(int i = 0; i < 40; i++) {}
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					System.out.println("top"); 
-					user.setY(user.getY() - 50);
+					user.setY(user.getY() - 35);
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					System.out.println("right"); 
-					user.setX(user.getX() + 50); 
+					user.setX(user.getX() + 35); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					System.out.println("left"); 
-					user.setX(user.getX() - 50);
+					user.setX(user.getX() - 35);
 				} 
 			}
 		}
@@ -444,20 +445,22 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-
-			enem.getImage().movePolar(5, degree);
-			degree+=5;
-			degree%=360;
 			if(enem.getEnemyType() == enemyType.EARTHBat) {
 				if(move) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
 					double distX = enem.getImage().getX() - userRep.getX();
 					double distY = enem.getImage().getY() - userRep.getY();
-					double moveX = (distX * 4) / 100;
-					double moveY = (distY * 4) / 100;
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
 					enem.getImage().move(-moveX, -moveY);
 				}else {enem.getImage().move(0, 0);}
 			}
 			else if(enem.getEnemyType() == enemyType.FIRESkull) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;
