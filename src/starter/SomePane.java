@@ -146,7 +146,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		case KeyEvent.VK_S:
 			userDOWN();
 			break;
-		case KeyEvent.VK_A:
+		case KeyEv``ent.VK_A:
 			userLEFT();
 			break;
 		case KeyEvent.VK_D:
