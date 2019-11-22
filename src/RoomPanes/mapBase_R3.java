@@ -101,15 +101,13 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(atkUp) {userWeapon.setLocation(user.getX() + 20, user.getY() - 50);}
-		if(atkDown) {userWeapon.setLocation(user.getX() + 20, user.getY() + 50);}
-		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
-		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
+		updateWeaponLoc();
 		enemyMovement();
 		isUserInPain();
 		nextRoom();
 		user.tick();
 		checkCollision();
+		knockBack();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
@@ -226,7 +224,12 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		}
 	}
 
-
+	public void updateWeaponLoc() {
+		if(atkUp) {userWeapon.setLocation(user.getX() + 20, user.getY() - 50);}
+		if(atkDown) {userWeapon.setLocation(user.getX() + 20, user.getY() + 50);}
+		if(atkLeft) {userWeapon.setLocation(user.getX() - 50, user.getY() + 20);}
+		if(atkRight) {userWeapon.setLocation(user.getX() + 50, user.getY() + 20);}
+	}
 	
 	public void isUserInPain() 
 	{
@@ -236,14 +239,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		double weaponX2 = userWeapon.getX();
 		double weaponY2 = userWeapon.getY();
 		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(weaponX >= listOfEnemies.get(i).getCoordX() && 
-				weaponY >= listOfEnemies.get(i).getCoordY() && 
-				weaponX <= listOfEnemies.get(i).getCoordX() + 75 && 
-				weaponY <= listOfEnemies.get(i).getCoordY() + 75 ||
-				weaponX2 >= listOfEnemies.get(i).getCoordX() &&
-				weaponY2 >= listOfEnemies.get(i).getCoordY() &&
-				weaponY2 <= listOfEnemies.get(i).getCoordY() + 75 &&
-				weaponX2 <= listOfEnemies.get(i).getCoordX() + 75) 
+			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
 			{
 				//if the user is fighting
 				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
@@ -491,6 +487,25 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
 		}
+	}
+	
+	public void knockBack() {
+		for(Enemy enem : listOfEnemies)
+			if(enemyCollisionTest(enem, userRep)) {
+				GImage tempEnem = enem.getImage();
+				if(atkUp) {
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
+				}
+				if(atkDown) {
+					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() + 50);
+				}
+				if(atkLeft) {
+					enem.getImage().setLocation(tempEnem.getX() - 50, tempEnem.getY());
+				}
+				if(atkRight) {
+					enem.getImage().setLocation(tempEnem.getX() + 50, tempEnem.getY());
+				}
+			}
 	}
 	
 	public boolean everyXSeconds(double x) {
