@@ -25,7 +25,7 @@ import starter.interactionType;
 
 public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage rock1, hole2, hole1, E2, E3, background, enemy1, enemy2,userRep, userWeapon;
+	private GImage rock1,rock2 ,hole3,hole4,hole5,hole2, hole1, E2, E3, background, enemy1, enemy2,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -43,9 +43,14 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
-		Interactions irock1 = new Interactions(interactionType.obstacle_rock, 100,9);
+		Interactions irock1 = new Interactions(interactionType.obstacle_concrete_rubble, 100,166);
+		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks,900,150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 500,91);
-		Interactions ihole2 = new Interactions(interactionType.obstacle_hole, 575,400);
+		Interactions ihole2 = new Interactions(interactionType.obstacle_hole, 775,400);
+		Interactions ihole3 = new Interactions(interactionType.obstacle_hole, 500,166);
+		Interactions ihole4 = new Interactions(interactionType.obstacle_hole, 500,241);
+		Interactions ihole5 = new Interactions(interactionType.obstacle_hole,500,316);
+		
 		Interactions iE2 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Enemy ienemy1 = new Enemy(2,2,2,2,350,76, ElementType.EARTH, enemyType.EARTHSkull);
@@ -53,14 +58,23 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		rock1 = irock1.getImage();
 		hole2 = ihole2.getImage();
 		hole1 = ihole1.getImage();
+		hole3 = ihole3.getImage();
+		rock2 = irock2.getImage();
+		hole4 = ihole4.getImage();
+		hole5 = ihole5.getImage();
+		
 		E2 = iE2.getImage();
 		E3 = iE3.getImage();
 		
 		listOfInter.add(irock1);
 		listOfInter.add(ihole1);
 		listOfInter.add(ihole2);
+		listOfInter.add(ihole3);
+		listOfInter.add(irock2);
 		listOfInter.add(iE2);
 		listOfInter.add(iE3);
+		listOfInter.add(ihole4);
+		listOfInter.add(ihole5);
 		
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
@@ -80,8 +94,12 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		
 		elements.add(background);
 		elements.add(rock1);
+		elements.add(rock2);
 		elements.add(hole1);
 		elements.add(hole2);
+		elements.add(hole3);
+		elements.add(hole4);
+		elements.add(hole5);
 		elements.add(E2);
 		elements.add(E3);
 		elements.add(enemy1);
