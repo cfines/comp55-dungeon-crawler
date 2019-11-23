@@ -35,9 +35,7 @@ public class Enemy {
 		EnemyType = enemy;
 		xokStill.setSize(75, 75);
 		xokAttack.setSize(75, 75);
-		if (enemy == enemyType.xokAttack || enemy == enemyType.xokStill) {
-			setInitBossImage(enemy);
-		}else{setImage(enemy);}
+		setImage(enemy);
 	}
 	
 	
@@ -50,20 +48,7 @@ public class Enemy {
 	{
 		return EnemyType;
 	}
-
-	public void setInitBossImage(enemyType type) {
-		boss = xokStill;
-		
-	}
 	
-	public void setBossImage(enemyType type) {
-		if(type == enemyType.xokStill) {boss = xokAttack;}
-		else if (type == enemyType.xokAttack){boss = xokStill;}
-	}
-	
-	public GImage getBossImage() {
-		return boss;
-	}
 	
 	public void setImage(enemyType type) {
 		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || type == enemyType.WATERSpider || type == enemyType.EARTHSpooder || type == enemyType.FIRESpooder || type == enemyType.WATERSpooder) {
