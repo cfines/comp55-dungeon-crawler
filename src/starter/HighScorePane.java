@@ -35,6 +35,7 @@ public class HighScorePane extends GraphicsPane {
 		hiScore.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
 		file = new File("highestScore.txt");
+		
 	}
 	
 	@Override
