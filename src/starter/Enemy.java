@@ -15,8 +15,10 @@ public class Enemy {
 	private ElementType elementType;
 	private enemyType EnemyType;
 	private double dx, dy;
-	private GImage image;
+	private GImage image, boss;
 	public int degree = 0;
+	private GImage xokStill = new GImage ("xokStill.png", 375, 375);
+	private GImage xokAttack = new GImage("xokAttack.png",375,375);
 	
 	Enemy(){};
 	
@@ -31,8 +33,13 @@ public class Enemy {
 		powerStat = 5;
 		elementType = element;
 		EnemyType = enemy;
-		setImage(enemy);
+		xokStill.setSize(75, 75);
+		xokAttack.setSize(75, 75);
+		if (enemy == enemyType.xokAttack || enemy == enemyType.xokStill) {
+			setInitBossImage(enemy);
+		}else{setImage(enemy);}
 	}
+	
 	
 	public ElementType getElementType() 
 	{
@@ -42,6 +49,20 @@ public class Enemy {
 	public enemyType getEnemyType() 
 	{
 		return EnemyType;
+	}
+
+	public void setInitBossImage(enemyType type) {
+		boss = xokStill;
+		
+	}
+	
+	public void setBossImage(enemyType type) {
+		if(type == enemyType.xokStill) {boss = xokAttack;}
+		else if (type == enemyType.xokAttack){boss = xokStill;}
+	}
+	
+	public GImage getBossImage() {
+		return boss;
 	}
 	
 	public void setImage(enemyType type) {
@@ -82,17 +103,5 @@ public class Enemy {
 		setStartX(getCoordX() + 5);
 		setStartY(getCoordY() + 5);
 	}
-	
-	public static void main(String[] args) {
-	//	Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
-	//	derp.setStartX(10);
-	//	derp.setStartY(5);
-	//	System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-		//Checking if tick updates enemy location
-	//	while(1<5) {
-	//		derp.tick();
-	//		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-	//	}
-	}
-	
 }
+
