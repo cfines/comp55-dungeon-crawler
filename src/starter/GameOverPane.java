@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -24,7 +26,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	private GImage gameOver;
 	private MainApplication program;
 	private GButton returnMenu;
-	private GLabel userName;
+	private GLabel userName  = new GLabel ("", 500,375);
 	private int lastFloorNum;
 	private File file;
 	private GLabel text;
@@ -37,18 +39,11 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 		file = new File("highestScore.txt");
-		userName = new GLabel ("", 500,375);
 		userName.setColor(Color.RED);
 		lastFloorNum = 0;
-		text = new GLabel("Enter name of the fallen: ",100,100);
+		text = new GLabel("Enter name of the fallen (press enter when done): ",100,100);
 		text.setColor(Color.red);
-		text.setLocation(500,325);
-		try {
-			BufferedReader ob = new BufferedReader(new FileReader(file));
-			ob.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		text.setLocation(480,325);
 	}
 	
 	@Override
@@ -72,6 +67,18 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		}
 	}
 	
+	public void nameDone() 
+	{
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("highestScore.txt");
+			writer.println(userName.getLabel() + " was last seen on " + program.getFloorNum());
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		program.switchToMenu();
+	}
 	
 	public void keyPressed(KeyEvent e) 
 	{
@@ -207,9 +214,9 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			userName.setLabel(userName.getLabel()+temp);
 			program.add(userName);
 			break;
-		case KeyEvent.VK_SPACE:
-			temp = " ";
-			userName.setLabel(userName.getLabel()+temp);
+		case KeyEvent.VK_ENTER:
+			nameDone();
+			break;
 		default:
 			break;
 		}
@@ -296,8 +303,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		case KeyEvent.VK_Z:
 			temp = "";
 			break;
-		case KeyEvent.VK_SPACE:
-			temp = "";
 		default:
 			break;
 		}
@@ -305,7 +310,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
