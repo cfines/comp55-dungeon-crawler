@@ -49,10 +49,15 @@ public class Enemy {
 		return EnemyType;
 	}
 	
-	
+	// Jesus fuck this if statement
 	public void setImage(enemyType type) {
-		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || type == enemyType.WATERSpider || type == enemyType.EARTHSpooder || type == enemyType.FIRESpooder || type == enemyType.WATERSpooder || type == enemyType.EARTHDeath || type == enemyType.WATERDeath || type == enemyType.FIREDeath || type == enemyType.EARTHCheese || type == enemyType.WATERCheese 
-				|| type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || type == enemyType.momoko) {
+		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || 
+				type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || 
+				type == enemyType.WATERSpider || type == enemyType.EARTHSpooder || type == enemyType.FIRESpooder || type == enemyType.WATERSpooder || 
+				type == enemyType.EARTHDeath || type == enemyType.WATERDeath || type == enemyType.FIREDeath || type == enemyType.EARTHCheese || 
+				type == enemyType.WATERCheese || type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || 
+				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
+				type == enemyType.momoko) {
 			image = new GImage(type + ".gif", dx, dy);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
