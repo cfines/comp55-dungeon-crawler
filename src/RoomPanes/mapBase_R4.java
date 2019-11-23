@@ -83,7 +83,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		elements.add(E7);
 		elements.add(userRep);
 		
-		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
+		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
 	

@@ -12,13 +12,14 @@ public class KeyPressedManager {
 	private MainApplication program;
 	private User user;
 	private GImage userRep, userWeapon;
+	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
 
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
-			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
+			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter, ArrayList<GImage> elements,
 			boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown, GImage userWeapon){
 		this.program = program;
 		this.user = user;
@@ -26,6 +27,7 @@ public class KeyPressedManager {
 		this.userRep.setImage("Rogue_(Sample User).gif");
 		this.listOfEnemies = listOfEnemies;
 		this.listOfInter = listOfInter;
+		this.elements = elements;
 		this.atkUp = atkUp;
 		this.atkDown = atkDown;
 		this.atkLeft = atkLeft;
@@ -238,6 +240,7 @@ public class KeyPressedManager {
 	}
 
 	private void attackUp() {
+		userRep.setImage("Rogue_Attack(Up).png");
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userWeapon.setImage("Fire Sword(UP).png");
@@ -253,6 +256,7 @@ public class KeyPressedManager {
 		program.add(userWeapon);
 	}
 	private void attackDown() {
+		userRep.setImage("Rogue_Attack(Down).png");
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userWeapon.setImage("Fire Sword(DOWN).png");
@@ -268,6 +272,7 @@ public class KeyPressedManager {
 		program.add(userWeapon);
 	}
 	private void attackLeft() {
+		userRep.setImage("Rogue_Attack(Left).png");
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userWeapon.setImage("Fire Sword(LEFT).png");
@@ -283,6 +288,7 @@ public class KeyPressedManager {
 		program.add(userWeapon);
 	}
 	private void attackRight() {
+		userRep.setImage("Rogue_Attack(Right).png");
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
 			userWeapon.setImage("Fire Sword(RIGHT).png");
@@ -299,6 +305,7 @@ public class KeyPressedManager {
 	}
 
 	private void attackReset() {
+		userRep.setImage("Rogue_(Sample User).gif");
 		program.remove(userWeapon);
 	}
 
@@ -348,6 +355,15 @@ public class KeyPressedManager {
 		for(int i = 0; i < listOfInter.size(); i++) {
 			if(listOfInter.get(i).getinteractionType() == interactionType.item_gif_key) {
 				listOfInter.remove(i);
+				keyDeleted = true;
+			}
+		}
+	}
+	
+	public void removeEnemyFromElementList() {
+		for(int i = 0; i < listOfElements.size(); i++) {
+			if(listOfEnemies.get(i).getinteractionType() == interactionType.item_gif_key) {
+				listOFEnemies.remove(i);
 				keyDeleted = true;
 			}
 		}
