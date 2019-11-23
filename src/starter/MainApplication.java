@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
+import RoomPanes.SomePane;
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R2TEST;
 import RoomPanes.mapBase_R3;

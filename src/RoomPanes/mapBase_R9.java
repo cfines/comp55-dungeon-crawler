@@ -51,14 +51,11 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		E16 = iE16.getImage();
 		ENext = iENext.getImage();
 		xok = ixokStill.getImage();
-		xok.setSize(75, 75);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
