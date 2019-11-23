@@ -75,6 +75,11 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		
+		if(program.getUser().getHasKey()) {
+			program.remove(key1);
+		}
+		
 		program.drawOverlay(6, program.getFloorNum());
 	}
 
