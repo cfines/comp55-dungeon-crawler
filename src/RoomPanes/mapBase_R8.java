@@ -41,7 +41,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rubble,575,325);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,901,325);
 		Interactions iE14 = new Interactions(interactionType.entry_door_WEST,27,300);
-		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,28);
+		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,-3);
 		rock1 = irock1.getImage();
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
@@ -80,14 +80,14 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E14.getX() && userY >= E14.getY() && userX <= E14.getX() + 80 && userY <= E14.getY() + 80) {
+		if(userX >= E14.getX() && userY >= E14.getY() && userX <= E14.getX() + 75 && userY <= E14.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
 		//Boss door
-		else if(userX >= E15.getX() && userY >= E15.getY() && userX <= E15.getX() + 75 && userY <= E15.getY() + 75) {
+		else if(userX >= E15.getX() && userY >= E15.getY() && userX <= E15.getX() + 85 && userY <= E15.getY() + 85) {
 			if(!unlocked) {
 				if(program.getUser().getHasKey()) {
 					unlockProtocol();

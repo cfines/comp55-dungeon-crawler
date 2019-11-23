@@ -124,9 +124,11 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	}
 
 	private void nextRoom() {
-		double userX = userRep.getX() + 80;
-		double userY = userRep.getY() + 80;
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75) {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userX + 80;
+		double userY2 = userX + 80;
+		if(userX <= E1.getX() && userY <= E1.getY() && userX2 >= E1.getX() && userY2 >= E1.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());

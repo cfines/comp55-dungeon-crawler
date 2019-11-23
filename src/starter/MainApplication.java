@@ -96,7 +96,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		pausePane = new pausePane(this);
 		
 		user.setHasKey(true);
-		switchToR5(); //change which screen you want to switch to
+		switchToR8(); //change which screen you want to switch to
 
 	}
 	

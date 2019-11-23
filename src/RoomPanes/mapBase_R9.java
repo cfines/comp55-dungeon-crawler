@@ -45,7 +45,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	public mapBase_R9(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Interactions iE16 = new Interactions(interactionType.entry_door_SOUTH,575,505);
+		Interactions iE16 = new Interactions(interactionType.entry_door_SOUTH,575,535);
 		Interactions iENext = new Interactions(interactionType.entry_stair,575,300);
 
 		E16 = iE16.getImage();
@@ -61,6 +61,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 
+		listOfEnemies.add(ixokStill);
 		listOfInter.add(iENext);
 		listOfInter.add(iE16);
 
@@ -151,6 +152,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		if(move) {ixokStill.setImage(attk);}
 		else {ixokStill.setImage(still);}
 		program.add(ixokStill.getImage());
+		
 		xok.movePolar(2, degree);
 		degree+=80;
 		degree%=360;

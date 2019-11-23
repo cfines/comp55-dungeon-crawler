@@ -119,7 +119,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToSome();
 		}
-		else if(userX2 >= E3.getX() && userY2 >= E3.getY()) {
+		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(),user.getY());
