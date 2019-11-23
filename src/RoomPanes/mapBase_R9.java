@@ -32,7 +32,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private int degree;
 	private User user;
-	private Enemy ixokStill = new Enemy(50,50,2,2,375,375, ElementType.EARTH, enemyType.xokStill);
+	private Enemy ixokStill = new Enemy(20,20,2,2,375,375, ElementType.EARTH, enemyType.xokStill);
 	private enemyType attk = enemyType.xokAttack;
 	private enemyType still = enemyType.xokStill;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
@@ -147,26 +147,27 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	public void enemyMovement() {
 		if(everyXSeconds(40)) {
 			move = !move;
+			program.remove(ixokStill.getImage());
+			if(move) {ixokStill.setImage(attk);}
+			else {ixokStill.setImage(still);}
+			program.add(ixokStill.getImage());
 		}
-		program.remove(ixokStill.getImage());
-		if(move) {ixokStill.setImage(attk);}
-		else {ixokStill.setImage(still);}
-		program.add(ixokStill.getImage());
 		
-		xok.movePolar(2, degree);
-		degree+=80;
-		degree%=360;
-		if(move) {
-			double distX = xok.getX() - userRep.getX();
-			double distY = xok.getY() - userRep.getY();
-			double moveX = (distX * 8) / 100;
-			double moveY = (distY * 8) / 100;
-			xok.move(-moveX, -moveY);
-		}else {
-			xok.move(0, 0);
+		for(Enemy enem : listOfEnemies) {
+			
+			enem.getImage().movePolar(2, degree);
+			degree+=80;
+			degree%=360;
+			if(move) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 5) / 100;
+				double moveY = (distY * 5) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}else {xok.move(0, 0);}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
 		}
-		ixokStill.setStartX(xok.getX());
-		ixokStill.setStartY(xok.getY());
 	}
 }
 
