@@ -356,6 +356,9 @@ public class KeyPressedManager {
 		if(inter.getinteractionType() == interactionType.item_gif_key) {
 			program.getUser().setHasKey(true);
 			program.combatRefreshOverlay();
+			program.remove(inter.getImage());
+			inter.setImage(interactionType.nullified);
+			program.add(inter.getImage());
 		}
 	}
 }
