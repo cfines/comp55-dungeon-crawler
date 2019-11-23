@@ -30,7 +30,6 @@ public class Interactions {
 		else {
 			image = new GImage(inter + ".png", coordX, coordY);
 		}
-		image.setSize(75, 75);
 	}
 	
 	public GImage getImage() {

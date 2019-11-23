@@ -74,15 +74,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-		
-		weaponFire.setSize(100, 100);
-		weaponWater.setSize(100, 100);
-		weaponEarth.setSize(100, 100);
-		keyImage.setSize(75,75);
-		
 		user = new User(5, 5, 1000, 1, 300, 300);
-		//userRep = new GImage("Rogue_(Sample User).gif");
-		//userRep.setSize(75, 75);
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
@@ -292,7 +284,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void drawPortrait() 
 	{
 		portrait = new GImage("User_Portrait.png", 0,20);
-		portrait.setSize(75,75);
 		add(portrait);
 	}
 	
@@ -327,10 +318,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void drawKey() {
 		if(user.getHasKey()) {
 			keyImage = new GImage("item_png_key.png", 117, WINDOW_HEIGHT - 80);
-			keyImage.setSize(75,75);
 		} else {
 			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
-			keyImage.setSize(75,75);
 		}
 		add(keyImage);
 	}

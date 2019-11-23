@@ -33,8 +33,6 @@ public class Enemy {
 		powerStat = 5;
 		elementType = element;
 		EnemyType = enemy;
-		xokStill.setSize(75, 75);
-		xokAttack.setSize(75, 75);
 		setImage(enemy);
 	}
 	
@@ -55,7 +53,6 @@ public class Enemy {
 			image = new GImage(type + ".gif", dx, dy);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
-		image.setSize(75, 75);
 	}
 	
 	public GImage getImage() {
