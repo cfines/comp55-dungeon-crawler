@@ -37,7 +37,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 		file = new File("highestScore.txt");
-		userName = new GLabel ("");
+		userName = new GLabel ("", 100,150);
 		lastFloorNum = 0;
 		text = new GLabel("Enter name of the fallen: ",100,100);
 		text.setColor(Color.red);
