@@ -18,11 +18,12 @@ import acm.graphics.GRect;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
+import enemyInteraction.interactionType;
 import removeLater.User;
 
 public class chris_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, E4, background, userRep, userWeapon;
+	private GImage E2, E3, E4, E5, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -40,6 +41,11 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		user = program.getUser(); 
 		
 		//Interactions
+		Interactions iE2 = new Interactions(interactionType.chrisEntry_WEST, 27,300);
+		Interactions iE3 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
+		Interactions iE4 = new Interactions(interactionType.chrisEntry_EAST, 1050,300);
+		Interactions iE5 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
+		
 		
 		//Enemies
 		
@@ -47,8 +53,15 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		background = new GImage("background_block.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		E2 = iE2.getImage();
+		E3 = iE3.getImage();
+		E4 = iE4.getImage();
+		E5 = iE5.getImage();
 		
-		//listOfInter.add();
+		listOfInter.add(iE2);
+		listOfInter.add(iE3);
+		listOfInter.add(iE4);
+		listOfInter.add(iE5);
 		
 		//listOfEnemies.add)();
 		
@@ -57,7 +70,11 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
-		//elements.add();
+		elements.add(E2);
+		elements.add(E3);
+		elements.add(E4);
+		elements.add(E5);
+		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -96,7 +113,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 //		if (obj == E1) {
-//			program.switchToMenu();
+//			program.switchToChrisR1();
 //		}
 
 	}
@@ -115,15 +132,33 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 	}
 	
 	private void nextRoom() {
-//		double userX = userRep.getX();
-//		double userY = userRep.getY();
-//		double userX2 = userX + 80;
-//		double userY2 = userX + 80;
-//		if(userX <= E1.getX() && userY <= E1.getY() && userX2 >= E1.getX() && userY2 >= E1.getY()) {
-//			user.setX(150);
-//			user.setY(300);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.xxxxxx();
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userX + 80;
+		double userY2 = userX + 80;
+		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 73 && userY <= E2.getY() + 69) {
+			user.setX(900);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToChrisR1();
+		}
+		else if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 70 && userY <= E3.getY() + 70) {
+			user.setX(575);
+			user.setY(410);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToChrisR1();
+		}
+		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToChrisR1();
+		}
+//		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() - 30  && userX >= E5.getX() - 30) {
+//			user.setX(575);
+//			user.setY(110);
+//			userRep.setLocation(user.getX(),user.getY());
+//			program.switchToChrisR1();
 //		}
 	}
 	
