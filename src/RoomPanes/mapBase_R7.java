@@ -55,7 +55,7 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		enemy3 = ienemy3.getImage();
-		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
+		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);

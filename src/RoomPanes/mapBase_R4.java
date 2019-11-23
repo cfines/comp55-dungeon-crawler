@@ -55,7 +55,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		rock1 = irock1.getImage();
 		E6 = iE6.getImage();
 		E7 = iE7.getImage();
-		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
+		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif", 0, 0);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		
