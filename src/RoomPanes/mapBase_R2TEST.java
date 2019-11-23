@@ -94,7 +94,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(99, 1);
+		program.drawOverlay(99, program.getFloorNum());
 	}
 
 	@Override
@@ -107,15 +107,15 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
+		//mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
+		//mover.userCombat();
+		//mover.enemyCombat();
 		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
+		//user.tick();
+		//mover.checkCollision();
+		//mover.knockBack();
+		//userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
 	}
 

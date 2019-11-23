@@ -30,7 +30,7 @@ public class User {
 	
 	//Default Constructor
 	User(){
-		moveSpeedStat = 7;
+		moveSpeedStat = 10;
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
@@ -50,7 +50,7 @@ public class User {
 		userStats = new Stats(input_HP_cur, input_HP_tot, atkTime, input_dmg, input_x, input_y);
 		x = input_x;
 		y = input_y;
-		moveSpeedStat = 7;
+		moveSpeedStat = 10;
 		powerStat = 1;
 		atkSpeedStat = 1;
 		
@@ -60,17 +60,12 @@ public class User {
 		
 		numConsumable = 0;
 		hasKey = false;
-		//currRoom = "R1";
 		
 	}
 	
 	public void tick() {
 		x+= dx;
 		y+= dy;
-		/*
-		 * userStats.setCoordX(userStats.getCoordX() + dx);
-		 * userStats.setCoordY(userStats.getCoordY() + dy);
-		 */
 		if(getX() <= 125-60) {
 			setX(125-60);
 		}
@@ -80,7 +75,7 @@ public class User {
 		if(getY() <= 95-60) {
 			setY(95-60);
 		}
-		if(getY() >= 520-80) {
+		if(getY() >= 520-70) {
 			setY(520-80);
 		}
 	}

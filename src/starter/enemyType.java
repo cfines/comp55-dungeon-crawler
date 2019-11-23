@@ -3,7 +3,8 @@ package starter;
 public enum enemyType {
 	EARTHBat, FIREBat, WATERBat, EARTHSkull, FIRESkull, 
 	WATERSkull, rip, EARTHSpider, WATERSpider, FIRESpider, EARTHSpooder,
-	WATERSpooder, FIRESpooder, EARTHDrawing, WATERDrawing, FIREDrawing;
+	WATERSpooder, FIRESpooder, EARTHDrawing, WATERDrawing, FIREDrawing,
+	xokStill, xokAttack;
 	
 	public String toString() {
 		switch(this) {
@@ -22,8 +23,9 @@ public enum enemyType {
 			case EARTHDrawing: return "EARTHDrawing";
 			case WATERDrawing: return "WATERDrawing";
 			case FIREDrawing: return "FIREDrawing";
-			
-			case rip: return "rip";
+			case xokStill: return "xokStill";
+			case xokAttack: return "xokAttack";
+			case rip: return "Nullified";
 		}
 		return "n/a";
 	}

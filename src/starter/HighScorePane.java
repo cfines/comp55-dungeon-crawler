@@ -19,7 +19,6 @@ public class HighScorePane extends GraphicsPane {
 	public MainApplication program;
 	public File file;
 	public int floorNum;
-	public String userName;
 	public GameOverPane fileTransfer;
 	
 	public static final int WINDOW_WIDTH = 1155;
@@ -37,13 +36,6 @@ public class HighScorePane extends GraphicsPane {
 		goBack = new GButton("Return", 1000,0, 150,50);
 		file = new File("highestScore.txt");
 		
-		try {
-			PrintWriter output = new PrintWriter(file);
-			output.close();
-		}catch (FileNotFoundException ex) 
-		{
-			System.out.printf("ERROR: %s\n", ex);
-		}
 	}
 	
 	@Override

@@ -58,10 +58,8 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -97,7 +95,7 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(7, 1);
+		program.drawOverlay(7, program.getFloorNum());
 	}
 
 	@Override
@@ -171,9 +169,9 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR6();
+			program.switchToR5();
 		}
-		else if(userX2 >= E13.getX() && userY2 >= E13.getY()) {
+		else if(userX <= E13.getX() && userY <= E13.getY() && userX2 >= E13.getX() && userY2 >= E13.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(),user.getY());
@@ -183,6 +181,9 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 	
@@ -194,16 +195,9 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
-		
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
 	}
 }

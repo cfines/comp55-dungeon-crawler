@@ -1,4 +1,4 @@
-package starter;
+package RoomPanes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,15 @@ import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.ElementType;
+import starter.Enemy;
+import starter.GraphicsPane;
+import starter.Interactions;
+import starter.KeyPressedManager;
+import starter.MainApplication;
+import starter.User;
+import starter.enemyType;
+import starter.interactionType;
 
 
 public class SomePane extends GraphicsPane implements ActionListener {
@@ -30,20 +39,16 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	public SomePane(MainApplication app) {
 		this.program = app;
-		user = program.getUser();
+		user = program.getUser(); 
 		Interactions irock1 = new Interactions(interactionType.obstacle_concrete_rocks, 170,189);
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.WATER, enemyType.WATERSpider);
-		Enemy ienemy2 = new Enemy(2,2,2,2,900,450, ElementType.FIRE, enemyType.FIREDrawing);
 
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
 		listOfInter.add(iE1);
-		listOfEnemies.add(ienemy1);
-		listOfEnemies.add(ienemy2);
 
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
 		rock1 = irock1.getImage();
@@ -52,11 +57,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		E1 = iE1.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		enemy1 = ienemy1.getImage();
-		enemy2 = ienemy2.getImage();
-		background.setSize(1125, 550);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -68,8 +69,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(rock2);
 		elements.add(hole1);
 		elements.add(E1);
-		elements.add(enemy1);
-		elements.add(enemy2);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
@@ -83,7 +82,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(1, 1);
+		program.drawOverlay(1, program.getFloorNum());
 	}
 
 	@Override
@@ -110,22 +109,18 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		mover.knockBack();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	private void nextRoom() {
-		double userX = userRep.getX() + 80;
-		double userY = userRep.getY() + 80;
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75) {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userX + 80;
+		double userY2 = userX + 80;
+		if(userX <= E1.getX() && userY <= E1.getY() && userX2 >= E1.getX() && userY2 >= E1.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -135,6 +130,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 

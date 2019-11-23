@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
+import RoomPanes.SomePane;
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R2TEST;
 import RoomPanes.mapBase_R3;
@@ -13,6 +14,7 @@ import RoomPanes.mapBase_R6;
 import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
+import RoomPanes.pausePane;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -23,6 +25,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
+	private pausePane pausePane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R2TEST testPane;
@@ -33,7 +36,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R7 mapbase_R7;
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
-	private TitleScreenPane tittle;
+	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
 	private MenuPane_LightsOff lightsoff;
@@ -45,19 +48,27 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage creditsImg;
 		public GImage hiScore;
 		public GImage text;
-		public GImage weapon;
+		public GImage weaponFire = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
+		public GImage keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
 		public GLabel health;
 		public GLabel levelLabel;
 		public GLabel roomLabel;
+		public GLabel tabForMenu;
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
 		public GImage title;
+		
 		public boolean firstSwordCall = true;
+		public boolean restartGame = true;
 	
 	private int count;
 	private User user;
+	public boolean comingFromBoss = false;
+	private int floorNum = 0;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -65,8 +76,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void run() {
 		user = new User(5, 5, 1000, 1, 300, 300);
-		//userRep = new GImage("Rogue_(Sample User).gif");
-		//userRep.setSize(75, 75);
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
@@ -84,7 +93,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToR7(); //change which screen you want to switch to
+		pausePane = new pausePane(this);
+		
+		user.setHasKey(true);
+		switchToR8(); //change which screen you want to switch to
 
 	}
 	
@@ -100,6 +112,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToGameOver() 
 	{
+		restartGame = true;
 		switchToScreen(playerDied);
 	}
 	
@@ -112,6 +125,40 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
+		
+		if(restartGame || comingFromBoss) {
+			user = new User(5, 5, 1000, 1, 300, 300);
+			System.out.println("Hello, world! New game!");
+			somePane = new SomePane(this);
+			menu = new MenuPane(this);
+			lightsoff = new MenuPane_LightsOff(this);
+			highScorePane = new HighScorePane(this);
+			creditsPane = new CreditsPane(this);
+			mapbase_R2 = new mapBase_R2(this);
+			testPane = new mapBase_R2TEST(this);
+			mapbase_R3 = new mapBase_R3(this);
+			mapbase_R4 = new mapBase_R4(this);
+			mapbase_R5 = new mapBase_R5(this);
+			mapbase_R6 = new mapBase_R6(this);
+			mapbase_R7 = new mapBase_R7(this);
+			mapbase_R8 = new mapBase_R8(this);
+			mapbase_R9 = new mapBase_R9(this);
+			tittle = new TitleScreenPane(this);
+			playerDied = new GameOverPane(this);
+			
+			if(comingFromBoss) {
+				floorNum++;
+				user.setHasKey(false);
+				comingFromBoss = false;
+				combatRefreshOverlay();
+			} else {
+				floorNum = 1;
+				restartGame = false;
+			}
+		}
+		
+		
+		
 		switchToScreen(somePane);
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
@@ -170,6 +217,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		this.user = Buser;
 	}
 	
+	public void switchToSpecificPane(GraphicsPane pane) {
+		switchToScreen(pane);
+	}
+	
+	public void pauseScreenSwitch() {
+		switchToScreenWithoutRemove(pausePane);
+	}
+	
+	public void noLongerPaused() {
+		returnFromPause();
+	}
+	
 	/////////////////////////////////////////////
 	
 	public void drawOverlay(int roomNum, int floorNum) {
@@ -187,6 +246,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		drawSword();
+		drawTabForMenu();
+		drawKey();
 	}
 	
 	public void refreshOverlay() 
@@ -196,52 +257,81 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		remove(roomLabel);
 	}
 	
+	public void combatRefreshOverlay() 
+	{
+		remove(health);
+		remove(keyImage);
+		drawHealth();
+		drawKey();
+	}
+	
 	public void drawSword()	{
 		
-		if(!firstSwordCall) { remove(weapon); }
+		if(!firstSwordCall) { 
+			remove(weaponFire); 
+			remove(weaponWater); 
+			remove(weaponEarth); 
+		}
 		firstSwordCall = false;
 		
 		if(user.getWeaponEquiped() == 0) {
-			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponFire);
 		} else if (user.getWeaponEquiped() == 1) {
-			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponWater);
 		} else {
-			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponEarth);
 		}
 	}
 	
 	public void drawPortrait() 
 	{
-		portrait = new GImage("User_Portrait.png", 0,20);
-		portrait.setSize(75,75);
+		portrait = new GImage("User_Portrait.png", 0,7);
 		add(portrait);
 	}
 	
 	public void drawHealth() {
-		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 50);
+		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 25);
 		health.setFont("Arial-Bold-22");
-		health.setColor(Color.red);
+		health.setColor(Color.green);
 		add(health);
 	}
 	
+	public void drawTabForMenu() {
+		tabForMenu = new GLabel("Press [TAB] for menu", 115, WINDOW_HEIGHT - 7);
+		tabForMenu.setFont("Arial-Bold-22");
+		tabForMenu.setColor(Color.green);
+		add(tabForMenu);
+	}
+	
 	public void drawLevelLabel(int floorNum) {
-		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 45);
 		levelLabel.setFont("Arial-Bold-22");
-		levelLabel.setColor(Color.red);
+		levelLabel.setColor(Color.green);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel(int roomNum) {
-		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 65);
 		roomLabel.setFont("Arial-Bold-22");
-		roomLabel.setColor(Color.red);
+		roomLabel.setColor(Color.green);
 		add(roomLabel);
+	}
+	
+	public void drawKey() {
+		if(user.getHasKey()) {
+			keyImage = new GImage("item_png_key.png", 117, WINDOW_HEIGHT - 80);
+		} else {
+			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
+		}
+		add(keyImage);
+	}
+	
+	public int getFloorNum() {
+		return floorNum;
+	}
+	
+	public void setComingFromBoss(boolean coming) {
+		this.comingFromBoss = coming;
 	}
 	
 }

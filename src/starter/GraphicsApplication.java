@@ -10,6 +10,7 @@ import acm.program.GraphicsProgram;
 
 public abstract class GraphicsApplication extends GraphicsProgram implements ActionListener, KeyListener  {
 	private GraphicsPane curScreen;
+	private GraphicsPane prevScreen;
 	
 	public GraphicsApplication() {
 		super();
@@ -102,4 +103,17 @@ public abstract class GraphicsApplication extends GraphicsProgram implements Act
 			curScreen.keyTyped(e);
 		}
 	}
+	
+	protected void switchToScreenWithoutRemove(GraphicsPane pane) {
+		prevScreen = curScreen;
+		pane.showContents();
+		curScreen = pane;
+	}
+	
+	protected void returnFromPause() {
+		curScreen.hideContents();
+		curScreen = prevScreen;
+		curScreen.showContents();
+	}
+	
 }

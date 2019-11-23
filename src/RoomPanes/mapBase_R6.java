@@ -38,7 +38,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,900,150);
-		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,28);
+		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,-3);
 		Interactions ikey1 = new Interactions(interactionType.item_gif_key,575,300);
 		rock1 = irock1.getImage();
 		E11 = iE11.getImage();
@@ -46,9 +46,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -75,7 +73,12 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(6, 1);
+		
+		if(program.getUser().getHasKey()) {
+			program.remove(key1);
+		}
+		
+		program.drawOverlay(6, program.getFloorNum());
 	}
 
 	@Override
@@ -99,6 +102,9 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 	
@@ -109,16 +115,10 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
 	}
 	
 	public void enemyMovement() {
@@ -139,12 +139,12 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
-		double userY2 = userRep.getY() + 80;
-		if(userX >= E11.getX() && userY >= E11.getY() && userX <= E11.getX() + 75 && userY <= E11.getY() + 75) {
+		if(userX >= E11.getX() && userY >= E11.getY() && userX <= E11.getX() + 85 && userY <= E11.getY() + 85) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR5();
 		}
 	}
+	
 }

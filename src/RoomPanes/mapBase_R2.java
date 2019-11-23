@@ -83,14 +83,12 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy2);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		background.setSize(1125, 550);
 		
 		elements.add(background);
 		elements.add(rock1);
@@ -121,7 +119,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToSome();
 		}
-		else if(userX2 >= E3.getX() && userY2 >= E3.getY()) {
+		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(),user.getY());
@@ -136,6 +134,9 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 	
@@ -151,7 +152,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(2, 1);
+		program.drawOverlay(2, program.getFloorNum());
 	}
 
 	@Override
@@ -180,16 +181,10 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		mover.updateWeaponLoc();
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	public void enemyMovement() {
@@ -197,9 +192,8 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			move = !move;
 		}
 		for (Enemy enem : listOfEnemies) {
-
 			enem.getImage().movePolar(5, degree);
-			degree+=5;
+			degree+=20;
 			degree%=360;
 			if(enem.getEnemyType() == enemyType.EARTHSkull) {
 				if(move) {
@@ -221,5 +215,4 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			enem.setStartY(enem.getImage().getY());
 		}
 	}
-
 }

@@ -3,6 +3,7 @@ package RoomPanes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -28,11 +29,10 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
+	private boolean unlocked = false;
 	private Timer t = new Timer(30, this);
-	private int timerCont = 0;
-	private boolean move = true;
 
-	private KeyPressedManager mover;
+	private KeyPressedManager mover; 
 
 	public mapBase_R8(MainApplication app) {
 		this.program = app;
@@ -41,7 +41,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rubble,575,325);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,901,325);
 		Interactions iE14 = new Interactions(interactionType.entry_door_WEST,27,300);
-		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,28);
+		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,-3);
 		rock1 = irock1.getImage();
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
@@ -50,10 +50,8 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -82,36 +80,64 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX2 >= E14.getX() && userY2 >= E14.getY()) {
-			user.setX(150);
+		if(userX >= E14.getX() && userY >= E14.getY() && userX <= E14.getX() + 75 && userY <= E14.getY() + 75) {
+			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
-		else if(userX >= E15.getX() && userY >= E15.getY() && userX2 <= E15.getX()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToR7();
+		//Boss door
+		else if(userX >= E15.getX() && userY >= E15.getY() && userX <= E15.getX() + 85 && userY <= E15.getY() + 85) {
+			if(!unlocked) {
+				if(program.getUser().getHasKey()) {
+					unlockProtocol();
+				}
+			} else {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9();
+			}
 		}
 		
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
+		mover.notReallyKeyPressed(e);
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		mover.notReallyKeyReleased(e);
+	}
 
 	@Override
 	public void showContents() {
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
+		}
+		program.drawOverlay(8, program.getFloorNum());
+		if(unlocked) {
+			program.remove(E15);
+			E15 = new GImage("entry_door_NORTH.png", 575, 28);
+			program.add(E15);
 		}
 	}
 
 	@Override
 	public void hideContents() {
+		t.stop();
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		program.refreshOverlay();
 	}
 
 	@Override
@@ -123,7 +149,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		}
 		else if(obj == E15) {
 			user.setX(575);
-			user.setY(325);
+			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR9();
 		}
@@ -131,13 +157,19 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		timerCont++;
-		mover.updateWeaponLoc();
-		mover.userCombat();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(E15);
+		E15 = new GImage("entry_door_NORTH.png", 575, 28);
+		program.add(E15);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
 	}
 }

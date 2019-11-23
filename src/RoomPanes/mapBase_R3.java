@@ -41,7 +41,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public mapBase_R3(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(10,10,2,2,800,70,ElementType.EARTH, enemyType.EARTHDrawing);
+		Enemy ienemy1 = new Enemy(5,10,2,2,800,70,ElementType.EARTH, enemyType.EARTHDrawing);
 		Enemy ienemy2 = new Enemy(5,5,2,2,575,70,ElementType.FIRE, enemyType.FIREBat);
 		Interactions iE4 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE5 = new Interactions(interactionType.entry_door_EAST,1050,300);
@@ -68,9 +68,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		userRep.setSize(75, 75);
 
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -85,7 +83,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		elements.add(E5);
 		elements.add(userRep);
 		elements.add(rock2);
-		
+		   
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
@@ -97,7 +95,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(3, 1);
+		program.drawOverlay(3, program.getFloorNum());
 	}
 
 	@Override
@@ -111,16 +109,11 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		mover.updateWeaponLoc();
+		timerCont++;
 		enemyMovement();
-		mover.userCombat();
-		mover.enemyCombat();
-		nextRoom();
-		user.tick();
-		mover.checkCollision();
-		mover.knockBack();
-		userRep.setLocation(user.getX(), user.getY());
 		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	@Override
@@ -139,6 +132,9 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 
@@ -152,13 +148,13 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 80 && userY <= E4.getY() + 80) {
+		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
 		}
-		else if(userX2 >= E5.getX() && userY2 >= E5.getY()) {
+		else if(userX <= E5.getX() && userY <= E5.getY() && userX2 >= E5.getX() && userY2 >= E5.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());

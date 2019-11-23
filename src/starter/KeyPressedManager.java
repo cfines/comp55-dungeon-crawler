@@ -1,11 +1,9 @@
 package starter;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import javax.swing.Timer;
 
 import acm.graphics.GImage;
 
@@ -17,6 +15,7 @@ public class KeyPressedManager {
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
+	boolean keyDeleted = false;
 
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
@@ -24,6 +23,7 @@ public class KeyPressedManager {
 		this.program = program;
 		this.user = user;
 		this.userRep = userRep;
+		this.userRep.setImage("Rogue_(Sample User).gif");
 		this.listOfEnemies = listOfEnemies;
 		this.listOfInter = listOfInter;
 		this.atkUp = atkUp;
@@ -34,9 +34,17 @@ public class KeyPressedManager {
 	}
 
 	public void notReallyActionPerformed(ActionEvent e) {
+		updateWeaponLoc();
 		userCombat();
+		enemyCombat();
 		user.tick();
 		checkCollision();
+		knockBack();
+		
+		if(program.getUser().getHasKey() && !keyDeleted) {
+			removeKeyFromInteractionList();
+		}
+		
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
@@ -60,32 +68,22 @@ public class KeyPressedManager {
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
-			if(atkUp == true) 
-			{
-				attackUp();
-			}
+			attackUp();
 			break;
 		case KeyEvent.VK_LEFT:
 			atkLeft = true;
-			if(atkLeft == true) 
-			{
-				attackLeft();
-			}
+			attackLeft();
 			break;
 		case KeyEvent.VK_DOWN:
 			atkDown = true;
-			if(atkDown == true) 
-			{
-				attackDown();
-			}
+			attackDown();
 			break;
 		case KeyEvent.VK_RIGHT:
 			atkRight = true;
-			if(atkRight == true) 
-			{
-				attackRight();
-			}
+			attackRight();
 			break;
+		case KeyEvent.VK_ESCAPE:
+			program.pauseScreenSwitch();
 		}
 	}
 
@@ -105,34 +103,22 @@ public class KeyPressedManager {
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = false;
-			if(atkUp == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_LEFT:
 			atkLeft = false;
-			if(atkLeft == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_DOWN: 
 			atkDown = false;
-			if(atkDown == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_RIGHT: 
 			atkRight = false;
-			if(atkRight == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 		}
 	}
@@ -151,22 +137,16 @@ public class KeyPressedManager {
 			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
 			{
 				//if the user is fighting
-				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
+				if(atkUp || atkDown || atkLeft || atkRight) 
 				{
 					//damage dealt to enemy
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
-					if( listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
+					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						//should remove an enemy
-//						int tempX = (int)listOfEnemies.get(i).getCoordX();
-//						int tempY = (int)listOfEnemies.get(i).getCoordY();
 						listOfEnemies.get(i).setImage(enemyType.rip);
-						program.add(listOfEnemies.get(i).getImage());
-//						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
-//						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
-//						program.add(rip2.getImage());
-//						program.add(rip.getImage());
+						//program.add(listOfEnemies.get(i).getImage());
 						listOfEnemies.remove(i);
 					}
 				}
@@ -200,18 +180,22 @@ public class KeyPressedManager {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
 			}
@@ -254,114 +238,67 @@ public class KeyPressedManager {
 	}
 
 	private void attackUp() {
-
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("Rogue_Attack(Up).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(UP).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("Rogue_Attack(Up).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(UP).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("Rogue_Attack(Up).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(UP).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackDown() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("Rogue_Attack(Down).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(DOWN).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("Rogue_Attack(Down).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(DOWN).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("Rogue_Attack(Down).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(DOWN).png");
-			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackLeft() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("Rogue_Attack(Left).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(LEFT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("Rogue_Attack(Left).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(LEFT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("Rogue_Attack(Left).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(LEFT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackRight() {
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("Rogue_Attack(Right).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(RIGHT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
-			userRep.setImage("Rogue_Attack(Right).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(RIGHT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
-			userRep.setImage("Rogue_Attack(Right).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(RIGHT).png");
-			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 
 	private void attackReset() {
-		userRep.setImage("Rogue_(Sample User).gif");
-		userRep.setSize(75,75);
 		program.remove(userWeapon);
 	}
 
@@ -390,8 +327,28 @@ public class KeyPressedManager {
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");
-				program.refreshOverlay();
-				program.drawOverlay(3, 1);
+				program.combatRefreshOverlay();
+			}
+		}
+	}
+	
+	public boolean keyCheck(Interactions inter) {
+		return inter.getinteractionType() == interactionType.item_gif_key;
+	}
+	
+	public void removeKey(Interactions inter) {
+		program.getUser().setHasKey(true);
+		program.combatRefreshOverlay();
+		program.remove(inter.getImage());
+		inter.setImage(interactionType.nullified);
+		program.add(inter.getImage());
+	}
+	
+	public void removeKeyFromInteractionList() {
+		for(int i = 0; i < listOfInter.size(); i++) {
+			if(listOfInter.get(i).getinteractionType() == interactionType.item_gif_key) {
+				listOfInter.remove(i);
+				keyDeleted = true;
 			}
 		}
 	}

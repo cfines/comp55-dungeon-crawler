@@ -15,8 +15,10 @@ public class Enemy {
 	private ElementType elementType;
 	private enemyType EnemyType;
 	private double dx, dy;
-	private GImage image;
+	private GImage image, boss;
 	public int degree = 0;
+	private GImage xokStill = new GImage ("xokStill.png", 375, 375);
+	private GImage xokAttack = new GImage("xokAttack.png",375,375);
 	
 	Enemy(){};
 	
@@ -34,6 +36,7 @@ public class Enemy {
 		setImage(enemy);
 	}
 	
+	
 	public ElementType getElementType() 
 	{
 		return elementType;
@@ -44,14 +47,12 @@ public class Enemy {
 		return EnemyType;
 	}
 	
+	
 	public void setImage(enemyType type) {
 		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || type == enemyType.WATERSpider || type == enemyType.EARTHSpooder || type == enemyType.FIRESpooder || type == enemyType.WATERSpooder) {
 			image = new GImage(type + ".gif", dx, dy);
 		}
-		else if (type == enemyType.rip || type == enemyType.EARTHSkull || type == enemyType.FIRESkull || type == enemyType.WATERSkull) {
-			image = new GImage(type + ".png", dx, dy);
-		}
-		image.setSize(75, 75);
+		else{image = new GImage(type + ".png", dx, dy);}
 	}
 	
 	public GImage getImage() {
@@ -84,17 +85,5 @@ public class Enemy {
 		setStartX(getCoordX() + 5);
 		setStartY(getCoordY() + 5);
 	}
-	
-	public static void main(String[] args) {
-	//	Enemy derp = new Enemy(5,5,5,5,5,5, ElementType.FIRE, enemyType.FIREBat);
-	//	derp.setStartX(10);
-	//	derp.setStartY(5);
-	//	System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-		//Checking if tick updates enemy location
-	//	while(1<5) {
-	//		derp.tick();
-	//		System.out.println("X: " + derp.getCoordX() + " Y: " + derp.getCoordY());
-	//	}
-	}
-	
 }
+
