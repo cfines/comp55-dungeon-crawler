@@ -23,6 +23,7 @@ public class KeyPressedManager {
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
+	boolean deleteEnemy = false;
 
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter, ArrayList<GImage> elements,
@@ -39,6 +40,7 @@ public class KeyPressedManager {
 		this.atkLeft = atkLeft;
 		this.atkRight = atkRight;
 		this.userWeapon = userWeapon;
+		this.elements = elements;
 	}
 
 	public void notReallyActionPerformed(ActionEvent e) {
@@ -49,6 +51,9 @@ public class KeyPressedManager {
 		checkCollision();
 		knockBack();
 		
+		if(deleteEnemy) {
+			//removeEnemyFromElementList();
+		}
 		if(program.getUser().getHasKey() && !keyDeleted) {
 			removeKeyFromInteractionList();
 		}
@@ -159,7 +164,12 @@ public class KeyPressedManager {
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
-						removeEnemy(listOfEnemies.get(i));
+						deleteEnemy = true;
+						program.remove(listOfEnemies.get(i).getImage());
+						listOfEnemies.get(i).setEnemyType(enemyType.rip);
+						listOfEnemies.get(i).setImage(enemyType.rip);
+						program.add(listOfEnemies.get(i).getImage());
+						
 						listOfEnemies.remove(i);
 					}
 				}
@@ -371,19 +381,13 @@ public class KeyPressedManager {
 		}
 	}
 	
-	public void removeEnemy(Enemy enemy) {
-		program.remove(enemy.getImage());
-		enemy.setImage(enemyType.rip);
-		program.add(enemy.getImage());
-	}
 	
-	/*
 	public void removeEnemyFromElementList() {
-		for(int i = 0; i < listOfElements.size(); i++) {
-			if(listOfEnemies.get(i).getinteractionType() == interactionType.item_gif_key) {
-				listOFEnemies.remove(i);
-				keyDeleted = true;
+		for(int i = 0; i < elements.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				elements.remove(i);
 			}
 		}
-	}*/
+	}
+	
 }
