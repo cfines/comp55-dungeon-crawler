@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import ChrisFloor.chris_R1;
+import ChrisFloor.chris_R2;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -38,6 +39,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
 	private chris_R1 chris_R1;
+	private chris_R2 chris_R2;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -94,6 +96,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
 		chris_R1 = new chris_R1(this);
+		chris_R2 = new chris_R2(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
@@ -147,6 +150,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mapbase_R8 = new mapBase_R8(this);
 			mapbase_R9 = new mapBase_R9(this);
 			chris_R1 = new chris_R1(this);
+			chris_R2 = new chris_R2(this);
 			tittle = new TitleScreenPane(this);
 			playerDied = new GameOverPane(this);
 			
@@ -206,6 +210,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR1() {
 		switchToScreen(chris_R1);
+	}
+	
+	public void switchToChrisR2() {
+		switchToScreen(chris_R2);
 	}
 	
 	public void switchToLightsOff() {
