@@ -159,9 +159,7 @@ public class KeyPressedManager {
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
-						//should remove an enemy
-						listOfEnemies.get(i).setImage(enemyType.rip);
-						//program.add(listOfEnemies.get(i).getImage());
+						removeEnemy(listOfEnemies.get(i));
 						listOfEnemies.remove(i);
 					}
 				}
@@ -371,6 +369,12 @@ public class KeyPressedManager {
 				keyDeleted = true;
 			}
 		}
+	}
+	
+	public void removeEnemy(Enemy enemy) {
+		program.remove(enemy.getImage());
+		enemy.setImage(enemyType.rip);
+		program.add(enemy.getImage());
 	}
 	
 	/*
