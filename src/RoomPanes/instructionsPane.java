@@ -18,7 +18,7 @@ public class instructionsPane extends GraphicsPane implements ActionListener {
 	
 	public instructionsPane(MainApplication app) {
 		this.program = app;
-		background = new GRect(700, 500, program.WINDOW_WIDTH / 2 - 350, program.WINDOW_HEIGHT / 2 - 250);
+		background = new GRect(program.WINDOW_WIDTH / 2 - 350, program.WINDOW_HEIGHT / 2 - 250, 700, 500);
 		background.setColor(color);
 		background.setFilled(true);
 	}

@@ -117,7 +117,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
 			t.stop();
 		}
 		mover.notReallyKeyPressed(e);
