@@ -24,18 +24,16 @@ import starter.interactionType;
 
 public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E1, background, userRep, enemy1, enemy2, userWeapon;
+	private GImage rock1, rock2, hole1, E1, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private GRect voidSpace;
-	private int degree;
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 
 	private KeyPressedManager mover;
-
 
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -109,7 +107,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -139,20 +136,5 @@ public class SomePane extends GraphicsPane implements ActionListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		mover.notReallyKeyReleased(e);
-	}
-
-	public void enemyMovement() {
-		for (Enemy enem : listOfEnemies) {
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
-			degree+=50;
-			degree%=360;
-			enem.setStartX(enem.getImage().getX());
-			enem.setStartY(enem.getImage().getY());
-		}
 	}
 }
