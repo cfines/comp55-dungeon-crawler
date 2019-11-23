@@ -13,6 +13,7 @@ import RoomPanes.mapBase_R6;
 import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
+import RoomPanes.pausePane;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -23,6 +24,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
+	private pausePane pausePane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R2TEST testPane;
@@ -98,6 +100,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
+		pausePane = new pausePane(this);
 		
 		user.setHasKey(true);
 		switchToR8(); //change which screen you want to switch to
@@ -219,6 +222,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setUser(User Buser) {
 		this.user = Buser;
+	}
+	
+	public void switchToSpecificPane(GraphicsPane pane) {
+		switchToScreen(pane);
+	}
+	
+	public void pauseScreenSwitch() {
+		switchToScreenWithoutRemove(pausePane);
+	}
+	
+	public void noLongerPaused() {
+		returnFromPause();
 	}
 	
 	/////////////////////////////////////////////

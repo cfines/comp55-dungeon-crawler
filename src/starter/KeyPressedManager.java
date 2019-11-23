@@ -79,6 +79,8 @@ public class KeyPressedManager {
 			atkRight = true;
 			attackRight();
 			break;
+		case KeyEvent.VK_ESCAPE:
+			program.pauseScreenSwitch();
 		}
 	}
 
