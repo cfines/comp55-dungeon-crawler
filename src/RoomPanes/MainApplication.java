@@ -113,7 +113,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		QPane = new instructionsPane(this);
 		
 		user.setHasKey(true);
-		switchToR8(); //change which screen you want to switch to
+		bossDefeated = true;
+		switchToR9Complete(); //change which screen you want to switch to
 
 	}
 	
@@ -377,6 +378,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public boolean getBossDefeated() {
 		return bossDefeated;
+	}
+	
+	public void setBossDefeated(boolean bruh) {
+		this.bossDefeated = bruh;
 	}
 	
 }
