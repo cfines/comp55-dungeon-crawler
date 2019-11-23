@@ -95,7 +95,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
 		user.setHasKey(true);
-		switchToR8(); //change which screen you want to switch to
+		switchToR5(); //change which screen you want to switch to
 
 	}
 	
@@ -284,35 +284,35 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void drawPortrait() 
 	{
-		portrait = new GImage("User_Portrait.png", 0,20);
+		portrait = new GImage("User_Portrait.png", 0,7);
 		add(portrait);
 	}
 	
 	public void drawHealth() {
-		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 50);
+		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 25);
 		health.setFont("Arial-Bold-22");
-		health.setColor(Color.red);
+		health.setColor(Color.green);
 		add(health);
 	}
 	
 	public void drawTabForMenu() {
 		tabForMenu = new GLabel("Press [TAB] for menu", 115, WINDOW_HEIGHT - 7);
 		tabForMenu.setFont("Arial-Bold-22");
-		tabForMenu.setColor(Color.red);
+		tabForMenu.setColor(Color.green);
 		add(tabForMenu);
 	}
 	
 	public void drawLevelLabel(int floorNum) {
-		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 45);
 		levelLabel.setFont("Arial-Bold-22");
-		levelLabel.setColor(Color.red);
+		levelLabel.setColor(Color.green);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel(int roomNum) {
-		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 65);
 		roomLabel.setFont("Arial-Bold-22");
-		roomLabel.setColor(Color.red);
+		roomLabel.setColor(Color.green);
 		add(roomLabel);
 	}
 	
