@@ -199,18 +199,22 @@ public class KeyPressedManager {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
+					keyCheck(inter);
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
+					keyCheck(inter);
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
+					keyCheck(inter);
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
+					keyCheck(inter);
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
 			}
@@ -383,6 +387,13 @@ public class KeyPressedManager {
 				//System.out.println("User takes 1 damage, ouch.");
 				program.combatRefreshOverlay();
 			}
+		}
+	}
+	
+	public void keyCheck(Interactions inter) {
+		if(inter.getinteractionType() == interactionType.item_gif_key) {
+			program.getUser().setHasKey(true);
+			program.combatRefreshOverlay();
 		}
 	}
 }

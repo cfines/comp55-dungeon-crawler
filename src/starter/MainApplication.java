@@ -49,7 +49,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
-		public GImage keyImage = new GImage("gray_key.png", 10, WINDOW_HEIGHT - 120);
+		public GImage keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
 		public GLabel health;
 		public GLabel levelLabel;
 		public GLabel roomLabel;
@@ -152,6 +152,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 				floorNum++;
 				user.setHasKey(false);
 				comingFromBoss = false;
+				combatRefreshOverlay();
 			} else {
 				floorNum = 1;
 				restartGame = false;
@@ -236,7 +237,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		add(weaponBox);
 		drawSword();
 		drawTabForMenu();
-		//drawKey();
+		drawKey();
 	}
 	
 	public void refreshOverlay() 
@@ -249,7 +250,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void combatRefreshOverlay() 
 	{
 		remove(health);
+		remove(keyImage);
 		drawHealth();
+		drawKey();
 	}
 	
 	public void drawSword()	{
@@ -307,7 +310,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void drawKey() {
 		if(user.getHasKey()) {
-			keyImage = new GImage("item_png_key.png", 10, WINDOW_HEIGHT - 120);
+			keyImage = new GImage("item_png_key.png", 117, WINDOW_HEIGHT - 80);
+			keyImage.setSize(75,75);
+		} else {
+			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
 			keyImage.setSize(75,75);
 		}
 		add(keyImage);
