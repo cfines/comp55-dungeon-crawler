@@ -179,8 +179,8 @@ public class mapBase_R7 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(),user.getY());
 			program.switchToR8();
 		}
-		
 	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		mover.notReallyKeyPressed(e);
