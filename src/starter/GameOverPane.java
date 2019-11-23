@@ -37,7 +37,8 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		gameOver.setSize(1150,650);
 		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 		file = new File("highestScore.txt");
-		userName = new GLabel ("", 100,150);
+		userName = new GLabel ("", 500,375);
+		userName.setColor(Color.RED);
 		lastFloorNum = 0;
 		text = new GLabel("Enter name of the fallen: ",100,100);
 		text.setColor(Color.red);
@@ -206,6 +207,9 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			userName.setLabel(userName.getLabel()+temp);
 			program.add(userName);
 			break;
+		case KeyEvent.VK_SPACE:
+			temp = " ";
+			userName.setLabel(userName.getLabel()+temp);
 		default:
 			break;
 		}
@@ -292,6 +296,8 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		case KeyEvent.VK_Z:
 			temp = "";
 			break;
+		case KeyEvent.VK_SPACE:
+			temp = "";
 		default:
 			break;
 		}
