@@ -22,7 +22,7 @@ import starter.interactionType;
 
 public class chris_R1 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, background, userRep, userWeapon;
+	private GImage E1, face1, face2, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -37,14 +37,22 @@ public class chris_R1 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser(); 
 		
-		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
+		Interactions iE1 = new Interactions(interactionType.chrisEntry_EAST, 1050,300);
+		Interactions iFace1 = new Interactions(interactionType.face, 800,300);
+		Interactions iFace2 = new Interactions(interactionType.face, 725,300);
 		
 		E1 = iE1.getImage();
+		face1 = iFace1.getImage();
+		face2 = iFace2.getImage();
 
 		background = new GImage("background_block.gif", 15,30);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		
+		listOfInter.add(iFace2);
+		listOfInter.add(iFace1);
+		listOfInter.add(iE1);
 		
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -53,6 +61,8 @@ public class chris_R1 extends GraphicsPane implements ActionListener{
 		
 		elements.add(background);
 		elements.add(E1);
+		elements.add(face1);
+		elements.add(face2);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
