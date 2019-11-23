@@ -170,7 +170,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		degree+=80;
 		degree%=360;
 		if(move) {
-			//enem.setImage(enemyType.xokAttack);
+			////enem.setImage(enemyType.xokAttack);
 			double distX = xok.getX() - userRep.getX();
 			double distY = xok.getY() - userRep.getY();
 			double moveX = (distX * 8) / 100;
