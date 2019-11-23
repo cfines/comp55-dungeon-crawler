@@ -77,6 +77,11 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void showContents() {
+		
+		if(ixokStill.getEnemyStats().getHP_cur() <= 0) {
+			program.switchToR9Complete();
+		}
+		
 		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
