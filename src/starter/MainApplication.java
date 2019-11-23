@@ -49,7 +49,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
-		public GImage keyImage = new GImage("item_gray_key.png", 100, 100);
+		public GImage keyImage = new GImage("gray_key.png", 10, WINDOW_HEIGHT - 120);
 		public GLabel health;
 		public GLabel levelLabel;
 		public GLabel roomLabel;
@@ -236,7 +236,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		add(weaponBox);
 		drawSword();
 		drawTabForMenu();
-		drawKey();
+		//drawKey();
 	}
 	
 	public void refreshOverlay() 
@@ -307,7 +307,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void drawKey() {
 		if(user.getHasKey()) {
-			keyImage = new GImage("item_png_key.png", 100, 100);
+			keyImage = new GImage("item_png_key.png", 10, WINDOW_HEIGHT - 120);
 			keyImage.setSize(75,75);
 		}
 		add(keyImage);
