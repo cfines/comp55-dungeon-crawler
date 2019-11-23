@@ -76,15 +76,15 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	
 	public void nameDone() 
 	{
-		   try {
-	            FileWriter writer = new FileWriter("highestScores.txt", true);
-	            writer.write(getNewName().getLabel() + " was last seen on " + program.getFloorNum());
-	            writer.write("\r\n");   // write new line
-	            writer.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-		
+		try {
+			FileWriter writer = new FileWriter("highestScores.txt", true);
+			writer.write(getNewName().getLabel() + " was last seen on " + program.getFloorNum());
+			writer.write("\r\n");   // write new line
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		program.switchToMenu();
 		//getNewName().getLabel() + " was last seen on " + program.getFloorNum()
 	}
