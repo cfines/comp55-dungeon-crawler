@@ -1,4 +1,4 @@
-package starter;
+package RoomPanes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,15 @@ import javax.swing.Timer;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import starter.ElementType;
+import starter.Enemy;
+import starter.GraphicsPane;
+import starter.Interactions;
+import starter.KeyPressedManager;
+import starter.MainApplication;
+import starter.User;
+import starter.enemyType;
+import starter.interactionType;
 
 
 public class SomePane extends GraphicsPane implements ActionListener {
@@ -52,11 +61,9 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		E1 = iE1.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
-		background.setSize(1125, 550);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);

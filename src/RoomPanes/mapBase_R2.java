@@ -83,14 +83,12 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy2);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		background.setSize(1125, 550);
 		
 		elements.add(background);
 		elements.add(rock1);

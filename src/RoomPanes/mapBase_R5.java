@@ -43,8 +43,8 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(2,2,2,2,1000,500, ElementType.WATER, enemyType.WATERSpooder);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
-		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,28);
-		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,505);
+		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
+		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		enemy1 = ienemy1.getImage();
 		hole1 = ihole1.getImage();
@@ -53,10 +53,8 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		E10 = iE10.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -144,7 +142,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 75 && userY <= E8.getY() + 75) {
+		if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 85 && userY <= E8.getY() + 85) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());

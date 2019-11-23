@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
+import RoomPanes.SomePane;
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R2TEST;
 import RoomPanes.mapBase_R3;
@@ -74,15 +75,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-		
-		weaponFire.setSize(100, 100);
-		weaponWater.setSize(100, 100);
-		weaponEarth.setSize(100, 100);
-		keyImage.setSize(75,75);
-		
 		user = new User(5, 5, 1000, 1, 300, 300);
-		//userRep = new GImage("Rogue_(Sample User).gif");
-		//userRep.setSize(75, 75);
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
@@ -101,8 +94,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
-		//user.setHasKey(true);
-		switchToTitleScreen(); //change which screen you want to switch to
+		
+		user.setHasKey(true);
+		switchToR5(); //change which screen you want to switch to
 
 	}
 	
@@ -291,46 +285,43 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void drawPortrait() 
 	{
-		portrait = new GImage("User_Portrait.png", 0,20);
-		portrait.setSize(75,75);
+		portrait = new GImage("User_Portrait.png", 0,7);
 		add(portrait);
 	}
 	
 	public void drawHealth() {
-		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 50);
+		health = new GLabel("HP: " + user.getUserStats().getHP_cur() + " / " + user.getUserStats().getHP_tot(), 76, 25);
 		health.setFont("Arial-Bold-22");
-		health.setColor(Color.red);
+		health.setColor(Color.green);
 		add(health);
 	}
 	
 	public void drawTabForMenu() {
 		tabForMenu = new GLabel("Press [TAB] for menu", 115, WINDOW_HEIGHT - 7);
 		tabForMenu.setFont("Arial-Bold-22");
-		tabForMenu.setColor(Color.red);
+		tabForMenu.setColor(Color.green);
 		add(tabForMenu);
 	}
 	
 	public void drawLevelLabel(int floorNum) {
-		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
+		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 45);
 		levelLabel.setFont("Arial-Bold-22");
-		levelLabel.setColor(Color.red);
+		levelLabel.setColor(Color.green);
 		add(levelLabel);
 	}
 	
 	public void drawRoomLabel(int roomNum) {
-		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 90);
+		roomLabel = new GLabel("CURRENT ROOM: " + roomNum, 76, 65);
 		roomLabel.setFont("Arial-Bold-22");
-		roomLabel.setColor(Color.red);
+		roomLabel.setColor(Color.green);
 		add(roomLabel);
 	}
 	
 	public void drawKey() {
 		if(user.getHasKey()) {
 			keyImage = new GImage("item_png_key.png", 117, WINDOW_HEIGHT - 80);
-			keyImage.setSize(75,75);
 		} else {
 			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
-			keyImage.setSize(75,75);
 		}
 		add(keyImage);
 	}

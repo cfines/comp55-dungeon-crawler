@@ -68,9 +68,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		userRep.setSize(75, 75);
 
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);

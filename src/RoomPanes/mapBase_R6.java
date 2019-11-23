@@ -38,7 +38,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,900,150);
-		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,28);
+		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,-3);
 		Interactions ikey1 = new Interactions(interactionType.item_gif_key,575,300);
 		rock1 = irock1.getImage();
 		E11 = iE11.getImage();
@@ -46,9 +46,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
-		userRep.setSize(75, 75);
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		background.setSize(1125, 550);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
