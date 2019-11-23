@@ -102,7 +102,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
 		//user.setHasKey(true);
-		switchToR6(); //change which screen you want to switch to
+		switchToTitleScreen(); //change which screen you want to switch to
 
 	}
 	

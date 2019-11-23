@@ -131,17 +131,17 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	}
 	
 	private void nextRoom() {
-//		double userX = userRep.getX();
-//		double userY = userRep.getY();
-//		double userX2 = userRep.getX() + 80;
-//		double userY2 = userRep.getY() + 80;
-//		if(userX >= ENext.getX() && userY >= ENext.getY() && userX <= ENext.getX() + 75 && userY <= ENext.getY() + 75) {
-//			program.setComingFromBoss(true);
-//			user.setX(575);
-//			user.setY(325);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToSome();
-//		}
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userRep.getX() + 80;
+		double userY2 = userRep.getY() + 80;
+		if(userX >= ENext.getX() && userY >= ENext.getY() && userX <= ENext.getX() + 75 && userY <= ENext.getY() + 75) {
+			program.setComingFromBoss(true);
+			user.setX(575);
+			user.setY(325);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToSome();
+		}
 	}
 	
 	@Override
