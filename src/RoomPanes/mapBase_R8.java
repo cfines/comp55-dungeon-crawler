@@ -29,6 +29,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
+	private boolean unlocked = false;
 	private Timer t = new Timer(30, this);
 
 	private KeyPressedManager mover; 
@@ -87,11 +88,18 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
+		//Boss door
 		else if(userX >= E15.getX() && userY >= E15.getY() && userX <= E15.getX() + 75 && userY <= E15.getY() + 75) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR9();
+			if(!unlocked) {
+				if(program.getUser().getHasKey()) {
+					unlockProtocol();
+				}
+			} else {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9();
+			}
 		}
 		
 	}
@@ -135,7 +143,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		}
 		else if(obj == E15) {
 			user.setX(575);
-			user.setY(325);
+			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR9();
 		}
@@ -146,5 +154,17 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(E15);
+		E15 = new GImage("entry_door_NORTH.png", 575, 28);
+		E15.setSize(75,75);
+		program.add(E15);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
 	}
 }
