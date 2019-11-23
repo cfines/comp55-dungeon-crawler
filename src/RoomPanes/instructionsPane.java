@@ -16,6 +16,7 @@ public class instructionsPane extends GraphicsPane implements ActionListener {
 	private GRect background;
 	private Color color = new Color(213, 196, 161);
 	private GButton exit;
+	private GLabel text;
 	
 	public instructionsPane(MainApplication app) {
 		this.program = app;
@@ -26,7 +27,7 @@ public class instructionsPane extends GraphicsPane implements ActionListener {
 		
 		exit = new GButton("X", program.WINDOW_WIDTH/2 + 300, program.WINDOW_HEIGHT/2 - 250, 50, 50);
 		exit.setFillColor(Color.red);
-		
+
 	}
 
 	@Override
