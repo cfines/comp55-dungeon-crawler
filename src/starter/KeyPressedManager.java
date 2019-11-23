@@ -335,16 +335,13 @@ public class KeyPressedManager {
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
 			userRep.setImage("Rogue_Attack(Right).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(RIGHT).png");
-			userWeapon.setSize(75, 40);
 			program.add(userWeapon);
 		}
 	}
 
 	private void attackReset() {
 		userRep.setImage("Rogue_(Sample User).gif");
-		userRep.setSize(75,75);
 		program.remove(userWeapon);
 	}
 
