@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -44,6 +45,15 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		text = new GLabel("Enter name of the fallen (press enter when done): ",100,100);
 		text.setColor(Color.red);
 		text.setLocation(480,325);
+		 File temp;
+		try {
+			temp = File.createTempFile("highestScore", ".txt" );
+			String absolutePath = temp.getAbsolutePath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+     	
 	}
 	
 	@Override
@@ -67,6 +77,16 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		}
 	}
 	
+	public void setName(GLabel name) 
+	{
+		name.setLabel(name.getLabel());
+	}
+	
+	public GLabel getNewName() 
+	{
+		return userName;
+	}
+	
 	public void nameDone() 
 	{
 		PrintWriter writer;
@@ -74,12 +94,13 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			writer = new PrintWriter("highestScore.txt");
 			writer.println(userName.getLabel() + " was last seen on " + program.getFloorNum());
 			writer.close();
-		} catch (FileNotFoundException e) {
+
+		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		program.switchToMenu();
 	}
-	
+
 	public void keyPressed(KeyEvent e) 
 	{
 		System.out.println("user typin something");
@@ -87,132 +108,158 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		case KeyEvent.VK_A:
 			temp = "A";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_B:
 			temp = "B";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_C:
 			temp = "C";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_D:
 			temp = "D";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_E:
 			temp = "E";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_F:
 			temp = "F";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_G:
 			temp = "G";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_H:
 			temp = "H";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_I:
 			temp = "I";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_J:
 			temp = "J";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_K:
 			temp = "K";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_L:
 			temp = "L";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_M:
 			temp = "M";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_N:
 			temp = "N";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_O:
 			temp = "O";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_P:
 			temp = "P";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_Q:
 			temp = "Q";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_R:
 			temp = "R";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_S:
 			temp = "S";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_T:
 			temp = "T";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_U:
 			temp = "U";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_V:
 			temp = "V";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_W:
 			temp = "W";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_X:
 			temp = "X";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_Y:
 			temp = "Y";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_Z:
 			temp = "Z";
 			userName.setLabel(userName.getLabel()+temp);
-			program.add(userName);
+			setName(userName);
+			program.add(getNewName());
 			break;
 		case KeyEvent.VK_ENTER:
 			nameDone();
