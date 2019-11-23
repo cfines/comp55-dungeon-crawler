@@ -92,7 +92,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter("highestScore.txt");
-			writer.println(userName.getLabel() + " was last seen on " + program.getFloorNum());
+			writer.println(getNewName().getLabel() + " was last seen on " + program.getFloorNum());
 			writer.close();
 
 		}catch (FileNotFoundException e) {
