@@ -65,31 +65,19 @@ public class KeyPressedManager {
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
-			if(atkUp == true) 
-			{
-				attackUp();
-			}
+			attackUp();
 			break;
 		case KeyEvent.VK_LEFT:
 			atkLeft = true;
-			if(atkLeft == true) 
-			{
-				attackLeft();
-			}
+			attackLeft();
 			break;
 		case KeyEvent.VK_DOWN:
 			atkDown = true;
-			if(atkDown == true) 
-			{
-				attackDown();
-			}
+			attackDown();
 			break;
 		case KeyEvent.VK_RIGHT:
 			atkRight = true;
-			if(atkRight == true) 
-			{
-				attackRight();
-			}
+			attackRight();
 			break;
 		}
 	}
@@ -110,34 +98,22 @@ public class KeyPressedManager {
 			break;
 		case KeyEvent.VK_UP:
 			atkUp = false;
-			if(atkUp == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_LEFT:
 			atkLeft = false;
-			if(atkLeft == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_DOWN: 
 			atkDown = false;
-			if(atkDown == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 
 		case KeyEvent.VK_RIGHT: 
 			atkRight = false;
-			if(atkRight == false) 
-			{
-				attackReset();
-			}
+			attackReset();
 			break;
 		}
 	}
