@@ -98,7 +98,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 			program.add(elements.get(i));
 		}
 		
-		if(listOfEnemies.size() > 1) {
+		if(listOfEnemies.size() >= 1) {
 			for(int i = 0; i < enemyImages.size(); i++) {
 					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 						enemyImages.remove(i);
