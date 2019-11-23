@@ -170,8 +170,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		
 		switchToScreen(somePane);
-		audio = AudioPlayer.getInstance();
-		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
+//		audio = AudioPlayer.getInstance();
+//		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
 	}
 	
 	public void switchToR2() {
