@@ -8,9 +8,7 @@ import java.awt.event.MouseEvent;
 
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
-import starter.GButton;
-import starter.GraphicsPane;
-import starter.MainApplication;
+import removeLater.GButton;
 
 public class pausePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;

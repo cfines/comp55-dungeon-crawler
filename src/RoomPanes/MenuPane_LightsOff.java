@@ -8,9 +8,7 @@ import javax.swing.Timer;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-import starter.GButton;
-import starter.GraphicsPane;
-import starter.MainApplication;
+import removeLater.GButton;
 
 public class MenuPane_LightsOff extends GraphicsPane /*implements ActionListener*/{
 	private MainApplication program; // you will use program to get access to

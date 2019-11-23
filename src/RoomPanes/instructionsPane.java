@@ -1,7 +1,5 @@
 package RoomPanes;
 
-import starter.GraphicsPane;
-
 public class instructionsPane extends GraphicsPane {
 	private GraphicsPane prevPane;
 
