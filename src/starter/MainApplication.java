@@ -147,6 +147,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			
 			if(comingFromBoss) {
 				floorNum++;
+				user.setHasKey(false);
 				comingFromBoss = false;
 			} else {
 				floorNum = 1;

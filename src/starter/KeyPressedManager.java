@@ -159,7 +159,18 @@ public class KeyPressedManager {
 				if(atkUp == true || atkDown == true || atkLeft == true || atkRight == true) 
 				{
 					//damage dealt to enemy
+					//checks for elemental damage
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+					if((listOfEnemies.get(i).getElementType() == ElementType.FIRE) && (program.getUser().getWeaponEquiped() == 1)) {
+						newHealth *= 2;
+					}
+					if((listOfEnemies.get(i).getElementType() == ElementType.WATER) && (program.getUser().getWeaponEquiped() == 2)) {
+						newHealth *= 2;
+					}
+					if((listOfEnemies.get(i).getElementType() == ElementType.EARTH) && (program.getUser().getWeaponEquiped() == 0)) {
+						newHealth *= 2;
+					}
+					
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
