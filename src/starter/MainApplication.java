@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import RoomPanes.MenuPane_LightsOff;
 import RoomPanes.SomePane;
+import RoomPanes.chris_R1;
 import RoomPanes.mapBase_R2;
 import RoomPanes.mapBase_R2TEST;
 import RoomPanes.mapBase_R3;
@@ -36,6 +37,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R7 mapbase_R7;
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
+	private chris_R1 chris_R1;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -91,12 +93,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R7 = new mapBase_R7(this);
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
+		chris_R1 = new chris_R1(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
 		
-		user.setHasKey(true);
-		switchToR8(); //change which screen you want to switch to
+		//user.setHasKey(true);
+		switchToSome(); //change which screen you want to switch to
 
 	}
 	
@@ -143,6 +146,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mapbase_R7 = new mapBase_R7(this);
 			mapbase_R8 = new mapBase_R8(this);
 			mapbase_R9 = new mapBase_R9(this);
+			chris_R1 = new chris_R1(this);
 			tittle = new TitleScreenPane(this);
 			playerDied = new GameOverPane(this);
 			
@@ -198,6 +202,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR9() {
 		switchToScreen(mapbase_R9);
+	}
+	
+	public void switchToChrisR1() {
+		switchToScreen(chris_R1);
 	}
 	
 	public void switchToLightsOff() {

@@ -101,7 +101,10 @@ public class SomePane extends GraphicsPane implements ActionListener {
 			userRep.setLocation(70,300);
 		}
 		else if(obj == rock1) {
-			program.switchToMenu();
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToChrisR1();
 		}
 	}
 
