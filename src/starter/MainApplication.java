@@ -13,6 +13,7 @@ import RoomPanes.mapBase_R6;
 import RoomPanes.mapBase_R7;
 import RoomPanes.mapBase_R8;
 import RoomPanes.mapBase_R9;
+import RoomPanes.pausePane;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -23,6 +24,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
+	private pausePane pausePane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R2TEST testPane;
@@ -45,11 +47,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage creditsImg;
 		public GImage hiScore;
 		public GImage text;
-		public GImage weapon;
+		public GImage weaponFire = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
+		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
+		public GImage keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
 		public GLabel health;
 		public GLabel levelLabel;
 		public GLabel roomLabel;
+		public GLabel tabForMenu;
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -68,6 +74,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
+		
+		weaponFire.setSize(100, 100);
+		weaponWater.setSize(100, 100);
+		weaponEarth.setSize(100, 100);
+		keyImage.setSize(75,75);
+		
 		user = new User(5, 5, 1000, 1, 300, 300);
 		//userRep = new GImage("Rogue_(Sample User).gif");
 		//userRep.setSize(75, 75);
@@ -88,7 +100,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9 = new mapBase_R9(this);
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
-		switchToR8(); //change which screen you want to switch to
+		pausePane = new pausePane(this);
+		//user.setHasKey(true);
+		switchToR6(); //change which screen you want to switch to
 
 	}
 	
@@ -140,7 +154,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			
 			if(comingFromBoss) {
 				floorNum++;
+				user.setHasKey(false);
 				comingFromBoss = false;
+				combatRefreshOverlay();
 			} else {
 				floorNum = 1;
 				restartGame = false;
@@ -207,6 +223,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		this.user = Buser;
 	}
 	
+	public void switchToSpecificPane(GraphicsPane pane) {
+		switchToScreen(pane);
+	}
+	
+	public void pauseScreenSwitch() {
+		switchToScreenWithoutRemove(pausePane);
+	}
+	
+	public void noLongerPaused() {
+		returnFromPause();
+	}
+	
 	/////////////////////////////////////////////
 	
 	public void drawOverlay(int roomNum, int floorNum) {
@@ -224,6 +252,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		drawSword();
+		drawTabForMenu();
+		drawKey();
 	}
 	
 	public void refreshOverlay() 
@@ -236,26 +266,26 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void combatRefreshOverlay() 
 	{
 		remove(health);
+		remove(keyImage);
 		drawHealth();
+		drawKey();
 	}
 	
 	public void drawSword()	{
 		
-		if(!firstSwordCall) { remove(weapon); }
+		if(!firstSwordCall) { 
+			remove(weaponFire); 
+			remove(weaponWater); 
+			remove(weaponEarth); 
+		}
 		firstSwordCall = false;
 		
 		if(user.getWeaponEquiped() == 0) {
-			weapon = new GImage("Fire Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponFire);
 		} else if (user.getWeaponEquiped() == 1) {
-			weapon = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponWater);
 		} else {
-			weapon = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
-			weapon.setSize(100,100);
-			add(weapon);
+			add(weaponEarth);
 		}
 	}
 	
@@ -273,6 +303,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		add(health);
 	}
 	
+	public void drawTabForMenu() {
+		tabForMenu = new GLabel("Press [TAB] for menu", 115, WINDOW_HEIGHT - 7);
+		tabForMenu.setFont("Arial-Bold-22");
+		tabForMenu.setColor(Color.red);
+		add(tabForMenu);
+	}
+	
 	public void drawLevelLabel(int floorNum) {
 		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
 		levelLabel.setFont("Arial-Bold-22");
@@ -285,6 +322,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
+	}
+	
+	public void drawKey() {
+		if(user.getHasKey()) {
+			keyImage = new GImage("item_png_key.png", 117, WINDOW_HEIGHT - 80);
+			keyImage.setSize(75,75);
+		} else {
+			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
+			keyImage.setSize(75,75);
+		}
+		add(keyImage);
 	}
 	
 	public int getFloorNum() {

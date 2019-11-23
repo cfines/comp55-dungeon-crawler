@@ -136,6 +136,9 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			t.stop();
+		}
 		mover.notReallyKeyPressed(e);
 	}
 	
@@ -192,7 +195,7 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 		}
 		for (Enemy enem : listOfEnemies) {
 			enem.getImage().movePolar(5, degree);
-			degree+=5;
+			degree+=20;
 			degree%=360;
 			if(enem.getEnemyType() == enemyType.EARTHSkull) {
 				if(move) {
