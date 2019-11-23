@@ -44,15 +44,11 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rocks, 700, 150);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 172,425);
 		Interactions iE1 = new Interactions(interactionType.entry_door_EAST, 1050,300);
-		Enemy ienemy1 = new Enemy(2,2,2,2,1000,300, ElementType.WATER, enemyType.WATERSpider);
-		Enemy ienemy2 = new Enemy(2,2,2,2,900,450, ElementType.FIRE, enemyType.FIREDrawing);
 
 		listOfInter.add(irock1);
 		listOfInter.add(irock2);
 		listOfInter.add(ihole1);
 		listOfInter.add(iE1);
-		listOfEnemies.add(ienemy1);
-		listOfEnemies.add(ienemy2);
 
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
 		rock1 = irock1.getImage();
@@ -62,8 +58,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		enemy1 = ienemy1.getImage();
-		enemy2 = ienemy2.getImage();
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -75,8 +69,6 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(rock2);
 		elements.add(hole1);
 		elements.add(E1);
-		elements.add(enemy1);
-		elements.add(enemy2);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, 
