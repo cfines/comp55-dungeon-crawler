@@ -49,9 +49,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GImage weaponWater = new GImage("Water Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage weaponEarth = new GImage("Earth Sword.gif", 0, WINDOW_HEIGHT - 100);
 		public GImage portrait;
+		public GImage keyImage = new GImage("item_gray_key.png", 100, 100);
 		public GLabel health;
 		public GLabel levelLabel;
 		public GLabel roomLabel;
+		public GLabel tabForMenu;
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -74,6 +76,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		weaponFire.setSize(100, 100);
 		weaponWater.setSize(100, 100);
 		weaponEarth.setSize(100, 100);
+		keyImage.setSize(75,75);
 		
 		user = new User(5, 5, 1000, 1, 300, 300);
 		//userRep = new GImage("Rogue_(Sample User).gif");
@@ -232,6 +235,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		weaponBox.setFilled(true);
 		add(weaponBox);
 		drawSword();
+		drawTabForMenu();
+		drawKey();
 	}
 	
 	public void refreshOverlay() 
@@ -279,6 +284,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		add(health);
 	}
 	
+	public void drawTabForMenu() {
+		tabForMenu = new GLabel("Press [TAB] for menu", 115, WINDOW_HEIGHT - 7);
+		tabForMenu.setFont("Arial-Bold-22");
+		tabForMenu.setColor(Color.red);
+		add(tabForMenu);
+	}
+	
 	public void drawLevelLabel(int floorNum) {
 		levelLabel = new GLabel("CURRENT LEVEL: " + floorNum, 76, 70);
 		levelLabel.setFont("Arial-Bold-22");
@@ -291,6 +303,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		roomLabel.setFont("Arial-Bold-22");
 		roomLabel.setColor(Color.red);
 		add(roomLabel);
+	}
+	
+	public void drawKey() {
+		if(user.getHasKey()) {
+			keyImage = new GImage("item_png_key.png", 100, 100);
+			keyImage.setSize(75,75);
+		}
+		add(keyImage);
 	}
 	
 	public int getFloorNum() {
