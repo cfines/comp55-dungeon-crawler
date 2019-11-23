@@ -2,6 +2,7 @@ package RoomPanes;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import ChrisFloor.chris_R1;
 import ChrisFloor.chris_R2;
@@ -99,7 +100,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R1 = new chris_R1(this);
 		chris_R2 = new chris_R2(this);
 		tittle = new TitleScreenPane(this);
-		playerDied = new GameOverPane(this);
+		try {
+			playerDied = new GameOverPane(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		pausePane = new pausePane(this);
 		QPane = new instructionsPane(this);
 		
@@ -118,7 +123,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(menu);
 	}
 	
-	public void switchToGameOver() 
+	public void switchToGameOver()  
 	{
 		restartGame = true;
 		switchToScreen(playerDied);
@@ -154,7 +159,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R1 = new chris_R1(this);
 			chris_R2 = new chris_R2(this);
 			tittle = new TitleScreenPane(this);
-			playerDied = new GameOverPane(this);
+			try {
+				playerDied = new GameOverPane(this);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			if(comingFromBoss) {
 				floorNum++;

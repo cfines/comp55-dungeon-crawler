@@ -38,6 +38,9 @@ public class Enemy {
 		setImage(enemy);
 	}
 	
+	public void setEnemyType(enemyType type) {
+		this.EnemyType = type;
+	}
 	
 	public ElementType getElementType() 
 	{
