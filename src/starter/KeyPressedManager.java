@@ -17,6 +17,7 @@ public class KeyPressedManager {
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
+	boolean keyDeleted = false;
 
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter,
@@ -42,6 +43,11 @@ public class KeyPressedManager {
 		user.tick();
 		checkCollision();
 		knockBack();
+		
+		if(program.getUser().getHasKey() && !keyDeleted) {
+			removeKeyFromInteractionList();
+		}
+		
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
@@ -177,22 +183,22 @@ public class KeyPressedManager {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
-					keyCheck(inter);
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
-					keyCheck(inter);
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
-					keyCheck(inter);
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
-					keyCheck(inter);
+					if(keyCheck(inter)) { removeKey(inter); }
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
 			}
@@ -352,13 +358,24 @@ public class KeyPressedManager {
 		}
 	}
 	
-	public void keyCheck(Interactions inter) {
-		if(inter.getinteractionType() == interactionType.item_gif_key) {
-			program.getUser().setHasKey(true);
-			program.combatRefreshOverlay();
-			program.remove(inter.getImage());
-			inter.setImage(interactionType.nullified);
-			program.add(inter.getImage());
+	public boolean keyCheck(Interactions inter) {
+		return inter.getinteractionType() == interactionType.item_gif_key;
+	}
+	
+	public void removeKey(Interactions inter) {
+		program.getUser().setHasKey(true);
+		program.combatRefreshOverlay();
+		program.remove(inter.getImage());
+		inter.setImage(interactionType.nullified);
+		program.add(inter.getImage());
+	}
+	
+	public void removeKeyFromInteractionList() {
+		for(int i = 0; i < listOfInter.size(); i++) {
+			if(listOfInter.get(i).getinteractionType() == interactionType.item_gif_key) {
+				listOfInter.remove(i);
+				keyDeleted = true;
+			}
 		}
 	}
 }
