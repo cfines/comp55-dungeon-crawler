@@ -122,6 +122,12 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 			program.add(elements.get(i));
 		}
 		program.drawOverlay(8, program.getFloorNum());
+		if(unlocked) {
+			program.remove(E15);
+			E15 = new GImage("entry_door_NORTH.png", 575, 28);
+			E15.setSize(75,75);
+			program.add(E15);
+		}
 	}
 
 	@Override
