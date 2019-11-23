@@ -140,4 +140,5 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 			program.switchToR5();
 		}
 	}
+	
 }
