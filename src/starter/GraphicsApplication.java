@@ -113,6 +113,7 @@ public abstract class GraphicsApplication extends GraphicsProgram implements Act
 	protected void returnFromPause() {
 		curScreen.hideContents();
 		curScreen = prevScreen;
+		curScreen.showContents();
 	}
 	
 }
