@@ -32,6 +32,7 @@ public class KeyPressedManager {
 		this.atkLeft = atkLeft;
 		this.atkRight = atkRight;
 		this.userWeapon = userWeapon;
+		this.userRep.setSize(75,75);
 	}
 
 	public void notReallyActionPerformed(ActionEvent e) {
