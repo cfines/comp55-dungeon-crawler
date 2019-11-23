@@ -5,7 +5,7 @@ public enum enemyType {
 	WATERSkull, rip, EARTHSpider, WATERSpider, FIRESpider, EARTHSpooder,
 	WATERSpooder, FIRESpooder, EARTHDrawing, WATERDrawing, FIREDrawing,
 	xokStill, xokAttack, EARTHDeath, WATERDeath, FIREDeath, EARTHCheese, WATERCheese, FIRECheese,
-	EARTHFish, WATERFish, FIREFish;
+	EARTHFish, WATERFish, FIREFish, leg, insidePacific, goon1, goon2, momoko;
 	
 	public String toString() {
 		switch(this) {
@@ -36,6 +36,11 @@ public enum enemyType {
 			case WATERFish: return "WATERFish";
 			case FIREFish: return "FIREFish";
 			case rip: return "Nullified";
+			case leg: return "leg";
+			case insidePacific: return "insidePacific";
+			case goon1: return "goon1";
+			case goon2: return "goon2";
+			case momoko: return "momoko";
 		}
 		return "n/a";
 	}

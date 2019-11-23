@@ -24,7 +24,7 @@ public class Interactions {
 	}
 
 	public void setImage(interactionType inter) {
-		if(inter == interactionType.item_gif_key) {
+		if(inter == interactionType.item_gif_key || inter == interactionType.color1 || inter == interactionType.color2 || inter == interactionType.face) {
 			image = new GImage(inter + ".gif", coordX, coordY);
 		}
 		else {
