@@ -14,6 +14,7 @@ public class KeyPressedManager {
 	private MainApplication program;
 	private User user;
 	private GImage userRep, userWeapon;
+	private GImage fire_UP = new GImage("Fire Sword(UP).png");
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private boolean atkUp,atkLeft,atkRight,atkDown;
@@ -31,6 +32,7 @@ public class KeyPressedManager {
 		this.atkLeft = atkLeft;
 		this.atkRight = atkRight;
 		this.userWeapon = userWeapon;
+		fire_UP.setSize(40, 75);
 	}
 
 	public void notReallyActionPerformed(ActionEvent e) {
@@ -162,14 +164,8 @@ public class KeyPressedManager {
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						//should remove an enemy
-//						int tempX = (int)listOfEnemies.get(i).getCoordX();
-//						int tempY = (int)listOfEnemies.get(i).getCoordY();
 						listOfEnemies.get(i).setImage(enemyType.rip);
 						//program.add(listOfEnemies.get(i).getImage());
-//						Interactions rip = new Interactions(interactionType.rip, tempX, tempY);
-//						Interactions rip2 = new Interactions(interactionType.rip2, tempX, tempY);
-//						program.add(rip2.getImage());
-//						program.add(rip.getImage());
 						listOfEnemies.remove(i);
 					}
 				}
@@ -258,13 +254,12 @@ public class KeyPressedManager {
 
 	private void attackUp() {
 
+		userRep.setImage("Rogue_Attack(Up).png");
+		userRep.setSize(75,75);
 		if(program.getUser().getWeaponEquiped() == 0)
 		{
-			userRep.setImage("Rogue_Attack(Up).png");
-			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(UP).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -272,7 +267,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(UP).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
@@ -280,8 +274,8 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(UP).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackDown() {
 		if(program.getUser().getWeaponEquiped() == 0)
@@ -290,7 +284,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(DOWN).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -298,7 +291,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(DOWN).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
@@ -306,8 +298,8 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(DOWN).png");
 			userWeapon.setSize(40, 75);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackLeft() {
 		if(program.getUser().getWeaponEquiped() == 0)
@@ -316,7 +308,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(LEFT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -324,7 +315,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(LEFT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
@@ -332,8 +322,8 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(LEFT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 	private void attackRight() {
 		if(program.getUser().getWeaponEquiped() == 0)
@@ -342,7 +332,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Fire Sword(RIGHT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 1) 
 		{
@@ -350,7 +339,6 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Water Sword(RIGHT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
 		if(program.getUser().getWeaponEquiped() == 2) 
 		{
@@ -358,8 +346,8 @@ public class KeyPressedManager {
 			userRep.setSize(75,75);
 			userWeapon.setImage("Earth Sword(RIGHT).png");
 			userWeapon.setSize(75, 40);
-			program.add(userWeapon);
 		}
+		program.add(userWeapon);
 	}
 
 	private void attackReset() {
