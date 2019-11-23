@@ -12,7 +12,6 @@ import removeLater.GButton;
 
 public class pausePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	//private GraphicsPane prevPane;
 	private GButton pauseButton;
 	private GLabel pauseLabel;
 	

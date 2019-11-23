@@ -28,6 +28,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 
 	private pausePane pausePane;
+	private instructionsPane tabPane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
 	private mapBase_R2TEST testPane;
@@ -100,9 +101,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		tittle = new TitleScreenPane(this);
 		playerDied = new GameOverPane(this);
 		pausePane = new pausePane(this);
+		tabPane = new instructionsPane(this);
 		
 		user.setHasKey(true);
-		switchToSome(); //change which screen you want to switch to
+		switchToR8(); //change which screen you want to switch to
 
 	}
 	
@@ -239,6 +241,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void pauseScreenSwitch() {
 		switchToScreenWithoutRemove(pausePane);
+	}
+	
+	public void tabScreenSwitch() {
+		switchToScreenWithoutRemove(tabPane);
 	}
 	
 	public void noLongerPaused() {

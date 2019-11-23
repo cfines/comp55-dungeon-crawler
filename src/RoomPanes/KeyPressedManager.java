@@ -91,7 +91,13 @@ public class KeyPressedManager {
 			break;
 		case KeyEvent.VK_ESCAPE:
 			program.pauseScreenSwitch();
+			break;
+		case KeyEvent.VK_TAB:
+			program.tabScreenSwitch();
+			break;
 		}
+		
+			
 	}
 
 	public void notReallyKeyReleased(KeyEvent e) {
@@ -365,6 +371,7 @@ public class KeyPressedManager {
 		}
 	}
 	
+	/*
 	public void removeEnemyFromElementList() {
 		for(int i = 0; i < listOfElements.size(); i++) {
 			if(listOfEnemies.get(i).getinteractionType() == interactionType.item_gif_key) {
@@ -372,5 +379,5 @@ public class KeyPressedManager {
 				keyDeleted = true;
 			}
 		}
-	}
+	}*/
 }
