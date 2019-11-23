@@ -3,25 +3,20 @@ package RoomPanes;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import removeLater.GButton;
-import acm.graphics.GLabel;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.util.Scanner;
-import java.awt.event.KeyEvent;
 
 
 public class GameOverPane extends GraphicsPane implements ActionListener {
@@ -34,7 +29,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	private GLabel text;
 	private String temp = new String("");
 	
-	public GameOverPane(MainApplication app) 
+	public GameOverPane(MainApplication app) throws IOException 
 	{
 		this.program = app;
 		gameOver = new GImage ("Game Over Screen.png",0,0);
@@ -46,15 +41,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		text = new GLabel("Enter name of the fallen (press enter when done): ",100,100);
 		text.setColor(Color.red);
 		text.setLocation(480,325);
-		 File temp;
-		try {
-			temp = File.createTempFile("highestScore", ".txt" );
-			String absolutePath = temp.getAbsolutePath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-     	
 	}
 	
 	@Override
@@ -90,16 +76,17 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	
 	public void nameDone() 
 	{
-		PrintWriter writer;
-		try {
-			writer = new PrintWriter("highestScore.txt");
-			writer.println(getNewName().getLabel() + " was last seen on " + program.getFloorNum());
-			writer.close();
-
-		}catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		   try {
+	            FileWriter writer = new FileWriter("highestScores.txt", true);
+	            writer.write(getNewName().getLabel() + " was last seen on " + program.getFloorNum());
+	            writer.write("\r\n");   // write new line
+	            writer.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		
 		program.switchToMenu();
+		//getNewName().getLabel() + " was last seen on " + program.getFloorNum()
 	}
 
 	public void keyPressed(KeyEvent e) 
@@ -264,6 +251,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			break;
 		case KeyEvent.VK_ENTER:
 			nameDone();
+			System.out.println("user's name should be pushed into the txt file at this point");
 			break;
 		default:
 			break;
