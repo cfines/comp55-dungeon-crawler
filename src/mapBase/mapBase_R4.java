@@ -25,6 +25,7 @@ import removeLater.User;
 public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage enemy1, enemy2, enemy3, hole1, rock1, E6, E7, background,userRep, userWeapon;
+	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -74,14 +75,15 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		listOfInter.add(irock1);
 		
 		elements.add(background);
-		elements.add(enemy1);
-		elements.add(enemy2);
-		elements.add(enemy3);
 		elements.add(hole1);
 		elements.add(rock1);
 		elements.add(E6);
 		elements.add(E7);
 		elements.add(userRep);
+		
+		enemyImages.add(enemy1);
+		enemyImages.add(enemy2);
+		enemyImages.add(enemy3);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -94,6 +96,18 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		
+		if(listOfEnemies.size() > 1) {
+			for(int i = 0; i < enemyImages.size(); i++) {
+					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+						enemyImages.remove(i);
+						listOfEnemies.remove(i);
+					} else {
+						program.add(enemyImages.get(i));
+					}
+				}
+			}
+		
 		program.drawOverlay(4, program.getFloorNum());
 	}
 
