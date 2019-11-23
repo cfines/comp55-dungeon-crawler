@@ -41,7 +41,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	public mapBase_R5(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(2,2,2,2,1000,500, ElementType.WATER, enemyType.WATERSpooder);
+		Enemy ienemy1 = new Enemy(40,40,2,999999,1000,500, ElementType.FIRE, enemyType.FIREDeath);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
 		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
@@ -54,7 +54,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-
+		
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -175,7 +175,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			enem.getImage().movePolar(5, degree);
 			degree+=5;
 			degree%=360;
-			if(enem.getEnemyType() == enemyType.WATERSpooder) {
+			if(enem.getEnemyType() == enemyType.FIREDeath) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
 				double moveX = (distX * 2) / 100;
