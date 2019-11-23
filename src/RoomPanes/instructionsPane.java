@@ -14,10 +14,13 @@ import removeLater.GButton;
 public class instructionsPane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private GRect background;
+	private Color color = new Color(213, 196, 161);
 	
 	public instructionsPane(MainApplication app) {
 		this.program = app;
 		background = new GRect(700, 500, program.WINDOW_WIDTH / 2 - 350, program.WINDOW_HEIGHT / 2 - 250);
+		background.setColor(color);
+		background.setFilled(true);
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class instructionsPane extends GraphicsPane implements ActionListener {
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_TAB) {
+		if(e.getKeyCode() == KeyEvent.VK_Q) {
 			program.noLongerPaused();
 		}
 	}

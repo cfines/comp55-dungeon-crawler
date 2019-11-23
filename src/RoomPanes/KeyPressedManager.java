@@ -14,6 +14,7 @@ import removeLater.User;
 
 public class KeyPressedManager {
 
+	private KeyPressedManager thisClass;
 	private MainApplication program;
 	private User user;
 	private GImage userRep, userWeapon;
@@ -90,10 +91,11 @@ public class KeyPressedManager {
 			attackRight();
 			break;
 		case KeyEvent.VK_ESCAPE:
+			System.out.println("esc is pressed!");
 			program.pauseScreenSwitch();
 			break;
-		case KeyEvent.VK_TAB:
-			program.tabScreenSwitch();
+		case KeyEvent.VK_Q:
+			program.QScreenSwitch();
 			break;
 		}
 		

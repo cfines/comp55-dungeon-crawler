@@ -130,7 +130,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_TAB) {
+		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_TAB)) {
 			t.stop();
 		}
 		mover.notReallyKeyPressed(e);
