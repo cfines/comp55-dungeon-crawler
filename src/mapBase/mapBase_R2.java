@@ -155,8 +155,18 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			program.add(elements.get(i));
 		}
 		
+		program.drawOverlay(2, program.getFloorNum());
+		
 		if(listOfEnemies.size() >= 1) {
-		for(int i = 0; i < enemyImages.size(); i++) {
+			if(program.getReturningFromPause()) {
+				program.setReturningFromPause(false);
+				for(int i = 0; i < enemyImages.size(); i++) {
+					program.add(enemyImages.get(i));
+				}
+				return;
+			}
+		
+			for(int i = 0; i < enemyImages.size(); i++) {
 				if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 					enemyImages.remove(i);
 					listOfEnemies.remove(i);
@@ -166,7 +176,6 @@ public class mapBase_R2 extends GraphicsPane implements ActionListener{
 			}
 		}
 		
-		program.drawOverlay(2, program.getFloorNum());
 	}
 
 	@Override

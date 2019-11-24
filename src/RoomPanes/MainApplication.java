@@ -79,6 +79,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private fe_R1 feR1;
 	public boolean bossRun = false;
 	public int bombCounter = 180;
+	private boolean returningFromPause = false;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -380,6 +381,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void noLongerPaused() {
+		returningFromPause = true;
 		returnFromPause();
 	}
 	
@@ -560,6 +562,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBombDeactivated(boolean bomb) {
 		this.bombDeactivated = bomb;
+	}
+	
+	public void setReturningFromPause(boolean please) {
+		this.returningFromPause = please;
+	}
+	
+	public boolean getReturningFromPause() {
+		return returningFromPause;
 	}
 	
 }
