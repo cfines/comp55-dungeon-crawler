@@ -161,7 +161,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR9();
 		}
-		else if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 85 && userY <= E3.getY() + 85) {
+		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			if(!unlocked) {
 				if(program.getUser().getHasKey()) {
 					unlockProtocol();
@@ -183,7 +183,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 	public void unlockProtocol() {
 		user.setY(200);
 		program.remove(E3);
-		E3 = new GImage("entry_door_NORTH.png", 575, 28);
+		E3 = new GImage("chrisEntry_EAST.png", 1050, 300);
 		program.add(E3);
 		userRep.setLocation(user.getX(), user.getY());
 		program.getUser().setHasKey(false);

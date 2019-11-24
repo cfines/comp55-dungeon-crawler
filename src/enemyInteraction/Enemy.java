@@ -61,7 +61,7 @@ public class Enemy {
 				type == enemyType.WATERCheese || type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || 
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
 				type == enemyType.momoko || type == enemyType.Duma || type == enemyType.Brigand||
-				type == enemyType.Samurai || type == enemyType.DarkMage) {
+				type == enemyType.Samurai || type == enemyType.DarkMage || type == enemyType.face) {
 			image = new GImage(type + ".gif", dx, dy);
 		} else if(type == enemyType.electric) {
 			image = new GImage(type + ".jpg", dx, dy);
