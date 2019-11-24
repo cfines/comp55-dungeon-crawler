@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage background,userRep, userWeapon; 
+	private GImage overlay,background,userRep, userWeapon; 
 	private GImage xok = new GImage("xokStill.png", 375, 375); 
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
@@ -51,7 +51,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		background = new GImage("Fire_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-
+		overlay = new GImage("dark_overlay.png",15,30);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -62,6 +62,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(xok);
 		elements.add(userRep);
+		elements.add(overlay);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);

@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage rock1, E11, key1, background,userRep,userWeapon;
+	private GImage overlay,rock1, E11, key1, background,userRep,userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -47,6 +47,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -61,6 +62,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		elements.add(E11);
 		elements.add(key1);
 		elements.add(userRep);
+		elements.add(overlay);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
