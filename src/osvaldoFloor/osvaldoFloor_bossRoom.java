@@ -123,6 +123,11 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
 			t.stop();
 		}
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			atkUp = true;
+		} else {
+			atkUp = false;
+		}
 		mover.notReallyKeyPressed(e);
 	}
 
@@ -132,7 +137,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	}
 
 	public void enemyMovement() {
-		if(everyXSeconds(40)) {
+		if(everyXSeconds(80)) {
 			attack = !attack;
 			if(attack) {
 				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY(), ElementType.FIRE, enemyType.projectile);
@@ -140,6 +145,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			} else {
 				listOfProjectiles.remove(shot);
 				program.remove(shot.getImage());
+				hit = false;
 			}
 		}
 		
@@ -166,7 +172,9 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				
 				program.add(arr.getImage());
 				
-				if(checkHitBack(arr, userWeapon)) { arr.getImage().move(0, -10); }
+				if(checkHitBack(arr, userWeapon)) { hit = true; }
+				
+				if(hit) { arr.getImage().move(0, -10); }
 				else { arr.getImage().move(0, 10); }
 			
 			
@@ -179,7 +187,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
-				&& enem.getImage().getX() - image.getX() >= -60);
+				&& enem.getImage().getX() - image.getX() >= -60) && atkUp;
 	}
 	
 }
