@@ -222,7 +222,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		}
 		//SCHARK
 		else if(obj == hole3) {
-			program.switchToOsvaldoBoss();
+			program.switchToBombRoomR1();
 		}
 		//STAN
 		else if(obj == hole4) {
