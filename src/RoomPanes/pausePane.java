@@ -46,7 +46,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton BOMB_Bomb2 = new GButton("BOMB2", 120, 475, 50, 50);
 	private GButton BOMB_Bomb3 = new GButton("BOMB3", 175, 475, 50, 50);
 	
-	//private GButton invinvibility = new GButton("GOD_MODE", 0, 0, 50, 50); 
+	private GButton invincibility = new GButton("INVINCIBILITY", 0, 0, 50, 50); 
+	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 0, 0, 50, 50); 
+	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 0, 0, 50, 50);
 	
 	
 	public pausePane(MainApplication app){
@@ -94,6 +96,14 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonArr.add(BOMB_Bomb2);
 		buttonArr.add(BOMB_Bomb3);
 		
+		for(int i = 0; i < buttonArr.size(); i++) {
+			if(i == 0 || i == 1 || i == 2) { buttonArr.get(i).setFillColor(Color.white); }
+			if(i == 3 || i == 4 || i == 5) { buttonArr.get(i).setFillColor(Color.cyan); }
+			if(i == 6 || i == 7 || i == 8) { buttonArr.get(i).setFillColor(Color.black); buttonArr.get(i).setColor(Color.white); }
+			if(i == 9 || i == 10 || i == 11) { buttonArr.get(i).setFillColor(Color.orange); }
+			if(i == 12 || i == 13 || i == 14) { buttonArr.get(i).setFillColor(Color.gray); }
+			if(i == 15 || i == 16 || i == 17 || i == 18) { buttonArr.get(i).setFillColor(Color.red); }
+		}
 		
 	}
 
