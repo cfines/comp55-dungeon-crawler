@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import ChrisFloor.chris_R1;
+import ChrisFloor.chris_R10;
 import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
@@ -12,6 +13,7 @@ import ChrisFloor.chris_R5;
 import ChrisFloor.chris_R6;
 import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
+import ChrisFloor.chris_R9;
 import FyiahEmburemFloor.fe_R1;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -61,6 +63,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R6 chris_R6;
 	private chris_R7 chris_R7;
 	private chris_R8 chris_R8;
+	private chris_R9 chris_R9;
+	private chris_R10 chris_R10;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -131,6 +135,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R6 = new chris_R6(this);
 		chris_R7 = new chris_R7(this);
 		chris_R8 = new chris_R8(this);
+		chris_R9 = new chris_R9(this);
+		chris_R10 = new chris_R10(this);
 		
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
@@ -199,6 +205,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R6 = new chris_R6(this);
 			chris_R7 = new chris_R7(this);
 			chris_R8 = new chris_R8(this);
+			chris_R9 = new chris_R9(this);
+			chris_R10 = new chris_R10(this);
 			feR1 = new fe_R1(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
@@ -295,6 +303,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR8() {
 		switchToScreen(chris_R8);
+	}
+	
+	public void switchToChrisR9() {
+		switchToScreen(chris_R9);
+	}
+	
+	public void switchToChrisR10() {
+		switchToScreen(chris_R10);
 	}
 	
 	public void switchToOsvaldoR1() {

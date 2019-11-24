@@ -21,9 +21,9 @@ import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
 import removeLater.User;
 
-public class chris_R3 extends GraphicsPane implements ActionListener{
+public class chris_R10 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
+	private GImage E1, E4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -38,15 +38,13 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 	private KeyPressedManager mover;
 	
 
-	public chris_R3(MainApplication app) {
+	public chris_R10(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
 
 
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
-		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
-		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 
 		//Enemies
@@ -56,14 +54,10 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
-		E2 = iE2.getImage();
-		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
-		listOfInter.add(iE2);
-		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 
 		//listOfEnemies.add)();
@@ -76,8 +70,6 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		//elements.add();
 		elements.add(background);
 		elements.add(E1);
-		elements.add(E2);
-		elements.add(E3);
 		elements.add(E4);
 		elements.add(userRep);
 
@@ -103,7 +95,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 				}
 			}
 		}
-		program.drawOverlay(3, program.getFloorNum());
+		program.drawOverlay(10, program.getFloorNum());
 	}
 
 
@@ -152,25 +144,13 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR6();
-		}
-		else if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
-			user.setX(575);
-			user.setY(110);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToChrisR9();
-		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR4();
 		}
 		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR2();
+			program.switchToChrisR9();
 		}
 	}
 
