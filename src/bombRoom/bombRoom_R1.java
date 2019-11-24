@@ -35,13 +35,14 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 	private int decrementTimer = 0;
+	private boolean unlocked = false;
 
 	private KeyPressedManager mover;
 
 	public bombRoom_R1(MainApplication app) {
 		this.program = app;
 		user = program.getUser(); 
-		Interactions oE1 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
+		Interactions oE1 = new Interactions(interactionType.entry_bossDoor, 575,-3);
 		Interactions oE2 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions oE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions oE4 = new Interactions(interactionType.entry_door_WEST,27,300);
@@ -84,6 +85,15 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		decrementTimer();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
+		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
+	}
 
 	@Override
 	public void showContents() {
@@ -125,47 +135,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		decrementTimer();
-		if(mover.getDeleteEnemy()) { deleteEnemy(); }
-		mover.notReallyActionPerformed(e);
-		nextRoom();
-		userRep.setLocation(user.getX(), user.getY());
-	}
-
-	private void nextRoom() {
-		double userX = userRep.getX();
-		double userY = userRep.getY();
-		double userX2 = userX + 80;
-		double userY2 = userX + 80;
-		//SOUTH DOOR
-		if(userX <= ES.getX() && userY <= ES.getY() && userX2 >= ES.getX() && userY2 >= ES.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
-			//EAST DOOR
-		} else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
-			//WEST DOOR
-		} else if(userX <= EW.getX() && userY <= EW.getY() && userX2 >= EW.getX() && userY2 >= EW.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
-			//NORTH DOOR
-		} else if(userX <= EN.getX() && userY <= EN.getY() && userX2 >= EN.getX() && userY2 >= EN.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
-		}
-	}
-
-	@Override
 	public void keyPressed(KeyEvent e) {
 		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
 			t.stop();
@@ -196,6 +165,58 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 			} else {
 				program.add(enemyImages.get(i));
 			}
+		}
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(EN);
+		EN = new GImage("entry_door_NORTH.png", 575, 28);
+		program.add(EN);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
+	}
+	
+	private void nextRoom() {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userRep.getX() + 80;
+		double userY2 = userRep.getY() + 80;
+		if(userX >= EN.getX() && userY >= EN.getY() && userX <= EN.getX() + 85 && userY <= EN.getY() + 85) {
+			System.out.println("north");
+			if(!unlocked) {
+				if(program.getUser().getHasKey() && program.getBombsDeactivated()) {
+					unlockProtocol();
+				}
+			} else {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToBombRoomR10();
+			}
+		}
+		else if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
+			System.out.println("south");
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(),user.getY());
+			program.switchToBombRoomR2();
+		}
+		else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
+			System.out.println("east");
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToBombRoomR8();
+		}
+		else if(userX >= EW.getX() && userY >= EW.getY() && userX <= EW.getX() + 75 && userY <= EW.getY() + 75) {
+			System.out.println("west");
+			user.setX(900);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToBombRoomR6();
 		}
 	}
 	
