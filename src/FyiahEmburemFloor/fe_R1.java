@@ -21,7 +21,7 @@ import removeLater.User;
 
 public class fe_R1 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E10, background,userRep, userWeapon;
+	private GImage E1, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -31,16 +31,16 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
-
+	
 	private KeyPressedManager mover;
 
 	public fe_R1(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
 		
-		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		Interactions iE1 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		
-		E10 = iE10.getImage();
+		E1 = iE1.getImage();
 		background = new GImage("FE Forest Clearing.png", 10,20);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -50,10 +50,10 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 
-		listOfInter.add(iE10);
+		listOfInter.add(iE1);
 
 		elements.add(background);
-		elements.add(E10);
+		elements.add(E1);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
@@ -77,7 +77,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX <= E10.getX() && userY <= E10.getY() && userX2 >= E10.getX() && userY2 >= E10.getY()) {
+		if(userX <= E1.getX() && userY <= E1.getY() && userX2 >= E1.getX() && userY2 >= E1.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -103,7 +103,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 				}
 			}
 		
-		program.drawOverlay(5, program.getFloorNum());
+		program.drawOverlay(1, program.getFloorNum());
 	}
 
 	@Override
