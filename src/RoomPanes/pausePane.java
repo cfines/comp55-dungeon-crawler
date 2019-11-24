@@ -200,7 +200,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 12) { /*TODO add*/ }			//STAN-R1
 				if(i == 13) { /*TODO add*/ }			//STAN-KEY
 				if(i == 14) { /*TODO add*/ }			//STAN-BOSS
-				if(i == 15) { program.switchToBombRoomR1(); }	//BOMB-R1
+				if(i == 15) { program.setBombCounter(180); program.switchToBombRoomR1(); }	//BOMB-R1
 				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
 				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
 				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
