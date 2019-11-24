@@ -85,6 +85,15 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		decrementTimer();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
+		mover.notReallyActionPerformed(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
+	}
 
 	@Override
 	public void showContents() {
@@ -123,15 +132,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		decrementTimer();
-		if(mover.getDeleteEnemy()) { deleteEnemy(); }
-		mover.notReallyActionPerformed(e);
-		nextRoom();
-		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	private void nextRoom() {
