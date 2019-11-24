@@ -384,6 +384,42 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(bombRoom_R1);
 	}
 	
+	public void switchToBombRoomR2() {
+		switchToScreen(bombRoom_R2);
+	}
+	
+	public void switchToBombRoomR3() {
+		switchToScreen(bombRoom_R3);
+	}
+	
+	public void switchToBombRoomR6() {
+		switchToScreen(bombRoom_R6);
+	}
+	
+	public void switchToBombRoomR8() {
+		switchToScreen(bombRoom_R8);
+	}
+	
+	public void switchToBombRoomR10() {
+		switchToScreen(bombRoom_R10);
+	}
+	
+	public void switchToBombRoomBOMB1() {
+		switchToScreen(bombRoom_BOMB1);
+	}
+	
+	public void switchToBombRoomBOMB2() {
+		switchToScreen(bombRoom_BOMB2);
+	}
+	
+	public void switchToBombRoomBOMB3() {
+		switchToScreen(bombRoom_BOMB3);
+	}
+	
+	public void switchToBombRoomKEY() {
+		switchToScreen(bombRoom_KEY);
+	}
+	
 	public void switchToFeR1() {
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
