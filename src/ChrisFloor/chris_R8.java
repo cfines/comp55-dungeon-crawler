@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R8 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E4, E3, candle1, candle2, candle3, candle4, blueboi1, blueboi2, blueboi3, background,userRep, userWeapon;
+	private GImage E1, E4, E3, egg, candle1, candle2, candle3, candle4, blueboi1, blueboi2, blueboi3, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -45,7 +45,7 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
-		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
+		Interactions iE3 = new Interactions(interactionType.chrisEntry_SOUTH,575,535);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions icandle1 = new Interactions(interactionType.candle2,65,440);
 		Interactions icandle2 = new Interactions(interactionType.candle1,65,35);
@@ -54,6 +54,7 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		Interactions iblue1 = new Interactions(interactionType.blueboi, 575,440);
 		Interactions iblue2 = new Interactions(interactionType.blueboi, 535,480);
 		Interactions iblue3 = new Interactions(interactionType.blueboi, 615,480);
+		Interactions iegg = new Interactions(interactionType.Long_Hair_Egg, 578,225);
 		
 		//Enemies
 
@@ -71,6 +72,7 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		candle2 = icandle2.getImage();
 		candle3 = icandle3.getImage();
 		candle4 = icandle4.getImage();
+		egg = iegg.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
@@ -83,6 +85,7 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icandle2);
 		listOfInter.add(icandle3);
 		listOfInter.add(icandle4);
+		listOfInter.add(iegg);
 
 		//listOfEnemies.add)();
 
@@ -103,6 +106,7 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		elements.add(candle2);
 		elements.add(candle3);
 		elements.add(candle4);
+		elements.add(egg);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
@@ -178,16 +182,10 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR2();
 		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR9();
-		}
-		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
+		else if(userX <= E3.getX() && userY <= E3.getY() && userY2 >= E3.getY() - 30  && userX >= E3.getX() - 30) {
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(),user.getY());
 			//program.switchToChris next section();
 		}
 	}

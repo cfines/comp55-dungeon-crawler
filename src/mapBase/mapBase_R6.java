@@ -115,26 +115,10 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
-	
-	public void enemyMovement() {
-		for (Enemy enem : listOfEnemies) {
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
-			enem.setStartX(enem.getImage().getX());
-			enem.setStartY(enem.getImage().getY());
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
-			degree+=50;
-			degree%=360;
-			}
-		}
 	
 	private void nextRoom() {
 		double userX = userRep.getX();

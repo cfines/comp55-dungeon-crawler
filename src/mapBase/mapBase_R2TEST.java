@@ -218,7 +218,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		}
 		//CHRIS
 		else if(obj == hole2) {
-			program.switchToChrisR6();
+			program.switchToChrisR7();
 		}
 		//SCHARK
 		else if(obj == hole3) {

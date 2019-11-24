@@ -20,7 +20,7 @@ import removeLater.User;
 
 public class chris_R7 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, candle10, background,userRep, userWeapon;
+	private GImage key,schlept, E2, E3, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, candle10, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -53,6 +53,8 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		Interactions icandle8 = new Interactions(interactionType.candle2, 775,435);
 		Interactions icandle9 = new Interactions(interactionType.candle1, 840,465);
 		Interactions icandle10 = new Interactions(interactionType.candle1, 390,55);
+		Interactions ikey1 = new Interactions(interactionType.item_gif_key,750,150);
+		Interactions ischlept = new Interactions(interactionType.schlept, 680,150);
 
 		//Enemies
 
@@ -62,6 +64,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E2 = iE2.getImage();
 		E3 = iE3.getImage();
+		key = ikey1.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE2);
@@ -76,6 +79,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		candle8 = icandle8.getImage();
 		candle9 = icandle9.getImage();
 		candle10 = icandle10.getImage();
+		schlept = ischlept.getImage();
 
 		//listOfEnemies.add)();
 		listOfInter.add(icandle1);
@@ -88,6 +92,8 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icandle8);
 		listOfInter.add(icandle9);
 		listOfInter.add(icandle10);
+		listOfInter.add(ikey1);
+		listOfInter.add(ischlept);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -108,6 +114,8 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		elements.add(candle8);
 		elements.add(candle9);
 		elements.add(candle10);
+		elements.add(key);
+		elements.add(schlept);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
@@ -121,16 +129,8 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-
-		if(listOfEnemies.size() >= 1) {
-			for(int i = 0; i < enemyImages.size(); i++) {
-				if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
-					enemyImages.remove(i);
-					listOfEnemies.remove(i);
-				} else {
-					program.add(enemyImages.get(i));
-				}
-			}
+		if(program.getUser().getHasKey()) {
+			program.remove(key);
 		}
 		program.drawOverlay(7, program.getFloorNum());
 	}
@@ -156,20 +156,16 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) { 
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			t.stop();
-		}
 		mover.notReallyKeyReleased(e);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	private void nextRoom() {

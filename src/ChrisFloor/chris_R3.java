@@ -24,7 +24,6 @@ import removeLater.User;
 public class chris_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E1, E2, E3, E4, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, background,userRep, userWeapon;
-	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -128,17 +127,6 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-
-		if(listOfEnemies.size() >= 1) {
-			for(int i = 0; i < enemyImages.size(); i++) {
-				if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
-					enemyImages.remove(i);
-					listOfEnemies.remove(i);
-				} else {
-					program.add(enemyImages.get(i));
-				}
-			}
-		}
 		program.drawOverlay(3, program.getFloorNum());
 	}
 
@@ -171,12 +159,10 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		timerCont++;
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	private void nextRoom() {
@@ -212,28 +198,5 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
-	}
-
-	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
 	}
 }
