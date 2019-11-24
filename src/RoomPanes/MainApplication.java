@@ -133,11 +133,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		user.setHasKey(true);
 		//bossDefeated = true;
-<<<<<<< HEAD
-=======
-		
-		switchToOsvaldoBoss(); //change which screen you want to switch to
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 
 		switchToOsvaldoBoss(); //change which screen you want to switch to
 	}
