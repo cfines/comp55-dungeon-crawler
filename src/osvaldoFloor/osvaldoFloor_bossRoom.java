@@ -42,6 +42,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	private int timerCont = 0;
 	private boolean move = false;
 	private boolean attack = false;
+	private boolean hit = false;
 
 	private KeyPressedManager mover;
 
@@ -131,30 +132,6 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	}
 
 	public void enemyMovement() {
-		//if(everyXSeconds(40)) {
-		//	move = !move;
-		//	program.remove(osvaldoom.getImage());
-		//	if(move) {osvaldoom.setImage(attk);}
-		//	else {osvaldoom.setImage(still);}
-		//	program.add(osvaldoom.getImage());
-		//}
-		//
-		//for(Enemy enem : listOfEnemies) {
-		//	
-		//	enem.getImage().movePolar(2, degree);
-		//	degree+=80;
-		//	degree%=360;
-		//	if(move) {
-		//		double distX = enem.getImage().getX() - userRep.getX();
-		//		double distY = enem.getImage().getY() - userRep.getY();
-		//		double moveX = (distX * 5) / 100;
-		//		double moveY = (distY * 5) / 100;
-		//		enem.getImage().move(-moveX, -moveY);
-		//	}else {boss.move(0, 0);}
-		//	enem.setStartX(enem.getImage().getX());
-		//	enem.setStartY(enem.getImage().getY());
-		//}
-		
 		if(everyXSeconds(40)) {
 			attack = !attack;
 			if(attack) {
@@ -173,8 +150,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				move = true;
 			}
 			
-			if(move) { enem.getImage().move(5, 0); }
-			else { enem.getImage().move(-5, 0); }
+			if(move) { enem.getImage().move(10, 0); }
+			else { enem.getImage().move(-10, 0); }
 			
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
@@ -188,12 +165,22 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				arr.getEnemyStats().setCoordY(osvaldoom.getCoordY());
 				
 				program.add(arr.getImage());
-				arr.getImage().move(0, 10);
+				
+				if(checkHitBack(arr, userWeapon)) { arr.getImage().move(0, -10); }
+				else { arr.getImage().move(0, 10); }
 			
 			
 			}
 		}
 		
 	}
+	
+	public boolean checkHitBack(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
+	}
+	
 }
 
