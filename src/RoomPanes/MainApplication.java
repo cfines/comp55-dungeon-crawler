@@ -11,6 +11,7 @@ import ChrisFloor.chris_R4;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
+import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
 import mapBase.mapBase_R2TEST;
@@ -76,6 +77,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
+		public GRect bossHealthBackground;
+		public GRect bossHealth;
 		public GImage title;
 		
 		public boolean firstSwordCall = true;
@@ -125,14 +128,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		QPane = new instructionsPane(this);
 		
 		user.setHasKey(true);
-		bossDefeated = true;
-		
-<<<<<<< HEAD
-		switchToOsvaldoBoss(); //change which screen you want to switch to
-=======
-		switchToChrisR1(); //change which screen you want to switch to
+		//bossDefeated = true;
 
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
+		switchToOsvaldoBoss(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -400,6 +398,24 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			keyImage = new GImage("gray_key.png", 120, WINDOW_HEIGHT - 85);
 		}
 		add(keyImage);
+	}
+	
+	public void bossOverlay(Enemy boss) {
+		
+		combatRefreshOverlay();
+		
+		double percentage = (double)boss.getEnemyStats().getHP_cur() / (double)boss.getEnemyStats().getHP_tot();
+		bossHealthBackground = new GRect(325, 50, 750, 12);
+		bossHealthBackground.setFilled(true);
+		bossHealth = new GRect(330, 54, (double)(percentage * 750) - 10, 4);
+		bossHealth.setColor(Color.red);
+		bossHealth.setFilled(true);
+		
+		remove(bossHealthBackground);
+		remove(bossHealth);
+		add(bossHealthBackground);
+		add(bossHealth);
+		
 	}
 	
 	public int getFloorNum() {

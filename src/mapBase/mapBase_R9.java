@@ -108,6 +108,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	}
 
 	public boolean everyXSeconds(double x) {
+		program.bossOverlay(ixokStill);
 		return(timerCont %(x) == 0);
 	}
 
