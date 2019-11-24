@@ -566,4 +566,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		this.bombDeactivated = bomb;
 	}
 	
+	public boolean getDeveloperMode() {
+		return DEVELOPER_MODE;
+	}
+	
 }
