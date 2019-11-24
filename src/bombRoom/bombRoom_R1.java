@@ -136,7 +136,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		decrementTimer();
-		if(checkIfBombDestroyed()) { program.setBombDeactivated(true); }
+		if(checkIfBombDestroyed()) { program.setBombsDeactivated(true); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());

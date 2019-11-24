@@ -626,11 +626,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		return bombCounter;
 	}
 	
-	public boolean getBombDeactivated() {
+	public boolean getBombsDeactivated() {
 		return bombsDeactivated;
 	}
 	
-	public void setBombDeactivated(boolean bomb) {
+	public void setBombsDeactivated(boolean bomb) {
 		this.bombsDeactivated = bomb;
 	}
 	
