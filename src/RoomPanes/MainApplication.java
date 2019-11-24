@@ -42,7 +42,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final int WINDOW_HEIGHT = 650;
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
-
+	
+	////////////////ALMIGHT DEVELOPER MODE///////////////////////////
+	public static final boolean DEVELOPER_MODE = true;
+	/////////////////////////////////////////////////////////////////	
+	
 	private pausePane pausePane;
 	private instructionsPane QPane;
 	private SomePane somePane; 
