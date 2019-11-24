@@ -25,24 +25,9 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	private File file;
 	private GLabel text;
 	private String temp = new String("");
+	private String name;
 	private Formatter x;
 	
-	public void openFile() {
-		try {
-			x = new Formatter("chinese.txt");
-		}
-		catch(Exception e) {
-			System.out.println("Invalid character");
-		}
-	}
-	
-	public void addRecords() {
-		x.format("s", getNewName().getLabel() + " was last seen on " + program.getFloorNum());
-	}
-	
-	public void closeFile() {
-		x.close();
-	}
 	public GameOverPane(MainApplication app) throws IOException 
 	{
 		this.program = app;
@@ -55,6 +40,9 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		text = new GLabel("Enter name of the fallen (press enter when done): ",100,100);
 		text.setColor(Color.red);
 		text.setLocation(480,325);
+		openFile();
+		addRecords();
+		closeFile();
 	}
 	
 	@Override
@@ -75,6 +63,19 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == returnMenu) {
 			program.switchToTitleScreen();
+		}
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		try {
+			FileWriter writer = new FileWriter("highestScores.txt", true);
+			writer.write(userName.getLabel().toString());
+			writer.write("haha");
+			writer.write("\r\n");   // write new line
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -101,6 +102,23 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		}
 
 		//getNewName().getLabel() + " was last seen on " + program.getFloorNum()
+	}
+	
+	public void openFile() {
+		try {
+			x = new Formatter("highScores.txt");
+		}
+		catch(Exception e) {
+			System.out.println("Invalid character");
+		}
+	}
+	
+	public void addRecords() {
+		x.format("s", getNewName().getLabel() + " was last seen on " + program.getFloorNum());
+	}
+	
+	public void closeFile() {
+		x.close();
 	}
 
 	public void keyPressed(KeyEvent e) 
@@ -360,13 +378,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		default:
 			break;
 		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		nameDone();
-		openFile();
-		addRecords();
 	}
 
 }
