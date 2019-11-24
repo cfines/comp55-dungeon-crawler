@@ -176,7 +176,7 @@ public class KeyPressedManager {
 						
 						listOfEnemies.remove(i);
 						audio = AudioPlayer.getInstance();
-						audio.playSound(MUSIC_FOLDER, "roblox-death-sound-effect-opNTQCf4R.mp3");
+						audio.playSound(MUSIC_FOLDER, "Heavy says Dead.mp3");
 					}
 				}
 				//TODO insert user getting hurt here
