@@ -4,7 +4,7 @@ public enum interactionType {
 	entry_door_EAST, entry_door_NORTH, entry_door_SOUTH, entry_door_WEST, entry_stair, 
 	entry_bossDoor, obstacle_rock, obstacle_hole, item_gif_key, rip, rip2, obstacle_concrete_rocks,
 	obstacle_concrete_rubble, nullified, color1, color2, face, chrisEntry_NORTH, chrisEntry_SOUTH,
-	chrisEntry_EAST, chrisEntry_WEST, candle1, candle2, candle3, momoko, monoe, poniko, blueboi, schlept,
+	chrisEntry_EAST, chrisEntry_WEST, candle1, candle2, candle3, treeFell,momoko, monoe, poniko, blueboi, schlept,
 	madotsuki,tree,statue;
 	
 	public String toString() {
@@ -40,6 +40,7 @@ public enum interactionType {
 			case schlept: return "schlept";
 			case madotsuki: return "madotsuki";
 			case tree: return "Tree";
+			case treeFell: return "Tree_boolin";
 			case statue: return "Statue";
 		}
 		return "n/a";

@@ -45,6 +45,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		Interactions itree4 = new Interactions(interactionType.tree,150,285);
 		Interactions itree5 = new Interactions(interactionType.tree,225,285);
 		Interactions itree6 = new Interactions(interactionType.tree,675,285);
+		Interactions itree7 = new Interactions(interactionType.treeFell,750,360);
 		
 		tree1 = itree1.getImage();
 		tree2 = itree2.getImage();
@@ -52,6 +53,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		tree4 = itree4.getImage();
 		tree5 = itree5.getImage();
 		tree6 = itree6.getImage();
+		tree7 = itree7.getImage();
 		
 		E1 = iE1.getImage();
 		background = new GImage("FE Forest Clearing.png", 10,20);
@@ -70,6 +72,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		listOfInter.add(itree4);
 		listOfInter.add(itree5);
 		listOfInter.add(itree6);
+		listOfInter.add(itree7);
 		
 		elements.add(background);
 		elements.add(E1);
@@ -80,6 +83,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		elements.add(tree4);
 		elements.add(tree5);
 		elements.add(tree6);
+		elements.add(tree7);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
