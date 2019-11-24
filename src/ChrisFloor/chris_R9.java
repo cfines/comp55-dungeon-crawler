@@ -20,7 +20,7 @@ import removeLater.User;
 
 public class chris_R9 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E3, E4, background,userRep, userWeapon;
+	private GImage E1, E3, E4, blue1,blue2,blue3,blue4,blue5,blue6,blue7,blue8, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -44,6 +44,14 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions iblue1 = new Interactions(interactionType.blueboi,65,35);
+		Interactions iblue2 = new Interactions(interactionType.blueboi,105,100);
+		Interactions iblue3 = new Interactions(interactionType.blueboi,1005,35);
+		Interactions iblue4 = new Interactions(interactionType.blueboi,975,65);
+		Interactions iblue5 = new Interactions(interactionType.blueboi,1005,440);
+		Interactions iblue6 = new Interactions(interactionType.blueboi,975,410);
+		Interactions iblue7 = new Interactions(interactionType.blueboi,65,440);
+		Interactions iblue8 = new Interactions(interactionType.blueboi,95,420);
 
 		//Enemies
 
@@ -54,11 +62,27 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		E1 = iE1.getImage();
 		E3 = iE3.getImage();
 		E4 = iE4.getImage();
+		blue1 = iblue1.getImage();
+		blue2 = iblue2.getImage();
+		blue3 = iblue3.getImage();
+		blue4 = iblue4.getImage();
+		blue5 = iblue5.getImage();
+		blue6 = iblue6.getImage();
+		blue7 = iblue7.getImage();
+		blue8 = iblue8.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
 		listOfInter.add(iE3);
 		listOfInter.add(iE4);
+		listOfInter.add(iblue1);
+		listOfInter.add(iblue2);
+		listOfInter.add(iblue3);
+		listOfInter.add(iblue4);
+		listOfInter.add(iblue5);
+		listOfInter.add(iblue6);
+		listOfInter.add(iblue7);
+		listOfInter.add(iblue8);
 
 		//listOfEnemies.add)();
 
@@ -72,6 +96,14 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		elements.add(E1);
 		elements.add(E3);
 		elements.add(E4);
+		elements.add(blue1);
+		elements.add(blue2);
+		elements.add(blue3);
+		elements.add(blue4);
+		elements.add(blue5);
+		elements.add(blue6);
+		elements.add(blue7);
+		elements.add(blue8);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
