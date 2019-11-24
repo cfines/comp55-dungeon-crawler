@@ -139,7 +139,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private User user;
 	public boolean comingFromBoss = false;
 	public boolean bossDefeated = false;
-	public boolean bombDeactivated = false;
+	public boolean bomb1Dead = false;
+	public boolean bomb2Dead = false;
+	public boolean bomb3Dead = false;
+	public boolean bombsDeactivated = false;
 	private int floorNum = 0;
 	
 	public void init() {
@@ -569,7 +572,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void bombOverlay() {
 		
-		if(bombDeactivated) {return;}
+		if(bombsDeactivated) {return;}
 		
 		combatRefreshOverlay();
 		
@@ -624,15 +627,53 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public boolean getBombDeactivated() {
-		return bombDeactivated;
+		return bombsDeactivated;
 	}
 	
 	public void setBombDeactivated(boolean bomb) {
-		this.bombDeactivated = bomb;
+		this.bombsDeactivated = bomb;
 	}
 	
 	public boolean getDeveloperMode() {
 		return DEVELOPER_MODE;
+	}
+	
+	public void checkForBombsDestroyed() {
+		if(bomb1Dead && bomb2Dead && bomb3Dead) {
+			bombsDeactivated = true;
+		}
+	}
+	
+	public boolean getBomb1() {
+		return bomb1Dead;
+	}
+	
+	public void setBomb1(boolean bomb) {
+		this.bomb1Dead = bomb;
+	}
+	
+	public boolean getBomb2() {
+		return bomb2Dead;
+	}
+	
+	public void setBomb2(boolean bomb) {
+		this.bomb2Dead = bomb;
+	}
+	
+	public boolean getBomb3() {
+		return bomb3Dead;
+	}
+	
+	public void setBomb3(boolean bomb) {
+		this.bomb3Dead = bomb;
+	}
+	
+	public void resetBombs() {
+		bombCounter = 180;
+		bomb1Dead = false;
+		bomb2Dead = false;
+		bomb3Dead = false;
+		bombsDeactivated = false;
 	}
 	
 	public void resetRooms() {
@@ -723,6 +764,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		feR11 = new fe_R11(this);
 		feR12 = new fe_R12(this);
 		feR12C = new fe_R12Complete(this);
+		resetBombs();
 	}
 	
 	public void resetBosses() {
