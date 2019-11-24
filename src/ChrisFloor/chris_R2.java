@@ -142,7 +142,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
-			//program.switchToChrisR8();
+			program.switchToChrisR8();
 		}
 		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
 			user.setX(150);
