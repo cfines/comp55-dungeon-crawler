@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
@@ -17,9 +18,12 @@ public class instructionsPane extends GraphicsPane implements ActionListener {
 	private Color color = new Color(213, 196, 161);
 	private GButton exit;
 	private GLabel text;
+	private GImage instruction;
 	
 	public instructionsPane(MainApplication app) {
 		this.program = app;
+		
+		
 		
 		background = new GRect(program.WINDOW_WIDTH / 2 - 350, program.WINDOW_HEIGHT / 2 - 250, 700, 500);
 		background.setColor(color);
