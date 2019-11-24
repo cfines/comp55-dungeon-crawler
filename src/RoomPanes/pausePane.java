@@ -19,18 +19,19 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
 	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
-	private GLabel baseFloor;
-	private GLabel osvaldoomFloor;
-	private GLabel shadowRealm;
-	private GLabel lucinaDomain;
-	private GLabel schtanlyParable;
-	private GLabel bombFloor;
+	private ArrayList<GLabel> labelArr = new ArrayList<GLabel>();
+	private GLabel baseFloor = new GLabel("BASE", 5 ,80);
+	private GLabel osvaldoomFloor = new GLabel("OSVALDOOM", program.WINDOW_WIDTH / 2 - 135 ,85);
+	private GLabel shadowRealm = new GLabel("SHADOW_REALM", program.WINDOW_WIDTH / 2 - 135 ,85);
+	private GLabel lucinaDomain = new GLabel("PEPPA_PIG", program.WINDOW_WIDTH / 2 - 135 ,85);
+	private GLabel schtanlyParable = new GLabel("SCHTANLY_PARABLE", program.WINDOW_WIDTH / 2 - 135 ,85);
+	private GLabel bombFloor = new GLabel("BOMB_FLOOR", program.WINDOW_WIDTH / 2 - 135 ,85);
 	private GButton BF_R1 = new GButton("R1", 0, 0, 50, 50);
 	private GButton BF_RKey = new GButton("KEY", 0, 0, 50, 50);
 	private GButton BF_RBoss = new GButton("BOSS", 0, 0, 50, 50);
 	private GButton OF_R1 = new GButton("R1", 0, 0, 50, 50);
 	private GButton OF_RKey = new GButton("KEY", 0, 0, 50, 50);
-	private GButton OF_Boss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton OF_RBoss = new GButton("BOSS", 0, 0, 50, 50);
 	private GButton SR_R1 = new GButton("R1", 0, 0, 50, 50);
 	private GButton SR_RKey = new GButton("KEY", 0, 0, 50, 50);
 	private GButton SR_RBoss = new GButton("BOSS", 0, 0, 50, 50);
@@ -39,7 +40,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton LD_RBoss = new GButton("BOSS", 0, 0, 50, 50);
 	private GButton SP_R1 = new GButton("R1", 0, 0, 50, 50);
 	private GButton SP_RKey = new GButton("KEY", 0, 0, 50, 50);
-	private GButton SP_Boss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton SP_RBoss = new GButton("BOSS", 0, 0, 50, 50);
 	private GButton BOMB_R1 = new GButton("R1", 0, 0, 50, 50);
 	private GButton BOMB_Bomb1 = new GButton("BOMB1", 0, 0, 50, 50);
 	private GButton BOMB_Bomb2 = new GButton("BOMB2", 0, 0, 50, 50);
@@ -54,6 +55,42 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		pauseLabel.setColor(Color.red);
 		pauseLabel.setFont("Arial-Bold-64");
 		
+		baseFloor.setColor(Color.white);
+		osvaldoomFloor.setColor(Color.cyan);
+		shadowRealm.setColor(Color.black);
+		lucinaDomain.setColor(Color.orange);
+		schtanlyParable.setColor(Color.gray);
+		bombFloor.setColor(Color.red);
+		labelArr.add(baseFloor);
+		labelArr.add(osvaldoomFloor);
+		labelArr.add(shadowRealm);
+		labelArr.add(lucinaDomain);
+		labelArr.add(schtanlyParable);
+		labelArr.add(bombFloor);
+		
+		for(int i = 0; i < labelArr.size(); i++) {
+			labelArr.get(i).setFont("Arial-Bold-20");
+		}
+		
+		buttonArr.add(BF_R1);
+		buttonArr.add(BF_RKey);
+		buttonArr.add(BF_RBoss);
+		buttonArr.add(OF_R1);
+		buttonArr.add(OF_RKey);
+		buttonArr.add(OF_RBoss);
+		buttonArr.add(SR_R1);
+		buttonArr.add(SR_RKey);
+		buttonArr.add(SR_RBoss);
+		buttonArr.add(LD_R1);
+		buttonArr.add(LD_RKey);
+		buttonArr.add(LD_RBoss);
+		buttonArr.add(SP_R1);
+		buttonArr.add(SP_RKey);
+		buttonArr.add(SP_RBoss);
+		buttonArr.add(BOMB_R1);
+		buttonArr.add(BOMB_Bomb1);
+		buttonArr.add(BOMB_Bomb2);
+		buttonArr.add(BOMB_Bomb3);
 		
 		
 	}
@@ -68,6 +105,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			for(int i = 0; i < buttonArr.size(); i++) {
 				program.add(buttonArr.get(i));
 			}
+			for(int i = 0; i < labelArr.size(); i++) {
+				program.add(labelArr.get(i));
+			}
 		}
 		
 	}
@@ -81,6 +121,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		if(program.getDeveloperMode()) {
 			for(int i = 0; i < buttonArr.size(); i++) {
 				program.remove(buttonArr.get(i));
+			}
+			for(int i = 0; i < labelArr.size(); i++) {
+				program.remove(labelArr.get(i));
 			}
 		}
 		
