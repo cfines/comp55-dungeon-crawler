@@ -44,7 +44,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_WEST, 27,300);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_EAST, 1050,300);
-		Interactions iE5 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
+		Interactions iE5 = new Interactions(interactionType.entry_door_SOUTH, 575,500);
 		
 		
 		//Enemies
@@ -70,6 +70,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
+		elements.add(background);
 		elements.add(E2);
 		elements.add(E3);
 		elements.add(E4);
@@ -136,26 +137,27 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userX + 80;
 		double userY2 = userX + 80;
-		if(userX >= E2.getX() - 10 && userY >= E2.getY() - 10 && userX <= E2.getX() + 75 && userY <= E2.getY() + 69) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
-		}
-		else if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 70 && userY <= E3.getY() + 70) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
-		}
-//		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
-//			user.setX(150);
+//		if(userX >= E2.getX() - 10 && userY >= E2.getY() - 10 && userX <= E2.getX() + 75 && userY <= E2.getY() + 69) {
+//			user.setX(900);
 //			user.setY(300);
 //			userRep.setLocation(user.getX(), user.getY());
 //			program.switchToChrisR1();
 //		}
-		else if(userX >= E5.getX() && userY >= E5.getY() && userY <= E5.getY() + 70 && userX <= E5.getX() + 70) {
-			System.out.println("detected");
+//		if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 70 && userY <= E3.getY() + 70) {
+//			user.setX(575);
+//			user.setY(410);
+//			userRep.setLocation(user.getX(), user.getY());
+//			program.switchToChrisR1();
+//		}
+		if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
+			System.out.println("east");
+//			user.setX(150);
+//			user.setY(300);
+//			userRep.setLocation(user.getX(), user.getY());
+//			program.switchToChrisR1();
+		}
+		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() - 30  && userX >= E5.getX() - 30) {
+			System.out.println("south");
 //			user.setX(575);
 //			user.setY(110);
 //			userRep.setLocation(user.getX(),user.getY());
@@ -194,5 +196,11 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 //			enem.setStartX(enem.getImage().getX());
 //			enem.setStartY(enem.getImage().getY());
 //		}
+	}
+	public boolean doorCollisionTest(GImage image) {
+		return (user.getY() - image.getY() <= 60
+				&& user.getY() - image.getY() >= -60
+				&& user.getX() - image.getX() <= 60
+				&& user.getX() - image.getX() >= -60);
 	}
 }
