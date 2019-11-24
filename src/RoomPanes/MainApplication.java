@@ -210,7 +210,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToFeR2(); //change which screen you want to switch to
+		switchToTest(); //change which screen you want to switch to
 
 	}
 	
