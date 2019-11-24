@@ -15,6 +15,7 @@ import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
 import ChrisFloor.chris_R9;
 import FyiahEmburemFloor.fe_R1;
+import FyiahEmburemFloor.fe_R2;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -77,6 +78,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	private fe_R1 feR1;
+	private fe_R2 feR2;
 	public boolean bossRun = false;
 	public int bombCounter = 180;
 	
@@ -153,6 +155,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
+		feR2 = new fe_R2(this);
 		
 		try {
 			playerDied = new GameOverPane(this);
@@ -218,6 +221,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R9 = new chris_R9(this);
 			chris_R10 = new chris_R10(this);
 			feR1 = new fe_R1(this);
+			feR2 = new fe_R2(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
 			try {
@@ -348,6 +352,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
+	}
+	
+	public void switchToFeR2() 
+	{
+		switchToScreen(feR2);
 	}
 	
 	public void switchToLightsOff() {
