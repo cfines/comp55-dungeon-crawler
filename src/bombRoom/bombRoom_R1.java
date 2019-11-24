@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E1, E2, E3, E4, background, userRep, userWeapon, bombIMG;
+	private GImage rock1, rock2, hole1, EN, ES, EE, EW, background, userRep, userWeapon, bombIMG;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -57,10 +57,10 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
-		E1 = oE1.getImage();
-		E2 = oE2.getImage();
-		E3 = oE3.getImage();
-		E4 = oE4.getImage();
+		EN = oE1.getImage();
+		ES = oE2.getImage();
+		EE = oE3.getImage();
+		EW = oE4.getImage();
 		
 		bombIMG = bomb1.getImage();
 
@@ -73,10 +73,10 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		voidSpace.setFilled(true);
 
 		elements.add(background);
-		elements.add(E1);
-		elements.add(E2);
-		elements.add(E3);
-		elements.add(E4);
+		elements.add(EN);
+		elements.add(ES);
+		elements.add(EE);
+		elements.add(EW);
 		elements.add(userRep);
 		
 		enemyImages.add(bombIMG);
@@ -121,22 +121,12 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == E1) {
-			program.switchToR2();
-			userRep.setLocation(70,300);
-		}
-		else if(obj == rock1) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
-		}
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		decrementTimer();
-		if(checkIfBombDestroyed()) { program.setBombsDeactivated(true); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -147,7 +137,26 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		double userY = userRep.getY();
 		double userX2 = userX + 80;
 		double userY2 = userX + 80;
-		if(userX <= E1.getX() && userY <= E1.getY() && userX2 >= E1.getX() && userY2 >= E1.getY()) {
+		//SOUTH DOOR
+		if(userX <= ES.getX() && userY <= ES.getY() && userX2 >= ES.getX() && userY2 >= ES.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR2();
+			//EAST DOOR
+		} else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR2();
+			//WEST DOOR
+		} else if(userX <= EW.getX() && userY <= EW.getY() && userX2 >= EW.getX() && userY2 >= EW.getY()) {
+			user.setX(150);
+			user.setY(300);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR2();
+			//NORTH DOOR
+		} else if(userX <= EN.getX() && userY <= EN.getY() && userX2 >= EN.getX() && userY2 >= EN.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -175,20 +184,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 			program.setBombCounter(program.getBombCounter() - 1);
 			program.bombOverlay();
 		}
-	}
-	
-	public boolean checkIfBombDestroyed() {
-		if(listOfEnemies.size() == 0) {
-			return true;
-		} 
-		
-		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {
-				return false;
-			}
-		}
-			
-		return true;
 	}
 	
 }
