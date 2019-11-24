@@ -46,6 +46,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton BOMB_Bomb2 = new GButton("BOMB2", 120, 475, 50, 50);
 	private GButton BOMB_Bomb3 = new GButton("BOMB3", 175, 475, 50, 50);
 	
+	//private GButton invinvibility = new GButton("GOD_MODE", 0, 0, 50, 50); 
+	
 	
 	public pausePane(MainApplication app){
 		this.program = app;
@@ -149,7 +151,29 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			program.noLongerPaused();
 		}
 		
-		
+		for(int i = 0; i < buttonArr.size(); i++) {
+			if(obj == buttonArr.get(i)) {
+				if(i == 0) { program.switchToSome(); }			//BASE-R1
+				if(i == 1) { program.switchToR6(); }			//BASE-KEY
+				if(i == 2) { program.switchToR9(); }			//BASE-BOSS
+				if(i == 3) { program.switchToOsvaldoR1(); }		//DOOM-R1
+				if(i == 4) { /*TODO add*/ }						//DOOM-KEY
+				if(i == 5) { program.switchToOsvaldoBoss(); }	//DOOM-BOSS
+				if(i == 6) { program.switchToChrisR1(); }			//SHAD-R1
+				if(i == 7) { program.switchToChrisR7(); }			//SHAD-KEY
+				if(i == 8) { /*program.switchToChrisR12();*/ }			//SHAD-BOSS
+				if(i == 9) { program.switchToFeR1(); }			//FIRE-R1
+				if(i == 10) { /*program.switchToFeR10();*/ }			//FIRE-KEY
+				if(i == 11) { /*program.switchToFeR12();*/ }			//FIRE-BOSS
+				if(i == 12) { /*TODO add*/ }			//STAN-R1
+				if(i == 13) { /*TODO add*/ }			//STAN-KEY
+				if(i == 14) { /*TODO add*/ }			//STAN-BOSS
+				if(i == 15) { program.switchToBombRoomR1(); }	//BOMB-R1
+				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
+				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
+				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
+			}
+		}
 		
 	}
 	
