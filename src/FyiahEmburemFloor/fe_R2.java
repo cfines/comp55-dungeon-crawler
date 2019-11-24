@@ -197,7 +197,7 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			//program.switchToFeR3();
+			program.switchToFeR3();
 		}
 	}
 }
