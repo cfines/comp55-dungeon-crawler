@@ -34,7 +34,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private int degree;
 	private User user;
-	private Enemy osvaldoom = new Enemy(20,20,2,2,100,100, ElementType.FIRE, enemyType.electric);
+	private Enemy osvaldoom = new Enemy(1,1,2,2,100,100, ElementType.FIRE, enemyType.electric);
 	private Enemy shot = new Enemy(100, 100, 5, 1, 0, 0, ElementType.FIRE, enemyType.projectile);
 	private enemyType attk = enemyType.electric;
 	private enemyType still = enemyType.electric;
@@ -113,6 +113,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			program.switchToR9Complete();
 		}
 		
+		userCombat();
 		enemyCombat();
 		timerCont++;
 		enemyMovement();
@@ -148,13 +149,12 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			attack = !attack;
 			if(attack) {
 				generateRandom();
-				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY(), ElementType.FIRE, enemyType.projectile);
+				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY() + 75, ElementType.FIRE, enemyType.projectile);
 				listOfProjectiles.add(shot);
 			} else {
 				listOfProjectiles.remove(shot);
 				program.remove(shot.getImage());
 				hit = false;
-				program.remove(shoot);
 			}
 		}
 		
@@ -170,6 +170,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
+			enem.getEnemyStats().setCoordX(enem.getImage().getX());
+			enem.getEnemyStats().setCoordY(enem.getImage().getY());
 			
 		}
 		
@@ -227,6 +229,17 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				program.combatRefreshOverlay();
+			}
+		}
+	}
+	
+	public void userCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), osvaldoom.getImage())) { 
+				System.out.println("You killed Osvaldoom!");
+				osvaldoom.getEnemyStats().setHP_cur(0);
+				listOfProjectiles.remove(listOfProjectiles.get(i));
+				program.remove(shot.getImage());
 			}
 		}
 	}
