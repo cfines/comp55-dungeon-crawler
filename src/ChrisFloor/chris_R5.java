@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
+	private GImage E2, E4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -36,7 +36,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 	private int timerCont = 0;
 	private boolean move = true;
 	private KeyPressedManager mover;
-	
+
 
 	public chris_R5(MainApplication app) {
 		this.program = app;
@@ -44,9 +44,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 
 
 		//Interactions
-		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
-		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 
 		//Enemies
@@ -55,15 +53,11 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		background = new GImage("background_block.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		E1 = iE1.getImage();
 		E2 = iE2.getImage();
-		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 
 		//listOfInter.add();
-		listOfInter.add(iE1);
 		listOfInter.add(iE2);
-		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 
 		//listOfEnemies.add)();
@@ -75,9 +69,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 
 		//elements.add();
 		elements.add(background);
-		elements.add(E1);
 		elements.add(E2);
-		elements.add(E3);
 		elements.add(E4);
 		elements.add(userRep);
 
@@ -104,7 +96,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 			}
 		}
 
-		program.drawOverlay(3, program.getFloorNum());
+		program.drawOverlay(5, program.getFloorNum());
 	}
 
 
@@ -149,23 +141,11 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
-//			user.setX(575);
-//			user.setY(410);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToChrisR1();
-		}
-		else if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
+		if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
 			program.switchToChrisR4();
-		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
-//			user.setX(150);
-//			user.setY(300);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToChrisR1();
 		}
 		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
 			user.setX(900);
@@ -180,25 +160,25 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
+		//		if(everyXSeconds(20)) {
+		//			move = !move;
+		//		}
+		//		for (Enemy enem : listOfEnemies) {
+		//
+		//			enem.getImage().movePolar(5, degree);
+		//			degree+=5;
+		//			degree%=360;
+		//			if(move) {
+		//				if(enem.getEnemyType() == enemyType.FIREDeath) {
+		//					double distX = enem.getImage().getX() - userRep.getX();
+		//					double distY = enem.getImage().getY() - userRep.getY();
+		//					double moveX = (distX * 1) / 100;
+		//					double moveY = (distY * 1) / 100;
+		//					enem.getImage().move(-moveX, -moveY);
+		//				}
+		//			}else {enem.getImage().move(0, 0);}
+		//			enem.setStartX(enem.getImage().getX());
+		//			enem.setStartY(enem.getImage().getY());
+		//		}
 	}
 }

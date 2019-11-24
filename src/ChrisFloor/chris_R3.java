@@ -103,7 +103,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 				}
 			}
 		}
-		program.drawOverlay(4, program.getFloorNum());
+		program.drawOverlay(3, program.getFloorNum());
 	}
 
 
