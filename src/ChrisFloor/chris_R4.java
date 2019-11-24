@@ -48,19 +48,19 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
-		Interactions icolor1 = new Interactions(interactionType.color1,140,35);
+		Interactions icolor1 = new Interactions(interactionType.color2,140,35);
 		Interactions icolor2 = new Interactions(interactionType.color1,215,35);
-		Interactions icolor3 = new Interactions(interactionType.color1,930,35);
+		Interactions icolor3 = new Interactions(interactionType.color2,930,35);
 		Interactions icolor4 = new Interactions(interactionType.color1,855,35);
-		Interactions icolor7 = new Interactions(interactionType.color1,65,184);
+		Interactions icolor7 = new Interactions(interactionType.color2,65,184);
 		Interactions icolor8 = new Interactions(interactionType.color1,65,444);
-		Interactions icolor9 = new Interactions(interactionType.color1,930,500);
+		Interactions icolor9 = new Interactions(interactionType.color2,930,500);
 		Interactions icolor11 = new Interactions(interactionType.color1,855,500);
-		Interactions icolor10 = new Interactions(interactionType.color1,140,500);
+		Interactions icolor10 = new Interactions(interactionType.color2,140,500);
 		Interactions icolor12 = new Interactions(interactionType.color1,215,500);
-		Interactions icolor13 = new Interactions(interactionType.color1,1005,191);
+		Interactions icolor13 = new Interactions(interactionType.color2,1005,191);
 		Interactions icolor14 = new Interactions(interactionType.color1,1005,243);
-		Interactions icolor15 = new Interactions(interactionType.color1,1005,295);
+		Interactions icolor15 = new Interactions(interactionType.color2,1005,295);
 		Interactions icolor16 = new Interactions(interactionType.color1,1005,347);
 
 		//Enemies

@@ -41,9 +41,14 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.Brigand);
-		Enemy ienemy2 = new Enemy(2,2,2,2,575,200, ElementType.FIRE, enemyType.Samurai);
+		Enemy ienemy2 = new Enemy(2,2,2,2,775,300, ElementType.FIRE, enemyType.Samurai);
 		Interactions iE2 = new Interactions(interactionType.entry_door_WEST,27,300);
 		Interactions iE3 = new Interactions(interactionType.entry_door_NORTH,575,30);
+		Interactions itree1 = new Interactions (interactionType.tree,700,75);
+		Interactions itree2 = new Interactions (interactionType.tree,525,450);
+		Interactions itree3 = new Interactions (interactionType.tree,450,75);
+		Interactions itree4 = new Interactions (interactionType.tree,375,150);
+		Interactions itree5 = new Interactions (interactionType.tree,850,225);
 		
 		background = new GImage("FE Forest Clearing.png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif", 0, 0);
@@ -53,6 +58,11 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 		enemy2 = ienemy2.getImage();
 		E2 = iE2.getImage();
 		E3 = iE3.getImage();
+		tree1 = itree1.getImage();
+		tree2 = itree2.getImage();
+		tree3 = itree3.getImage();
+		tree4 = itree4.getImage();
+		tree5 = itree5.getImage();
 		
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
@@ -63,12 +73,23 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 		voidSpace.setFilled(true);
 		listOfInter.add(iE2);
 		listOfInter.add(iE3);
+		listOfInter.add(itree1);
+		listOfInter.add(itree2);
+		listOfInter.add(itree3);
+		listOfInter.add(itree4);
+		listOfInter.add(itree5);
+		
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
 		
 		elements.add(background);
 		elements.add(E2);
 		elements.add(E3);
+		elements.add(tree1);
+		elements.add(tree2);
+		elements.add(tree3);
+		elements.add(tree4);
+		elements.add(tree5);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,

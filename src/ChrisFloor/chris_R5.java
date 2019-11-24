@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E4, background,userRep, userWeapon;
+	private GImage E2, E4, color1, color2, color3, color4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -46,6 +46,10 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		//Interactions
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions icolor1 = new Interactions(interactionType.color2,65,48);
+		Interactions icolor2 = new Interactions(interactionType.color2,65,490);
+		Interactions icolor3 = new Interactions(interactionType.color2,1005,35);
+		Interactions icolor4 = new Interactions(interactionType.color2,1005,490);
 
 		//Enemies
 
@@ -55,10 +59,18 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E2 = iE2.getImage();
 		E4 = iE4.getImage();
+		color1 = icolor1.getImage();
+		color2 = icolor2.getImage();
+		color3 = icolor3.getImage();
+		color4 = icolor4.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE2);
 		listOfInter.add(iE4);
+		listOfInter.add(icolor1);
+		listOfInter.add(icolor2);
+		listOfInter.add(icolor3);
+		listOfInter.add(icolor4);
 
 		//listOfEnemies.add)();
 
@@ -71,6 +83,10 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(E2);
 		elements.add(E4);
+		elements.add(color1);
+		elements.add(color2);
+		elements.add(color3);
+		elements.add(color4);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 

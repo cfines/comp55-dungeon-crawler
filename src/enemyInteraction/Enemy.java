@@ -71,6 +71,9 @@ public class Enemy {
 		} else if(type == enemyType.bomb) {
 			image = new GImage("Healing Perfume (Consumable).png", dx, dy);
 		}
+		else if(type == enemyType.Nagic) {
+			image = new GImage("Dark Magic.png",dx,dy);
+		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}
 	
