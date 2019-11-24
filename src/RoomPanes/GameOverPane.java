@@ -84,7 +84,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		program.switchToMenu();
 		//getNewName().getLabel() + " was last seen on " + program.getFloorNum()
 	}
