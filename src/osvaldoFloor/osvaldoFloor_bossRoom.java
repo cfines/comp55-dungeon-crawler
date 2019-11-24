@@ -173,7 +173,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			if(program.getBossRun()) {
 				user.setX(575);
 				user.setY(425);
-				program.switchToOsvaldoBoss();
+				program.switchToTitleScreen(); //TODO change when next boss is implemented
+				program.setBossRun(false);
 				return;
 			}
 			program.setBossDefeated(true);
