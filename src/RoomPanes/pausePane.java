@@ -55,6 +55,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
 	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 325, 215, 50);
 	
+	private boolean exit = false;
 	
 	public pausePane(MainApplication app){
 		this.program = app;
@@ -201,6 +202,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
 				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
 				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
+				exit = true;
 			}
 		}
 		
@@ -214,6 +216,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		}
 		
 		refreshColors();
+		removeColors(exit);
+		
 		
 		if (obj == pauseButton) {
 			program.switchToMenu();
@@ -237,6 +241,13 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		}
 		program.remove(invincibility);
 		program.add(invincibility);
+	}
+	
+	public void removeColors(boolean exit) {
+		if(exit) {
+			program.remove(invincibility);
+			program.remove(giveKey);
+		}
 	}
 	
 }
