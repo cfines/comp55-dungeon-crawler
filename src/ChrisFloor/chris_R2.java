@@ -44,7 +44,6 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE5 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		
-		
 		//Enemies
 		
 		//gImages
@@ -85,7 +84,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		//System.out.println("x: "+ user.getX() + " y: " + user.getY());		
+		System.out.println("x: "+ user.getX() + " y: " + user.getY());		
 	}
 
 	@Override
