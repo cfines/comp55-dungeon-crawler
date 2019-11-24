@@ -10,6 +10,7 @@ import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
 import ChrisFloor.chris_R5;
 import earthFloor.earth_boss;
+import FyiahEmburemFloor.fe_R1;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -65,6 +66,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private MenuPane_LightsOff lightsoff;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
+	private fe_R1 feR1;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -126,6 +128,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		tittle = new TitleScreenPane(this);
+		feR1 = new fe_R1(this);
+		
 		try {
 			playerDied = new GameOverPane(this);
 		} catch (IOException e) {
@@ -184,6 +188,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R2 = new chris_R2(this);
 			chris_R4 = new chris_R4(this);
 			chris_R5 = new chris_R5(this);
+			feR1 = new fe_R1(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
 			try {
@@ -284,6 +289,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToEarthBoss() {
 		switchToScreen(earth_boss);
+	}
+	
+	public void switchToFeR1() {
+		switchToScreen(feR1);
 	}
 	
 	public void switchToLightsOff() {
