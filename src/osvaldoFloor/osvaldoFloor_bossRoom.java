@@ -60,7 +60,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		
 		shoot = new GImage("leg.gif");
 
-		background = new GImage("Fire_Floor (Regular Floor).png", 15,30);
+		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
