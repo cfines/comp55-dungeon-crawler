@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 import removeLater.GButton;
 
 public class pausePane extends GraphicsPane implements ActionListener {
@@ -18,6 +19,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GLabel pauseLabel;
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
+	private GRect devBox = new GRect(0, 80, 235, 470);
 	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
 	private ArrayList<GLabel> labelArr = new ArrayList<GLabel>();
 	private GLabel baseFloor = new GLabel("BASE", 10 ,97);
@@ -58,6 +60,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		pauseLabel = new GLabel("PAUSED", program.WINDOW_WIDTH / 2 - 135 ,85);
 		pauseLabel.setColor(Color.red);
 		pauseLabel.setFont("Arial-Bold-64");
+		
+		devBox.setColor(Color.lightGray);
+		devBox.setFilled(true);
 		
 		baseFloor.setColor(Color.white);
 		osvaldoomFloor.setColor(Color.cyan);
@@ -112,6 +117,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.add(pauseButton);
 		program.add(pauseLabel);
 		program.add(resumeButton);
+		program.add(devBox);
 		
 		if(program.getDeveloperMode()) {
 			for(int i = 0; i < buttonArr.size(); i++) {
@@ -129,6 +135,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.remove(pauseButton);
 		program.remove(pauseLabel);
 		program.remove(resumeButton);
+		program.remove(devBox);
 		
 		if(program.getDeveloperMode()) {
 			for(int i = 0; i < buttonArr.size(); i++) {
