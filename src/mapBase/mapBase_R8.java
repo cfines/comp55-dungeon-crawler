@@ -158,6 +158,12 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR9();
 		}
+		else if(obj == rock1) {
+			user.setX(575);
+			user.setY(410);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToChrisR1();
+		}
 	}
 
 	@Override
