@@ -4,9 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import RoomPanes.GraphicsPane;
+import RoomPanes.MainApplication;
 
 public class fe_R12 extends GraphicsPane implements ActionListener{
-
+	private MainApplication program;
+	
+	public fe_R12(MainApplication app) 
+	{
+		
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

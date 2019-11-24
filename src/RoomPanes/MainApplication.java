@@ -15,10 +15,22 @@ import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
 import ChrisFloor.chris_R9;
 import FyiahEmburemFloor.fe_R1;
+import FyiahEmburemFloor.fe_R10;
+import FyiahEmburemFloor.fe_R11;
+import FyiahEmburemFloor.fe_R12;
+import FyiahEmburemFloor.fe_R12Complete;
 import FyiahEmburemFloor.fe_R2;
+import FyiahEmburemFloor.fe_R3;
+import FyiahEmburemFloor.fe_R4;
+import FyiahEmburemFloor.fe_R5;
+import FyiahEmburemFloor.fe_R6;
+import FyiahEmburemFloor.fe_R7;
+import FyiahEmburemFloor.fe_R8;
+import FyiahEmburemFloor.fe_R9;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
+import bombRoom.bombRoom_R1;
 import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
@@ -34,7 +46,6 @@ import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
 import osvaldoFloor.osvaldoFloor_bossRoomComplete;
-import bombRoom.bombRoom_R1;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -83,6 +94,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private AudioPlayer audio;
 	private fe_R1 feR1;
 	private fe_R2 feR2;
+	private fe_R3 feR3;
+	private fe_R4 feR4;
+	private fe_R5 feR5;
+	private fe_R6 feR6;
+	private fe_R7 feR7;
+	private fe_R8 feR8;
+	private fe_R9 feR9;
+	private fe_R10 feR10;
+	private fe_R11 feR11;
+	private fe_R12 feR12;
+	private fe_R12Complete feR12C;
 	public boolean bossRun = false;
 	public int bombCounter = 180;
 	
@@ -160,7 +182,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
 		feR2 = new fe_R2(this);
-		
+		feR3 = new fe_R3(this);
+		feR4 = new fe_R4(this);
+		feR5 = new fe_R5(this);
+		feR6 = new fe_R6(this);
+		feR7 = new fe_R7(this);
+		feR8 = new fe_R8(this);
+		feR9 = new fe_R9(this);
+		feR10 = new fe_R10(this);
+		feR11 = new fe_R11(this);
+		feR12 = new fe_R12(this);
+		feR12C = new fe_R12Complete(this);
 		try {
 			playerDied = new GameOverPane(this);
 		} catch (IOException e) {
@@ -363,6 +395,60 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(feR2);
 	}
 	
+	public void switchToFeR3() 
+	{
+		switchToScreen(feR3);
+	}
+	
+	public void switchToFeR4() 
+	{
+		switchToScreen(feR4);
+	}
+	
+	public void switchToFeR5() 
+	{
+		switchToScreen(feR5);
+	}
+	
+	public void switchToFeR6() 
+	{
+		switchToScreen(feR6);
+	}
+	
+	public void switchToFeR7() 
+	{
+		switchToScreen(feR7);
+	}
+	
+	public void switchToFeR8() 
+	{
+		switchToScreen(feR8);
+	}
+	
+	public void switchToFeR9() 
+	{
+		switchToScreen(feR9);
+	}
+	
+	public void switchToFeR10() 
+	{
+		switchToScreen(feR10);
+	}
+	
+	public void switchToFeR11() 
+	{
+		switchToScreen(feR11);
+	}
+	
+	public void switchToFeR12() 
+	{
+		switchToScreen(feR12);
+	}
+	
+	public void switchToFeR12Complete() 
+	{
+		switchToScreen(feR12C);
+	}
 	public void switchToLightsOff() {
 		switchToScreen(lightsoff);
 	}
