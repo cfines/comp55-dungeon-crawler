@@ -84,7 +84,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		
 		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
-			program.switchToR9Complete();
+			program.switchToOsvaldoBossComplete();
 		}
 		
 		t.start();
@@ -111,7 +111,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		
 		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
-			program.switchToR9Complete();
+			program.switchToOsvaldoBossComplete();
 		}
 		
 		userCombat();
