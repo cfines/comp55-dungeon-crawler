@@ -32,6 +32,15 @@ import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
 import bombRoom.bombRoom_R1;
+import bombRoom.bombRoom_R2;
+import bombRoom.bombRoom_R3;
+import bombRoom.bombRoom_R6;
+import bombRoom.bombRoom_R8;
+import bombRoom.bombRoom_R10;
+import bombRoom.bombRoom_BOMB1;
+import bombRoom.bombRoom_BOMB2;
+import bombRoom.bombRoom_BOMB3;
+import bombRoom.bombRoom_KEY;
 import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
@@ -88,6 +97,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
 	private bombRoom_R1 bombRoom_R1;
+	private bombRoom_R2 bombRoom_R2;
+	private bombRoom_R3 bombRoom_R3;
+	private bombRoom_R6 bombRoom_R6;
+	private bombRoom_R8 bombRoom_R8;
+	private bombRoom_R10 bombRoom_R10;
+	private bombRoom_BOMB1 bombRoom_BOMB1;
+	private bombRoom_BOMB2 bombRoom_BOMB2;
+	private bombRoom_BOMB3 bombRoom_BOMB3;
+	private bombRoom_KEY bombRoom_KEY;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -139,7 +157,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private User user;
 	public boolean comingFromBoss = false;
 	public boolean bossDefeated = false;
-	public boolean bombDeactivated = false;
+	public boolean bomb1Dead = false;
+	public boolean bomb2Dead = false;
+	public boolean bomb3Dead = false;
+	public boolean bombsDeactivated = false;
 	private int floorNum = 0;
 	
 	public void init() {
@@ -181,6 +202,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		
 		bombRoom_R1 = new bombRoom_R1(this);
+		bombRoom_R2 = new bombRoom_R2(this);
+		bombRoom_R3 = new bombRoom_R3(this);
+		bombRoom_R6 = new bombRoom_R6(this);
+		bombRoom_R8 = new bombRoom_R8(this);
+		bombRoom_R10 = new bombRoom_R10(this);
+		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
+		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
+		bombRoom_BOMB3 = new bombRoom_BOMB3(this);
+		bombRoom_KEY = new bombRoom_KEY(this);
 		
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
@@ -352,6 +382,42 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToBombRoomR1() {
 		switchToScreen(bombRoom_R1);
+	}
+	
+	public void switchToBombRoomR2() {
+		switchToScreen(bombRoom_R2);
+	}
+	
+	public void switchToBombRoomR3() {
+		switchToScreen(bombRoom_R3);
+	}
+	
+	public void switchToBombRoomR6() {
+		switchToScreen(bombRoom_R6);
+	}
+	
+	public void switchToBombRoomR8() {
+		switchToScreen(bombRoom_R8);
+	}
+	
+	public void switchToBombRoomR10() {
+		switchToScreen(bombRoom_R10);
+	}
+	
+	public void switchToBombRoomBOMB1() {
+		switchToScreen(bombRoom_BOMB1);
+	}
+	
+	public void switchToBombRoomBOMB2() {
+		switchToScreen(bombRoom_BOMB2);
+	}
+	
+	public void switchToBombRoomBOMB3() {
+		switchToScreen(bombRoom_BOMB3);
+	}
+	
+	public void switchToBombRoomKEY() {
+		switchToScreen(bombRoom_KEY);
 	}
 	
 	public void switchToFeR1() {
@@ -569,7 +635,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void bombOverlay() {
 		
-		if(bombDeactivated) {return;}
+		if(bombsDeactivated) {return;}
 		
 		combatRefreshOverlay();
 		
@@ -623,16 +689,57 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		return bombCounter;
 	}
 	
-	public boolean getBombDeactivated() {
-		return bombDeactivated;
+	public boolean getBombsDeactivated() {
+		return bombsDeactivated;
 	}
 	
-	public void setBombDeactivated(boolean bomb) {
-		this.bombDeactivated = bomb;
+	public void setBombsDeactivated(boolean bomb) {
+		this.bombsDeactivated = bomb;
 	}
 	
 	public boolean getDeveloperMode() {
 		return DEVELOPER_MODE;
+	}
+	
+	public void checkForBombsDestroyed() {
+		if(bomb1Dead && bomb2Dead && bomb3Dead) {
+			bombsDeactivated = true;
+		}
+	}
+	
+	public boolean getBomb1() {
+		return bomb1Dead;
+	}
+	
+	public void setBomb1(boolean bomb) {
+		this.bomb1Dead = bomb;
+		checkForBombsDestroyed();
+	}
+	
+	public boolean getBomb2() {
+		return bomb2Dead;
+	}
+	
+	public void setBomb2(boolean bomb) {
+		this.bomb2Dead = bomb;
+		checkForBombsDestroyed();
+	}
+	
+	public boolean getBomb3() {
+		return bomb3Dead;
+	}
+	
+	public void setBomb3(boolean bomb) {
+		this.bomb3Dead = bomb;
+		checkForBombsDestroyed();
+	}
+	
+	public void resetBombs() {
+		bombCounter = 180;
+		bomb1Dead = false;
+		bomb2Dead = false;
+		bomb3Dead = false;
+		bombsDeactivated = false;
 	}
 	
 	public void resetRooms() {
@@ -665,6 +772,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = null;
 		osvaldoFloor_bossRoomComplete = null;
 		bombRoom_R1 = null;
+		bombRoom_R2 = null;
+		bombRoom_R3 = null;
+		bombRoom_R6 = null;
+		bombRoom_R8 = null;
+		bombRoom_R10 = null;
+		bombRoom_BOMB1 = null;
+		bombRoom_BOMB2 = null;
+		bombRoom_BOMB3 = null;
+		bombRoom_KEY = null;
 		tittle = null;
 		feR1 = null;
 		feR2 = null;
@@ -709,6 +825,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		bombRoom_R1 = new bombRoom_R1(this);
+		bombRoom_R2 = new bombRoom_R2(this);
+		bombRoom_R3 = new bombRoom_R3(this);
+		bombRoom_R6 = new bombRoom_R6(this);
+		bombRoom_R8 = new bombRoom_R8(this);
+		bombRoom_R10 = new bombRoom_R10(this);
+		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
+		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
+		bombRoom_BOMB3 = new bombRoom_BOMB3(this);
+		bombRoom_KEY = new bombRoom_KEY(this);
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
 		feR2 = new fe_R2(this);
@@ -723,6 +848,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		feR11 = new fe_R11(this);
 		feR12 = new fe_R12(this);
 		feR12C = new fe_R12Complete(this);
+		resetBombs();
 	}
 	
 	public void resetBosses() {

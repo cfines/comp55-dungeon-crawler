@@ -53,7 +53,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton invincibility = new GButton("GOD_MODE", 925, 100, 215, 50); 
 	private GButton giveKey = new GButton("GIVE_KEY", 925, 175, 215, 50); 
 	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
-	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 325, 215, 50);
+	private GButton stopBombs = new GButton("DEACTIVATE_BOMBS", 925, 325, 215, 50);
+	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 400, 215, 50);
 	
 	private boolean exit = false;
 	
@@ -111,6 +112,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonGod.add(invincibility);
 		buttonGod.add(giveKey);
 		buttonGod.add(bossRespawn);
+		buttonGod.add(stopBombs);
 		buttonGod.add(roomReset);
 		
 		refreshColors();
@@ -201,9 +203,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 13) { /*TODO add*/ }			//STAN-KEY
 				if(i == 14) { /*TODO add*/ }			//STAN-BOSS
 				if(i == 15) { program.setBombCounter(180); program.switchToBombRoomR1(); }	//BOMB-R1
-				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
-				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
-				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
+				if(i == 16) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
+				if(i == 17) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
+				if(i == 18) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
 				exit = true;
 			}
 		}
@@ -213,7 +215,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 0) { program.getUser().setInvincibility(!program.getUser().getInvincibility()); }
 				if(i == 1) { program.getUser().setHasKey(true); }
 				if(i == 2) { program.resetBosses(); }
-				if(i == 3) { program.resetRooms(); program.switchToMenu(); }
+				if(i == 3) { program.setBombsDeactivated(true); }
+				if(i == 4) { program.resetRooms(); program.switchToMenu(); }
 			}
 		}
 		
@@ -236,11 +239,21 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			program.remove(giveKey);
 			program.add(giveKey);
 		}
+		
+		if(program.getBombsDeactivated()) {
+			stopBombs.setFillColor(Color.green);
+		} else {
+			stopBombs.setFillColor(Color.red);
+		}
+		
 		if(program.getUser().getInvincibility()) {
 			invincibility.setFillColor(Color.green);
 		} else {
 			invincibility.setFillColor(Color.red);
 		}
+		
+		program.remove(stopBombs);
+		program.add(stopBombs);
 		program.remove(invincibility);
 		program.add(invincibility);
 	}
@@ -249,6 +262,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		if(exit) {
 			program.remove(invincibility);
 			program.remove(giveKey);
+			program.remove(stopBombs);
 			exit = false;
 		}
 	}

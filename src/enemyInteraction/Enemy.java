@@ -69,7 +69,7 @@ public class Enemy {
 			image = new GImage("ghost_enemy.gif", dx, dy);
 			image.setSize(75, 75);
 		} else if(type == enemyType.bomb) {
-			image = new GImage("Healing Perfume (Consumable).png", dx, dy);
+			image = new GImage("face.gif", dx, dy);
 		}
 		else if(type == enemyType.Nagic) {
 			image = new GImage("Dark Magic.png",dx,dy);
