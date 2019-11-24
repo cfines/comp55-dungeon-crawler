@@ -65,7 +65,8 @@ public class Enemy {
 		} else if(type == enemyType.electric) {
 			image = new GImage(type + ".jpg", dx, dy);
 		} else if(type == enemyType.projectile) {
-			image = new GImage("leg.gif", dx, dy);
+			image = new GImage("ghost_enemy.gif", dx, dy);
+			image.setSize(75, 75);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}

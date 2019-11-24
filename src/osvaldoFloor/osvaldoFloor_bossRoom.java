@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -43,6 +44,10 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	private boolean move = false;
 	private boolean attack = false;
 	private boolean hit = false;
+	private Random randomNum = new Random();
+	private Random determineNegative = new Random();
+	private int dN = determineNegative.nextInt(1);
+	private int random = randomNum.nextInt(5);
 
 	private KeyPressedManager mover;
 
@@ -142,12 +147,14 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		if(everyXSeconds(80)) {
 			attack = !attack;
 			if(attack) {
+				generateRandom();
 				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY(), ElementType.FIRE, enemyType.projectile);
 				listOfProjectiles.add(shot);
 			} else {
 				listOfProjectiles.remove(shot);
 				program.remove(shot.getImage());
 				hit = false;
+				program.remove(shoot);
 			}
 		}
 		
@@ -172,17 +179,39 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				arr.getEnemyStats().setCoordX(osvaldoom.getCoordX());
 				arr.getEnemyStats().setCoordY(osvaldoom.getCoordY());
 				
+				
+				if(checkHitBack(arr, userWeapon) && atkUp) { 
+					hit = true; 
+				}
+				
 				program.add(arr.getImage());
 				
-				if(checkHitBack(arr, userWeapon) && atkUp) { hit = true; }
-				
-				if(hit) { arr.getImage().move(0, -10); }
-				else { arr.getImage().move(0, 10); }
+				if(hit) { 
+					
+					arr.getImage().move(random, -10);
+					
+				} else { 
+					
+					arr.getImage().move(0, 10); 
+					
+				}
 			
 			
 			}
 		}
 		
+	}
+	
+	public void generateRandom() {
+		randomNum = new Random();
+		random = randomNum.nextInt(10);
+		
+		Random determineNegative = new Random();
+		dN = determineNegative.nextInt(5);
+		
+		if(dN < 2) {
+			random *= -1;
+		}
 	}
 	
 	public boolean checkHitBack(Enemy enem, GImage image) {
