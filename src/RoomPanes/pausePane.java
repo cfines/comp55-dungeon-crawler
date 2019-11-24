@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
@@ -17,32 +18,32 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GLabel pauseLabel;
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
+	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
 	private GLabel baseFloor;
 	private GLabel osvaldoomFloor;
 	private GLabel shadowRealm;
 	private GLabel lucinaDomain;
 	private GLabel schtanlyParable;
 	private GLabel bombFloor;
-	private GButton BF_R1;
-	private GButton BF_RKey;
-	private GButton BF_R8;
-	private GButton BF_Boss;
-	private GButton OF_R1;
-	private GButton OF_RKey;
-	private GButton OF_Boss;
-	private GButton SR_R1;
-	private GButton SR_RKey;
-	private GButton SR_RBoss;
-	private GButton LD_R1;
-	private GButton LD_RKey;
-	private GButton LD_RBoss;
-	private GButton SP_R1;
-	private GButton SP_RKey;
-	private GButton SP_Boss;
-	private GButton BOMB_R1;
-	private GButton BOMB_Bomb1;
-	private GButton BOMB_Bomb2;
-	private GButton BOMB_Bomb3;
+	private GButton BF_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton BF_RKey = new GButton("KEY", 0, 0, 50, 50);
+	private GButton BF_RBoss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton OF_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton OF_RKey = new GButton("KEY", 0, 0, 50, 50);
+	private GButton OF_Boss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton SR_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton SR_RKey = new GButton("KEY", 0, 0, 50, 50);
+	private GButton SR_RBoss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton LD_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton LD_RKey = new GButton("KEY", 0, 0, 50, 50);
+	private GButton LD_RBoss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton SP_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton SP_RKey = new GButton("KEY", 0, 0, 50, 50);
+	private GButton SP_Boss = new GButton("BOSS", 0, 0, 50, 50);
+	private GButton BOMB_R1 = new GButton("R1", 0, 0, 50, 50);
+	private GButton BOMB_Bomb1 = new GButton("BOMB1", 0, 0, 50, 50);
+	private GButton BOMB_Bomb2 = new GButton("BOMB2", 0, 0, 50, 50);
+	private GButton BOMB_Bomb3 = new GButton("BOMB3", 0, 0, 50, 50);
 	
 	
 	public pausePane(MainApplication app){
@@ -53,6 +54,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		pauseLabel.setColor(Color.red);
 		pauseLabel.setFont("Arial-Bold-64");
 		
+		
+		
 	}
 
 	@Override
@@ -62,7 +65,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.add(resumeButton);
 		
 		if(program.getDeveloperMode()) {
-			
+			for(int i = 0; i < buttonArr.size(); i++) {
+				program.add(buttonArr.get(i));
+			}
 		}
 		
 	}
@@ -74,7 +79,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.remove(resumeButton);
 		
 		if(program.getDeveloperMode()) {
-			
+			for(int i = 0; i < buttonArr.size(); i++) {
+				program.remove(buttonArr.get(i));
+			}
 		}
 		
 	}
