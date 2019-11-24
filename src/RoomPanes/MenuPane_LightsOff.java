@@ -58,9 +58,6 @@ public class MenuPane_LightsOff extends GraphicsPane /*implements ActionListener
 		else if(obj == exit) {
 			System.exit(0);
 		}
-		else if(obj == highScore) {
-			program.switchToHighScorePane();
-		}
 		else if(obj == credits) {
 			program.switchToCreditsPane();
 		}

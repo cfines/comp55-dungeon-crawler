@@ -57,7 +57,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private GameOverPane playerDied;
 	private MenuPane menu;
 	private MenuPane_LightsOff lightsoff;
-	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	
@@ -100,7 +99,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
-		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
 		testPane = new mapBase_R2TEST(this);
@@ -151,10 +149,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(playerDied);
 	}
 	
-	public void switchToHighScorePane() {
-		switchToScreen(highScorePane);
-	}
-	
 	public void switchToCreditsPane() {
 		switchToScreen(creditsPane);
 	}
@@ -167,7 +161,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			somePane = new SomePane(this);
 			menu = new MenuPane(this);
 			lightsoff = new MenuPane_LightsOff(this);
-			highScorePane = new HighScorePane(this);
 			creditsPane = new CreditsPane(this);
 			mapbase_R2 = new mapBase_R2(this);
 			testPane = new mapBase_R2TEST(this);
