@@ -118,7 +118,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.setHasKey(true);
 		bossDefeated = true;
 		
-		switchToGameOver(); //change which screen you want to switch to
+		switchToSome(); //change which screen you want to switch to
 
 	}
 	
