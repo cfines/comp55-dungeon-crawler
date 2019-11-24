@@ -204,7 +204,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		pausePane = new pausePane(this);
 		QPane = new instructionsPane(this);
 		
-		user.setHasKey(true);
+		//user.setHasKey(true);
 		//bossDefeated = true;
 	
 		switchToTest(); //change which screen you want to switch to

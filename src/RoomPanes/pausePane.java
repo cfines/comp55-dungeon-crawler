@@ -20,7 +20,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
 	private GRect devBox = new GRect(0, 80, 235, 470);
+	private GRect devBox2 = new GRect(915, 80, 235, 470);
 	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
+	private ArrayList<GButton> buttonGod = new ArrayList<GButton>();
 	private ArrayList<GLabel> labelArr = new ArrayList<GLabel>();
 	private GLabel baseFloor = new GLabel("BASE", 10 ,97);
 	private GLabel osvaldoomFloor = new GLabel("OSVALDOOM", 10, 172);
@@ -48,9 +50,10 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton BOMB_Bomb2 = new GButton("BOMB2", 120, 475, 50, 50);
 	private GButton BOMB_Bomb3 = new GButton("BOMB3", 175, 475, 50, 50);
 	
-	private GButton invincibility = new GButton("INVINCIBILITY", 0, 0, 50, 50); 
-	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 0, 0, 50, 50); 
-	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 0, 0, 50, 50);
+	private GButton invincibility = new GButton("GOD_MODE", 925, 100, 215, 50); 
+	private GButton giveKey = new GButton("GIVE_KEY", 925, 175, 215, 50); 
+	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
+	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 325, 215, 50);
 	
 	
 	public pausePane(MainApplication app){
@@ -63,6 +66,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		
 		devBox.setColor(Color.lightGray);
 		devBox.setFilled(true);
+		devBox2.setColor(Color.lightGray);
+		devBox2.setFilled(true);
 		
 		baseFloor.setColor(Color.white);
 		osvaldoomFloor.setColor(Color.cyan);
@@ -101,6 +106,13 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonArr.add(BOMB_Bomb2);
 		buttonArr.add(BOMB_Bomb3);
 		
+		buttonGod.add(invincibility);
+		buttonGod.add(giveKey);
+		buttonGod.add(bossRespawn);
+		buttonGod.add(roomReset);
+		
+		refreshColors();
+		
 		for(int i = 0; i < buttonArr.size(); i++) {
 			if(i == 0 || i == 1 || i == 2) { buttonArr.get(i).setFillColor(Color.white); }
 			if(i == 3 || i == 4 || i == 5) { buttonArr.get(i).setFillColor(Color.cyan); }
@@ -117,14 +129,18 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.add(pauseButton);
 		program.add(pauseLabel);
 		program.add(resumeButton);
-		program.add(devBox);
 		
 		if(program.getDeveloperMode()) {
+			program.add(devBox);
+			program.add(devBox2);
 			for(int i = 0; i < buttonArr.size(); i++) {
 				program.add(buttonArr.get(i));
 			}
 			for(int i = 0; i < labelArr.size(); i++) {
 				program.add(labelArr.get(i));
+			}
+			for(int i = 0; i < buttonGod.size(); i++) {
+				program.add(buttonGod.get(i));
 			}
 		}
 		
@@ -135,14 +151,18 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.remove(pauseButton);
 		program.remove(pauseLabel);
 		program.remove(resumeButton);
-		program.remove(devBox);
 		
 		if(program.getDeveloperMode()) {
+			program.remove(devBox);
+			program.remove(devBox2);
 			for(int i = 0; i < buttonArr.size(); i++) {
 				program.remove(buttonArr.get(i));
 			}
 			for(int i = 0; i < labelArr.size(); i++) {
 				program.remove(labelArr.get(i));
+			}
+			for(int i = 0; i < buttonGod.size(); i++) {
+				program.remove(buttonGod.get(i));
 			}
 		}
 		
@@ -150,8 +170,6 @@ public class pausePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void keyPressed(KeyEvent e) {
@@ -160,14 +178,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		}
 	}
 	
-	public void mouseReleased(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == pauseButton) {
-			program.switchToMenu();
-		} else if (obj == resumeButton) {
-			program.noLongerPaused();
-		}
-		
 		for(int i = 0; i < buttonArr.size(); i++) {
 			if(obj == buttonArr.get(i)) {
 				if(i == 0) { program.switchToSome(); }			//BASE-R1
@@ -192,8 +204,39 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			}
 		}
 		
+		for(int i = 0; i < buttonGod.size(); i++) {
+			if(obj == buttonGod.get(i)) {
+				if(i == 0) { program.getUser().setInvincibility(!program.getUser().getInvincibility()); }
+				if(i == 1) { program.getUser().setHasKey(true); }
+				if(i == 2) { program.switchToSome(); }
+				if(i == 3) { program.switchToSome(); }
+			}
+		}
+		
+		refreshColors();
+		
+		if (obj == pauseButton) {
+			program.switchToMenu();
+		} else if (obj == resumeButton) {
+			program.noLongerPaused();
+		}
+		
 	}
 	
-	
+	public void refreshColors() {
+		if(program.getUser().getHasKey()) {
+			giveKey.setFillColor(Color.yellow);
+			program.drawKey();
+			program.remove(giveKey);
+			program.add(giveKey);
+		}
+		if(program.getUser().getInvincibility()) {
+			invincibility.setFillColor(Color.green);
+		} else {
+			invincibility.setFillColor(Color.red);
+		}
+		program.remove(invincibility);
+		program.add(invincibility);
+	}
 	
 }

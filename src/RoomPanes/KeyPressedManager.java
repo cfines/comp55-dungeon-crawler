@@ -164,6 +164,8 @@ public class KeyPressedManager {
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
 					
+					if(program.getUser().getInvincibility()) {listOfEnemies.get(i).getEnemyStats().setHP_cur(0);}
+					
 					if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {
 						weMinecraftUpInHere(listOfEnemies.get(i));
 					}
@@ -207,6 +209,7 @@ public class KeyPressedManager {
 
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
+			if(program.getUser().getInvincibility()) {return;}
 			if(intCollisionTest(inter.getImage())) {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
@@ -233,6 +236,7 @@ public class KeyPressedManager {
 		}
 
 		for(Enemy enem : listOfEnemies) {
+			if(program.getUser().getInvincibility()) {return;}
 			if(enemyCollisionTest(enem, userRep)) {
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
@@ -339,6 +343,7 @@ public class KeyPressedManager {
 	}
 
 	public void knockBack() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
 				if(enem.getEnemyType() == enemyType.bomb) {return;}
@@ -359,6 +364,7 @@ public class KeyPressedManager {
 	}
 
 	public void enemyCombat() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
