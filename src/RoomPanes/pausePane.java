@@ -13,11 +13,13 @@ import removeLater.GButton;
 public class pausePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private GButton pauseButton;
+	private GButton resumeButton;
 	private GLabel pauseLabel;
 	
 	public pausePane(MainApplication app){
 		this.program = app;
-		pauseButton = new GButton("Return", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 130, 150, 50);
+		pauseButton = new GButton("Quit", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 130, 150, 50);
+		resumeButton = new GButton("Resume", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 190, 150, 50);
 		pauseLabel = new GLabel("PAUSED", program.WINDOW_WIDTH / 2 - 135 ,85);
 		pauseLabel.setColor(Color.red);
 		pauseLabel.setFont("Arial-Bold-64");
@@ -27,14 +29,14 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	public void showContents() {
 		program.add(pauseButton);
 		program.add(pauseLabel);
-		
+		program.add(resumeButton);
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(pauseButton);
 		program.remove(pauseLabel);
-		
+		program.remove(resumeButton);
 	}
 
 	@Override
@@ -52,6 +54,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	public void mouseReleased(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == pauseButton) {
+			program.switchToMenu();
+		} else if (obj == resumeButton) {
 			program.noLongerPaused();
 		}
 	}
