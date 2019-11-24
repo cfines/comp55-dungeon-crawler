@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, ES, EE, EW, background, userRep, userWeapon, bombIMG;
+	private GImage rock1, rock2, hole1, EN, ES, EE, EW, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -46,15 +46,11 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		Interactions oE2 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions oE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions oE4 = new Interactions(interactionType.entry_door_WEST,27,300);
-		
-		Enemy bomb1 = new Enemy(100,100,1,0,700,350, ElementType.FIRE, enemyType.bomb);
 
 		listOfInter.add(oE1);
 		listOfInter.add(oE2);
 		listOfInter.add(oE3);
 		listOfInter.add(oE4);
-		
-		listOfEnemies.add(bomb1);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
@@ -62,8 +58,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		ES = oE2.getImage();
 		EE = oE3.getImage();
 		EW = oE4.getImage();
-		
-		bombIMG = bomb1.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -79,8 +73,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		elements.add(EE);
 		elements.add(EW);
 		elements.add(userRep);
-		
-		enemyImages.add(bombIMG);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
