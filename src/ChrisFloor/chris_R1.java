@@ -38,7 +38,7 @@ public class chris_R1 extends GraphicsPane implements ActionListener{
 		user = program.getUser(); 
 		
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_EAST, 1050,300);
-		Interactions iface = new Interactions(interactionType.poniko, 1005,440);
+		Interactions iface = new Interactions(interactionType.poniko, 1005,175);
 		Interactions icandle1 = new Interactions(interactionType.candle1, 965,35);
 		Interactions icandle2 = new Interactions(interactionType.candle2, 1055,110);
 		Interactions icandle3 = new Interactions(interactionType.candle1, 250,440);
