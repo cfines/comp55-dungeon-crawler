@@ -139,29 +139,31 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		double userX2 = userX + 80;
 		double userY2 = userX + 80;
 		//SOUTH DOOR
-		if(userX <= ES.getX() && userY <= ES.getY() && userX2 >= ES.getX() && userY2 >= ES.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
+		if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
+			System.out.println("south");
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(),user.getY());
+			program.switchToBombRoomR2();
 			//EAST DOOR
 		} else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
+			program.switchToBombRoomR8();
 			//WEST DOOR
-		} else if(userX <= EW.getX() && userY <= EW.getY() && userX2 >= EW.getX() && userY2 >= EW.getY()) {
-			user.setX(150);
+		} else if(userX >= EW.getX() && userY >= EW.getY() && userX <= EW.getX() + 75 && userY <= EW.getY() + 75) {
+			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
+			program.switchToBombRoomR6();
 			//NORTH DOOR
-		} else if(userX <= EN.getX() && userY <= EN.getY() && userX2 >= EN.getX() && userY2 >= EN.getY()) {
-			user.setX(150);
-			user.setY(300);
+		} else if(userX >= EN.getX() && userY >= EN.getY() && userX <= EN.getX() + 85 && userY <= EN.getY() + 85) {
+			System.out.println("north");
+			user.setX(575);
+			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
+			program.switchToBombRoomR10();
 		}
 	}
 
