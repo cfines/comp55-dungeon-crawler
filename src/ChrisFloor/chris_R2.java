@@ -21,7 +21,7 @@ import removeLater.User;
 
 public class chris_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, E4, E5, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, background,userRep, userWeapon;
+	private GImage E2, E3, E4, E5, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, candle10, candle11, candle12, madotsuki, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -41,15 +41,19 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE5 = new Interactions(interactionType.chrisEntry_WEST,27,300);
-		Interactions icandle1 = new Interactions(interactionType.candle1, 315,35);
-		Interactions icandle2 = new Interactions(interactionType.candle2, 375,105);
-		Interactions icandle3 = new Interactions(interactionType.candle2, 435,175);
-		Interactions icandle4 = new Interactions(interactionType.candle1, 495,235);
-		Interactions icandle5 = new Interactions(interactionType.candle2, 555,285);
-		Interactions icandle6 = new Interactions(interactionType.candle1, 635,335);
-		Interactions icandle7 = new Interactions(interactionType.candle1, 700,395);
-		Interactions icandle8 = new Interactions(interactionType.candle2, 775,435);
-		Interactions icandle9 = new Interactions(interactionType.candle1, 840,465);
+		Interactions icandle1 = new Interactions(interactionType.candle1, 165,35);
+		Interactions icandle2 = new Interactions(interactionType.candle2, 125,95);
+		Interactions icandle3 = new Interactions(interactionType.candle2, 65,95);
+		Interactions icandle4 = new Interactions(interactionType.candle1, 945,35);
+		Interactions icandle5 = new Interactions(interactionType.candle2, 945,95);
+		Interactions icandle6 = new Interactions(interactionType.candle1, 1005,95);
+		Interactions icandle7 = new Interactions(interactionType.candle1, 1005,400);
+		Interactions icandle8 = new Interactions(interactionType.candle2, 945,400);
+		Interactions icandle9 = new Interactions(interactionType.candle1, 945,440);
+		Interactions icandle10 = new Interactions(interactionType.candle2, 65,390);
+		Interactions icandle11 = new Interactions(interactionType.candle1, 125,390);
+		Interactions icandle12 = new Interactions(interactionType.candle1, 125,440);
+		Interactions imadotsuki = new Interactions(interactionType.madotsuki, 665,35);
 		
 		//Enemies
 		
@@ -71,6 +75,10 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		candle7 = icandle7.getImage();
 		candle8 = icandle8.getImage();
 		candle9 = icandle9.getImage();
+		candle10 = icandle10.getImage();
+		candle11 = icandle11.getImage();
+		candle12 = icandle12.getImage();
+		madotsuki = imadotsuki.getImage();
 		
 		listOfInter.add(iE2);
 		listOfInter.add(iE3);
@@ -85,6 +93,10 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icandle7);
 		listOfInter.add(icandle8);
 		listOfInter.add(icandle9);
+		listOfInter.add(icandle10);
+		listOfInter.add(icandle11);
+		listOfInter.add(icandle12);
+		listOfInter.add(imadotsuki);
 		
 		//listOfEnemies.add)();
 		
@@ -107,6 +119,10 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		elements.add(candle7);
 		elements.add(candle8);
 		elements.add(candle9);
+		elements.add(candle10);
+		elements.add(candle11);
+		elements.add(candle12);
+		elements.add(madotsuki);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
