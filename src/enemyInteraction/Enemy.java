@@ -60,10 +60,12 @@ public class Enemy {
 				type == enemyType.EARTHDeath || type == enemyType.WATERDeath || type == enemyType.FIREDeath || type == enemyType.EARTHCheese || 
 				type == enemyType.WATERCheese || type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || 
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
-				type == enemyType.projectile || type == enemyType.momoko) {
+				type == enemyType.momoko) {
 			image = new GImage(type + ".gif", dx, dy);
 		} else if(type == enemyType.electric) {
 			image = new GImage(type + ".jpg", dx, dy);
+		} else if(type == enemyType.projectile) {
+			image = new GImage("leg.gif", dx, dy);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}

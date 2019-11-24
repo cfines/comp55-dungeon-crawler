@@ -24,21 +24,24 @@ import removeLater.User;
 
 public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage background,userRep, userWeapon; 
-	private GImage boss = new GImage("electric.jpg", 375, 375); 
+	private GImage background,userRep, userWeapon, shoot; 
+	private GImage boss = new GImage("electric.jpg", 100, 100); 
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private int degree;
 	private User user;
-	private Enemy osvaldoom = new Enemy(20,20,2,2,375,375, ElementType.FIRE, enemyType.electric);
+	private Enemy osvaldoom = new Enemy(20,20,2,2,100,100, ElementType.FIRE, enemyType.electric);
+	private Enemy shot = new Enemy(100, 100, 2, 2, 0, 0, ElementType.FIRE, enemyType.projectile);
 	private enemyType attk = enemyType.electric;
 	private enemyType still = enemyType.electric;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
 	private boolean move = false;
+	private boolean attack = false;
 
 	private KeyPressedManager mover;
 
@@ -47,6 +50,9 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		user = program.getUser();
 
 		boss = osvaldoom.getImage();
+		boss.setSize(100, 100);
+		
+		shoot = new GImage("leg.gif");
 
 		background = new GImage("Fire_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -125,29 +131,69 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	}
 
 	public void enemyMovement() {
+		//if(everyXSeconds(40)) {
+		//	move = !move;
+		//	program.remove(osvaldoom.getImage());
+		//	if(move) {osvaldoom.setImage(attk);}
+		//	else {osvaldoom.setImage(still);}
+		//	program.add(osvaldoom.getImage());
+		//}
+		//
+		//for(Enemy enem : listOfEnemies) {
+		//	
+		//	enem.getImage().movePolar(2, degree);
+		//	degree+=80;
+		//	degree%=360;
+		//	if(move) {
+		//		double distX = enem.getImage().getX() - userRep.getX();
+		//		double distY = enem.getImage().getY() - userRep.getY();
+		//		double moveX = (distX * 5) / 100;
+		//		double moveY = (distY * 5) / 100;
+		//		enem.getImage().move(-moveX, -moveY);
+		//	}else {boss.move(0, 0);}
+		//	enem.setStartX(enem.getImage().getX());
+		//	enem.setStartY(enem.getImage().getY());
+		//}
+		
 		if(everyXSeconds(40)) {
-			move = !move;
-			program.remove(osvaldoom.getImage());
-			if(move) {osvaldoom.setImage(attk);}
-			else {osvaldoom.setImage(still);}
-			program.add(osvaldoom.getImage());
+			attack = !attack;
+			if(attack) {
+				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY(), ElementType.FIRE, enemyType.projectile);
+				listOfProjectiles.add(shot);
+			} else {
+				listOfProjectiles.remove(shot);
+				program.remove(shot.getImage());
+			}
 		}
 		
 		for(Enemy enem : listOfEnemies) {
+			if(enem.getCoordX() > 970) {
+				move = false;
+			} else if (enem.getCoordX() < 100) {
+				move = true;
+			}
 			
-			enem.getImage().movePolar(2, degree);
-			degree+=80;
-			degree%=360;
-			if(move) {
-				double distX = enem.getImage().getX() - userRep.getX();
-				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 5) / 100;
-				double moveY = (distY * 5) / 100;
-				enem.getImage().move(-moveX, -moveY);
-			}else {boss.move(0, 0);}
+			if(move) { enem.getImage().move(5, 0); }
+			else { enem.getImage().move(-5, 0); }
+			
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
+			
 		}
+		
+		if(listOfProjectiles.size() >= 1) {
+			for(Enemy arr : listOfProjectiles) {
+				
+				arr.getEnemyStats().setCoordX(osvaldoom.getCoordX());
+				arr.getEnemyStats().setCoordY(osvaldoom.getCoordY());
+				
+				program.add(arr.getImage());
+				arr.getImage().move(0, 10);
+			
+			
+			}
+		}
+		
 	}
 }
 
