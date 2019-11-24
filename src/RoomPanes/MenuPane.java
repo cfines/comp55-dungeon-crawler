@@ -23,7 +23,7 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
 		menuScreen.setSize(1155, 650);
 		play = new GButton("Play", 200, WINDOW_HEIGHT - 75, 150, 50);
-		highScore = new GButton("High Scores", 387.5, WINDOW_HEIGHT - 75, 150, 50);
+		highScore = new GButton("BOSS RUSH", 387.5, WINDOW_HEIGHT - 75, 150, 50);
 		credits = new GButton("Credits", 575, WINDOW_HEIGHT - 75, 150, 50);
 		exit = new GButton("Exit", 762.5, WINDOW_HEIGHT - 75, 150, 50);
 	}
@@ -55,9 +55,6 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 		}
 		else if(obj == exit) {
 			System.exit(0);
-		}
-		else if(obj == highScore) {
-			program.switchToHighScorePane();
 		}
 		else if(obj == credits) {
 			program.switchToCreditsPane();

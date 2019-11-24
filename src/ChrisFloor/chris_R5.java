@@ -21,7 +21,7 @@ import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
 import removeLater.User;
 
-public class chris_R4 extends GraphicsPane implements ActionListener{
+public class chris_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -38,7 +38,7 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 	private KeyPressedManager mover;
 	
 
-	public chris_R4(MainApplication app) {
+	public chris_R5(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
 
@@ -150,16 +150,16 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
 		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR5();
+//			user.setX(575);
+//			user.setY(410);
+//			userRep.setLocation(user.getX(), user.getY());
+//			program.switchToChrisR1();
 		}
 		else if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
-//			user.setX(575);
-//			user.setY(110);
-//			userRep.setLocation(user.getX(),user.getY());
-//			program.switchToChrisR1();
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(),user.getY());
+			program.switchToChrisR4();
 		}
 		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 //			user.setX(150);
@@ -171,7 +171,7 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR3();
+			//program.switchToChrisR3();
 		}
 	}
 

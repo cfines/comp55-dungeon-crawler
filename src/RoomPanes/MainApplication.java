@@ -8,6 +8,7 @@ import ChrisFloor.chris_R1;
 import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
+import ChrisFloor.chris_R5;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -52,6 +53,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R2 chris_R2;
 	private chris_R3 chris_R3;
 	private chris_R4 chris_R4;
+	private chris_R5 chris_R5;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -59,7 +61,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private GameOverPane playerDied;
 	private MenuPane menu;
 	private MenuPane_LightsOff lightsoff;
-	private HighScorePane highScorePane;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	
@@ -102,7 +103,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
-		highScorePane = new HighScorePane(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
 		testPane = new mapBase_R2TEST(this);
@@ -118,6 +118,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R2 = new chris_R2(this);
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
+		chris_R5 = new chris_R5(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
@@ -154,10 +155,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(playerDied);
 	}
 	
-	public void switchToHighScorePane() {
-		switchToScreen(highScorePane);
-	}
-	
 	public void switchToCreditsPane() {
 		switchToScreen(creditsPane);
 	}
@@ -170,7 +167,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			somePane = new SomePane(this);
 			menu = new MenuPane(this);
 			lightsoff = new MenuPane_LightsOff(this);
-			highScorePane = new HighScorePane(this);
 			creditsPane = new CreditsPane(this);
 			mapbase_R2 = new mapBase_R2(this);
 			testPane = new mapBase_R2TEST(this);
@@ -185,6 +181,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R1 = new chris_R1(this);
 			chris_R2 = new chris_R2(this);
 			chris_R4 = new chris_R4(this);
+			chris_R5 = new chris_R5(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
 			try {
@@ -265,6 +262,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR4() {
 		switchToScreen(chris_R4);
+	}
+	
+	public void switchToChrisR5() {
+		switchToScreen(chris_R5);
 	}
 	
 	public void switchToOsvaldoR1() {
