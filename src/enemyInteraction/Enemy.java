@@ -52,7 +52,7 @@ public class Enemy {
 		return EnemyType;
 	}
 	
-	// Jesus fuck this if statement
+	// Jesus f### this if statement  <--- do not say our lord & savior's name in vain
 	public void setImage(enemyType type) {
 		if(type == enemyType.EARTHBat || type == enemyType.FIREBat || type == enemyType.WATERBat || type == enemyType.EARTHDrawing || 
 				type == enemyType.FIREDrawing || type == enemyType.WATERDrawing || type == enemyType.EARTHSpider || type == enemyType.FIRESpider || 
@@ -60,7 +60,8 @@ public class Enemy {
 				type == enemyType.EARTHDeath || type == enemyType.WATERDeath || type == enemyType.FIREDeath || type == enemyType.EARTHCheese || 
 				type == enemyType.WATERCheese || type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || 
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
-				type == enemyType.momoko) {
+				type == enemyType.momoko || type == enemyType.Duma || type == enemyType.Brigand||
+				type == enemyType.Samurai || type == enemyType.DarkMage) {
 			image = new GImage(type + ".gif", dx, dy);
 		} else if(type == enemyType.electric) {
 			image = new GImage(type + ".jpg", dx, dy);
