@@ -214,7 +214,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		}
 		//ALAN
 		else if(obj == hole1) {
-			program.switchToTitleScreen();
+			program.switchToFeR1();
 		}
 		//CHRIS
 		else if(obj == hole2) {
