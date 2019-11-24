@@ -70,6 +70,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
+		elements.add(background);
 		elements.add(E2);
 		elements.add(E3);
 		elements.add(E4);
