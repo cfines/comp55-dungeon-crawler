@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R10 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E4, background,userRep, userWeapon;
+	private GImage E1, E4, momoko, monoe, blue1, blue2, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -46,6 +46,11 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions imomoko = new Interactions(interactionType.momoko, 495,35);
+		Interactions imonoe = new Interactions(interactionType.monoe, 665,35);
+		Interactions iblue1 = new Interactions(interactionType.blueboi, 665,440);
+		Interactions iblue2 = new Interactions(interactionType.blueboi, 495,440);
+		
 
 		//Enemies
 
@@ -55,10 +60,18 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
 		E4 = iE4.getImage();
+		momoko = imomoko.getImage();
+		monoe = imonoe.getImage();
+		blue1 = iblue1.getImage();
+		blue2 = iblue2.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
 		listOfInter.add(iE4);
+		listOfInter.add(imomoko);
+		listOfInter.add(imonoe);
+		listOfInter.add(iblue1);
+		listOfInter.add(iblue2);
 
 		//listOfEnemies.add)();
 
@@ -71,6 +84,10 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(E1);
 		elements.add(E4);
+		elements.add(momoko);
+		elements.add(monoe);
+		elements.add(blue1);
+		elements.add(blue2);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
