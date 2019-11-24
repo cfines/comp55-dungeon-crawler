@@ -127,6 +127,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		decrementTimer();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -183,6 +184,18 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 			decrementTimer = 0;
 			program.setBombCounter(program.getBombCounter() - 1);
 			program.bombOverlay();
+		}
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
 		}
 	}
 	

@@ -743,6 +743,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void resetRooms() {
+		user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
