@@ -21,7 +21,7 @@ import removeLater.User;
 
 public class fe_R1 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E8, E9, E10, background,userRep, userWeapon, temp;
+	private GImage E10, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -37,18 +37,11 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 	public fe_R1(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
-		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
+		
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		
-		Interactions iEtest = new Interactions(interactionType.entry_door_WEST,27,300);
-		temp = iEtest.getImage();
-		listOfInter.add(iEtest);
-		
-		E8 = iE8.getImage();
-		E9 = iE9.getImage();
 		E10 = iE10.getImage();
-		background = new GImage("Arena Ferox.png", 15,30);
+		background = new GImage("FE Ice Cave.png", 10,20);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		
@@ -58,14 +51,9 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		voidSpace.setFilled(true);
 
 		listOfInter.add(iE10);
-		listOfInter.add(iE9);
-		listOfInter.add(iE8);
 
 		elements.add(background);
-		elements.add(E8);
-		elements.add(E9);
 		elements.add(E10);
-		elements.add(temp);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
@@ -89,29 +77,11 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 85 && userY <= E8.getY() + 85) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR4();
-		}
-		else if(userX <= E9.getX() && userY <= E9.getY() && userY2 >= E9.getY() - 30  && userX >= E9.getX() - 30) {
-			user.setX(575);
-			user.setY(110);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToR6();
-		}
-		else if(userX <= E10.getX() && userY <= E10.getY() && userX2 >= E10.getX() && userY2 >= E10.getY()) {
+		if(userX <= E10.getX() && userY <= E10.getY() && userX2 >= E10.getX() && userY2 >= E10.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR7();
-		}
-		if(userX >= temp.getX() && userY >= temp.getY() && userX <= temp.getX() + 75 && userY <= temp.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR5();
+			
 		}
 	}
 	@Override
