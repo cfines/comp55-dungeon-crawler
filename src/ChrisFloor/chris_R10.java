@@ -155,8 +155,8 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR4();
 		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
-			user.setX(150);
+		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
+			user.setX(27);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR9();
@@ -167,15 +167,15 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 					unlockProtocol();
 				}
 			} else if (program.getBossDefeated()) {
-				user.setX(575);
-				user.setY(410);
+				user.setX(150);
+				user.setY(300);
 				userRep.setLocation(user.getX(), user.getY());
-				program.switchToR9Complete();
+				//program.switchToR9PonikoCOMPLETE();
 			} else {
-				user.setX(575);
-				user.setY(410);
+				user.setX(150);
+				user.setY(300);
 				userRep.setLocation(user.getX(), user.getY());
-				program.switchToR9();
+				program.switchToPoniko();
 			}
 		}
 	}

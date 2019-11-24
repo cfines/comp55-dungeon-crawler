@@ -43,7 +43,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 		
 		
 		//gImages
-		background = new GImage("ponikos room.png", 15,30);
+		background = new GImage("ponikos_room.png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E5 = iE5.getImage();
