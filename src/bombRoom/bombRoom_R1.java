@@ -33,6 +33,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
+	private int decrementTimer = 0;
 
 	private KeyPressedManager mover;
 
@@ -93,6 +94,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		program.bombOverlay();
 		program.drawOverlay(1, program.getFloorNum());
 	}
 
@@ -153,4 +155,14 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	public void keyReleased(KeyEvent e) {
 		mover.notReallyKeyReleased(e);
 	}
+	
+	public void decrementTimer() {
+		decrementTimer++;
+		if(decrementTimer == 4) {
+			decrementTimer = 0;
+			
+			program.bombOverlay();
+		}
+	}
+	
 }

@@ -524,4 +524,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		return bossRun;
 	}
 	
+	public void setBombCounter(int count) {
+		bombCounter = count;
+	}
+	
+	public int getBombCounter() {
+		return bombCounter;
+	}
+	
 }
