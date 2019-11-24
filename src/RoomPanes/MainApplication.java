@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import ChrisFloor.chris_R1;
 import ChrisFloor.chris_R2;
+import ChrisFloor.chris_R3;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -21,6 +22,7 @@ import mapBase.mapBase_R8;
 import mapBase.mapBase_R9;
 import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
+import osvaldoFloor.osvaldoFloor_bossRoom;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -45,7 +47,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R9Complete mapbase_R9Complete;
 	private chris_R1 chris_R1;
 	private chris_R2 chris_R2;
+	private chris_R3 chris_R3;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
+	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -105,7 +109,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R9Complete = new mapBase_R9Complete(this);
 		chris_R1 = new chris_R1(this);
 		chris_R2 = new chris_R2(this);
+		chris_R3 = new chris_R3(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
+		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		tittle = new TitleScreenPane(this);
 		try {
 			playerDied = new GameOverPane(this);
@@ -118,8 +124,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.setHasKey(true);
 		bossDefeated = true;
 		
-		switchToSome(); //change which screen you want to switch to
-
+		switchToOsvaldoBoss(); //change which screen you want to switch to
 	}
 	
 	public void switchToTitleScreen() 
@@ -242,8 +247,16 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(chris_R2);
 	}
 	
+	public void switchToChrisR3() {
+		switchToScreen(chris_R3);
+	}
+	
 	public void switchToOsvaldoR1() {
 		switchToScreen(osvaldoFloor_R1);
+	}
+	
+	public void switchToOsvaldoBoss() {
+		switchToScreen(osvaldoFloor_bossRoom);
 	}
 	
 	public void switchToLightsOff() {

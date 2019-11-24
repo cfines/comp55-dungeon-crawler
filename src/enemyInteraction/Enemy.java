@@ -62,6 +62,11 @@ public class Enemy {
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
 				type == enemyType.momoko) {
 			image = new GImage(type + ".gif", dx, dy);
+		} else if(type == enemyType.electric) {
+			image = new GImage(type + ".jpg", dx, dy);
+		} else if(type == enemyType.projectile) {
+			image = new GImage("ghost_enemy.gif", dx, dy);
+			image.setSize(75, 75);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}
