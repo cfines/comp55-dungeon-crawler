@@ -20,7 +20,7 @@ import removeLater.User;
 
 public class chris_R7 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, background,userRep, userWeapon;
+	private GImage E2, E3, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, candle10, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -52,6 +52,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		Interactions icandle7 = new Interactions(interactionType.candle1, 700,395);
 		Interactions icandle8 = new Interactions(interactionType.candle2, 775,435);
 		Interactions icandle9 = new Interactions(interactionType.candle1, 840,465);
+		Interactions icandle10 = new Interactions(interactionType.candle1, 390,55);
 
 		//Enemies
 
@@ -74,6 +75,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		candle7 = icandle7.getImage();
 		candle8 = icandle8.getImage();
 		candle9 = icandle9.getImage();
+		candle10 = icandle10.getImage();
 
 		//listOfEnemies.add)();
 		listOfInter.add(icandle1);
@@ -85,6 +87,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icandle7);
 		listOfInter.add(icandle8);
 		listOfInter.add(icandle9);
+		listOfInter.add(icandle10);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -104,6 +107,7 @@ public class chris_R7 extends GraphicsPane implements ActionListener{
 		elements.add(candle7);
 		elements.add(candle8);
 		elements.add(candle9);
+		elements.add(candle10);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
