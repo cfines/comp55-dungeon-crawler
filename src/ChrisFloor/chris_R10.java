@@ -31,6 +31,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
+	private boolean unlocked = false;
 	private int timerCont = 0;
 	private KeyPressedManager mover;
 	
@@ -42,7 +43,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
-		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
+		Interactions iE3 = new Interactions(interactionType.entry_bossDoor_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions imomoko = new Interactions(interactionType.momoko, 495,35);
 		Interactions imonoe = new Interactions(interactionType.monoe, 665,35);
@@ -160,12 +161,34 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR9();
 		}
-		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			//program.switchToPoniko();
+		else if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 85 && userY <= E3.getY() + 85) {
+			if(!unlocked) {
+				if(program.getUser().getHasKey()) {
+					unlockProtocol();
+				}
+			} else if (program.getBossDefeated()) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9Complete();
+			} else {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9();
+			}
 		}
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(E3);
+		E3 = new GImage("entry_door_NORTH.png", 575, 28);
+		program.add(E3);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
 	}
 
 	public boolean everyXSeconds(double x) {
