@@ -9,6 +9,7 @@ import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
 import ChrisFloor.chris_R5;
+import earthFloor.earth_boss;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -54,6 +55,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R3 chris_R3;
 	private chris_R4 chris_R4;
 	private chris_R5 chris_R5;
+	private earth_boss earth_boss;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -119,6 +121,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
 		chris_R5 = new chris_R5(this);
+		earth_boss = new earth_boss(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
@@ -276,6 +279,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToOsvaldoBossComplete() {
 		switchToScreen(osvaldoFloor_bossRoomComplete);
+	}
+	
+	public void switchToEarthBoss() {
+		switchToScreen(earth_boss);
 	}
 	
 	public void switchToLightsOff() {
