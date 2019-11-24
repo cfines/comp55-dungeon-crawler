@@ -59,6 +59,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	
 	public pausePane(MainApplication app){
 		this.program = app;
+		exit = false;
 		pauseButton = new GButton("Quit", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 130, 150, 50);
 		resumeButton = new GButton("Resume", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 190, 150, 50);
 		pauseLabel = new GLabel("PAUSED", program.WINDOW_WIDTH / 2 - 135 ,85);
@@ -127,6 +128,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void showContents() {
+		exit = false;
 		program.add(pauseButton);
 		program.add(pauseLabel);
 		program.add(resumeButton);
