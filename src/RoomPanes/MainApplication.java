@@ -76,6 +76,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private AudioPlayer audio;
 	private fe_R1 feR1;
 	public boolean bossRun = false;
+	public int bombCounter = 180;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
