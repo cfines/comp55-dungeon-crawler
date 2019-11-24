@@ -44,7 +44,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(40,40,2,999999,1000,500, ElementType.FIRE, enemyType.FIREDeath);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
-		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
+		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,30);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		

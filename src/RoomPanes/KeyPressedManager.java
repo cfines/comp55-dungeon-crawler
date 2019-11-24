@@ -24,6 +24,8 @@ public class KeyPressedManager {
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
 	boolean deleteEnemy = false;
+	private AudioPlayer audio;
+	public static final String MUSIC_FOLDER = "sounds";
 	
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter, ArrayList<GImage> elements,
@@ -178,6 +180,8 @@ public class KeyPressedManager {
 						program.add(listOfEnemies.get(i).getImage());
 						
 						listOfEnemies.remove(i);
+						audio = AudioPlayer.getInstance();
+						audio.playSound(MUSIC_FOLDER, "Heavy says Dead.mp3");
 					}
 				}
 				//TODO insert user getting hurt here
