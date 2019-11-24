@@ -203,9 +203,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 13) { /*TODO add*/ }			//STAN-KEY
 				if(i == 14) { /*TODO add*/ }			//STAN-BOSS
 				if(i == 15) { program.setBombCounter(180); program.switchToBombRoomR1(); }	//BOMB-R1
-				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
-				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
-				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
+				if(i == 16) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
+				if(i == 17) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
+				if(i == 18) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
 				exit = true;
 			}
 		}
