@@ -24,7 +24,7 @@ public class KeyPressedManager {
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
 	boolean deleteEnemy = false;
-
+	
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter, ArrayList<GImage> elements,
 			boolean atkUp, boolean atkLeft, boolean atkRight, boolean atkDown, GImage userWeapon){

@@ -104,7 +104,7 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 			}
 		}
 
-		program.drawOverlay(3, program.getFloorNum());
+		program.drawOverlay(4, program.getFloorNum());
 	}
 
 
