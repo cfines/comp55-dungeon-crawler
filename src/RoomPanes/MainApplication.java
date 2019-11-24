@@ -500,6 +500,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void bombOverlay() {
 		
+		if(bombDeactivated) {return;}
+		
 		combatRefreshOverlay();
 		
 		add(bombRect);
