@@ -86,7 +86,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());		
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());		
 	}
 
 	@Override
@@ -136,7 +136,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userX + 80;
 		double userY2 = userX + 80;
-		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 73 && userY <= E2.getY() + 69) {
+		if(userX >= E2.getX() - 10 && userY >= E2.getY() - 10 && userX <= E2.getX() + 75 && userY <= E2.getY() + 69) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -148,18 +148,19 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR1();
 		}
-		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
-			user.setX(150);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
-		}
-//		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() - 30  && userX >= E5.getX() - 30) {
+//		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
+//			user.setX(150);
+//			user.setY(300);
+//			userRep.setLocation(user.getX(), user.getY());
+//			program.switchToChrisR1();
+//		}
+		else if(userX >= E5.getX() && userY >= E5.getY() && userY <= E5.getY() + 70 && userX <= E5.getX() + 70) {
+			System.out.println("detected");
 //			user.setX(575);
 //			user.setY(110);
 //			userRep.setLocation(user.getX(),user.getY());
 //			program.switchToChrisR1();
-//		}
+		}
 	}
 	
 	public boolean everyXSeconds(double x) {
