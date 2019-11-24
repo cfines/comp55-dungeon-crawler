@@ -492,10 +492,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		combatRefreshOverlay();
 		
-		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 100);
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 30);
 		bombTimer.setFont("Arial-Bold-24");
 		bombTimer.setColor(Color.red);
 		
+		remove(bombTimer);
 		add(bombTimer);
 		
 	}

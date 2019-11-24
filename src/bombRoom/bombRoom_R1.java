@@ -125,6 +125,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		decrementTimer();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -160,7 +161,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		decrementTimer++;
 		if(decrementTimer == 4) {
 			decrementTimer = 0;
-			
+			program.setBombCounter(program.getBombCounter() - 1);
 			program.bombOverlay();
 		}
 	}
