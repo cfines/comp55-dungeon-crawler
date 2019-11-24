@@ -13,7 +13,6 @@ import RoomPanes.KeyPressedManager;
 import RoomPanes.MainApplication;
 import acm.graphics.GImage;
 import acm.graphics.GRect;
-import enemyInteraction.ElementType;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;

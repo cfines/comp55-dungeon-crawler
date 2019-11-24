@@ -7,6 +7,7 @@ import java.io.IOException;
 import ChrisFloor.chris_R1;
 import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
+import ChrisFloor.chris_R4;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
@@ -49,6 +50,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R1 chris_R1;
 	private chris_R2 chris_R2;
 	private chris_R3 chris_R3;
+	private chris_R4 chris_R4;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private TitleScreenPane tittle; 
@@ -113,6 +115,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R1 = new chris_R1(this);
 		chris_R2 = new chris_R2(this);
 		chris_R3 = new chris_R3(this);
+		chris_R4 = new chris_R4(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		tittle = new TitleScreenPane(this);
@@ -128,6 +131,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//bossDefeated = true;
 		
 		switchToR8(); //change which screen you want to switch to
+
 
 	}
 	
@@ -177,6 +181,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mapbase_R9Complete = new mapBase_R9Complete(this);
 			chris_R1 = new chris_R1(this);
 			chris_R2 = new chris_R2(this);
+			chris_R4 = new chris_R4(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
 			try {
@@ -253,6 +258,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR3() {
 		switchToScreen(chris_R3);
+	}
+	
+	public void switchToChrisR4() {
+		switchToScreen(chris_R4);
 	}
 	
 	public void switchToOsvaldoR1() {
