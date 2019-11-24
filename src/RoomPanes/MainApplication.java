@@ -114,7 +114,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		user.setHasKey(true);
 		bossDefeated = true;
-		switchToR9Complete(); //change which screen you want to switch to
+		switchToChrisR2(); //change which screen you want to switch to
 
 	}
 	
