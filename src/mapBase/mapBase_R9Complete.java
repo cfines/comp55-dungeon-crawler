@@ -22,31 +22,27 @@ import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
 import removeLater.User;
 
-public class mapBase_R9 extends GraphicsPane implements ActionListener{
+public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage background,userRep, userWeapon; 
-	private GImage xok = new GImage("xokStill.png", 375, 375); 
-	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
+	private GImage E16, ENext,background,userRep, userWeapon; 
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
+	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	private int degree;
 	private User user;
-	private Enemy ixokStill = new Enemy(20,20,2,2,375,375, ElementType.EARTH, enemyType.xokStill);
-	private enemyType attk = enemyType.xokAttack;
-	private enemyType still = enemyType.xokStill;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
-	private int timerCont = 0;
-	private boolean move = false;
 
 	private KeyPressedManager mover;
 
-	public mapBase_R9(MainApplication app) {
+	public mapBase_R9Complete(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
+		Interactions iE16 = new Interactions(interactionType.entry_door_SOUTH,575,535);
+		Interactions iENext = new Interactions(interactionType.entry_stair,575,300);
 
-		xok = ixokStill.getImage();
+		E16 = iE16.getImage();
+		ENext = iENext.getImage();
 
 		background = new GImage("Fire_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -57,24 +53,25 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 
-		listOfEnemies.add(ixokStill);
+		listOfInter.add(iENext);
+		listOfInter.add(iE16);
 
 		elements.add(background);
-		elements.add(xok);
+		elements.add(E16);
+		elements.add(ENext);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		mover.notReallyActionPerformed(e);
+	}
 
 	@Override
 	public void showContents() {
-		
-		if(ixokStill.getEnemyStats().getHP_cur() <= 0) {
-			program.setBossDefeated(true);
-			program.switchToR9Complete();
-		}
-		
 		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
@@ -92,25 +89,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 		}
 		program.refreshOverlay();
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if(ixokStill.getEnemyStats().getHP_cur() <= 0) {
-			program.setBossDefeated(true);
-			program.switchToR9Complete();
-		}
-		
-		timerCont++;
-		enemyMovement();
-		mover.notReallyActionPerformed(e);
-		userRep.setLocation(user.getX(), user.getY());
-	}
-
-	public boolean everyXSeconds(double x) {
-		return(timerCont %(x) == 0);
-	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
@@ -122,32 +101,37 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		mover.notReallyKeyReleased(e);
+		nextRoom();
+		userRep.setLocation(user.getX(), user.getY());
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if(obj == E16) {
+			program.switchToR8();
+			userRep.setLocation(575,435);
+		}
+	}
+	
+	private void nextRoom() {
+		double userX = userRep.getX();
+		double userY = userRep.getY();
+		double userX2 = userRep.getX() + 80;
+		double userY2 = userRep.getY() + 80;
+		//TODO fix these boundary checks
+		if(userX >= ENext.getX() && userY >= ENext.getY() && userX <= ENext.getX() + 75 && userY <= ENext.getY() + 75) {
+			program.setComingFromBoss(true);
+			user.setX(575);
+			user.setY(325);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToSome();
+		} else if (userX <= E16.getX() && userY <= E16.getY() && userY2 >= E16.getY() - 30  && userX >= E16.getX() - 30) {
+			user.setX(575);
+			user.setY(130);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToR8();
+		}
 	}
 
-	public void enemyMovement() {
-		if(everyXSeconds(40)) {
-			move = !move;
-			program.remove(ixokStill.getImage());
-			if(move) {ixokStill.setImage(attk);}
-			else {ixokStill.setImage(still);}
-			program.add(ixokStill.getImage());
-		}
-		
-		for(Enemy enem : listOfEnemies) {
-			
-			enem.getImage().movePolar(2, degree);
-			degree+=80;
-			degree%=360;
-			if(move) {
-				double distX = enem.getImage().getX() - userRep.getX();
-				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 5) / 100;
-				double moveY = (distY * 5) / 100;
-				enem.getImage().move(-moveX, -moveY);
-			}else {xok.move(0, 0);}
-			enem.setStartX(enem.getImage().getX());
-			enem.setStartY(enem.getImage().getY());
-		}
-	}
 }
-

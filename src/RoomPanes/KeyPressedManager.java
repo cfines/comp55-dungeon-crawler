@@ -100,6 +100,8 @@ public class KeyPressedManager {
 			program.pauseScreenSwitch();
 			break;
 		case KeyEvent.VK_Q:
+			user.setDX(0);
+			user.setDY(0);
 			program.QScreenSwitch();
 			break;
 		}

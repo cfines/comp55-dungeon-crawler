@@ -92,6 +92,11 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 				if(program.getUser().getHasKey()) {
 					unlockProtocol();
 				}
+			} else if (program.getBossDefeated()) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9Complete();
 			} else {
 				user.setX(575);
 				user.setY(410);

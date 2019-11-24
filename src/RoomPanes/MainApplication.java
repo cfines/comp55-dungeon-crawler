@@ -19,6 +19,7 @@ import mapBase.mapBase_R6;
 import mapBase.mapBase_R7;
 import mapBase.mapBase_R8;
 import mapBase.mapBase_R9;
+import mapBase.mapBase_R9Complete;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -40,6 +41,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private mapBase_R7 mapbase_R7;
 	private mapBase_R8 mapbase_R8;
 	private mapBase_R9 mapbase_R9;
+	private mapBase_R9Complete mapbase_R9Complete;
 	private chris_R1 chris_R1;
 	private chris_R2 chris_R2;
 	private TitleScreenPane tittle; 
@@ -74,6 +76,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private int count;
 	private User user;
 	public boolean comingFromBoss = false;
+	public boolean bossDefeated = false;
 	private int floorNum = 0;
 	
 	public void init() {
@@ -97,6 +100,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		mapbase_R7 = new mapBase_R7(this);
 		mapbase_R8 = new mapBase_R8(this);
 		mapbase_R9 = new mapBase_R9(this);
+		mapbase_R9Complete = new mapBase_R9Complete(this);
 		chris_R1 = new chris_R1(this);
 		chris_R2 = new chris_R2(this);
 		tittle = new TitleScreenPane(this);
@@ -109,7 +113,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		QPane = new instructionsPane(this);
 		
 		user.setHasKey(true);
-		switchToSome(); //change which screen you want to switch to
+		bossDefeated = true;
+		switchToR9Complete(); //change which screen you want to switch to
 
 	}
 	
@@ -156,9 +161,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			mapbase_R7 = new mapBase_R7(this);
 			mapbase_R8 = new mapBase_R8(this);
 			mapbase_R9 = new mapBase_R9(this);
+			mapbase_R9Complete = new mapBase_R9Complete(this);
 			chris_R1 = new chris_R1(this);
 			chris_R2 = new chris_R2(this);
 			tittle = new TitleScreenPane(this);
+			bossDefeated = false;
 			try {
 				playerDied = new GameOverPane(this);
 			} catch (IOException e) {
@@ -179,8 +186,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		
 		switchToScreen(somePane);
-		audio = AudioPlayer.getInstance();
-		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
+//		audio = AudioPlayer.getInstance();
+//		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
 	}
 	
 	public void switchToR2() {
@@ -217,6 +224,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR9() {
 		switchToScreen(mapbase_R9);
+	}
+	
+	public void switchToR9Complete() {
+		switchToScreen(mapbase_R9Complete);
 	}
 	
 	public void switchToChrisR1() {
@@ -363,6 +374,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setComingFromBoss(boolean coming) {
 		this.comingFromBoss = coming;
+	}
+	
+	public boolean getBossDefeated() {
+		return bossDefeated;
+	}
+	
+	public void setBossDefeated(boolean bruh) {
+		this.bossDefeated = bruh;
 	}
 	
 }
