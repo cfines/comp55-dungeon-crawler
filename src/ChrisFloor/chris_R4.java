@@ -52,8 +52,8 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		Interactions icolor2 = new Interactions(interactionType.color1,215,35);
 		Interactions icolor3 = new Interactions(interactionType.color1,930,35);
 		Interactions icolor4 = new Interactions(interactionType.color1,855,35);
-		Interactions icolor7 = new Interactions(interactionType.color1,65,236);
-		Interactions icolor8 = new Interactions(interactionType.color1,65,388);
+		Interactions icolor7 = new Interactions(interactionType.color1,65,184);
+		Interactions icolor8 = new Interactions(interactionType.color1,65,444);
 		Interactions icolor9 = new Interactions(interactionType.color1,930,500);
 		Interactions icolor11 = new Interactions(interactionType.color1,855,500);
 		Interactions icolor10 = new Interactions(interactionType.color1,140,500);
