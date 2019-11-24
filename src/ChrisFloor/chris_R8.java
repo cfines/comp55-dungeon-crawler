@@ -21,7 +21,7 @@ import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
 import removeLater.User;
 
-public class chris_R3 extends GraphicsPane implements ActionListener{
+public class chris_R8 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -38,7 +38,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 	private KeyPressedManager mover;
 	
 
-	public chris_R3(MainApplication app) {
+	public chris_R8(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
 
