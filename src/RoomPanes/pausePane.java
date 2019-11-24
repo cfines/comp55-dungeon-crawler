@@ -247,6 +247,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		if(exit) {
 			program.remove(invincibility);
 			program.remove(giveKey);
+			exit = false;
 		}
 	}
 	

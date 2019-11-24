@@ -68,8 +68,8 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
-		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(DarkMage);
+		listOfEnemies.add(ienemy1);
 		listOfInter.add(iE4);
 		listOfInter.add(iE5);
 		listOfInter.add(itree1);
@@ -187,7 +187,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 	public void deleteEnemy() {
 		mover.setDeleteEnemy(false);
 		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(listOfEnemies.get(i).getEnemyType() == enemyType.Nagic) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 				enemyImages.remove(i);
 				listOfEnemies.remove(i);
 			} else {
