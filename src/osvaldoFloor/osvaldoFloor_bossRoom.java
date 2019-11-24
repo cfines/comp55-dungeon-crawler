@@ -92,7 +92,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(9, program.getFloorNum());
+		program.drawOverlay(2, program.getFloorNum());
+		program.bossOverlay(osvaldoom);
 	}
 
 	@Override
@@ -239,6 +240,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				System.out.println("You killed Osvaldoom!");
 				osvaldoom.getEnemyStats().setHP_cur(0);
 				listOfProjectiles.remove(listOfProjectiles.get(i));
+				program.bossOverlay(osvaldoom);
 				program.remove(shot.getImage());
 			}
 		}
