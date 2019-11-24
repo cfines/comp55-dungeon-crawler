@@ -744,6 +744,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void resetRooms() {
 		user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
+		user.setX(300);
+		user.setY(300);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -863,5 +865,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		Poniko = new poniko(this);
 		feR12 = new fe_R12(this);
 	}
+	
 	
 }
