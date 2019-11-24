@@ -27,6 +27,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	private String temp = new String("");
 	private String name;
 	private Formatter x;
+	private CreateTextfile highScore;
 	
 	public GameOverPane(MainApplication app) throws IOException 
 	{
@@ -40,9 +41,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		text = new GLabel("Enter name of the fallen (press enter when done): ",100,100);
 		text.setColor(Color.red);
 		text.setLocation(480,325);
-		openFile();
-		addRecords();
-		closeFile();
 	}
 	
 	@Override
@@ -69,14 +67,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		try {
-			FileWriter writer = new FileWriter("highestScores.txt", true);
-			writer.write(userName.getLabel().toString());
-			writer.write("haha");
-			writer.write("\r\n");   // write new line
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		highScore.addRecords();
 	}
 	
 	public void setName(GLabel name) 
@@ -102,23 +93,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		}
 
 		//getNewName().getLabel() + " was last seen on " + program.getFloorNum()
-	}
-	
-	public void openFile() {
-		try {
-			x = new Formatter("highScores.txt");
-		}
-		catch(Exception e) {
-			System.out.println("Invalid character");
-		}
-	}
-	
-	public void addRecords() {
-		x.format("s", getNewName().getLabel() + " was last seen on " + program.getFloorNum());
-	}
-	
-	public void closeFile() {
-		x.close();
 	}
 
 	public void keyPressed(KeyEvent e) 
@@ -283,6 +257,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			break;
 		case KeyEvent.VK_ENTER:
 			//nameDone();
+			program.switchToMenu();
 			System.out.println("user's name should be pushed into the txt file at this point");
 			System.out.println(getNewName().getLabel());
 			break;
@@ -373,7 +348,6 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 			temp = "";
 			break;
 		case KeyEvent.VK_ENTER:
-			program.switchToMenu();
 			break;
 		default:
 			break;
