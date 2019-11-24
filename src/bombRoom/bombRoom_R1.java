@@ -95,14 +95,14 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		
 		if(listOfEnemies.size() >= 1) {
 			for(int i = 0; i < enemyImages.size(); i++) {
-					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
-						enemyImages.remove(i);
-						listOfEnemies.remove(i);
-					} else {
-						program.add(enemyImages.get(i));
-					}
+				if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+					enemyImages.remove(i);
+					listOfEnemies.remove(i);
+				} else {
+					program.add(enemyImages.get(i));
 				}
 			}
+		}
 		
 		program.bombOverlay();
 		program.drawOverlay(1, program.getFloorNum());

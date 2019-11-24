@@ -58,8 +58,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		hole1 = ihole1.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 
-		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
 
 		listOfInter.add(ihole1);
 		listOfInter.add(iE5);
@@ -125,6 +125,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -210,6 +211,18 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
 	}
 }
 

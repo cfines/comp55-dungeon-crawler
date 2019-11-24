@@ -53,9 +53,6 @@ public class KeyPressedManager {
 		checkCollision();
 		knockBack();
 		
-		if(deleteEnemy) {
-			//removeEnemyFromElementList();
-		}
 		if(program.getUser().getHasKey() && !keyDeleted) {
 			removeKeyFromInteractionList();
 		}
@@ -179,7 +176,7 @@ public class KeyPressedManager {
 						listOfEnemies.get(i).setImage(enemyType.rip);
 						program.add(listOfEnemies.get(i).getImage());
 						
-						listOfEnemies.remove(i);
+						//listOfEnemies.remove(i);
 						audio = AudioPlayer.getInstance();
 						audio.playSound(MUSIC_FOLDER, "Heavy says Dead.mp3");
 					}
@@ -398,6 +395,7 @@ public class KeyPressedManager {
 		for(int i = 0; i < elements.size(); i++) {
 			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 				elements.remove(i);
+				listOfEnemies.remove(i);
 			}
 		}
 	}
@@ -420,6 +418,14 @@ public class KeyPressedManager {
 			enem.setImage(enemyType.insidePacific);
 			program.add(enem.getImage());
 		}
+	}
+	
+	public boolean getDeleteEnemy() {
+		return deleteEnemy;
+	}
+	
+	public void setDeleteEnemy(boolean prettyPlease) {
+		this.deleteEnemy = prettyPlease;
 	}
 	
 }

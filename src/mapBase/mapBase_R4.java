@@ -65,9 +65,9 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
-		listOfEnemies.add(ienemy3);
-		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
+		listOfEnemies.add(ienemy3);
 		
 		listOfInter.add(iE7);
 		listOfInter.add(iE6);
@@ -156,6 +156,7 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -215,6 +216,18 @@ public class mapBase_R4 extends GraphicsPane implements ActionListener{
 			user.setY(110);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR5();
+		}
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
 		}
 	}
 	
