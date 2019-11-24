@@ -277,6 +277,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToR9() {
+		if(bossRun) {
+			user = new User(5, 5, 1000, 1, 300, 300);
+			mapbase_R9 = new mapBase_R9(this);
+			osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		}
 		switchToScreen(mapbase_R9);
 	}
 	
