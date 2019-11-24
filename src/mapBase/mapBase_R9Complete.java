@@ -72,6 +72,12 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void showContents() {
+		
+		if(program.getBossRun()) {
+			program.switchToOsvaldoBoss();
+			return;
+		}
+		
 		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
@@ -125,6 +131,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 			user.setX(575);
 			user.setY(325);
 			userRep.setLocation(user.getX(), user.getY());
+			program.setBossDefeated(false);
 			program.switchToSome();
 		} else if (userX <= E16.getX() && userY <= E16.getY() && userY2 >= E16.getY() - 30  && userX >= E16.getX() - 30) {
 			user.setX(575);

@@ -170,6 +170,12 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	public void actionPerformed(ActionEvent e) {
 		
 		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
+			if(program.getBossRun()) {
+				user.setX(575);
+				user.setY(425);
+				program.switchToOsvaldoBoss();
+				return;
+			}
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}
