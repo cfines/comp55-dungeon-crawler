@@ -41,7 +41,7 @@ public class fe_R1 extends GraphicsPane implements ActionListener{
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		
 		E10 = iE10.getImage();
-		background = new GImage("FE Ice Cave.png", 10,20);
+		background = new GImage("FE Forest Clearing.png", 10,20);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		
