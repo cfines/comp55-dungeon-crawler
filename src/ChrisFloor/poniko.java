@@ -33,7 +33,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
-	private boolean move = false, attack = false, firstLoad = true, firstRemove = false, swapBack = false;
+	private boolean move = false, attack = false, swapBack = false;
 	private int degree;
 	private KeyPressedManager mover;
 	
@@ -79,11 +79,9 @@ public class poniko extends GraphicsPane implements ActionListener{
 			if(program.getBossRun()) {
 				user.setX(575);
 				user.setY(425);
-				firstRemove = true;
 				program.switchToOsvaldoBoss();
 				return;
 			}
-			firstRemove = true;
 			program.setBossDefeated(true);
 			program.switchToChrisR9();
 		}
@@ -98,8 +96,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void showContents() {
-		if (firstLoad) {t.start();}
-		firstLoad = false;
+		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
@@ -109,7 +106,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void hideContents() {
-		if(firstRemove){t.stop();}
+		t.stop();
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
@@ -123,10 +120,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 //		if (obj == E1) {
 //			program.switchToChrisR1();
 //		}
-	}
-	
-	public void setTrueRemove() {
-		firstRemove = true;
 	}
 	
 	@Override
@@ -198,8 +191,8 @@ public class poniko extends GraphicsPane implements ActionListener{
 			}else {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * .1) / 100;
-				double moveY = (distY * .1) / 100;
+				double moveX = (distX * 1) / 100;
+				double moveY = (distY * 1) / 100;
 				enem.getImage().move(-moveX, -moveY);
 				enem.setStartY(enem.getImage().getY());
 				enem.setStartX(enem.getImage().getX());
