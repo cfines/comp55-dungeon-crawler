@@ -190,7 +190,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 5) { program.switchToOsvaldoBoss(); }	//DOOM-BOSS
 				if(i == 6) { program.switchToChrisR1(); }			//SHAD-R1
 				if(i == 7) { program.switchToChrisR7(); }			//SHAD-KEY
-				if(i == 8) { /*program.switchToChrisR12();*/ }			//SHAD-BOSS
+				if(i == 8) { program.switchToPoniko(); }			//SHAD-BOSS
 				if(i == 9) { program.switchToFeR1(); }			//FIRE-R1
 				if(i == 10) { /*program.switchToFeR10();*/ }			//FIRE-KEY
 				if(i == 11) { /*program.switchToFeR12();*/ }			//FIRE-BOSS
@@ -208,8 +208,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			if(obj == buttonGod.get(i)) {
 				if(i == 0) { program.getUser().setInvincibility(!program.getUser().getInvincibility()); }
 				if(i == 1) { program.getUser().setHasKey(true); }
-				if(i == 2) { program.switchToSome(); }
-				if(i == 3) { program.switchToSome(); }
+				if(i == 2) { program.resetBosses(); }
+				if(i == 3) { program.resetRooms(); program.switchToMenu(); }
 			}
 		}
 		

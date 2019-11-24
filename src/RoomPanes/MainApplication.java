@@ -234,42 +234,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToSome() {
 		
 		if(restartGame || comingFromBoss) {
-			user = new User(5, 5, 1000, 1, 300, 300);
-			System.out.println("Hello, world! New game!");
-			somePane = new SomePane(this);
-			menu = new MenuPane(this);
-			lightsoff = new MenuPane_LightsOff(this);
-			creditsPane = new CreditsPane(this);
-			mapbase_R2 = new mapBase_R2(this);
-			testPane = new mapBase_R2TEST(this);
-			mapbase_R3 = new mapBase_R3(this);
-			mapbase_R4 = new mapBase_R4(this);
-			mapbase_R5 = new mapBase_R5(this);
-			mapbase_R6 = new mapBase_R6(this);
-			mapbase_R7 = new mapBase_R7(this);
-			mapbase_R8 = new mapBase_R8(this);
-			mapbase_R9 = new mapBase_R9(this);
-			mapbase_R9Complete = new mapBase_R9Complete(this);
-			chris_R1 = new chris_R1(this);
-			chris_R2 = new chris_R2(this);
-			chris_R4 = new chris_R4(this);
-			chris_R5 = new chris_R5(this);
-			chris_R6 = new chris_R6(this);
-			chris_R7 = new chris_R7(this);
-			chris_R8 = new chris_R8(this);
-			chris_R9 = new chris_R9(this);
-			chris_R10 = new chris_R10(this);
-			Poniko = new poniko(this);
-			feR1 = new fe_R1(this);
-			feR2 = new fe_R2(this);
-			tittle = new TitleScreenPane(this);
-			bossDefeated = false;
-			try {
-				playerDied = new GameOverPane(this);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
 			if(comingFromBoss) {
 				floorNum++;
 				user.setHasKey(false);
@@ -281,11 +245,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			}
 		}
 		
-		
-		
 		switchToScreen(somePane);
-//		audio = AudioPlayer.getInstance();
-//		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
+
 	}
 	
 	public void switchToR2() {
@@ -322,9 +283,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR9() {
 		if(bossRun) {
-			user = new User(5, 5, 1000, 1, 300, 300);
-			mapbase_R9 = new mapBase_R9(this);
-			osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+			user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
+			user.setX(800);
+			user.setY(WINDOW_HEIGHT/2 - 40);
+			resetBosses();
 		}
 		switchToScreen(mapbase_R9);
 	}
@@ -671,6 +633,108 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public boolean getDeveloperMode() {
 		return DEVELOPER_MODE;
+	}
+	
+	public void resetRooms() {
+		somePane = new SomePane(this);
+		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
+		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
+		mapbase_R3 = new mapBase_R3(this);
+		mapbase_R4 = new mapBase_R4(this);
+		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
+		mapbase_R8 = new mapBase_R8(this);
+		mapbase_R9 = new mapBase_R9(this);
+		mapbase_R9Complete = new mapBase_R9Complete(this);
+		chris_R1 = null;
+		chris_R2 = null;
+		chris_R3 = null;
+		chris_R4 = null;
+		chris_R5 = null;
+		chris_R6 = null;
+		chris_R7 = null;
+		chris_R8 = null;
+		chris_R9 = null;
+		chris_R10 = null;
+		Poniko = null;
+		osvaldoFloor_R1 = null;
+		osvaldoFloor_bossRoom = null;
+		osvaldoFloor_bossRoomComplete = null;
+		bombRoom_R1 = null;
+		tittle = null;
+		feR1 = null;
+		feR2 = null;
+		feR3 = null;
+		feR4 = null;
+		feR5 = null;
+		feR6 = null;
+		feR7 = null;
+		feR8 = null;
+		feR9 = null;
+		feR10 = null;
+		feR11 = null;
+		feR12 = null;
+		feR12C = null;
+		///////////////////////////////
+		somePane = new SomePane(this);
+		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
+		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
+		mapbase_R3 = new mapBase_R3(this);
+		mapbase_R4 = new mapBase_R4(this);
+		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
+		mapbase_R8 = new mapBase_R8(this);
+		mapbase_R9 = new mapBase_R9(this);
+		mapbase_R9Complete = new mapBase_R9Complete(this);
+		chris_R1 = new chris_R1(this);
+		chris_R2 = new chris_R2(this);
+		chris_R3 = new chris_R3(this);
+		chris_R4 = new chris_R4(this);
+		chris_R5 = new chris_R5(this);
+		chris_R6 = new chris_R6(this);
+		chris_R7 = new chris_R7(this);
+		chris_R8 = new chris_R8(this);
+		chris_R9 = new chris_R9(this);
+		chris_R10 = new chris_R10(this);
+		Poniko = new poniko(this);
+		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
+		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		bombRoom_R1 = new bombRoom_R1(this);
+		tittle = new TitleScreenPane(this);
+		feR1 = new fe_R1(this);
+		feR2 = new fe_R2(this);
+		feR3 = new fe_R3(this);
+		feR4 = new fe_R4(this);
+		feR5 = new fe_R5(this);
+		feR6 = new fe_R6(this);
+		feR7 = new fe_R7(this);
+		feR8 = new fe_R8(this);
+		feR9 = new fe_R9(this);
+		feR10 = new fe_R10(this);
+		feR11 = new fe_R11(this);
+		feR12 = new fe_R12(this);
+		feR12C = new fe_R12Complete(this);
+	}
+	
+	public void resetBosses() {
+		mapbase_R9 = null;
+		osvaldoFloor_bossRoom = null;
+		Poniko = null;
+		feR12 = null;
+		////////////////////////////////
+		mapbase_R9 = new mapBase_R9(this);
+		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		Poniko = new poniko(this);
+		feR12 = new fe_R12(this);
 	}
 	
 }
