@@ -25,7 +25,7 @@ public enum interactionType {
 			case color1: return "color1";
 			case color2: return "color2";
 			case face: return "face";
-			case chrisEntry_NORTH: return "chrisEntry_North";
+			case chrisEntry_NORTH: return "chrisEntry_NORTH";
 			case chrisEntry_SOUTH: return "chrisEntry_SOUTH";
 			case chrisEntry_EAST: return "chrisEntry_EAST";
 			case chrisEntry_WEST: return "chrisEntry_WEST";
