@@ -33,6 +33,7 @@ import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
 import osvaldoFloor.osvaldoFloor_bossRoomComplete;
+import bombRoom.bombRoom_R1;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -68,6 +69,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
+	private bombRoom_R1 bombRoom_R1;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -76,6 +78,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private AudioPlayer audio;
 	private fe_R1 feR1;
 	public boolean bossRun = false;
+	public int bombCounter = 180;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -90,6 +93,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel levelLabel;
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
+		public GLabel bombTimer;
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -141,6 +145,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		
+		bombRoom_R1 = new bombRoom_R1(this);
+		
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
 		
@@ -325,6 +332,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(osvaldoFloor_bossRoomComplete);
 	}
 	
+	public void switchToBombRoomR1() {
+		switchToScreen(bombRoom_R1);
+	}
+	
 	public void switchToFeR1() {
 		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
@@ -479,6 +490,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 	}
 	
+	public void bombOverlay() {
+		
+		combatRefreshOverlay();
+		
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 100);
+		bombTimer.setFont("Arial-Bold-24");
+		bombTimer.setColor(Color.red);
+		
+		add(bombTimer);
+		
+	}
+	
 	public int getFloorNum() {
 		return floorNum;
 	}
@@ -501,6 +524,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public boolean getBossRun() {
 		return bossRun;
+	}
+	
+	public void setBombCounter(int count) {
+		bombCounter = count;
+	}
+	
+	public int getBombCounter() {
+		return bombCounter;
 	}
 	
 }

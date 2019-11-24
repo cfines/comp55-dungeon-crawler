@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
+	private GImage E1, E2, E3, E4, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -48,6 +48,15 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions icandle1 = new Interactions(interactionType.candle1, 315,35);
+		Interactions icandle2 = new Interactions(interactionType.candle2, 375,105);
+		Interactions icandle3 = new Interactions(interactionType.candle2, 435,175);
+		Interactions icandle4 = new Interactions(interactionType.candle1, 495,235);
+		Interactions icandle5 = new Interactions(interactionType.candle2, 555,285);
+		Interactions icandle6 = new Interactions(interactionType.candle1, 635,335);
+		Interactions icandle7 = new Interactions(interactionType.candle1, 700,395);
+		Interactions icandle8 = new Interactions(interactionType.candle2, 775,435);
+		Interactions icandle9 = new Interactions(interactionType.candle1, 840,465);
 
 		//Enemies
 
@@ -59,12 +68,30 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		E2 = iE2.getImage();
 		E3 = iE3.getImage();
 		E4 = iE4.getImage();
+		candle1 = icandle1.getImage();
+		candle2 = icandle2.getImage();
+		candle3 = icandle3.getImage();
+		candle4 = icandle4.getImage();
+		candle5 = icandle5.getImage();
+		candle6 = icandle6.getImage();
+		candle7 = icandle7.getImage();
+		candle8 = icandle8.getImage();
+		candle9 = icandle9.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
 		listOfInter.add(iE2);
 		listOfInter.add(iE3);
 		listOfInter.add(iE4);
+		listOfInter.add(icandle1);
+		listOfInter.add(icandle2);
+		listOfInter.add(icandle3);
+		listOfInter.add(icandle4);
+		listOfInter.add(icandle5);
+		listOfInter.add(icandle6);
+		listOfInter.add(icandle7);
+		listOfInter.add(icandle8);
+		listOfInter.add(icandle9);
 
 		//listOfEnemies.add)();
 
@@ -79,6 +106,15 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		elements.add(E2);
 		elements.add(E3);
 		elements.add(E4);
+		elements.add(candle1);
+		elements.add(candle2);
+		elements.add(candle3);
+		elements.add(candle4);
+		elements.add(candle5);
+		elements.add(candle6);
+		elements.add(candle7);
+		elements.add(candle8);
+		elements.add(candle9);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
