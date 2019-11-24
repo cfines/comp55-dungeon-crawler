@@ -34,7 +34,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	private int degree;
 	private User user;
 	private Enemy osvaldoom = new Enemy(20,20,2,2,100,100, ElementType.FIRE, enemyType.electric);
-	private Enemy shot = new Enemy(100, 100, 2, 2, 0, 0, ElementType.FIRE, enemyType.projectile);
+	private Enemy shot = new Enemy(100, 100, 5, 1, 0, 0, ElementType.FIRE, enemyType.projectile);
 	private enemyType attk = enemyType.electric;
 	private enemyType still = enemyType.electric;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
@@ -108,6 +108,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			program.switchToR9Complete();
 		}
 		
+		enemyCombat();
 		timerCont++;
 		enemyMovement();
 		mover.notReallyActionPerformed(e);
@@ -125,14 +126,15 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			atkUp = true;
-		} else {
-			atkUp = false;
 		}
 		mover.notReallyKeyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			atkUp = false;
+		}
 		mover.notReallyKeyReleased(e);
 	}
 
@@ -156,8 +158,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				move = true;
 			}
 			
-			if(move) { enem.getImage().move(10, 0); }
-			else { enem.getImage().move(-10, 0); }
+			if(move) { enem.getImage().move(8, 0); }
+			else { enem.getImage().move(-8, 0); }
 			
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
@@ -172,7 +174,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				
 				program.add(arr.getImage());
 				
-				if(checkHitBack(arr, userWeapon)) { hit = true; }
+				if(checkHitBack(arr, userWeapon) && atkUp) { hit = true; }
 				
 				if(hit) { arr.getImage().move(0, -10); }
 				else { arr.getImage().move(0, 10); }
@@ -187,7 +189,17 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
-				&& enem.getImage().getX() - image.getX() >= -60) && atkUp;
+				&& enem.getImage().getX() - image.getX() >= -60);
+	}
+	
+	public void enemyCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				program.combatRefreshOverlay();
+			}
+		}
 	}
 	
 }
