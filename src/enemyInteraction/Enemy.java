@@ -67,6 +67,8 @@ public class Enemy {
 		} else if(type == enemyType.projectile) {
 			image = new GImage("ghost_enemy.gif", dx, dy);
 			image.setSize(75, 75);
+		} else if(type == enemyType.bomb) {
+			image = new GImage("Statue.PNG", dx, dy);
 		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}

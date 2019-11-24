@@ -166,6 +166,11 @@ public class KeyPressedManager {
 					//damage dealt to enemy
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					
+					if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {
+						weMinecraftUpInHere(listOfEnemies.get(i));
+					}
+					
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						deleteEnemy = true;
@@ -339,6 +344,7 @@ public class KeyPressedManager {
 	public void knockBack() {
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
+				if(enem.getEnemyType() == enemyType.bomb) {return;}
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
 					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
@@ -393,6 +399,26 @@ public class KeyPressedManager {
 			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 				elements.remove(i);
 			}
+		}
+	}
+	
+	public void weMinecraftUpInHere(Enemy enem) {
+		if(enem.getEnemyStats().getHP_cur() < 20) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.FIREFish);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 40) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.momoko);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 60) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.leg);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 80) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.insidePacific);
+			program.add(enem.getImage());
 		}
 	}
 	

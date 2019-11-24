@@ -94,6 +94,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
 		public GLabel bombTimer;
+		public GRect bombRect = new GRect(695, 37, 260, 30);
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -108,6 +109,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private User user;
 	public boolean comingFromBoss = false;
 	public boolean bossDefeated = false;
+	public boolean bombDeactivated = false;
 	private int floorNum = 0;
 	
 	public void init() {
@@ -117,6 +119,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void run() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
+		bombRect.setFilled(true);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -274,6 +277,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToR9() {
+		if(bossRun) {
+			user = new User(5, 5, 1000, 1, 300, 300);
+			mapbase_R9 = new mapBase_R9(this);
+			osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		}
 		switchToScreen(mapbase_R9);
 	}
 	
@@ -494,11 +502,21 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		combatRefreshOverlay();
 		
-		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 100);
+		add(bombRect);
+		
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 60);
+		bombTimer.setColor(Color.black);
+		add(bombTimer);
+		
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 60);
 		bombTimer.setFont("Arial-Bold-24");
 		bombTimer.setColor(Color.red);
-		
+
 		add(bombTimer);
+		
+		if(bombCounter == 0) {
+			switchToGameOver();
+		}
 		
 	}
 	
@@ -532,6 +550,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public int getBombCounter() {
 		return bombCounter;
+	}
+	
+	public boolean getBombDeactivated() {
+		return bombDeactivated;
+	}
+	
+	public void setBombDeactivated(boolean bomb) {
+		this.bombDeactivated = bomb;
 	}
 	
 }
