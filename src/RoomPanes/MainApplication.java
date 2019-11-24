@@ -14,6 +14,7 @@ import ChrisFloor.chris_R6;
 import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
 import ChrisFloor.chris_R9;
+import ChrisFloor.poniko;
 import FyiahEmburemFloor.fe_R1;
 import FyiahEmburemFloor.fe_R10;
 import FyiahEmburemFloor.fe_R11;
@@ -82,6 +83,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R8 chris_R8;
 	private chris_R9 chris_R9;
 	private chris_R10 chris_R10;
+	private poniko Poniko;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -172,6 +174,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R8 = new chris_R8(this);
 		chris_R9 = new chris_R9(this);
 		chris_R10 = new chris_R10(this);
+		Poniko = new poniko(this);
 		
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
@@ -256,6 +259,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R8 = new chris_R8(this);
 			chris_R9 = new chris_R9(this);
 			chris_R10 = new chris_R10(this);
+			Poniko = new poniko(this);
 			feR1 = new fe_R1(this);
 			feR2 = new fe_R2(this);
 			tittle = new TitleScreenPane(this);
@@ -366,6 +370,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR10() {
 		switchToScreen(chris_R10);
+	}
+	
+	public void switchToPoniko() {
+		switchToScreen(Poniko);
 	}
 	
 	public void switchToOsvaldoR1() {

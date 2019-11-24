@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R10 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E4, momoko, monoe, blue1, blue2, egg, background,userRep, userWeapon;
+	private GImage E1, E3, E4, momoko, monoe, blue1, blue2, egg, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -31,6 +31,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
+	private boolean unlocked = false;
 	private int timerCont = 0;
 	private KeyPressedManager mover;
 	
@@ -42,6 +43,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
+		Interactions iE3 = new Interactions(interactionType.entry_bossDoor_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions imomoko = new Interactions(interactionType.momoko, 495,35);
 		Interactions imonoe = new Interactions(interactionType.monoe, 665,35);
@@ -57,6 +59,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
+		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 		momoko = imomoko.getImage();
 		monoe = imonoe.getImage();
@@ -66,6 +69,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
+		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 		listOfInter.add(imomoko);
 		listOfInter.add(imonoe);
@@ -83,6 +87,7 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 		//elements.add();
 		elements.add(background);
 		elements.add(E1);
+		elements.add(E3);
 		elements.add(E4);
 		elements.add(momoko);
 		elements.add(monoe);
@@ -134,28 +139,56 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		timerCont++;
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
+		double userX2 = userRep.getX() + 80;
+		double userY2 = userRep.getY() + 80;
 		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR4();
 		}
-		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			user.setX(900);
+		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
+			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToChrisR9();
 		}
+		else if(userX >= E3.getX() && userY >= E3.getY() && userX <= E3.getX() + 85 && userY <= E3.getY() + 85) {
+			if(!unlocked) {
+				if(program.getUser().getHasKey()) {
+					unlockProtocol();
+				}
+			} else if (program.getBossDefeated()) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9Complete();
+			} else {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToR9();
+			}
+		}
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(E3);
+		E3 = new GImage("entry_door_NORTH.png", 575, 28);
+		program.add(E3);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
 	}
 
 	public boolean everyXSeconds(double x) {
