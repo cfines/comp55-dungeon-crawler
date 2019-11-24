@@ -139,7 +139,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 			move = !move;
 			attack = !attack;
 			if(attack) {
-				magic = new Enemy(100, 100, 2, 2, (int)DarkMage.getCoordX(), (int)DarkMage.getCoordY() + 75, ElementType.FIRE, enemyType.projectile);
+				magic = new Enemy(100, 100, 2, 2, (int)DarkMage.getCoordX(), (int)DarkMage.getCoordY() + 75, ElementType.FIRE, enemyType.Nagic);
 				listOfProjectiles.add(magic);
 			} else {
 				listOfProjectiles.remove(magic);
