@@ -41,7 +41,7 @@ public class mapBase_R8 extends GraphicsPane implements ActionListener{
 		Interactions irock2 = new Interactions(interactionType.obstacle_concrete_rubble,575,325);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,901,325);
 		Interactions iE14 = new Interactions(interactionType.entry_door_WEST,27,300);
-		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,20);
+		Interactions iE15 = new Interactions(interactionType.entry_bossDoor,575,30);
 		rock1 = irock1.getImage();
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();

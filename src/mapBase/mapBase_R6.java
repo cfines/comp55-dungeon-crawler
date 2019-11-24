@@ -38,7 +38,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,900,150);
-		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,-3);
+		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,30);
 		Interactions ikey1 = new Interactions(interactionType.item_gif_key,575,300);
 		rock1 = irock1.getImage();
 		E11 = iE11.getImage();
