@@ -55,6 +55,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
 	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 325, 215, 50);
 	
+	private boolean exit = false;
 	
 	public pausePane(MainApplication app){
 		this.program = app;
@@ -190,7 +191,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 5) { program.switchToOsvaldoBoss(); }	//DOOM-BOSS
 				if(i == 6) { program.switchToChrisR1(); }			//SHAD-R1
 				if(i == 7) { program.switchToChrisR7(); }			//SHAD-KEY
-				if(i == 8) { /*program.switchToChrisR12();*/ }			//SHAD-BOSS
+				if(i == 8) { program.switchToPoniko(); }			//SHAD-BOSS
 				if(i == 9) { program.switchToFeR1(); }			//FIRE-R1
 				if(i == 10) { /*program.switchToFeR10();*/ }			//FIRE-KEY
 				if(i == 11) { /*program.switchToFeR12();*/ }			//FIRE-BOSS
@@ -201,6 +202,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 16) { /*TODO add*/ }			//BOMB-BOMB1
 				if(i == 17) { /*TODO add*/ }			//BOMB-BOMB2
 				if(i == 18) { /*TODO add*/ }			//BOMB-BOMB3
+				exit = true;
 			}
 		}
 		
@@ -208,12 +210,14 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			if(obj == buttonGod.get(i)) {
 				if(i == 0) { program.getUser().setInvincibility(!program.getUser().getInvincibility()); }
 				if(i == 1) { program.getUser().setHasKey(true); }
-				if(i == 2) { program.switchToSome(); }
-				if(i == 3) { program.switchToSome(); }
+				if(i == 2) { program.resetBosses(); }
+				if(i == 3) { program.resetRooms(); program.switchToMenu(); }
 			}
 		}
 		
 		refreshColors();
+		removeColors(exit);
+		
 		
 		if (obj == pauseButton) {
 			program.switchToMenu();
@@ -237,6 +241,13 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		}
 		program.remove(invincibility);
 		program.add(invincibility);
+	}
+	
+	public void removeColors(boolean exit) {
+		if(exit) {
+			program.remove(invincibility);
+			program.remove(giveKey);
+		}
 	}
 	
 }
