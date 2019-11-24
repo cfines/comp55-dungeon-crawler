@@ -159,7 +159,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 	
 	public void decrementTimer() {
 		decrementTimer++;
-		if(decrementTimer == 4) {
+		if(decrementTimer == 40 && !program.getBombDeactivated()) {
 			decrementTimer = 0;
 			program.setBombCounter(program.getBombCounter() - 1);
 			program.bombOverlay();
