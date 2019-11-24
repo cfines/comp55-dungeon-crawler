@@ -1,5 +1,6 @@
 package RoomPanes;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -24,6 +25,7 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 		menuScreen.setSize(1155, 650);
 		play = new GButton("Play", 200, WINDOW_HEIGHT - 75, 150, 50);
 		highScore = new GButton("BOSS RUSH", 387.5, WINDOW_HEIGHT - 75, 150, 50);
+		highScore.setFillColor(Color.red);
 		credits = new GButton("Credits", 575, WINDOW_HEIGHT - 75, 150, 50);
 		exit = new GButton("Exit", 762.5, WINDOW_HEIGHT - 75, 150, 50);
 	}
