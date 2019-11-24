@@ -65,6 +65,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	private fe_R1 feR1;
+	public boolean bossRun = false;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -450,6 +451,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBossDefeated(boolean bruh) {
 		this.bossDefeated = bruh;
+	}
+	
+	public void setBossRun(boolean run) {
+		bossRun = run;
+	}
+	
+	public boolean getBossRun() {
+		return bossRun;
 	}
 	
 }
