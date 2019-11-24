@@ -25,6 +25,7 @@ import mapBase.mapBase_R9;
 import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
+import osvaldoFloor.osvaldoFloor_bossRoomComplete;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -53,6 +54,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R4 chris_R4;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
+	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -118,6 +120,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R4 = new chris_R4(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		tittle = new TitleScreenPane(this);
 		try {
 			playerDied = new GameOverPane(this);
@@ -130,7 +133,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.setHasKey(true);
 		//bossDefeated = true;
 		
-		switchToR8(); //change which screen you want to switch to
+		switchToOsvaldoBoss(); //change which screen you want to switch to
 
 
 	}
@@ -270,6 +273,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToOsvaldoBoss() {
 		switchToScreen(osvaldoFloor_bossRoom);
+	}
+	
+	public void switchToOsvaldoBossComplete() {
+		switchToScreen(osvaldoFloor_bossRoomComplete);
 	}
 	
 	public void switchToLightsOff() {
