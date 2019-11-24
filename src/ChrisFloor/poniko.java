@@ -43,12 +43,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 		
 		//Interactions
 		Interactions iE5 = new Interactions(interactionType.chrisEntry_WEST,27,300);
-		Interactions iface1 = new Interactions(interactionType.face,100,100);
-		Interactions iface2 = new Interactions(interactionType.face,200,200);
-		Interactions iface3 = new Interactions(interactionType.face,300,300);
-		Interactions iface4 = new Interactions(interactionType.face,400,400);
-		Interactions iface5 = new Interactions(interactionType.face,500,500);
-		
 		//Enemies
 		
 		
@@ -85,6 +79,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 			if(program.getBossRun()) {
 				user.setX(575);
 				user.setY(425);
+				firstRemove = true;
 				program.switchToOsvaldoBoss();
 				return;
 			}
@@ -128,7 +123,10 @@ public class poniko extends GraphicsPane implements ActionListener{
 //		if (obj == E1) {
 //			program.switchToChrisR1();
 //		}
-
+	}
+	
+	public void setTrueRemove() {
+		firstRemove = true;
 	}
 	
 	@Override
