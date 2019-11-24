@@ -105,7 +105,7 @@ public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {
 		}
 		
 		program.bombOverlay();
-		program.drawOverlay(1, program.getFloorNum());
+		program.drawOverlay(4, program.getFloorNum());
 	}
 
 	@Override
@@ -136,8 +136,8 @@ public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		decrementTimer();
-		if(checkIfBombDestroyed()) { program.setBombsDeactivated(true); }
 		mover.notReallyActionPerformed(e);
+		bombDestroyed(checkIfBombDestroyed());
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
@@ -189,6 +189,13 @@ public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {
 		}
 			
 		return true;
+	}
+	
+	public void bombDestroyed(boolean check) {
+		if(!check) {return;}
+		
+		program.setBomb1(true);
+		
 	}
 	
 }

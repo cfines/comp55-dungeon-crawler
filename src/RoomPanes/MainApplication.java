@@ -650,6 +650,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb1(boolean bomb) {
 		this.bomb1Dead = bomb;
+		checkForBombsDestroyed();
 	}
 	
 	public boolean getBomb2() {
@@ -658,6 +659,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb2(boolean bomb) {
 		this.bomb2Dead = bomb;
+		checkForBombsDestroyed();
 	}
 	
 	public boolean getBomb3() {
@@ -666,6 +668,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb3(boolean bomb) {
 		this.bomb3Dead = bomb;
+		checkForBombsDestroyed();
 	}
 	
 	public void resetBombs() {
