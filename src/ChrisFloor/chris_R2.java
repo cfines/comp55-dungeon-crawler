@@ -16,14 +16,12 @@ import acm.graphics.GObject;
 import acm.graphics.GRect;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
-import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
 import removeLater.User;
 
 public class chris_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E2, E3, E4, E5, background,userRep, userWeapon;
-	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -138,19 +136,19 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
+			//program.switchToChrisR1();
 		}
 		else if(userX <= E3.getX() && userY <= E3.getY() && userY2 >= E3.getY() - 30  && userX >= E3.getX() - 30) {
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
-			program.switchToChrisR1();
+			//program.switchToChrisR1();
 		}
 		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR1();
+			program.switchToChrisR3();
 		}
 		else if(userX >= E5.getX() && userY >= E5.getY() && userX <= E5.getX() + 75 && userY <= E5.getY() + 75) {
 			user.setX(900);
