@@ -140,7 +140,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		double userX2 = userX + 80;
 		double userY2 = userX + 80;
 		//SOUTH DOOR
-		if(userX >= ES.getX() && userY >= ES.getY() && userX <= ES.getX() - 200 && userY <= ES.getY() - 200) {
+		if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
 			System.out.println("south");
 			user.setX(575);
 			user.setY(110);
