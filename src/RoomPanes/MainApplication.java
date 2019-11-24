@@ -134,7 +134,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.setHasKey(true);
 		//bossDefeated = true;
 		
-		switchToOsvaldoBoss(); //change which screen you want to switch to
+		switchToMenu(); //change which screen you want to switch to
 
 
 	}
