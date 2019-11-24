@@ -9,6 +9,8 @@ import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
 import ChrisFloor.chris_R5;
+import ChrisFloor.chris_R6;
+import ChrisFloor.chris_R7;
 import FyiahEmburemFloor.fe_R1;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -55,6 +57,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R3 chris_R3;
 	private chris_R4 chris_R4;
 	private chris_R5 chris_R5;
+	private chris_R6 chris_R6;
+	private chris_R7 chris_R7;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -121,6 +125,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
 		chris_R5 = new chris_R5(this);
+		chris_R6 = new chris_R6(this);
+		chris_R7 = new chris_R7(this);
+		
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
@@ -185,6 +192,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R2 = new chris_R2(this);
 			chris_R4 = new chris_R4(this);
 			chris_R5 = new chris_R5(this);
+			chris_R6 = new chris_R6(this);
+			chris_R7 = new chris_R7(this);
 			feR1 = new fe_R1(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
@@ -270,6 +279,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR5() {
 		switchToScreen(chris_R5);
+	}
+	
+	public void switchToChrisR6() {
+		switchToScreen(chris_R6);
+	}
+	public void switchToChrisR7() {
+		switchToScreen(chris_R7);
 	}
 	
 	public void switchToOsvaldoR1() {
