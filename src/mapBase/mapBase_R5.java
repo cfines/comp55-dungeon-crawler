@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage enemy1, hole1, E8, E9, E10, background,userRep, userWeapon, temp;
+	private GImage overlay,enemy1, hole1, E8, E9, E10, background,userRep, userWeapon, temp;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -60,6 +60,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 		
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -79,6 +80,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		elements.add(E10);
 		elements.add(temp);
 		elements.add(userRep);
+		elements.add(overlay);
 		
 		enemyImages.add(enemy1);
 

@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class SomePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, E1, background, userRep, userWeapon;
+	private GImage rock1, rock2, hole1, E1, background, userRep, userWeapon, overlay;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -49,6 +49,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		listOfInter.add(iE1);
 
 		background = new GImage("Base_Floor (Tutorial Floor).png", 15,30);
+		overlay = new GImage("dark_overlay.png",15,30);
 		rock1 = irock1.getImage();
 		rock2 = irock2.getImage();
 		hole1 = ihole1.getImage();
@@ -68,6 +69,7 @@ public class SomePane extends GraphicsPane implements ActionListener {
 		elements.add(hole1);
 		elements.add(E1);
 		elements.add(userRep);
+		elements.add(overlay);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
