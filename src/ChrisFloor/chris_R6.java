@@ -51,7 +51,7 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 		//Enemies
 
 		//gImages
-		background = new GImage("background_block.gif", 15,30);
+		background = new GImage("background_sky.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E2 = iE2.getImage();
