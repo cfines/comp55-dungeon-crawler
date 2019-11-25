@@ -17,9 +17,10 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton pauseButton;
 	private GButton resumeButton;
 	private GLabel pauseLabel;
+	private Color pink = new Color(255,20,147);
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
-	private GRect devBox = new GRect(0, 80, 235, 470);
+	private GRect devBox = new GRect(0, 80, 490, 470);
 	private GRect devBox2 = new GRect(915, 80, 235, 470);
 	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
 	private ArrayList<GButton> buttonGod = new ArrayList<GButton>();
@@ -76,7 +77,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		baseFloor.setColor(Color.white);
 		osvaldoomFloor.setColor(Color.cyan);
 		shadowRealm.setColor(Color.black);
-		lucinaDomain.setColor(Color.orange);
+		lucinaDomain.setColor(pink);
 		schtanlyParable.setColor(Color.gray);
 		bombFloor.setColor(Color.red);
 		labelArr.add(baseFloor);
