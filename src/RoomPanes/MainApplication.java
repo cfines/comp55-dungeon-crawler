@@ -37,7 +37,6 @@ import bombRoom.bombRoom_BOMB2;
 import bombRoom.bombRoom_BOMB3;
 import bombRoom.bombRoom_KEY;
 import bombRoom.bombRoom_R1;
-import bombRoom.bombRoom_R10;
 import bombRoom.bombRoom_R2;
 import bombRoom.bombRoom_R3;
 import bombRoom.bombRoom_R6;
@@ -55,9 +54,8 @@ import mapBase.mapBase_R7;
 import mapBase.mapBase_R8;
 import mapBase.mapBase_R9;
 import mapBase.mapBase_R9Complete;
-import osvaldoFloor.osvaldoFloor_R1;
-import osvaldoFloor.osvaldoFloor_bossRoom;
-import osvaldoFloor.osvaldoFloor_bossRoomComplete;
+import bombRoom.osvaldoFloor_bossRoom;
+import bombRoom.osvaldoFloor_bossRoomComplete;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -96,7 +94,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R10 chris_R10;
 	private poniko Poniko;
 	private ponikoCOMPLETED ponikoDone;
-	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
 	private earth_boss earth_boss;
@@ -105,7 +102,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private bombRoom_R3 bombRoom_R3;
 	private bombRoom_R6 bombRoom_R6;
 	private bombRoom_R8 bombRoom_R8;
-	private bombRoom_R10 bombRoom_R10;
 	private bombRoom_BOMB1 bombRoom_BOMB1;
 	private bombRoom_BOMB2 bombRoom_BOMB2;
 	private bombRoom_BOMB3 bombRoom_BOMB3;
@@ -210,7 +206,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		Poniko = new poniko(this);
 		ponikoDone = new ponikoCOMPLETED(this);
 
-		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		
@@ -221,7 +216,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		bombRoom_R3 = new bombRoom_R3(this);
 		bombRoom_R6 = new bombRoom_R6(this);
 		bombRoom_R8 = new bombRoom_R8(this);
-		bombRoom_R10 = new bombRoom_R10(this);
 		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
 		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
 		bombRoom_BOMB3 = new bombRoom_BOMB3(this);
@@ -402,10 +396,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(ponikoDone);
 	}
 	
-	public void switchToOsvaldoR1() {
-		switchToScreen(osvaldoFloor_R1);
-	}
-	
 	public void switchToOsvaldoBoss() {
 		switchToScreen(osvaldoFloor_bossRoom);
 	}
@@ -438,10 +428,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToBombRoomR8() {
 		switchToScreen(bombRoom_R8);
-	}
-	
-	public void switchToBombRoomR10() {
-		switchToScreen(bombRoom_R10);
 	}
 	
 	public void switchToBombRoomBOMB1() {
@@ -820,7 +806,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R9 = null;
 		chris_R10 = null;
 		Poniko = null;
-		osvaldoFloor_R1 = null;
 		osvaldoFloor_bossRoom = null;
 		osvaldoFloor_bossRoomComplete = null;
 		bombRoom_R1 = null;
@@ -828,7 +813,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		bombRoom_R3 = null;
 		bombRoom_R6 = null;
 		bombRoom_R8 = null;
-		bombRoom_R10 = null;
 		bombRoom_BOMB1 = null;
 		bombRoom_BOMB2 = null;
 		bombRoom_BOMB3 = null;
@@ -874,7 +858,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R10 = new chris_R10(this);
 		Poniko = new poniko(this);
 		ponikoDone = new ponikoCOMPLETED(this);
-		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
 		bombRoom_R1 = new bombRoom_R1(this);
@@ -882,7 +865,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		bombRoom_R3 = new bombRoom_R3(this);
 		bombRoom_R6 = new bombRoom_R6(this);
 		bombRoom_R8 = new bombRoom_R8(this);
-		bombRoom_R10 = new bombRoom_R10(this);
 		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
 		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
 		bombRoom_BOMB3 = new bombRoom_BOMB3(this);

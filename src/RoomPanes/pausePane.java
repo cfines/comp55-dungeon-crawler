@@ -30,7 +30,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GLabel shadowRealm = new GLabel("SHADOW_REALM", 10, 247);
 	private GLabel lucinaDomain = new GLabel("LUCINA_IS_THE_ANTAGONIST_OF_PEPPA_PIG", 10, 322);
 	private GLabel schtanlyParable = new GLabel("SCHTANLY_PARABLE", 10, 397);
-	private GLabel bombFloor = new GLabel("BOMB_FLOOR", 10, 472);
+	private GLabel bombFloor = new GLabel("BOMB_ROOMS", 10, 472);
 	private GButton BF_R1 = new GButton("R1", 10, 100, 50, 50);
 	private GButton BF_RKey = new GButton("KEY", 65, 100, 50, 50);
 	private GButton BF_RBoss = new GButton("BOSS", 120, 100, 50, 50);
@@ -46,10 +46,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton SP_R1 = new GButton("R1", 10, 400, 50, 50);
 	private GButton SP_RKey = new GButton("KEY", 65, 400, 50, 50);
 	private GButton SP_RBoss = new GButton("BOSS", 120, 400, 50, 50);
-	private GButton BOMB_R1 = new GButton("R1", 10, 475, 50, 50);
-	private GButton BOMB_Bomb1 = new GButton("BOMB1", 65, 475, 50, 50);
-	private GButton BOMB_Bomb2 = new GButton("BOMB2", 120, 475, 50, 50);
-	private GButton BOMB_Bomb3 = new GButton("BOMB3", 175, 475, 50, 50);
+	private GButton BOMB_Bomb1 = new GButton("BOMB1", 10, 475, 50, 50);
+	private GButton BOMB_Bomb2 = new GButton("BOMB2", 65, 475, 50, 50);
+	private GButton BOMB_Bomb3 = new GButton("BOMB3", 120, 475, 50, 50);
 	
 	private GButton invincibility = new GButton("GOD_MODE", 925, 100, 215, 50); 
 	private GButton giveKey = new GButton("GIVE_KEY", 925, 175, 215, 50); 
@@ -106,7 +105,6 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonArr.add(SP_R1);
 		buttonArr.add(SP_RKey);
 		buttonArr.add(SP_RBoss);
-		buttonArr.add(BOMB_R1);
 		buttonArr.add(BOMB_Bomb1);
 		buttonArr.add(BOMB_Bomb2);
 		buttonArr.add(BOMB_Bomb3);
@@ -193,8 +191,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 0) { program.switchToSome(); }			//BASE-R1
 				if(i == 1) { program.switchToR6(); }			//BASE-KEY
 				if(i == 2) { program.switchToR9(); }			//BASE-BOSS
-				if(i == 3) { program.switchToOsvaldoR1(); }		//DOOM-R1
-				if(i == 4) { /*TODO add*/ }						//DOOM-KEY
+				if(i == 3) { program.switchToBombRoomR1(); }		//DOOM-R1
+				if(i == 4) { program.switchToBombRoomKEY(); }						//DOOM-KEY
 				if(i == 5) { program.switchToOsvaldoBoss(); }	//DOOM-BOSS
 				if(i == 6) { program.switchToChrisR1(); }			//SHAD-R1
 				if(i == 7) { program.switchToChrisR7(); }			//SHAD-KEY
@@ -205,10 +203,9 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 12) { /*TODO add*/ }			//STAN-R1
 				if(i == 13) { /*TODO add*/ }			//STAN-KEY
 				if(i == 14) { program.switchToEarthBoss(); }			//STAN-BOSS
-				if(i == 15) { program.switchToBombRoomR1(); }	//BOMB-R1
-				if(i == 16) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
-				if(i == 17) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
-				if(i == 18) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
+				if(i == 15) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
+				if(i == 16) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
+				if(i == 17) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
 				exit = true;
 			}
 		}
