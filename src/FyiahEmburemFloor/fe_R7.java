@@ -133,7 +133,7 @@ public class fe_R7 extends GraphicsPane implements ActionListener{
 		}
 		else if(userX <= E15.getX() && userY <= E15.getY() && userX2 >= E15.getX() && userY2 >= E15.getY())	{
 			user.setX(150);
-			user.setY(300);
+			user.setY(525);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR8();
 		}
