@@ -135,6 +135,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 			user.setY(325);
 			userRep.setLocation(user.getX(), user.getY());
 			program.setBossDefeated(false);
+			program.setFloorNum(program.getFloorNum() + 1);
 			program.switchToBombRoomR1();
 		} else if (userX <= E16.getX() && userY <= E16.getY() && userY2 >= E16.getY() - 30  && userX >= E16.getX() - 30) {
 			user.setX(575);

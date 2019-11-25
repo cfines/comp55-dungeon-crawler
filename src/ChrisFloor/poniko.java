@@ -79,6 +79,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 				program.setBossRun(false);
 				return;
 			}
+			t.stop();
 			program.setBossDefeated(true);
 			program.switchToPonikoDone();
 		}

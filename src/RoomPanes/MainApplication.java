@@ -252,7 +252,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToTest(); //change which screen you want to switch to
+		switchToTitleScreen(); //change which screen you want to switch to
 
 	}
 	
@@ -348,7 +348,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToChrisR4() {
 		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
 		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Dense Woods.mp3", true);
 		switchToScreen(chris_R4);
 	}
 	
@@ -359,12 +360,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToChrisR6() {
 		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
 		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3" );
-		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Dense Woods.mp3", true);
 		switchToScreen(chris_R6);
 	}
 	public void switchToChrisR7() {
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R7);
 	}
@@ -381,15 +381,22 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR10() {
 		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Dark Water.mp3", true);
 		switchToScreen(chris_R10);
 	}
 	
 	public void switchToPoniko() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
 		switchToScreen(Poniko);
 	}
 	
 	public void switchToPonikoDone() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "yume nikki title .mp3", true);
 		switchToScreen(ponikoDone);
 	}
 	

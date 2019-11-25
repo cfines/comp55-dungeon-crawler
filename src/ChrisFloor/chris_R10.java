@@ -172,8 +172,8 @@ public class chris_R10 extends GraphicsPane implements ActionListener{
 				userRep.setLocation(user.getX(), user.getY());
 				program.switchToPonikoDone();
 			} else {
-				user.setX(150);
-				user.setY(300);
+				user.setX(676);
+				user.setY(378);
 				userRep.setLocation(user.getX(), user.getY());
 				program.switchToPoniko();
 			}

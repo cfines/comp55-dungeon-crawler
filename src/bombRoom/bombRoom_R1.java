@@ -187,6 +187,11 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 				if(program.getUser().getHasKey() && program.getBombsDeactivated()) {
 					unlockProtocol();
 				}
+			} else if(program.getBossDefeated()) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToOsvaldoBossComplete();
 			} else {
 				user.setX(575);
 				user.setY(410);

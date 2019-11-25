@@ -173,7 +173,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 			if(program.getBossRun()) {
 				user.setX(150);
 				user.setY(300);
-				program.switchToPoniko(); //TODO change when next boss is implemented
+				program.setFloorNum(program.getFloorNum() + 1);
+				program.switchToPoniko(); 
 				return;
 			}
 			program.setBossDefeated(true);
@@ -226,7 +227,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		}
 		
 		for(Enemy enem : listOfEnemies) {
-			if(enem.getCoordX() > 970) {
+			if(enem.getCoordX() > 900) {
 				move = false;
 			} else if (enem.getCoordX() < 100) {
 				move = true;
