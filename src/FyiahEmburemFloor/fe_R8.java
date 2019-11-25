@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class fe_R8 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage enemy1, E17, E18, wall1, wall2,wall3, wall4, enemy2, background,userRep,userWeapon;
+	private GImage enemy1, E17, E18, wall1, wall2,wall3, wall4, wall5,wall6,wall7,wall8,wall9,enemy2, background,userRep,userWeapon;
 	private int degree;
 	private int timerCont = 0;
 	private User user;
@@ -56,23 +56,33 @@ public class fe_R8 extends GraphicsPane implements ActionListener{
 		
 		Enemy ienemy1 = new Enemy(10,10,2,2,900,400, ElementType.FIRE,enemyType.Dread);
 		Enemy ienemy2 = new Enemy(10,10,2,2,890,350, ElementType.FIRE,enemyType.Deadass);
-		Interactions iE17 = new Interactions(interactionType.entry_door_WEST,27,450);
-		Interactions iE18 = new Interactions(interactionType.entry_door_WEST,27,125);
+		Interactions iE17 = new Interactions(interactionType.entry_door_WEST,27,400);
+		Interactions iE18 = new Interactions(interactionType.entry_door_WEST,27,115);
 		
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		E17 = iE17.getImage();
 		E18 = iE18.getImage();
 		
-		Interactions iwall1 = new Interactions(interactionType.RockWall, 30,300);
-		Interactions iwall2 = new Interactions(interactionType.RockWall, 105,300);
-		Interactions iwall3 = new Interactions(interactionType.RockWall, 180,300);
-		Interactions iwall4 = new Interactions(interactionType.RockWall, 255,300);
+		Interactions iwall1 = new Interactions(interactionType.RockWall, 30,240);
+		Interactions iwall2 = new Interactions(interactionType.RockWall, 105,240);
+		Interactions iwall3 = new Interactions(interactionType.RockWall, 180,240);
+		Interactions iwall4 = new Interactions(interactionType.RockWall, 255,240);
+		Interactions iwall5 = new Interactions(interactionType.RockWall, 330,240);
+		Interactions iwall6 = new Interactions(interactionType.RockWall, 405,240);
+		Interactions iwall7 = new Interactions(interactionType.RockWall, 480,240);
+		Interactions iwall8 = new Interactions(interactionType.RockWall, 555,240);
+		Interactions iwall9 = new Interactions(interactionType.RockWall, 630,240);
 		
 		wall1 = iwall1.getImage();
 		wall2 = iwall2.getImage();
 		wall3 = iwall3.getImage();
 		wall4 = iwall4.getImage();
+		wall5 = iwall5.getImage();
+		wall6 = iwall6.getImage();
+		wall7 = iwall7.getImage();
+		wall8 = iwall8.getImage();
+		wall9 = iwall9.getImage();
 		
 		listOfInter.add(iE17);
 		listOfInter.add(iE18);
@@ -80,7 +90,11 @@ public class fe_R8 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iwall2);
 		listOfInter.add(iwall3);
 		listOfInter.add(iwall4);
-		
+		listOfInter.add(iwall5);
+		listOfInter.add(iwall6);
+		listOfInter.add(iwall7);
+		listOfInter.add(iwall8);
+		listOfInter.add(iwall9);
 		listOfEnemies.add(DarkMage);
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
@@ -92,6 +106,11 @@ public class fe_R8 extends GraphicsPane implements ActionListener{
 		elements.add(wall2);
 		elements.add(wall3);
 		elements.add(wall4);
+		elements.add(wall5);
+		elements.add(wall6);
+		elements.add(wall7);
+		elements.add(wall8);
+		elements.add(wall9);
 		enemyImages.add(badGuy);
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
@@ -147,7 +166,7 @@ public class fe_R8 extends GraphicsPane implements ActionListener{
 		return(timerCont %(x) == 0);
 	}
 	public void enemyMovement() {
-		if(everyXSeconds(20)) {
+		if(everyXSeconds(30)) {
 			move = !move;
 			attack = !attack;
 			if(DarkMage.getEnemyStats().getHP_cur() >0) 
