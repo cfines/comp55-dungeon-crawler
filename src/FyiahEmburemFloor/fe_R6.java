@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class fe_R6 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage enemy1, enemy2, enemy3, E11, E12, wall1, wall2, background,userRep, userWeapon;
+	private GImage enemy1, enemy2, enemy3,enemy4, enemy5, E11, E12, wall1, wall2, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -41,9 +41,12 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 	{
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(2,2,2,2,575,216, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy2 = new Enemy(2,2,2,2,775,300, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy3 = new Enemy(2,2,2,2,120,200, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy1 = new Enemy(5,5,2,2,575,216, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy2 = new Enemy(5,5,2,2,775,300, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy3 = new Enemy(5,5,2,2,120,200, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy4 = new Enemy(5,5,2,2,120,400,ElementType.FIRE,enemyType.Deadass);
+		Enemy ienemy5 = new Enemy(5,5,2,2,120,300,ElementType.FIRE,enemyType.Deadass);
+		
 		Interactions iE11 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions iE12 = new Interactions(interactionType.entry_door_NORTH,575,30);
 		Interactions iwall1 = new Interactions(interactionType.RockWall,150,60);
@@ -53,6 +56,8 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		enemy3 = ienemy3.getImage();
+		enemy4 = ienemy4.getImage();
+		enemy5 = ienemy5.getImage();
 		wall1 = iwall1.getImage();
 		wall2 = iwall2.getImage();
 		
@@ -67,7 +72,8 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy3);
-		
+		listOfEnemies.add(ienemy4);
+		listOfEnemies.add(ienemy5);
 		listOfInter.add(iE11);
 		listOfInter.add(iE12);
 		listOfInter.add(iwall1);
@@ -75,6 +81,8 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
 		enemyImages.add(enemy3);
+		enemyImages.add(enemy4);
+		enemyImages.add(enemy5);
 		
 		elements.add(background);
 		elements.add(E11);

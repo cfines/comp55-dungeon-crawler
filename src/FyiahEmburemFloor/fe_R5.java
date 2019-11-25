@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class fe_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E9, E10, wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,wall11,wall12,background,userRep, userWeapon;
+	private GImage E9, E10, wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GImage badGuy1 = new GImage ("Dark Mage.gif",575,100);
@@ -58,18 +58,16 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		E9 = iE9.getImage();
 		E10 = iE10.getImage();
 		listOfInter.add(iE10);
-		Interactions iwall1 = new Interactions(interactionType.RockWall, 130,230);
-		Interactions iwall2 = new Interactions(interactionType.RockWall, 207,230);
-		Interactions iwall3 = new Interactions(interactionType.RockWall, 284,230);
-		Interactions iwall4 = new Interactions(interactionType.RockWall, 361,230);
-		Interactions iwall5 = new Interactions(interactionType.RockWall, 438,230);
-		Interactions iwall6 = new Interactions(interactionType.RockWall, 515,230);
-		Interactions iwall7 = new Interactions(interactionType.RockWall, 592,230);
-		Interactions iwall8 = new Interactions(interactionType.RockWall, 669,230);
-		Interactions iwall9 = new Interactions(interactionType.RockWall, 746,230); 
-		Interactions iwall10 = new Interactions(interactionType.RockWall, 823,230);
-		Interactions iwall11 = new Interactions(interactionType.RockWall, 900,230);
-		Interactions iwall12 = new Interactions(interactionType.RockWall, 977,230);
+		Interactions iwall1 = new Interactions(interactionType.RockWall, 120,200);
+		Interactions iwall2 = new Interactions(interactionType.RockWall, 197,200);
+		Interactions iwall3 = new Interactions(interactionType.RockWall, 274,200);
+		Interactions iwall4 = new Interactions(interactionType.RockWall, 351,200);
+		Interactions iwall5 = new Interactions(interactionType.RockWall, 428,200);
+		Interactions iwall6 = new Interactions(interactionType.RockWall, 659,200);
+		Interactions iwall7 = new Interactions(interactionType.RockWall, 736,200); 
+		Interactions iwall8 = new Interactions(interactionType.RockWall, 813,200);
+		Interactions iwall9 = new Interactions(interactionType.RockWall, 890,200);
+		Interactions iwall10 = new Interactions(interactionType.RockWall, 967,200);
 		elements.add(background);
 		wall1 = iwall1.getImage();
 		wall2 = iwall2.getImage();
@@ -81,8 +79,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		wall8 = iwall8.getImage();
 		wall9 = iwall9.getImage();
 		wall10 = iwall10.getImage();
-		wall11 = iwall11.getImage();
-		wall12 = iwall12.getImage();
 		badGuy1 = DarkMage1.getImage();
 		listOfInter.add(iwall1);
 		listOfInter.add(iwall2);
@@ -94,8 +90,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iwall8);
 		listOfInter.add(iwall9);
 		listOfInter.add(iwall10);
-		listOfInter.add(iwall11);
-		listOfInter.add(iwall12);
 		listOfEnemies.add(DarkMage1);
 		elements.add(background);
 		elements.add(wall1);
@@ -108,8 +102,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		elements.add(wall8);
 		elements.add(wall9);
 		elements.add(wall10);
-		elements.add(wall11);
-		elements.add(wall12);
 		enemyImages.add(badGuy1);
 		elements.add(E9);
 		elements.add(E10);
@@ -164,7 +156,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	}
 	
 	public void enemyMovement() {
-		if(everyXSeconds(40)) {
+		if(everyXSeconds(20)) {
 			move = !move;
 			attack = !attack;
 			if(DarkMage1.getEnemyStats().getHP_cur() >0) 
@@ -177,6 +169,33 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 					listOfProjectiles.remove(magic1);
 					program.remove(magic1.getImage());
 					hit = false;
+				}
+			}
+			for (Enemy enem : listOfEnemies) {
+				degree+=5;
+				degree%=360;
+				if(enem.getEnemyType() == enemyType.DarkMage) {
+					enem.getImage().movePolar(1, degree);
+				}
+				enem.setStartX(enem.getImage().getX());
+				enem.setStartY(enem.getImage().getY());
+				}
+			if(listOfProjectiles.size() >= 1) {
+				for(Enemy arr : listOfProjectiles) {
+					arr.getEnemyStats().setCoordX(DarkMage1.getCoordX());
+					arr.getEnemyStats().setCoordY(DarkMage1.getCoordY());
+					
+					if(checkHitBack(arr, userWeapon) && atkUp) { 
+						hit = true; 
+					}
+					program.add(arr.getImage());
+					
+					if(hit) { 
+						arr.getImage().move(0, -10);
+					} 
+					else { 	
+						arr.getImage().move(0, 10); 
+					}
 				}
 			}
 		}
