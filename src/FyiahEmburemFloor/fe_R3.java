@@ -93,6 +93,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		enemyCombat();
 		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
@@ -138,13 +139,17 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 		if(everyXSeconds(20)) {
 			move = !move;
 			attack = !attack;
-			if(attack) {
-				magic = new Enemy(100, 100, 2, 2, (int)DarkMage.getCoordX(), (int)DarkMage.getCoordY() + 75, ElementType.FIRE, enemyType.Nagic);
-				listOfProjectiles.add(magic);
-			} else {
-				listOfProjectiles.remove(magic);
-				program.remove(magic.getImage());
-				hit = false;
+			if(DarkMage.getEnemyStats().getHP_cur() >0) 
+			{	
+				if(attack) {
+					magic = new Enemy(100, 100, 2, 2, (int)DarkMage.getCoordX(), (int)DarkMage.getCoordY() + 75, ElementType.FIRE, enemyType.Nagic);
+					listOfProjectiles.add(magic);
+				}
+				else {
+					listOfProjectiles.remove(magic);
+					program.remove(magic.getImage());
+					hit = false;
+				}
 			}
 		}
 		for (Enemy enem : listOfEnemies) {
@@ -206,11 +211,20 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR2();
 		}
-		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() - 30  && userX >= E5.getX() - 30) {
+		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() + 90  && userX >= E5.getX() + 90) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR4();
+		}
+	}
+	public void enemyCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				program.combatRefreshOverlay();
+			}
 		}
 	}
 	

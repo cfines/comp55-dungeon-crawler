@@ -147,6 +147,7 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 		timerCont++;
 		enemyMovement();
 		mover.notReallyActionPerformed(e);
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
@@ -183,10 +184,10 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 			}
 		}
 	
+	
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
-		double userY2 = userRep.getY() + 80;
 		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 75 && userY <= E2.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
@@ -198,6 +199,18 @@ public class fe_R2 extends GraphicsPane implements ActionListener{
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR3();
+		}
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
 		}
 	}
 }
