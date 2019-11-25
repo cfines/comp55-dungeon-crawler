@@ -113,7 +113,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		userCombat();
 		enemyCombat();
 		timerCont++;
 		enemyMovement();
@@ -156,7 +155,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	}
 	
 	public void enemyMovement() {
-		if(everyXSeconds(20)) {
+		if(everyXSeconds(30)) {
 			move = !move;
 			attack = !attack;
 			if(DarkMage1.getEnemyStats().getHP_cur() >0) 
@@ -171,33 +170,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 					hit = false;
 				}
 			}
-			for (Enemy enem : listOfEnemies) {
-				degree+=5;
-				degree%=360;
-				if(enem.getEnemyType() == enemyType.DarkMage) {
-					enem.getImage().movePolar(1, degree);
-				}
-				enem.setStartX(enem.getImage().getX());
-				enem.setStartY(enem.getImage().getY());
-				}
-			if(listOfProjectiles.size() >= 1) {
-				for(Enemy arr : listOfProjectiles) {
-					arr.getEnemyStats().setCoordX(DarkMage1.getCoordX());
-					arr.getEnemyStats().setCoordY(DarkMage1.getCoordY());
-					
-					if(checkHitBack(arr, userWeapon) && atkUp) { 
-						hit = true; 
-					}
-					program.add(arr.getImage());
-					
-					if(hit) { 
-						arr.getImage().move(0, -10);
-					} 
-					else { 	
-						arr.getImage().move(0, 10); 
-					}
-				}
-			}
 		}
 		for (Enemy enem : listOfEnemies) {
 			degree+=5;
@@ -207,11 +179,23 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 			}
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
-			}
+		}
 		if(listOfProjectiles.size() >= 1) {
 			for(Enemy arr : listOfProjectiles) {
 				arr.getEnemyStats().setCoordX(DarkMage1.getCoordX());
 				arr.getEnemyStats().setCoordY(DarkMage1.getCoordY());
+
+				if(checkHitBack(arr, userWeapon) && atkUp) { 
+					hit = true; 
+				}
+				program.add(arr.getImage());
+
+				if(hit) { 
+					arr.getImage().move(0, -10);
+				} 
+				else { 	
+					arr.getImage().move(0, 10); 
+				}
 			}
 		}
 	}
