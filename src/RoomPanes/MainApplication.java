@@ -762,6 +762,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void setDeveloperMode(boolean dev) {
+		this.DEVELOPER_MODE = dev;
 	}
 	
 	public void checkForBombsDestroyed() {

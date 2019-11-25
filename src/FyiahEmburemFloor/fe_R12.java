@@ -108,6 +108,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		
 		timerCont++;
 		enemyMovement();
+		enemyCombat();
 		mover.notReallyActionPerformed(e);
 		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		userRep.setLocation(user.getX(), user.getY());
@@ -270,6 +271,17 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				iDuma.getEnemyStats().setHP_cur(iDuma.getEnemyStats().getHP_cur() -1);
 				listOfProjectiles.remove(listOfProjectiles.get(i));
 				program.remove(crest.getImage());
+			}
+		}
+	}
+	
+	public void enemyCombat() {
+		if(program.getUser().getInvincibility()) {return;}
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				program.combatRefreshOverlay();
 			}
 		}
 	}
