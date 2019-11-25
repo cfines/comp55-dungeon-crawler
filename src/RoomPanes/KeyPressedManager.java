@@ -241,19 +241,19 @@ public class KeyPressedManager {
 				if(enem.getEnemyType() == enemyType.bomb) {user.setY(user.getY()); user.setX(user.getX());}
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
-					user.setY(user.getY() + 50); 
+					user.setY(user.getY() + 100); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
-					user.setY(user.getY() - 50);
+					user.setY(user.getY() - 100);
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
-					user.setX(user.getX() + 50); 
+					user.setX(user.getX() + 100); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
-					user.setX(user.getX() - 50);
+					user.setX(user.getX() - 100);
 				} 
 			}
 		}
