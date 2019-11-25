@@ -246,7 +246,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToChrisR1(); //change which screen you want to switch to
+		switchToTitleScreen(); //change which screen you want to switch to
 
 	}
 	
@@ -516,10 +516,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToFeR12() 
 	{
 		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
-		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
 		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
 		audio.stopSound(MUSIC_FOLDER ,"y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3",true);
