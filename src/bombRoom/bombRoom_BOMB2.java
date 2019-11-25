@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, background, userRep, userWeapon, bombIMG, enemy1;
+	private GImage rock1, hole1, EN, background, userRep, userWeapon, bombIMG, enemy1;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -45,11 +45,15 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		user = program.getUser(); 
 		
 		Interactions oE3 = new Interactions(interactionType.entry_door_NORTH,575,-3);
+		Interactions irock1 = new Interactions(interactionType.obstacle_concrete_rocks,660,120);
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole,510,310);
 		
 		Enemy bomb1 = new Enemy(100,100,1,0,550,400, ElementType.FIRE, enemyType.bomb);
-		Enemy ienemy1 = new Enemy(10,10,2,2,125,500,ElementType.FIRE, enemyType.WATERDeath);
+		Enemy ienemy1 = new Enemy(10,10,2,2,125,500,ElementType.WATER, enemyType.WATERDeath);
 
 		listOfInter.add(oE3);
+		listOfInter.add(irock1);
+		listOfInter.add(ihole1);
 		
 		listOfEnemies.add(bomb1);
 		listOfEnemies.add(ienemy1);
@@ -57,6 +61,8 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		EN = oE3.getImage();
+		rock1 = irock1.getImage();
+		hole1 = ihole1.getImage();
 		
 		bombIMG = bomb1.getImage();
 		enemy1 = ienemy1.getImage();
@@ -71,6 +77,8 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 
 		elements.add(background);
 		elements.add(EN);
+		elements.add(rock1);
+		elements.add(hole1);
 		elements.add(userRep);
 		
 		enemyImages.add(bombIMG);
