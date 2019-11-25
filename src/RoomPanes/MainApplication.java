@@ -10,18 +10,11 @@ import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
 import ChrisFloor.chris_R5;
-<<<<<<< HEAD
-import earthFloor.earth_boss;
-=======
 import ChrisFloor.chris_R6;
 import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-=======
 import ChrisFloor.chris_R9;
 import ChrisFloor.poniko;
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 import FyiahEmburemFloor.fe_R1;
 import FyiahEmburemFloor.fe_R10;
 import FyiahEmburemFloor.fe_R11;
@@ -63,6 +56,7 @@ import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
 import osvaldoFloor.osvaldoFloor_bossRoomComplete;
+import earthFloor.earth_boss;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -94,22 +88,16 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R3 chris_R3;
 	private chris_R4 chris_R4;
 	private chris_R5 chris_R5;
-<<<<<<< HEAD
-	private earth_boss earth_boss;
-=======
 	private chris_R6 chris_R6;
 	private chris_R7 chris_R7;
 	private chris_R8 chris_R8;
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
-=======
 	private chris_R9 chris_R9;
 	private chris_R10 chris_R10;
 	private poniko Poniko;
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
+	private earth_boss earth_boss;
 	private bombRoom_R1 bombRoom_R1;
 	private bombRoom_R2 bombRoom_R2;
 	private bombRoom_R3 bombRoom_R3;
@@ -210,9 +198,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
 		chris_R5 = new chris_R5(this);
-<<<<<<< HEAD
-		earth_boss = new earth_boss(this);
-=======
 		chris_R6 = new chris_R6(this);
 		chris_R7 = new chris_R7(this);
 		chris_R8 = new chris_R8(this);
@@ -220,10 +205,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R10 = new chris_R10(this);
 		Poniko = new poniko(this);
 		
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		
+		earth_boss = new earth_boss(this);
 		
 		bombRoom_R1 = new bombRoom_R1(this);
 		bombRoom_R2 = new bombRoom_R2(this);
@@ -390,10 +376,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(osvaldoFloor_bossRoomComplete);
 	}
 	
-<<<<<<< HEAD
 	public void switchToEarthBoss() {
 		switchToScreen(earth_boss);
-=======
+	}
+	
 	public void switchToBombRoomR1() {
 		switchToScreen(bombRoom_R1);
 	}
@@ -432,7 +418,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToBombRoomKEY() {
 		switchToScreen(bombRoom_KEY);
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 	
 	public void switchToFeR1() {
