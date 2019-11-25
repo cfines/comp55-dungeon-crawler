@@ -109,6 +109,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		timerCont++;
 		enemyMovement();
 		mover.notReallyActionPerformed(e);
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
