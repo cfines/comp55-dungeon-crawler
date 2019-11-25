@@ -76,6 +76,9 @@ public class Enemy {
 		else if(type == enemyType.GuyFieri) {
 			image = new GImage("Fyah.png",dx,dy);
 		}
+		else if(type == enemyType.DumaCrest) {
+			image = new GImage("Duma Crest.png",dx,dy);
+		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}
 	
