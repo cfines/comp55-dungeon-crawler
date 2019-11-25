@@ -56,6 +56,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton stopBombs = new GButton("DEACTIVATE_BOMBS", 925, 325, 215, 50);
 	private GButton resetTimer = new GButton("RESET_BOMB_TIMER", 925, 400, 215, 50);
 	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 475, 215, 50);
+	private GButton resetHealth = new GButton("RESET_HEALTH", 925, 550, 215, 50);
+	private GButton devMode = new GButton("ACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
 	
 	private boolean exit = false;
 	
@@ -135,6 +137,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.add(pauseButton);
 		program.add(pauseLabel);
 		program.add(resumeButton);
+		program.add(devMode);
 		
 		if(program.getDeveloperMode()) {
 			program.add(devBox);
@@ -157,6 +160,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.remove(pauseButton);
 		program.remove(pauseLabel);
 		program.remove(resumeButton);
+		program.remove(devMode);
 		
 		if(program.getDeveloperMode()) {
 			program.remove(devBox);
@@ -221,15 +225,20 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			}
 		}
 		
-		refreshColors();
-		removeColors(exit);
 		
 		
 		if (obj == pauseButton) {
 			program.switchToMenu();
 		} else if (obj == resumeButton) {
 			program.noLongerPaused();
+		} else if (obj == devMode) {
+			program.setDeveloperMode(!program.getDeveloperMode());
+			program.noLongerPaused();
+			program.pauseScreenSwitch();
 		}
+		
+		refreshColors();
+		removeColors(exit);
 		
 	}
 	
@@ -251,6 +260,14 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			invincibility.setFillColor(Color.green);
 		} else {
 			invincibility.setFillColor(Color.red);
+		}
+		
+		if(program.getDeveloperMode()) {
+			devMode = new GButton("DEACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
+			devMode.setFillColor(Color.green);
+		} else {
+			devMode = new GButton("ACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
+			devMode.setFillColor(Color.red);
 		}
 		
 		program.remove(stopBombs);
