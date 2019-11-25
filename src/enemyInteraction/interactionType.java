@@ -3,7 +3,7 @@ package enemyInteraction;
 public enum interactionType {
 	entry_door_EAST, entry_door_NORTH, entry_door_SOUTH, entry_door_WEST, entry_stair, 
 	entry_bossDoor, entry_bossDoor_SOUTH, entry_bossDoor_EAST, entry_bossDoor_WEST, obstacle_rock, obstacle_hole, item_gif_key, rip, rip2, obstacle_concrete_rocks,
-	obstacle_concrete_rubble, nullified, color1, color2, face, chrisEntry_NORTH, chrisEntry_SOUTH,
+	obstacle_concrete_rubble,FinalWall,nullified, color1, color2, face, chrisEntry_NORTH, chrisEntry_SOUTH,
 	chrisEntry_EAST, chrisEntry_WEST, candle1, candle2, candle3, treeFell,momoko, monoe, poniko, blueboi, schlept,
 	madotsuki,tree,statue, Umbrella_Egg, RockWall ,Long_Hair_Egg, Buyo_buyo_Egg, invis_wall, left;
 	
@@ -51,6 +51,7 @@ public enum interactionType {
 			case invis_wall: return "invis_overlay";
 			case left: return "left";
 			case RockWall: return "RockWall";
+			case FinalWall: return "FinalWall";
 		}
 		return "n/a";
 	}

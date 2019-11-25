@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Timer;
+
 import RoomPanes.GraphicsPane;
 import RoomPanes.KeyPressedManager;
 import RoomPanes.MainApplication;
@@ -24,7 +26,12 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	private Enemy iDuma = new Enemy (69,69,2,4,900,100, ElementType.FIRE, enemyType.Duma);
 	private User user;
 	private int degree;
+	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private KeyPressedManager mover;
+	private boolean atkUp,atkDown,atkLeft,atkRight;
+	private Timer t = new Timer(30, this);
+	
+	
 	public fe_R12(MainApplication app) 
 	{
 		
