@@ -3,6 +3,7 @@ package FyiahEmburemFloor;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -23,12 +24,12 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage enemy1, E22, E23, background,userRep, userWeapon;
 	private int degree;
-	private Enemy Rinea = new Enemy(40,40,2,5,650,100, ElementType.FIRE, enemyType.Rinea);
+	private Enemy Rinea = new Enemy(10,10,2,5,575,100, ElementType.FIRE, enemyType.Rinea);
 	private int timerCont = 0;
 	private User user;
 	private Timer t = new Timer(30, this);
 	private boolean move = true;
-	private GImage burned = new GImage("Rinea.gif", 650,100);
+	private GImage burned = new GImage("Rinea.gif", 575,100);
 	private boolean atkUp,atkLeft,atkDown,atkRight;
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -37,7 +38,7 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private boolean attack = false, hit = false;
-	private Enemy magic = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.Nagic);
+	private Enemy fire = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.GuyFieri);
 	
 	private KeyPressedManager mover;
 
@@ -108,8 +109,12 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void hideContents() {
-		// TODO Auto-generated method stub
-		
+		t.stop();
+		program.remove(voidSpace);
+		for (int i = 0; i <= elements.size() - 1; i++) {
+			program.remove(elements.get(i));
+		}
+		program.refreshOverlay();		
 	}
 	private void nextRoom() {
 		double userX = userRep.getX();
@@ -126,6 +131,123 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR12();
+		}
+	}
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
+	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(40)) {
+			move = !move;
+			attack = !attack;
+			if(Rinea.getEnemyStats().getHP_cur() >0) 
+			{	
+				if(attack) {
+					fire = new Enemy(100, 100, 2, 2, (int)Rinea.getCoordX(), (int)Rinea.getCoordY() + 75, ElementType.FIRE, enemyType.GuyFieri);
+					listOfProjectiles.add(fire);
+				}
+				else {
+					listOfProjectiles.remove(fire);
+					program.remove(fire.getImage());
+					hit = false;
+				}
+			}
+		}
+		for (Enemy enem : listOfEnemies) {
+			degree+=5;
+			degree%=360;
+			if(enem.getEnemyType() == enemyType.Berkut) {
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().movePolar(2, degree);
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.Rinea) {
+				enem.getImage().movePolar(2, degree);
+				if(enem.getCoordX() > 700) {
+					move = false;
+				} else if (enem.getCoordX() < 400) {
+					move = true;
+				}
+				if(move) { enem.getImage().move(8, 0); }
+				else { enem.getImage().move(-8, 0); }
+			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+			}
+		if(listOfProjectiles.size() >= 1) {
+			for(Enemy arr : listOfProjectiles) {
+				arr.getEnemyStats().setCoordX(Rinea.getCoordX());
+				arr.getEnemyStats().setCoordY(Rinea.getCoordY());
+				
+				if(checkHitBack(arr, userWeapon) && atkUp) { 
+					hit = true; 
+				}
+				program.add(arr.getImage());
+				
+				if(hit) { 
+					arr.getImage().move(0, -20);
+				} 
+				else { 	
+					arr.getImage().move(0, 20); 
+				}
+			}
+		}
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
+	}
+	
+	public void enemyCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
+				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
+				program.getUser().getUserStats().setHP_cur(newHealth);
+				program.combatRefreshOverlay();
+			}
+		}
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
+			t.stop();
+		}
+		mover.notReallyKeyPressed(e);
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) { 
+	mover.notReallyKeyReleased(e);
+	}
+	
+	public boolean checkHitBack(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
+	}
+	
+	public void userCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), Rinea.getImage())) { 
+				Rinea.getEnemyStats().setHP_cur(0);
+				listOfProjectiles.remove(listOfProjectiles.get(i));
+				program.remove(fire.getImage());
+			}
 		}
 	}
 }
