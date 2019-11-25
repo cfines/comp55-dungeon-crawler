@@ -25,13 +25,13 @@ import miscMechanics.User;
 public class earth_boss extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage background,userRep, userWeapon; 
-	private GImage boss = new GImage("plant_NORTH.gif", 100, 100); 
+	private GImage boss = new GImage("plant_NORTH.gif", 1155, 100); 
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private User user;
-	private Enemy plant = new Enemy(1,1,2,2,100,100, ElementType.EARTH, enemyType.plant_NORTH);
+	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.plant_NORTH);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
@@ -40,6 +40,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	private boolean hit = false;
 	private Random randomNum = new Random();
 	private Random determineNegative = new Random();
+	private int degree;
 	private int dN = determineNegative.nextInt(1);
 	private int random = randomNum.nextInt(5);
 
@@ -106,6 +107,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		}
 		timerCont++;
 		mover.notReallyActionPerformed(e);
+		enemyMovement();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
@@ -139,4 +141,37 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
 	
+	public void enemyMovement() {
+		if(everyXSeconds(5)) {
+			plant.getImage().movePolar(1, degree);
+			degree+=80;
+			degree%=360;
+			if(enemyCollisionTest(plant, userWeapon)) {
+				plant.getImage().move(20, 0);
+			}
+			else {
+				plant.getImage().move(-20, 0);				
+			}
+			//plant.getImage().setLocation(1155, 100);
+			//plant.setStartY(100);
+			//plant.setStartX(1155);
+//			}else {
+//				double distX = enem.getImage().getX() - userRep.getX();
+//				double distY = enem.getImage().getY() - userRep.getY();
+//				double moveX = (distX * 1) / 100;
+//				double moveY = (distY * 1) / 100;
+//				enem.getImage().move(-moveX, -moveY);
+//				enem.setStartY(enem.getImage().getY());
+//				enem.setStartX(enem.getImage().getX());
+//				}
+	
+		}
+	}
+	
+	public boolean enemyCollisionTest(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
+	}
 }
