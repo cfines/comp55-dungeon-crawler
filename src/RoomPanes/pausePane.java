@@ -263,6 +263,11 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			invincibility.setFillColor(Color.red);
 		}
 		
+		program.remove(stopBombs);
+		program.add(stopBombs);
+		program.remove(invincibility);
+		program.add(invincibility);
+		
 		if(program.getDeveloperMode()) {
 			program.remove(devMode);
 			devMode.setFillColor(Color.green);
@@ -276,10 +281,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			hideDevMenu();
 		}
 		
-		program.remove(stopBombs);
-		program.add(stopBombs);
-		program.remove(invincibility);
-		program.add(invincibility);
+		
+		
 	}
 	
 	public void removeColors(boolean exit) {
