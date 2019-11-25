@@ -54,7 +54,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton giveKey = new GButton("GIVE_KEY", 925, 175, 215, 50); 
 	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
 	private GButton stopBombs = new GButton("DEACTIVATE_BOMBS", 925, 325, 215, 50);
-	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 400, 215, 50);
+	private GButton resetTimer = new GButton("RESET_BOMB_TIMER", 925, 400, 215, 50);
+	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 475, 215, 50);
 	
 	private boolean exit = false;
 	
@@ -113,6 +114,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonGod.add(giveKey);
 		buttonGod.add(bossRespawn);
 		buttonGod.add(stopBombs);
+		buttonGod.add(resetTimer);
 		buttonGod.add(roomReset);
 		
 		refreshColors();
@@ -202,7 +204,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 12) { /*TODO add*/ }			//STAN-R1
 				if(i == 13) { /*TODO add*/ }			//STAN-KEY
 				if(i == 14) { /*TODO add*/ }			//STAN-BOSS
-				if(i == 15) { program.setBombCounter(180); program.switchToBombRoomR1(); }	//BOMB-R1
+				if(i == 15) { program.switchToBombRoomR1(); }	//BOMB-R1
 				if(i == 16) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
 				if(i == 17) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
 				if(i == 18) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
@@ -216,7 +218,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 1) { program.getUser().setHasKey(true); }
 				if(i == 2) { program.resetBosses(); }
 				if(i == 3) { program.setBombsDeactivated(true); }
-				if(i == 4) { program.resetRooms(); program.switchToMenu(); }
+				if(i == 4) { program.setBombCounter(90); }
+				if(i == 5) { program.resetRooms(); program.switchToMenu(); }
 			}
 		}
 		

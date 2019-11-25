@@ -126,7 +126,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private fe_R12 feR12;
 	private fe_R12Complete feR12C;
 	public boolean bossRun = false;
-	public int bombCounter = 180;
+	public int bombCounter = 90;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -142,7 +142,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
 		public GLabel bombTimer;
-		public GRect bombRect = new GRect(695, 37, 260, 30);
+		public GRect bombRect = new GRect(695, 37, 245, 30);
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -735,7 +735,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void resetBombs() {
-		bombCounter = 180;
+		bombCounter = 90;
 		bomb1Dead = false;
 		bomb2Dead = false;
 		bomb3Dead = false;
