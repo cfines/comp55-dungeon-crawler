@@ -22,12 +22,13 @@ import removeLater.User;
 
 public class fe_R12 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage Duma,enemy1, enemy2, enemy3, enemy4,wall1,wall2,wall3,background,userRep, userWeapon;
+	private GImage enemy1, enemy2, enemy3, enemy4,wall1,wall2,wall3,background,userRep, userWeapon;
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private Enemy iDuma = new Enemy (69,69,2,4,900,100, ElementType.FIRE, enemyType.Duma);
 	private User user;
+	private GImage Duma = new GImage ("Duma.png",655,70);
 	private int degree;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private boolean atkUp,atkDown,atkLeft,atkRight;
@@ -47,12 +48,12 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		background = new GImage("Final floor.png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		Duma = iDuma.getImage();
 		
+		Duma = iDuma.getImage();
 		Enemy ienemy1 = new Enemy(6,6,2,2,125,100, ElementType.FIRE, enemyType.Dread);
 		Enemy ienemy2 = new Enemy(6,6,2,2,820,350, ElementType.FIRE, enemyType.Samurai);
 		Enemy ienemy3 = new Enemy(5,5,2,2,110,110, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy4 = new Enemy(10,10,2,2,910,150, ElementType.FIRE, enemyType.FIREFish);
+		Enemy ienemy4 = new Enemy(10,10,2,2,910,175, ElementType.FIRE, enemyType.FIREFish);
 		
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
@@ -76,6 +77,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
+		listOfEnemies.add(iDuma);
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy3);
@@ -88,7 +90,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		enemyImages.add(enemy2);
 		enemyImages.add(enemy3);
 		enemyImages.add(enemy4);
-		elements.add(Duma);
+		enemyImages.add(Duma);
 		elements.add(userRep);
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -118,7 +120,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	public void showContents() {
 		if(iDuma.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
-			program.switchToPonikoDone();
+			program.switchToFeR12Complete();
 		}
 		t.start();
 		program.add(voidSpace);
@@ -190,16 +192,16 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 			if(enem.getEnemyType() == enemyType.Samurai) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 2) / 100;
-				double moveY = (distY * 3) / 100;
+				double moveX = (distX * 1) / 100;
+				double moveY = (distY * 1) / 100;
 				enem.getImage().movePolar(2, degree);
 				enem.getImage().move(-moveX, -moveY);
 			}
 			else if(enem.getEnemyType() == enemyType.Dread) {
 				double distX = enem.getImage().getX() - userRep.getX();
 				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 3) / 100;
-				double moveY = (distY * 2) / 100;
+				double moveX = (distX * 1) / 100;
+				double moveY = (distY * 1) / 100;
 				enem.getImage().movePolar(1, degree);
 
 				enem.getImage().move(-moveX, -moveY);
