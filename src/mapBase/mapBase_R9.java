@@ -71,6 +71,10 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	@Override
 	public void showContents() {
 		
+		if(program.getBossRun()) {
+			program.setFloorNum(1);
+		}
+		
 		if(ixokStill.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
 			program.switchToR9Complete();
@@ -101,6 +105,7 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 			if(program.getBossRun()) {
 				user.setX(575);
 				user.setY(425);
+				program.setFloorNum(program.getFloorNum() + 1);
 				program.switchToOsvaldoBoss();
 				return;
 			}

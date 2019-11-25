@@ -133,7 +133,8 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 			user.setY(325);
 			userRep.setLocation(user.getX(), user.getY());
 			program.setBossDefeated(false);
-			// to alan's boss room
+			program.setFloorNum(program.getFloorNum() + 1);
+			program.switchToFeR1();
 		}
 		else if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
 			user.setX(900);
