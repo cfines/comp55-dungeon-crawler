@@ -60,7 +60,7 @@ public class Enemy {
 				type == enemyType.EARTHDeath || type == enemyType.WATERDeath || type == enemyType.FIREDeath || type == enemyType.EARTHCheese || 
 				type == enemyType.WATERCheese || type == enemyType.FIRECheese || type == enemyType.EARTHFish || type == enemyType.WATERFish || 
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
-				type == enemyType.momoko || type == enemyType.Duma || type == enemyType.Brigand||
+				type == enemyType.momoko  || type == enemyType.Brigand||
 				type == enemyType.Samurai || type == enemyType.DarkMage || type == enemyType.face || type == enemyType.Berkut || type == enemyType.Rinea ||
 				type == enemyType.Deadass || type == enemyType.Dread || type == enemyType.bomb) {
 			image = new GImage(type + ".gif", dx, dy);
