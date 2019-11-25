@@ -73,6 +73,9 @@ public class Enemy {
 		else if(type == enemyType.Nagic) {
 			image = new GImage("Dark Magic.png",dx,dy);
 		}
+		else if(type == enemyType.GuyFieri) {
+			image = new GImage("Fyah.png",dx,dy);
+		}
 		else{image = new GImage(type + ".png", dx, dy);}
 	}
 	
