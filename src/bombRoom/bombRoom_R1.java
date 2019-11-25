@@ -106,6 +106,12 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 			}
 		}
 		
+		if(unlocked) {
+			program.remove(EN);
+			EN = new GImage("entry_door_NORTH.png", 575, 28);
+			program.add(EN);
+		}
+		
 		program.bombOverlay();
 		program.drawOverlay(1, program.getFloorNum());
 	}

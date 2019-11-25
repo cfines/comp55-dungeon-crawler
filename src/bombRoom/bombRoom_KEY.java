@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_KEY extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, ES, EE, EW, background, userRep, userWeapon;
+	private GImage key1, EW, background, userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -42,13 +42,17 @@ public class bombRoom_KEY extends GraphicsPane implements ActionListener {
 	public bombRoom_KEY(MainApplication app) {
 		this.program = app;
 		user = program.getUser(); 
+		
 		Interactions oE4 = new Interactions(interactionType.entry_door_WEST,27,300);
+		Interactions ikey1 = new Interactions(interactionType.item_gif_key,575,300);
 
 		listOfInter.add(oE4);
+		listOfInter.add(ikey1);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		EW = oE4.getImage();
+		key1 = ikey1.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -60,6 +64,7 @@ public class bombRoom_KEY extends GraphicsPane implements ActionListener {
 
 		elements.add(background);
 		elements.add(EW);
+		elements.add(key1);
 		elements.add(userRep);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
@@ -81,6 +86,10 @@ public class bombRoom_KEY extends GraphicsPane implements ActionListener {
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
+		}
+		
+		if(program.getUser().getHasKey()) {
+			program.remove(key1);
 		}
 		
 		if(listOfEnemies.size() >= 1) {
