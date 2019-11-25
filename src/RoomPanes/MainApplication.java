@@ -787,7 +787,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 		if(bombsDeactivated) {return;}
 		
-		combatRefreshOverlay();
+		//combatRefreshOverlay();
 		
 		add(bombRect);
 		add(bombRect2);
