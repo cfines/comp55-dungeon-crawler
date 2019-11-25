@@ -35,6 +35,9 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private KeyPressedManager mover;
 	private int timerCont = 0;
+	private Enemy crest = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.DumaCrest);
+	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
+	private boolean attack = false, hit = false;
 	private boolean move = true;
 	
 	public fe_R12(MainApplication app) 
@@ -46,10 +49,10 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		Duma = iDuma.getImage();
 		
-		Enemy ienemy1 = new Enemy(2,2,2,2,120,150, ElementType.FIRE, enemyType.Dread);
-		Enemy ienemy2 = new Enemy(2,2,2,2,120,150, ElementType.FIRE, enemyType.Samurai);
-		Enemy ienemy3 = new Enemy(2,2,2,2,120,150, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy4 = new Enemy(2,2,2,2,120,150, ElementType.FIRE, enemyType.FIREFish);
+		Enemy ienemy1 = new Enemy(6,6,2,2,125,100, ElementType.FIRE, enemyType.Dread);
+		Enemy ienemy2 = new Enemy(6,6,2,2,820,350, ElementType.FIRE, enemyType.Samurai);
+		Enemy ienemy3 = new Enemy(5,5,2,2,110,110, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy4 = new Enemy(10,10,2,2,910,150, ElementType.FIRE, enemyType.FIREFish);
 		
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
@@ -155,8 +158,21 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	}
 	
 	public void enemyMovement() {
-		if(everyXSeconds(20)) {
+		if(everyXSeconds(30)) {
 			move = !move;
+			attack = !attack;
+			if(iDuma.getEnemyStats().getHP_cur() >0) 
+			{	
+				if(attack) {
+					crest = new Enemy(100, 100, 2, 2, (int)iDuma.getCoordX(), (int)iDuma.getCoordY() + 75, ElementType.FIRE, enemyType.DumaCrest);
+					listOfProjectiles.add(crest);
+				}
+				else {
+					listOfProjectiles.remove(crest);
+					program.remove(crest.getImage());
+					hit = false;
+				}
+			}
 		}
 		for (Enemy enem : listOfEnemies) {
 			degree+=5;
@@ -175,7 +191,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				double moveX = (distX * 3) / 100;
 				double moveY = (distY * 2) / 100;
 				enem.getImage().movePolar(1, degree);
-				
+
 				enem.getImage().move(-moveX, -moveY);
 			}
 			else if(enem.getEnemyType() == enemyType.Deadass) {
@@ -187,17 +203,51 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				enem.getImage().move(-moveX, -moveY);
 			}
 			else if(enem.getEnemyType() == enemyType.FIREFish) {
-				double distX = enem.getImage().getX() - userRep.getX();
-				double distY = enem.getImage().getY() - userRep.getY();
-				double moveX = (distX * 5) / 100;
-				double moveY = (distY * 5) / 100;
-				enem.getImage().movePolar(1, degree);
-				enem.getImage().move(-moveX, -moveY);
+				if(enem.getCoordX() > 900) {
+					move = false;
+				} else if (enem.getCoordX() < 100) {
+					move = true;
+				}
+				if(move) { enem.getImage().move(8, 0); }
+				else { enem.getImage().move(-8, 0); }
+			}
+			else if(enem.getEnemyType() == enemyType.Duma) {
+				enem.getImage().movePolar(2, degree);
 			}
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
+		}
+		if(listOfProjectiles.size() >= 1) {
+			for(Enemy arr : listOfProjectiles) {
+				arr.getEnemyStats().setCoordX(iDuma.getCoordX());
+				arr.getEnemyStats().setCoordY(iDuma.getCoordY());
+
+				if(checkHitBack(arr, userWeapon) && atkUp) { 
+					hit = true; 
+				}
+				program.add(arr.getImage());
+
+				if(hit) { 
+					arr.getImage().move(0, -10);
+				} 
+				else { 	
+					double distX = arr.getImage().getX() - userRep.getX();
+					double distY = arr.getImage().getY() - userRep.getY();
+					double moveX = (distX * 2) / 100;
+					double moveY = (distY * 2) / 100;
+					arr.getImage().movePolar(3, degree);
+					arr.getImage().move(-moveX, -moveY);
+				}
 			}
 		}
+	}
+	
+	public boolean checkHitBack(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 60
+				&& enem.getImage().getY() - image.getY() >= -60
+				&& enem.getImage().getX() - image.getX() <= 60
+				&& enem.getImage().getX() - image.getX() >= -60);
+	}
 	
 	public void deleteEnemy() {
 		mover.setDeleteEnemy(false);
@@ -207,6 +257,16 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				listOfEnemies.remove(i);
 			} else {
 				program.add(enemyImages.get(i));
+			}
+		}
+	}
+	
+	public void userCombat() {
+		for(int i = 0; i < listOfProjectiles.size(); i++) {
+			if(checkHitBack(listOfProjectiles.get(i), iDuma.getImage())) { 
+				iDuma.getEnemyStats().setHP_cur(iDuma.getEnemyStats().getHP_cur() -1);
+				listOfProjectiles.remove(listOfProjectiles.get(i));
+				program.remove(crest.getImage());
 			}
 		}
 	}
