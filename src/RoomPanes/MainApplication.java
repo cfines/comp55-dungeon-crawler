@@ -247,7 +247,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//bossDefeated = true;
 	
 		switchToTitleScreen(); //change which screen you want to switch to
-
 	}
 	
 	public void switchToTitleScreen() 
@@ -510,6 +509,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR11() 
 	{
+		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3", true);
 		switchToScreen(feR11);
 	}
 	
@@ -524,6 +525,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR12Complete() 
 	{
+		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER ,"y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER,"Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3",true);
 		switchToScreen(feR12C);
 	}
 	public void switchToLightsOff() {
