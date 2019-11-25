@@ -44,7 +44,7 @@ public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {
 		
 		Interactions oE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		
-		Enemy bomb1 = new Enemy(100,100,1,0,700,350, ElementType.FIRE, enemyType.bomb);
+		Enemy bomb1 = new Enemy(100,100,1,0,200,270, ElementType.FIRE, enemyType.bomb);
 
 		listOfInter.add(oE3);
 		

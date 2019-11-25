@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage overlay,enemy1, hole1, E8, E9, E10, background,userRep, userWeapon, temp;
+	private GImage overlay,enemy1, hole1, E8, E9, E10, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -47,10 +47,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,30);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
-		
-		Interactions iEtest = new Interactions(interactionType.entry_door_WEST,27,300);
-		temp = iEtest.getImage();
-		listOfInter.add(iEtest);
 		
 		enemy1 = ienemy1.getImage();
 		hole1 = ihole1.getImage();
@@ -78,7 +74,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		elements.add(E8);
 		elements.add(E9);
 		elements.add(E10);
-		elements.add(temp);
 		elements.add(userRep);
 		elements.add(overlay);
 		
@@ -182,13 +177,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
-		}
-		if(userX >= temp.getX() && userY >= temp.getY() && userX <= temp.getX() + 75 && userY <= temp.getY() + 75) {
-			System.out.println("west");
-//			user.setX(900);
-//			user.setY(300);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToR5();
 		}
 	}
 

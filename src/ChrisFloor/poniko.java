@@ -77,9 +77,10 @@ public class poniko extends GraphicsPane implements ActionListener{
 		
 		if(ibossFace.getEnemyStats().getHP_cur() <= 0) {
 			if(program.getBossRun()) {
-				user.setX(575);
-				user.setY(425);
-				program.switchToOsvaldoBoss();
+				user.setX(150);
+				user.setY(300);
+				program.switchToTitleScreen(); //TODO change when next boss is implemented
+				program.setBossRun(false);
 				return;
 			}
 			program.setBossDefeated(true);
@@ -101,7 +102,8 @@ public class poniko extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(11, program.getFloorNum());		
+		program.drawOverlay(11, program.getFloorNum());	
+		program.bossOverlay(ibossFace);
 	}
 
 	@Override
@@ -150,6 +152,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 	}
 	
 	public boolean everyXSeconds(double x) {
+		program.bossOverlay(ibossFace);
 		return(timerCont %(x) == 0);
 	}
 	

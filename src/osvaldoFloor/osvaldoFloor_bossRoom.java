@@ -171,10 +171,9 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		
 		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
 			if(program.getBossRun()) {
-				user.setX(575);
-				user.setY(425);
-				program.switchToTitleScreen(); //TODO change when next boss is implemented
-				program.setBossRun(false);
+				user.setX(150);
+				user.setY(300);
+				program.switchToPoniko(); //TODO change when next boss is implemented
 				return;
 			}
 			program.setBossDefeated(true);
@@ -292,6 +291,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	}
 	
 	public void enemyCombat() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfProjectiles.size(); i++) {
 			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;

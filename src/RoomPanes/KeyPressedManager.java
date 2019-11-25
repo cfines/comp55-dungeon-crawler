@@ -238,6 +238,7 @@ public class KeyPressedManager {
 		for(Enemy enem : listOfEnemies) {
 			if(program.getUser().getInvincibility()) {return;}
 			if(enemyCollisionTest(enem, userRep)) {
+				if(enem.getEnemyType() == enemyType.bomb) {user.setY(user.getY()); user.setX(user.getX());}
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
 					user.setY(user.getY() + 50); 
@@ -367,6 +368,7 @@ public class KeyPressedManager {
 		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
+				if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {return;}
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");

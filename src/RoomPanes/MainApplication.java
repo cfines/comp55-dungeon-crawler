@@ -142,7 +142,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
 		public GLabel bombTimer;
-		public GRect bombRect = new GRect(695, 37, 245, 30);
+		public GRect bombRect = new GRect(695, 37, 245, 50);
+		public GRect bombRect2 = new GRect(700, 70, 75, 10);
+		public GRect bombRect3= new GRect(780, 70, 75, 10);
+		public GRect bombRect4 = new GRect(860, 70, 75, 10);
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -171,6 +174,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user = new User(5, 5, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
 		bombRect.setFilled(true);
+		bombRect2.setColor(Color.red);
+		bombRect3.setColor(Color.red);
+		bombRect4.setColor(Color.red);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -262,21 +268,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
-		
-		if(restartGame || comingFromBoss) {
-			if(comingFromBoss) {
-				floorNum++;
-				user.setHasKey(false);
-				comingFromBoss = false;
-				combatRefreshOverlay();
-			} else {
-				floorNum = 1;
-				restartGame = false;
-			}
-		}
-		
 		switchToScreen(somePane);
-
 	}
 	
 	public void switchToR2() {
@@ -640,6 +632,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		combatRefreshOverlay();
 		
 		add(bombRect);
+		add(bombRect2);
+		add(bombRect3);
+		add(bombRect4);
 		
 		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 60);
 		bombTimer.setColor(Color.black);
@@ -713,6 +708,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb1(boolean bomb) {
 		this.bomb1Dead = bomb;
+		if(bomb1Dead) {bombRect2.setFilled(true);}
 		checkForBombsDestroyed();
 	}
 	
@@ -722,6 +718,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb2(boolean bomb) {
 		this.bomb2Dead = bomb;
+		if(bomb2Dead) {bombRect3.setFilled(true);}
 		checkForBombsDestroyed();
 	}
 	
@@ -731,6 +728,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBomb3(boolean bomb) {
 		this.bomb3Dead = bomb;
+		if(bomb3Dead) {bombRect4.setFilled(true);}
 		checkForBombsDestroyed();
 	}
 	
