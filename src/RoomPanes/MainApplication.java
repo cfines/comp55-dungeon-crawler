@@ -54,10 +54,10 @@ import mapBase.mapBase_R7;
 import mapBase.mapBase_R8;
 import mapBase.mapBase_R9;
 import mapBase.mapBase_R9Complete;
+import miscMechanics.GraphicsApplication;
+import miscMechanics.User;
 import bombRoom.osvaldoFloor_bossRoom;
 import bombRoom.osvaldoFloor_bossRoomComplete;
-import removeLater.GraphicsApplication;
-import removeLater.User;
 
 public class MainApplication extends GraphicsApplication implements ActionListener{
 	public static final int WINDOW_WIDTH = 1155;

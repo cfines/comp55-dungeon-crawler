@@ -10,7 +10,7 @@ import java.io.IOException;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
-import removeLater.GButton;
+import miscMechanics.GButton;
 
 
 public class GameOverPane extends GraphicsPane implements ActionListener {

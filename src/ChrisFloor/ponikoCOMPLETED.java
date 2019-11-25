@@ -18,7 +18,7 @@ import acm.graphics.GRect;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 	private MainApplication program;

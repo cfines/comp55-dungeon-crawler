@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
-import removeLater.Coordinates;
-import removeLater.Stats;
+import miscMechanics.Coordinates;
+import miscMechanics.Stats;
 
 public class Enemy {
 	private Coordinates startUp;

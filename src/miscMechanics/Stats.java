@@ -1,4 +1,4 @@
-package removeLater;
+package miscMechanics;
 
 public class Stats {
 	private int HP_cur, HP_tot;

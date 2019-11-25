@@ -16,7 +16,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 public class chris_R7 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
