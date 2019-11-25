@@ -19,8 +19,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.Console;
-import removeLater.User;
+import miscMechanics.User;
 
 public class mapBase_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;

@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
-import removeLater.Interfaceable;
+import miscMechanics.Interfaceable;
 
 public abstract class GraphicsPane implements Interfaceable {
 	/*

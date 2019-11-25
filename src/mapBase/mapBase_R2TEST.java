@@ -20,7 +20,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,6 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
 
 public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 	private MainApplication program;

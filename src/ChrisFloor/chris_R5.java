@@ -19,7 +19,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 public class chris_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
@@ -167,7 +167,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+//		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	public void deleteEnemy() {
