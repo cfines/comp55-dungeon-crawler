@@ -41,6 +41,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == returnMenu) {
+			program.setBossRun(false);
 			program.switchToTitleScreen();
 		}
 	}

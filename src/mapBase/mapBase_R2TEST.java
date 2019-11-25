@@ -226,7 +226,7 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 		}
 		//STAN
 		else if(obj == hole4) {
-			program.switchToTitleScreen();
+			program.switchToEarthBoss();
 		}
 		
 	}

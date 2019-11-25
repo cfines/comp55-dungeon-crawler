@@ -97,6 +97,12 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(ixokStill.getEnemyStats().getHP_cur() <= 0) {
+			if(program.getBossRun()) {
+				user.setX(575);
+				user.setY(425);
+				program.switchToOsvaldoBoss();
+				return;
+			}
 			program.setBossDefeated(true);
 			program.switchToR9Complete();
 		}

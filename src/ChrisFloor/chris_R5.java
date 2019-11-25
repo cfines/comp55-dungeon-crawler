@@ -151,7 +151,7 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			//program.switchToChrisR3();
+			program.switchToChrisR6();
 		}
 	}
 

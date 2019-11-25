@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage background,userRep, userWeapon, shoot; 
+	private GImage background,userRep, userWeapon, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, hole12, hole13, hole14, hole15; 
 	private GImage boss = new GImage("electric.jpg", 100, 100); 
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
@@ -55,11 +55,56 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		this.program = app;
 		user = program.getUser();
 
+		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 130,230);
+		Interactions ihole2 = new Interactions(interactionType.obstacle_hole, 207,230);
+		Interactions ihole3 = new Interactions(interactionType.obstacle_hole, 284,230);
+		Interactions ihole4 = new Interactions(interactionType.obstacle_hole, 361,230);
+		Interactions ihole5 = new Interactions(interactionType.obstacle_hole, 438,230);
+		Interactions ihole6 = new Interactions(interactionType.obstacle_hole, 515,230);
+		Interactions ihole7 = new Interactions(interactionType.obstacle_hole, 592,230);
+		Interactions ihole8 = new Interactions(interactionType.obstacle_hole, 669,230);
+		Interactions ihole9 = new Interactions(interactionType.obstacle_hole, 746,230); 
+		Interactions ihole10 = new Interactions(interactionType.obstacle_hole, 823,230);
+		Interactions ihole11 = new Interactions(interactionType.obstacle_hole, 900,230);
+		Interactions ihole12 = new Interactions(interactionType.obstacle_hole, 977,230);
+		Interactions ihole13 = new Interactions(interactionType.obstacle_hole, 284,400);
+		Interactions ihole14 = new Interactions(interactionType.obstacle_hole, 592,305);
+		Interactions ihole15 = new Interactions(interactionType.obstacle_hole, 746,400);
+		
+		hole1 = ihole1.getImage();
+		hole2 = ihole2.getImage();
+		hole3 = ihole3.getImage();
+		hole4 = ihole4.getImage();
+		hole5 = ihole5.getImage();
+		hole6 = ihole6.getImage();
+		hole7 = ihole7.getImage();
+		hole8 = ihole8.getImage();
+		hole9 = ihole9.getImage();
+		hole10 = ihole10.getImage();
+		hole11 = ihole11.getImage();
+		hole12 = ihole12.getImage();
+		hole13 = ihole13.getImage();
+		hole14 = ihole14.getImage();
+		hole15 = ihole15.getImage();
+		
+		listOfInter.add(ihole1);
+		listOfInter.add(ihole2);
+		listOfInter.add(ihole3);
+		listOfInter.add(ihole4);
+		listOfInter.add(ihole5);
+		listOfInter.add(ihole6);
+		listOfInter.add(ihole7);
+		listOfInter.add(ihole8);
+		listOfInter.add(ihole9);
+		listOfInter.add(ihole10);
+		listOfInter.add(ihole11);
+		listOfInter.add(ihole12);
+		listOfInter.add(ihole13);
+		listOfInter.add(ihole14);
+		listOfInter.add(ihole15);
+		
 		boss = osvaldoom.getImage();
 		boss.setSize(100, 100);
-		
-		shoot = new GImage("leg.gif");
-
 		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -74,7 +119,22 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		elements.add(background);
 		elements.add(boss);
 		elements.add(userRep);
-
+		elements.add(hole1);
+		elements.add(hole2);
+		elements.add(hole3);
+		elements.add(hole4);
+		elements.add(hole5);
+		elements.add(hole6);
+		elements.add(hole7);
+		elements.add(hole8);
+		elements.add(hole9);
+		elements.add(hole10);
+		elements.add(hole11);
+		elements.add(hole12);
+		elements.add(hole13);
+		elements.add(hole14);
+		elements.add(hole15);
+		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
@@ -110,6 +170,12 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	public void actionPerformed(ActionEvent e) {
 		
 		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
+			if(program.getBossRun()) {
+				user.setX(575);
+				user.setY(425);
+				program.switchToOsvaldoBoss();
+				return;
+			}
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}

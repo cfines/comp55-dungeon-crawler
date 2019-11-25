@@ -9,7 +9,13 @@ import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
 import ChrisFloor.chris_R5;
+<<<<<<< HEAD
 import earthFloor.earth_boss;
+=======
+import ChrisFloor.chris_R6;
+import ChrisFloor.chris_R7;
+import ChrisFloor.chris_R8;
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 import FyiahEmburemFloor.fe_R1;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -56,7 +62,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R3 chris_R3;
 	private chris_R4 chris_R4;
 	private chris_R5 chris_R5;
+<<<<<<< HEAD
 	private earth_boss earth_boss;
+=======
+	private chris_R6 chris_R6;
+	private chris_R7 chris_R7;
+	private chris_R8 chris_R8;
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -67,6 +79,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	private fe_R1 feR1;
+	public boolean bossRun = false;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -123,7 +136,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
 		chris_R5 = new chris_R5(this);
+<<<<<<< HEAD
 		earth_boss = new earth_boss(this);
+=======
+		chris_R6 = new chris_R6(this);
+		chris_R7 = new chris_R7(this);
+		chris_R8 = new chris_R8(this);
+		
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
@@ -188,6 +208,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			chris_R2 = new chris_R2(this);
 			chris_R4 = new chris_R4(this);
 			chris_R5 = new chris_R5(this);
+			chris_R6 = new chris_R6(this);
+			chris_R7 = new chris_R7(this);
+			chris_R8 = new chris_R8(this);
 			feR1 = new fe_R1(this);
 			tittle = new TitleScreenPane(this);
 			bossDefeated = false;
@@ -273,6 +296,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToChrisR5() {
 		switchToScreen(chris_R5);
+	}
+	
+	public void switchToChrisR6() {
+		switchToScreen(chris_R6);
+	}
+	public void switchToChrisR7() {
+		switchToScreen(chris_R7);
+	}
+	
+	public void switchToChrisR8() {
+		switchToScreen(chris_R8);
 	}
 	
 	public void switchToOsvaldoR1() {
@@ -457,6 +491,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void setBossDefeated(boolean bruh) {
 		this.bossDefeated = bruh;
+	}
+	
+	public void setBossRun(boolean run) {
+		bossRun = run;
+	}
+	
+	public boolean getBossRun() {
+		return bossRun;
 	}
 	
 }

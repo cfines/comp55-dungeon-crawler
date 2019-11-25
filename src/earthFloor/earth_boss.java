@@ -33,8 +33,8 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private int degree;
 	private User user;
-	private Enemy osvaldoom = new Enemy(1,1,2,2,100,100, ElementType.FIRE, enemyType.electric);
-	private Enemy shot = new Enemy(100, 100, 5, 1, 0, 0, ElementType.FIRE, enemyType.projectile);
+	private Enemy plant = new Enemy(1,1,2,2,100,100, ElementType.EARTH, enemyType.insidePacific);
+	private Enemy shot = new Enemy(100, 100, 5, 1, 0, 0, ElementType.EARTH, enemyType.projectile);
 	private enemyType attk = enemyType.electric;
 	private enemyType still = enemyType.electric;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
@@ -59,7 +59,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		
 		shoot = new GImage("leg.gif");
 
-		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
+		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 
