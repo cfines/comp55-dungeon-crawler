@@ -205,17 +205,17 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
+		if(userX <= E4.getX() && userY <= E4.getY() && userY2 >= E4.getY() - 30  && userX >= E4.getX() - 30) {
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR2();
+			program.switchToFeR2();
 		}
-		else if(userX <= E5.getX() && userY <= E5.getY() && userY2 >= E5.getY() + 90  && userX >= E5.getX() + 90) {
+		if(userX >= E5.getX() && userY >= E5.getY() && userX <= E5.getX() + 95 && userY <= E5.getY() + 90) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToR4();
+			program.switchToFeR4();
 		}
 	}
 	public void enemyCombat() {
