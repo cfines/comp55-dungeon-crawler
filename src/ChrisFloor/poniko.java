@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class poniko extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E5, bossFace,background,userRep, userWeapon;
+	private GImage bossFace,background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -42,7 +42,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 		user = program.getUser(); 
 		
 		//Interactions
-		Interactions iE5 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		//Enemies
 		
 		
@@ -50,8 +49,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 		background = new GImage("ponikos_room.png", 15,-30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		E5 = iE5.getImage();
-		listOfInter.add(iE5);
 		bossFace = ibossFace.getImage();
 		
 		
@@ -64,7 +61,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 		voidSpace.setFilled(true);
 		
 		elements.add(background);
-		elements.add(E5);
 		elements.add(bossFace);
 		elements.add(userRep);
 		
@@ -90,7 +86,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 		timerCont++;
 		enemyMovement();
 		mover.notReallyActionPerformed(e);
-		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 		//System.out.println("x: "+ user.getX() + " y: " + user.getY());		
 	}
@@ -100,7 +95,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 		
 		if(ibossFace.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
-			//program.switchToPonikoComplete();
+			program.switchToPonikoDone();
 		}
 		
 		t.start();
@@ -141,20 +136,6 @@ public class poniko extends GraphicsPane implements ActionListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		mover.notReallyKeyReleased(e);
-	}
-	
-	private void nextRoom() {
-		double userX = userRep.getX();
-		double userY = userRep.getY();
-		double userX2 = userRep.getX() + 80;
-		double userY2 = userRep.getY() + 80;
-
-		if(userX >= E5.getX() && userY >= E5.getY() && userX <= E5.getX() + 75 && userY <= E5.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR10();
-		}
 	}
 	
 	public boolean everyXSeconds(double x) {
