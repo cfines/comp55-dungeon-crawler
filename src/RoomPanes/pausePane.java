@@ -164,18 +164,16 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		program.remove(resumeButton);
 		program.remove(devMode);
 		
-		if(program.getDeveloperMode()) {
-			program.remove(devBox);
-			program.remove(devBox2);
-			for(int i = 0; i < buttonArr.size(); i++) {
-				program.remove(buttonArr.get(i));
-			}
-			for(int i = 0; i < labelArr.size(); i++) {
-				program.remove(labelArr.get(i));
-			}
-			for(int i = 0; i < buttonGod.size(); i++) {
-				program.remove(buttonGod.get(i));
-			}
+		program.remove(devBox);
+		program.remove(devBox2);
+		for(int i = 0; i < buttonArr.size(); i++) {
+			program.remove(buttonArr.get(i));
+		}
+		for(int i = 0; i < labelArr.size(); i++) {
+			program.remove(labelArr.get(i));
+		}
+		for(int i = 0; i < buttonGod.size(); i++) {
+			program.remove(buttonGod.get(i));
 		}
 		
 	}
@@ -212,7 +210,6 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 15) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
 				if(i == 16) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
 				if(i == 17) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
-				refreshColors();
 			}
 		}
 		
