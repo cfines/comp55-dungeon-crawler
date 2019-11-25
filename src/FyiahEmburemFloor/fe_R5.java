@@ -164,7 +164,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	}
 	
 	public void enemyMovement() {
-		if(everyXSeconds(20)) {
+		if(everyXSeconds(40)) {
 			move = !move;
 			attack = !attack;
 			if(DarkMage1.getEnemyStats().getHP_cur() >0) 
