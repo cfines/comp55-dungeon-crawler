@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage overlay,E1,E2,background,userRep, userWeapon, left; 
+	private GImage overlay,E1,E2,background,userRep, userWeapon; 
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private GRect voidSpace;
@@ -36,13 +36,11 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 	public ponikoCOMPLETED(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
-		Interactions iE1 = new Interactions(interactionType.chrisEntry_WEST,27,300);
-		Interactions iE2 = new Interactions(interactionType.entry_stair,575,300);
-		Interactions ileft = new Interactions(interactionType.left,100,100);
+		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH,748,248);
+		Interactions iE2 = new Interactions(interactionType.entry_stair,235,365);
 		
 		E1 = iE1.getImage();
 		E2 = iE2.getImage();
-		left = ileft.getImage();
 
 		background = new GImage("ponikoCOMPLETED.jpg", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -56,12 +54,10 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 
 		listOfInter.add(iE1);
 		listOfInter.add(iE2);
-		listOfInter.add(ileft);
 
 		elements.add(background);
 		elements.add(E1);
 		elements.add(E2);
-		elements.add(left);
 		elements.add(userRep);
 		elements.add(overlay);
 
@@ -72,6 +68,7 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		mover.notReallyActionPerformed(e);
+		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	@Override
@@ -87,7 +84,7 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(9, program.getFloorNum());
+		program.drawOverlay(11, program.getFloorNum());
 	}
 
 	@Override
@@ -130,7 +127,7 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
 		//TODO fix these boundary checks
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
+		if(userX >= E2.getX() && userY >= E2.getY() && userX <= E2.getX() + 75 && userY <= E2.getY() + 75) {
 			program.setComingFromBoss(true);
 			user.setX(575);
 			user.setY(325);
@@ -138,7 +135,7 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 			program.setBossDefeated(false);
 			// to alan's boss room
 		}
-		else if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 75 && userY <= E1.getY() + 75) {
+		else if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());

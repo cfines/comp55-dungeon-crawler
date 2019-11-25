@@ -80,7 +80,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 				return;
 			}
 			program.setBossDefeated(true);
-			program.switchToChrisR9();
+			program.switchToPonikoDone();
 		}
 		
 		timerCont++;
