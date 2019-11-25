@@ -246,7 +246,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToTitleScreen(); //change which screen you want to switch to
+		switchToChrisR1(); //change which screen you want to switch to
 
 	}
 	
@@ -447,6 +447,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToFeR1() {
+		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
@@ -781,20 +782,20 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
 		user.setX(300);
 		user.setY(300);
-		somePane = new SomePane(this);
-		menu = new MenuPane(this);
-		lightsoff = new MenuPane_LightsOff(this);
-		creditsPane = new CreditsPane(this);
-		mapbase_R2 = new mapBase_R2(this);
-		testPane = new mapBase_R2TEST(this);
-		mapbase_R3 = new mapBase_R3(this);
-		mapbase_R4 = new mapBase_R4(this);
-		mapbase_R5 = new mapBase_R5(this);
-		mapbase_R6 = new mapBase_R6(this);
-		mapbase_R7 = new mapBase_R7(this);
-		mapbase_R8 = new mapBase_R8(this);
-		mapbase_R9 = new mapBase_R9(this);
-		mapbase_R9Complete = new mapBase_R9Complete(this);
+		somePane = null;
+		menu = null;
+		lightsoff = null;
+		creditsPane = null;
+		mapbase_R2 = null;
+		testPane = null;
+		mapbase_R3 = null;
+		mapbase_R4 = null;
+		mapbase_R5 = null;
+		mapbase_R6 = null;
+		mapbase_R7 = null;
+		mapbase_R8 = null;
+		mapbase_R9 = null;
+		mapbase_R9Complete = null;
 		chris_R1 = null;
 		chris_R2 = null;
 		chris_R3 = null;
@@ -806,6 +807,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R9 = null;
 		chris_R10 = null;
 		Poniko = null;
+		ponikoDone = null;
 		osvaldoFloor_bossRoom = null;
 		osvaldoFloor_bossRoomComplete = null;
 		bombRoom_R1 = null;
