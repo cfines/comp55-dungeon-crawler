@@ -403,7 +403,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToOsvaldoR1() {
-		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		switchToScreen(osvaldoFloor_R1);
 	}
 	
