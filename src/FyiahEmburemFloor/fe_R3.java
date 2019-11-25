@@ -30,7 +30,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 	private Timer t = new Timer(30, this);
 	private boolean move = true;
 	private boolean atkUp,atkLeft,atkDown,atkRight;
-	private GImage badGuy = new GImage ("Dark Mage.gif",575,70);
+	private GImage badGuy = new GImage ("Dark Mage.gif",655,70);
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -40,7 +40,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 	private boolean attack = false, hit = false;
 	private Enemy magic = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.Nagic);
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
-	private Enemy DarkMage = new Enemy(2,2,2,2,575,70, ElementType.FIRE, enemyType.DarkMage);
+	private Enemy DarkMage = new Enemy(2,2,2,2,655,70, ElementType.FIRE, enemyType.DarkMage);
 	
 	public fe_R3(MainApplication app) 
 	{

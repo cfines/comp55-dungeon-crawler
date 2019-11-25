@@ -189,19 +189,20 @@ private GImage enemy1, enemy2 , enemy3 ,tree1, tree2, tree3, E6, E7, E8, backgro
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E6.getX() && userY >= E6.getY() && userX <= E6.getX() + 75 && userY <= E6.getY() + 75) {
+
+		if(userX <= E6.getX() && userY <= E6.getY() && userY2 >= E6.getY() - 30  && userX >= E6.getX() - 30) {
 			user.setX(575);
-			user.setY(110);
+			user.setY(120);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR3();
 		}
-		else if(userX <= E7.getX() && userY <= E7.getY() && userY2 >= E7.getY() + 75  && userX >= E7.getX() + 75) {
+		else if(userX >= E7.getX() && userY >= E7.getY() && userX <= E7.getX() + 75 && userY <= E7.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR5();
 		}
-		else if(userX <= E8.getX() && userY <= E8.getY() && userY2 >= E8.getY() +90  && userX >= E8.getX() + 90) {
+		else if(userX >= E8.getX() && userY >= E8.getY() && userX <= E8.getX() + 85 && userY <= E8.getY() + 85) {
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
