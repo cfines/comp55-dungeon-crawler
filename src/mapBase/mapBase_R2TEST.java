@@ -221,12 +221,8 @@ public class mapBase_R2TEST extends GraphicsPane implements ActionListener{
 			program.switchToChrisR1();
 		}
 		//SCHARK
-<<<<<<< HEAD
+
 		else if(obj == hole3) {
-=======
-		else if(obj == hole3) {
-			program.switchToEarthBoss();
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 			program.switchToBombRoomR1();
 		}
 		//STAN
