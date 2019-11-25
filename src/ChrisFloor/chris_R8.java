@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R8 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E3, egg, candle1, candle2, candle3, candle4, blueboi1, blueboi2, blueboi3, background,userRep, userWeapon;
+	private GImage cheese1, cheese2, cheese3,E1, E3, egg, candle1, candle2, candle3, candle4, blueboi1, blueboi2, blueboi3, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -56,7 +56,11 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		Interactions iegg = new Interactions(interactionType.Long_Hair_Egg, 578,225);
 		
 		//Enemies
+		Enemy icheese1 = new Enemy(5,5,2,2,145,350,ElementType.EARTH,enemyType.EARTHCheese);
+		Enemy icheese2 = new Enemy(5,5,2,2,665,390,ElementType.FIRE,enemyType.FIRECheese);
+		Enemy icheese3 = new Enemy(5,5,2,2,565,340,ElementType.WATER,enemyType.WATERCheese);
 
+		
 		//gImages
 		background = new GImage("background_figures.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -70,6 +74,9 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		candle2 = icandle2.getImage();
 		candle3 = icandle3.getImage();
 		candle4 = icandle4.getImage();
+		cheese1 = icheese1.getImage();
+		cheese2 = icheese2.getImage();
+		cheese3 = icheese3.getImage();
 		egg = iegg.getImage();
 
 		//listOfInter.add();
@@ -85,6 +92,9 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iegg);
 
 		//listOfEnemies.add)();
+		listOfEnemies.add(icheese1);
+		listOfEnemies.add(icheese2);
+		listOfEnemies.add(icheese3);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -104,6 +114,10 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		elements.add(candle4);
 		elements.add(egg);
 		elements.add(userRep);
+		
+		enemyImages.add(cheese1);
+		enemyImages.add(cheese2);
+		enemyImages.add(cheese3);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -129,6 +143,47 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		}
 		program.drawOverlay(8, program.getFloorNum());
 	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.EARTHCheese) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}
+			else if(enem.getEnemyType() == enemyType.FIRECheese) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.WATERCheese) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(1, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * .5) / 100;
+				double moveY = (distY * .5) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
+	}
+	
 
 
 	@Override
@@ -151,9 +206,6 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) { 
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			t.stop();
-		}
 		mover.notReallyKeyReleased(e);
 	}
 
@@ -161,10 +213,11 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	private void nextRoom() {
@@ -185,31 +238,20 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 			program.switchToChrisR9();
 		}
 	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
+	}
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
-	}
-
-	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
 	}
 }

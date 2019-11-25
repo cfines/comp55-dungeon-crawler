@@ -25,6 +25,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E1, E2, E3, E4, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
+	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -35,7 +36,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 	private int timerCont = 0;
 	private boolean move = true;
 	private KeyPressedManager mover;
-	
+
 
 	public chris_R3(MainApplication app) {
 		this.program = app;
@@ -127,9 +128,18 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		if(listOfEnemies.size() >= 1) {
+			for(int i = 0; i < listOfEnemies.size(); i++) {
+				if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+					enemyImages.remove(i);
+					listOfEnemies.remove(i);
+				} else {
+					program.add(enemyImages.get(i));
+				}
+			}
+		}
 		program.drawOverlay(3, program.getFloorNum());
 	}
-
 
 	@Override
 	public void hideContents() {
@@ -159,6 +169,7 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		timerCont++;
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -195,7 +206,6 @@ public class chris_R3 extends GraphicsPane implements ActionListener{
 			program.switchToChrisR2();
 		}
 	}
-
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
 	}

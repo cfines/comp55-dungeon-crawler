@@ -24,7 +24,7 @@ import removeLater.User;
 public class chris_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage E1, E2, E4, color1,color2,color3,color4,color7,color8,
-	color9,color10,color11,color12,color13,color14,color15,color16,background,userRep, userWeapon;
+	color9,color10,color11,color12,color13,color14,color15,color16,pacific1,pacific2,background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -64,6 +64,8 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		Interactions icolor16 = new Interactions(interactionType.color1,1005,347);
 
 		//Enemies
+		Enemy ipacific1 = new Enemy(5,5,2,2,855,120,ElementType.WATER,enemyType.insidePacific);
+		Enemy ipacific2 = new Enemy(5,5,2,2,855,390,ElementType.WATER,enemyType.insidePacific);
 
 		//gImages
 		background = new GImage("background_sky.gif", 15,30);
@@ -86,6 +88,8 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		color14 = icolor14.getImage();
 		color15 = icolor15.getImage();
 		color16 = icolor16.getImage();
+		pacific1 = ipacific1.getImage();
+		pacific2 = ipacific2.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
@@ -107,6 +111,8 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icolor16);
 
 		//listOfEnemies.add)();
+		listOfEnemies.add(ipacific1);
+		listOfEnemies.add(ipacific2);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -133,6 +139,9 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		elements.add(color15);
 		elements.add(color16);
 		elements.add(userRep);
+		
+		enemyImages.add(pacific1);
+		enemyImages.add(pacific2);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -191,10 +200,23 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
 	}
 
 	private void nextRoom() {
@@ -228,25 +250,23 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.insidePacific) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}
+
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
 	}
 }
