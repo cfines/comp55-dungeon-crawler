@@ -16,6 +16,8 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 	public static final int WINDOW_HEIGHT = 650;
 	public GImage menuScreen;
 	public GButton play, bossRush, credits, exit;
+	public static final String MUSIC_FOLDER = "sounds";
+	private AudioPlayer audio = AudioPlayer.getInstance();
 	//public Timer timer = new Timer(5000, this);
 
 	public MenuPane(MainApplication app) {
@@ -53,17 +55,21 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == play) {
+			audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 			program.setFloorNum(1);
 			program.resetRooms();
 			program.switchToSome();
 		}
 		else if(obj == exit) {
+			audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 			System.exit(0);
 		}
 		else if(obj == credits) {
+			audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 			program.switchToCreditsPane();
 		}
 		else if(obj == bossRush) {
+			audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 			program.setBossRun(true);
 			program.switchToR9();
 		}

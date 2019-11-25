@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E4, color1,color2,color3,color4,color7,color8,
+	private GImage E1, E2, color1,color2,color3,color4,color7,color8,
 	color9,color10,color11,color12,color13,color14,color15,color16,pacific1,pacific2,background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
@@ -47,7 +47,6 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
-		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions icolor1 = new Interactions(interactionType.color2,140,35);
 		Interactions icolor2 = new Interactions(interactionType.color1,215,35);
 		Interactions icolor3 = new Interactions(interactionType.color2,930,35);
@@ -73,7 +72,6 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
 		E2 = iE2.getImage();
-		E4 = iE4.getImage();
 		color1 = icolor1.getImage();
 		color2 = icolor2.getImage();
 		color3 = icolor3.getImage();
@@ -94,7 +92,6 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		//listOfInter.add();
 		listOfInter.add(iE1);
 		listOfInter.add(iE2);
-		listOfInter.add(iE4);
 		listOfInter.add(icolor1);
 		listOfInter.add(icolor2);
 		listOfInter.add(icolor3);
@@ -123,7 +120,6 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(E1);
 		elements.add(E2);
-		elements.add(E4);
 		elements.add(color1);
 		elements.add(color2);
 		elements.add(color3);
@@ -235,13 +231,6 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
 			program.switchToChrisR10();
-		}
-
-		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR3();
 		}
 	}
 

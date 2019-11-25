@@ -27,7 +27,7 @@ public class KeyPressedManager {
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
 	boolean deleteEnemy = false;
-	private AudioPlayer audio;
+	private AudioPlayer audio = AudioPlayer.getInstance();
 	public static final String MUSIC_FOLDER = "sounds";
 	
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
@@ -78,6 +78,7 @@ public class KeyPressedManager {
 			userRIGHT();
 			break;
 		case KeyEvent.VK_E:
+			audio.playSound(MUSIC_FOLDER, "quick_slot.wav");
 			program.getUser().cycleWeapon();
 			program.drawSword();
 			break;
@@ -183,8 +184,7 @@ public class KeyPressedManager {
 						program.add(listOfEnemies.get(i).getImage());
 						
 						//listOfEnemies.remove(i);
-						audio = AudioPlayer.getInstance();
-						audio.playSound(MUSIC_FOLDER, "Heavy says Dead.mp3");
+						audio.playSound(MUSIC_FOLDER, "enemy hit.wav");
 					}
 				}
 				//TODO insert user getting hurt here
@@ -218,22 +218,22 @@ public class KeyPressedManager {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
-					if(keyCheck(inter)) { removeKey(inter); }
+					if(keyCheck(inter)) { audio.playSound(MUSIC_FOLDER, "key.wav");removeKey(inter); }
 					user.setY(user.getY() + user.getMoveSpeedStat()); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
-					if(keyCheck(inter)) { removeKey(inter); }
+					if(keyCheck(inter)) { audio.playSound(MUSIC_FOLDER, "key.wav");removeKey(inter); }
 					user.setY(user.getY() - user.getMoveSpeedStat());
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
-					if(keyCheck(inter)) { removeKey(inter); }
+					if(keyCheck(inter)) {audio.playSound(MUSIC_FOLDER, "key.wav"); removeKey(inter); }
 					user.setX(user.getX() + user.getMoveSpeedStat()); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
-					if(keyCheck(inter)) { removeKey(inter); }
+					if(keyCheck(inter)) { audio.playSound(MUSIC_FOLDER, "key.wav");removeKey(inter); }
 					user.setX(user.getX() - user.getMoveSpeedStat());
 				} 
 			}
@@ -354,15 +354,19 @@ public class KeyPressedManager {
 				if(enem.getEnemyType() == enemyType.bomb) {return;}
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
+					audio.playSound(MUSIC_FOLDER, "sword hit.wav");
 					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
 				}
 				if(atkDown) {
+					audio.playSound(MUSIC_FOLDER, "sword hit.wav");
 					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() + 50);
 				}
 				if(atkLeft) {
+					audio.playSound(MUSIC_FOLDER, "sword hit.wav");
 					enem.getImage().setLocation(tempEnem.getX() - 50, tempEnem.getY());
 				}
 				if(atkRight) {
+					audio.playSound(MUSIC_FOLDER, "sword hit.wav");
 					enem.getImage().setLocation(tempEnem.getX() + 50, tempEnem.getY());
 				}
 			}
@@ -376,6 +380,7 @@ public class KeyPressedManager {
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");
+				audio.playSound(MUSIC_FOLDER, "user hit.wav");
 				program.combatRefreshOverlay();
 			}
 		}
