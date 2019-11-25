@@ -171,7 +171,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-		user = new User(5, 5, 1000, 1, 300, 300);
+		user = new User(500, 500, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
 		bombRect.setFilled(true);
 		bombRect2.setColor(Color.red);
