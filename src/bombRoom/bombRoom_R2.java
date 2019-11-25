@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, ES, background, userRep, userWeapon;
+	private GImage enemy1, enemy2, enemy3, EN, ES, background, userRep, userWeapon, rock1;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -35,6 +35,8 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 	private int decrementTimer = 0;
+	private boolean move = true;
+	private int degree = 0;
 
 	private KeyPressedManager mover;
 
@@ -43,14 +45,28 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 		user = program.getUser(); 
 		Interactions oE1 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
 		Interactions oE2 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
+		Interactions irock1 = new Interactions(interactionType.obstacle_rock,600,325);
+		Enemy ienemy1 = new Enemy(4,4,2,2,140,100,ElementType.FIRE, enemyType.FIREFish);
+		Enemy ienemy2 = new Enemy(4,4,2,2,890,200,ElementType.WATER, enemyType.WATERFish);
+		Enemy ienemy3 = new Enemy(4,4,2,2,405,400,ElementType.EARTH, enemyType.EARTHFish);
 
 		listOfInter.add(oE1);
 		listOfInter.add(oE2);
+		listOfInter.add(irock1);
+		
+		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
+		listOfEnemies.add(ienemy3);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		EN = oE1.getImage();
 		ES = oE2.getImage();
+		rock1 = irock1.getImage();
+		
+		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
+		enemy3 = ienemy3.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -63,7 +79,12 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 		elements.add(background);
 		elements.add(EN);
 		elements.add(ES);
+		elements.add(rock1);
 		elements.add(userRep);
+		
+		enemyImages.add(enemy1);
+		enemyImages.add(enemy2);
+		enemyImages.add(enemy3);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -74,6 +95,7 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 		decrementTimer();
 		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
+		enemyMovement();
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
@@ -168,6 +190,51 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 			program.switchToBombRoomR3();
 		}
 
+	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.FIREFish) {
+				if(move) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}else {enem.getImage().move(0, 0);}
+			}
+			else if(enem.getEnemyType() == enemyType.WATERFish) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}else if(enem.getEnemyType() == enemyType.EARTHFish) {
+				degree+=7;
+				degree%=360;
+				enem.getImage().movePolar(3, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
+	}
+
+	public boolean everyXSeconds(double x) {
+		return(decrementTimer %(x) == 0);
 	}
 	
 }
