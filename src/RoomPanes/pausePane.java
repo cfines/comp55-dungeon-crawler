@@ -124,7 +124,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			if(i == 0 || i == 1 || i == 2) { buttonArr.get(i).setFillColor(Color.white); }
 			if(i == 3 || i == 4 || i == 5) { buttonArr.get(i).setFillColor(Color.cyan); }
 			if(i == 6 || i == 7 || i == 8) { buttonArr.get(i).setFillColor(Color.black); buttonArr.get(i).setColor(Color.white); }
-			if(i == 9 || i == 10 || i == 11) { buttonArr.get(i).setFillColor(Color.orange); }
+			if(i == 9 || i == 10 || i == 11) { buttonArr.get(i).setFillColor(pink); }
 			if(i == 12 || i == 13 || i == 14) { buttonArr.get(i).setFillColor(Color.gray); }
 			if(i == 15 || i == 16 || i == 17 || i == 18) { buttonArr.get(i).setFillColor(Color.red); }
 		}
