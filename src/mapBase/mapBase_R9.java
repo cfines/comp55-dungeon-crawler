@@ -109,6 +109,8 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 				program.switchToOsvaldoBoss();
 				return;
 			}
+			user.setX(575);
+			user.setY(410);
 			program.setBossDefeated(true);
 			program.switchToR9Complete();
 		}

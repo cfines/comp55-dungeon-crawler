@@ -177,6 +177,8 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 				program.switchToPoniko(); 
 				return;
 			}
+			user.setX(575);
+			user.setY(410);
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}
