@@ -142,7 +142,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
 		public GLabel bombTimer;
-		public GRect bombRect = new GRect(695, 37, 260, 30);
+		public GRect bombRect = new GRect(695, 37, 245, 30);
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
