@@ -53,13 +53,11 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		Interactions iE9 = new Interactions(interactionType.entry_door_WEST,27,300);
-		E9 = iE9.getImage();
 		listOfInter.add(iE9);
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		E9 = iE9.getImage();
 		E10 = iE10.getImage();
 		listOfInter.add(iE10);
-		elements.add(E9);
-		elements.add(E10);
 		Interactions iwall1 = new Interactions(interactionType.RockWall, 130,230);
 		Interactions iwall2 = new Interactions(interactionType.RockWall, 207,230);
 		Interactions iwall3 = new Interactions(interactionType.RockWall, 284,230);
@@ -113,6 +111,8 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		elements.add(wall11);
 		elements.add(wall12);
 		enemyImages.add(badGuy1);
+		elements.add(E9);
+		elements.add(E10);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,

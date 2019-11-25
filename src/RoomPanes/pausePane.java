@@ -27,7 +27,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GLabel baseFloor = new GLabel("BASE", 10 ,97);
 	private GLabel osvaldoomFloor = new GLabel("OSVALDOOM", 10, 172);
 	private GLabel shadowRealm = new GLabel("SHADOW_REALM", 10, 247);
-	private GLabel lucinaDomain = new GLabel("PEPPA_PIG", 10, 322);
+	private GLabel lucinaDomain = new GLabel("LUCINA_IS_THE_ANTAGONIST_OF_PEPPA_PIG", 10, 322);
 	private GLabel schtanlyParable = new GLabel("SCHTANLY_PARABLE", 10, 397);
 	private GLabel bombFloor = new GLabel("BOMB_FLOOR", 10, 472);
 	private GButton BF_R1 = new GButton("R1", 10, 100, 50, 50);
