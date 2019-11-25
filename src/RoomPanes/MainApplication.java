@@ -262,21 +262,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
-		
-		if(restartGame || comingFromBoss) {
-			if(comingFromBoss) {
-				floorNum++;
-				user.setHasKey(false);
-				comingFromBoss = false;
-				combatRefreshOverlay();
-			} else {
-				floorNum = 1;
-				restartGame = false;
-			}
-		}
-		
 		switchToScreen(somePane);
-
 	}
 	
 	public void switchToR2() {
