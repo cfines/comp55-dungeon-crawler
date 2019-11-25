@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import ChrisFloor.poniko;
 import acm.graphics.GImage;
+import enemyInteraction.ElementType;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
@@ -157,7 +158,6 @@ public class KeyPressedManager {
 
 	public void userCombat() 
 	{
-		int newHealth;
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
 			{
@@ -165,9 +165,8 @@ public class KeyPressedManager {
 				if(atkUp || atkDown || atkLeft || atkRight) 
 				{
 					//damage dealt to enemy
-					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
-					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
 					
+					listOfEnemies.get(i).getEnemyStats().setHP_cur(calculateDamage(listOfEnemies.get(i)));
 					if(program.getUser().getInvincibility()) {listOfEnemies.get(i).getEnemyStats().setHP_cur(0);}
 					
 					if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {
@@ -442,6 +441,14 @@ public class KeyPressedManager {
 	
 	public void setDeleteEnemy(boolean prettyPlease) {
 		this.deleteEnemy = prettyPlease;
+	}
+	
+	public int calculateDamage(Enemy enem) {
+		int newHealth = enem.getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
+		if(enem.getElementType() == ElementType.FIRE && program.getUser().getWeaponEquiped() == 1) { newHealth -= 1;}
+		if(enem.getElementType() == ElementType.WATER && program.getUser().getWeaponEquiped() == 2) { newHealth -= 1;}
+		if(enem.getElementType() == ElementType.EARTH && program.getUser().getWeaponEquiped() == 0) { newHealth -= 1;}
+		return newHealth;
 	}
 	
 }

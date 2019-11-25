@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, background, userRep, userWeapon, bombIMG;
+	private GImage rock1, rock2, hole1, EN, background, userRep, userWeapon, bombIMG, enemy1;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -35,6 +35,8 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 	private int decrementTimer = 0;
+	private int degree = 0;
+	private boolean move = true;
 
 	private KeyPressedManager mover;
 
@@ -45,16 +47,19 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		Interactions oE3 = new Interactions(interactionType.entry_door_NORTH,575,-3);
 		
 		Enemy bomb1 = new Enemy(100,100,1,0,550,400, ElementType.FIRE, enemyType.bomb);
+		Enemy ienemy1 = new Enemy(10,10,2,2,125,500,ElementType.FIRE, enemyType.WATERDeath);
 
 		listOfInter.add(oE3);
 		
 		listOfEnemies.add(bomb1);
+		listOfEnemies.add(ienemy1);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 		
 		EN = oE3.getImage();
 		
 		bombIMG = bomb1.getImage();
+		enemy1 = ienemy1.getImage();
 
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -69,6 +74,7 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		elements.add(userRep);
 		
 		enemyImages.add(bombIMG);
+		enemyImages.add(enemy1);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -123,6 +129,7 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		decrementTimer();
 		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
+		enemyMovement();
 		bombDestroyed(checkIfBombDestroyed());
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -182,6 +189,30 @@ public class bombRoom_BOMB2 extends GraphicsPane implements ActionListener {
 		
 		program.setBomb2(true);
 		
+	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.WATERDeath) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
+	}
+
+	public boolean everyXSeconds(double x) {
+		return(decrementTimer %(x) == 0);
 	}
 	
 	public void deleteEnemy() {
