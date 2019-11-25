@@ -100,7 +100,6 @@ public class KeyPressedManager {
 			attackRight();
 			break;
 		case KeyEvent.VK_ESCAPE:
-			System.out.println("esc is pressed!");
 			program.pauseScreenSwitch();
 			break;
 		case KeyEvent.VK_Q:
@@ -375,7 +374,7 @@ public class KeyPressedManager {
 		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
-				if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {return;}
+				if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {break;}
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");
