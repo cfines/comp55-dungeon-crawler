@@ -1,4 +1,4 @@
-package osvaldoFloor;
+package bombRoom;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
