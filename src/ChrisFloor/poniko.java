@@ -97,6 +97,12 @@ public class poniko extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void showContents() {
+		
+		if(ibossFace.getEnemyStats().getHP_cur() <= 0) {
+			program.setBossDefeated(true);
+			//program.switchToPonikoComplete();
+		}
+		
 		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {

@@ -15,6 +15,7 @@ import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
 import ChrisFloor.chris_R9;
 import ChrisFloor.poniko;
+import ChrisFloor.ponikoCOMPLETED;
 import FyiahEmburemFloor.fe_R1;
 import FyiahEmburemFloor.fe_R10;
 import FyiahEmburemFloor.fe_R11;
@@ -41,6 +42,7 @@ import bombRoom.bombRoom_R2;
 import bombRoom.bombRoom_R3;
 import bombRoom.bombRoom_R6;
 import bombRoom.bombRoom_R8;
+import earthFloor.earth_boss;
 import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
@@ -56,7 +58,6 @@ import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
 import osvaldoFloor.osvaldoFloor_bossRoomComplete;
-import earthFloor.earth_boss;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -94,6 +95,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R9 chris_R9;
 	private chris_R10 chris_R10;
 	private poniko Poniko;
+	private ponikoCOMPLETED ponikoDone;
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
@@ -206,6 +208,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R9 = new chris_R9(this);
 		chris_R10 = new chris_R10(this);
 		Poniko = new poniko(this);
+		ponikoDone = new ponikoCOMPLETED(this);
 
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
@@ -364,6 +367,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToPoniko() {
 		switchToScreen(Poniko);
+	}
+	
+	public void switchToPonikoDone() {
+		switchToScreen(ponikoDone);
 	}
 	
 	public void switchToOsvaldoR1() {
@@ -836,6 +843,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R9 = new chris_R9(this);
 		chris_R10 = new chris_R10(this);
 		Poniko = new poniko(this);
+		ponikoDone = new ponikoCOMPLETED(this);
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
