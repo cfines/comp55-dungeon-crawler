@@ -81,13 +81,13 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy3);
 		listOfEnemies.add(ienemy4);
 		elements.add(background);
+		elements.add(wall1);
+		elements.add(wall2);
+		elements.add(wall3);
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
 		enemyImages.add(enemy3);
 		enemyImages.add(enemy4);
-		elements.add(wall1);
-		elements.add(wall2);
-		elements.add(wall3);
 		elements.add(Duma);
 		elements.add(userRep);
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
@@ -125,6 +125,16 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
+		if(listOfEnemies.size() >= 1) {
+			for(int i = 0; i < listOfEnemies.size(); i++) {
+					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+						enemyImages.remove(i);
+						listOfEnemies.remove(i);
+					} else {
+						program.add(enemyImages.get(i));
+					}
+				}
+			}
 		program.drawOverlay(12, program.getFloorNum());	
 		program.bossOverlay(iDuma);
 	}
@@ -138,7 +148,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		}
 		program.refreshOverlay();
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
@@ -158,7 +168,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	}
 	
 	public void enemyMovement() {
-		if(everyXSeconds(30)) {
+		if(everyXSeconds(50)) {
 			move = !move;
 			attack = !attack;
 			if(iDuma.getEnemyStats().getHP_cur() >0) 
@@ -212,7 +222,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				else { enem.getImage().move(-8, 0); }
 			}
 			else if(enem.getEnemyType() == enemyType.Duma) {
-				enem.getImage().movePolar(2, degree);
+				enem.getImage().movePolar(1, degree);
 			}
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
@@ -233,8 +243,8 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 				else { 	
 					double distX = arr.getImage().getX() - userRep.getX();
 					double distY = arr.getImage().getY() - userRep.getY();
-					double moveX = (distX * 2) / 100;
-					double moveY = (distY * 2) / 100;
+					double moveX = (distX * 3) / 100;
+					double moveY = (distY * 3) / 100;
 					arr.getImage().movePolar(3, degree);
 					arr.getImage().move(-moveX, -moveY);
 				}

@@ -246,7 +246,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToTitleScreen(); //change which screen you want to switch to
+		switchToFeR12(); //change which screen you want to switch to
 
 	}
 	
