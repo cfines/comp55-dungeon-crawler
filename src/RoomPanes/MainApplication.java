@@ -31,16 +31,16 @@ import FyiahEmburemFloor.fe_R9;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
-import bombRoom.bombRoom_R1;
-import bombRoom.bombRoom_R2;
-import bombRoom.bombRoom_R3;
-import bombRoom.bombRoom_R6;
-import bombRoom.bombRoom_R8;
-import bombRoom.bombRoom_R10;
 import bombRoom.bombRoom_BOMB1;
 import bombRoom.bombRoom_BOMB2;
 import bombRoom.bombRoom_BOMB3;
 import bombRoom.bombRoom_KEY;
+import bombRoom.bombRoom_R1;
+import bombRoom.bombRoom_R10;
+import bombRoom.bombRoom_R2;
+import bombRoom.bombRoom_R3;
+import bombRoom.bombRoom_R6;
+import bombRoom.bombRoom_R8;
 import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
@@ -56,6 +56,7 @@ import mapBase.mapBase_R9Complete;
 import osvaldoFloor.osvaldoFloor_R1;
 import osvaldoFloor.osvaldoFloor_bossRoom;
 import osvaldoFloor.osvaldoFloor_bossRoomComplete;
+import earthFloor.earth_boss;
 import removeLater.GraphicsApplication;
 import removeLater.User;
 
@@ -96,6 +97,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
+	private earth_boss earth_boss;
 	private bombRoom_R1 bombRoom_R1;
 	private bombRoom_R2 bombRoom_R2;
 	private bombRoom_R3 bombRoom_R3;
@@ -196,16 +198,20 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R3 = new chris_R3(this);
 		chris_R4 = new chris_R4(this);
 		chris_R5 = new chris_R5(this);
+
+		earth_boss = new earth_boss(this);
 		chris_R6 = new chris_R6(this);
 		chris_R7 = new chris_R7(this);
 		chris_R8 = new chris_R8(this);
 		chris_R9 = new chris_R9(this);
 		chris_R10 = new chris_R10(this);
 		Poniko = new poniko(this);
-		
+
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		
+		earth_boss = new earth_boss(this);
 		
 		bombRoom_R1 = new bombRoom_R1(this);
 		bombRoom_R2 = new bombRoom_R2(this);
@@ -243,7 +249,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		switchToTest(); //change which screen you want to switch to
+		switchToFeR5(); //change which screen you want to switch to
 
 	}
 	
@@ -370,6 +376,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToOsvaldoBossComplete() {
 		switchToScreen(osvaldoFloor_bossRoomComplete);
+	}
+	
+	public void switchToEarthBoss() {
+		switchToScreen(earth_boss);
 	}
 	
 	public void switchToBombRoomR1() {
