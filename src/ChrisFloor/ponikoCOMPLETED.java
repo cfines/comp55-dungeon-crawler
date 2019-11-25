@@ -68,7 +68,7 @@ public class ponikoCOMPLETED extends GraphicsPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		mover.notReallyActionPerformed(e);
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	@Override
