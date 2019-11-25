@@ -180,14 +180,12 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 			
 		}
 		else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
-			System.out.println("east");
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToBombRoomKEY();
 		}
 		else if(userX >= EW.getX() && userY >= EW.getY() && userX <= EW.getX() + 75 && userY <= EW.getY() + 75) {
-			System.out.println("west");
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());

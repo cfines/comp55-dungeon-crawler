@@ -157,13 +157,11 @@ public class bombRoom_R2 extends GraphicsPane implements ActionListener {
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
 		if(userX >= EN.getX() && userY >= EN.getY() && userX <= EN.getX() + 85 && userY <= EN.getY() + 85) {
-			System.out.println("north");
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToBombRoomR1();
 		} else if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
-			System.out.println("south");
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());

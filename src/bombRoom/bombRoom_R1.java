@@ -177,7 +177,6 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
 		if(userX >= EN.getX() && userY >= EN.getY() && userX <= EN.getX() + 85 && userY <= EN.getY() + 85) {
-			System.out.println("north");
 			if(!unlocked) {
 				if(program.getUser().getHasKey() && program.getBombsDeactivated()) {
 					unlockProtocol();
@@ -190,21 +189,18 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 			}
 		}
 		else if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
-			System.out.println("south");
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
 			program.switchToBombRoomR2();
 		}
 		else if(userX <= EE.getX() && userY <= EE.getY() && userX2 >= EE.getX() && userY2 >= EE.getY()) {
-			System.out.println("east");
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToBombRoomR8();
 		}
 		else if(userX >= EW.getX() && userY >= EW.getY() && userX <= EW.getX() + 75 && userY <= EW.getY() + 75) {
-			System.out.println("west");
 			user.setX(900);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
