@@ -193,18 +193,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 			for(Enemy arr : listOfProjectiles) {
 				arr.getEnemyStats().setCoordX(DarkMage1.getCoordX());
 				arr.getEnemyStats().setCoordY(DarkMage1.getCoordY());
-				
-				if(checkHitBack(arr, userWeapon) && atkUp) { 
-					hit = true; 
-				}
-				program.add(arr.getImage());
-				
-				if(hit) { 
-					arr.getImage().move(0, -10);
-				} 
-				else { 	
-					arr.getImage().move(0, 10); 
-				}
 			}
 		}
 	}
