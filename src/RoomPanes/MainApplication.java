@@ -263,6 +263,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void switchToMenu() {
 		count++;
+		audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 		switchToScreen(menu);
 	}
 	
@@ -328,6 +329,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR1() {
+		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R1);
 	}
@@ -401,6 +403,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToOsvaldoR1() {
+		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		switchToScreen(osvaldoFloor_R1);
 	}
 	
@@ -417,6 +420,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToBombRoomR1() {
+		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
 		switchToScreen(bombRoom_R1);
 	}
@@ -458,6 +462,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToFeR1() {
+		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
