@@ -656,6 +656,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		return floorNum;
 	}
 	
+	public void setFloorNum(int num) {
+		this.floorNum = num;
+	}
+	
 	public void setComingFromBoss(boolean coming) {
 		this.comingFromBoss = coming;
 	}

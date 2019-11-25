@@ -191,7 +191,7 @@ public class bombRoom_R1 extends GraphicsPane implements ActionListener {
 				user.setX(575);
 				user.setY(410);
 				userRep.setLocation(user.getX(), user.getY());
-				program.switchToBombRoomR10();
+				program.switchToOsvaldoBoss();
 			}
 		}
 		else if(userX <= ES.getX() && userY <= ES.getY() && userY2 >= ES.getY() - 30  && userX >= ES.getX() - 30) {
