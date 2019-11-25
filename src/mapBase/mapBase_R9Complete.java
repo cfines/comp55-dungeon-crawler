@@ -129,6 +129,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 		double userY2 = userRep.getY() + 80;
 		//TODO fix these boundary checks
 		if(userX >= ENext.getX() && userY >= ENext.getY() && userX <= ENext.getX() + 75 && userY <= ENext.getY() + 75) {
+			
 			program.setComingFromBoss(true);
 			user.setX(575);
 			user.setY(325);
