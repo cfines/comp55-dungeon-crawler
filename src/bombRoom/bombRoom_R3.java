@@ -25,7 +25,7 @@ import removeLater.User;
 
 public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage rock1, rock2, hole1, EN, EE, EW, background, userRep, userWeapon;
+	private GImage rock1, rock2, hole1, EN, EE, EW, background, userRep, userWeapon, enemy1, enemy2;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
@@ -35,7 +35,8 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	Timer t = new Timer(30, this);
 	private int decrementTimer = 0;
-	private boolean unlocked = false;
+	private boolean move = true;
+	private int degree = 0;
 
 	private KeyPressedManager mover;
 
@@ -45,12 +46,21 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 		Interactions oE1 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
 		Interactions oE3 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions oE4 = new Interactions(interactionType.entry_door_WEST,27,300);
+		
+		Enemy ienemy1 = new Enemy(4,4,2,2,140,100,ElementType.EARTH, enemyType.EARTHBat);
+		Enemy ienemy2 = new Enemy(4,4,2,2,890,200,ElementType.WATER, enemyType.WATERBat);
 
 		listOfInter.add(oE1);
 		listOfInter.add(oE3);
 		listOfInter.add(oE4);
+		
+		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
 
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
+		
+		enemy1 = ienemy1.getImage();
+		enemy2 = ienemy2.getImage();
 		
 		EN = oE1.getImage();
 		EE = oE3.getImage();
@@ -69,6 +79,9 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 		elements.add(EE);
 		elements.add(EW);
 		elements.add(userRep);
+		
+		enemyImages.add(enemy1);
+		enemyImages.add(enemy2);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -79,6 +92,7 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 		decrementTimer();
 		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
+		enemyMovement();
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
@@ -180,6 +194,40 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToBombRoomBOMB1();
 		}
+	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.WATERBat) {
+				degree+=3;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.EARTHBat) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			} 
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
+	}
+
+	public boolean everyXSeconds(double x) {
+		return(decrementTimer %(x) == 0);
 	}
 	
 }
