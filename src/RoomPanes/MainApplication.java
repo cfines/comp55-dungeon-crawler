@@ -611,7 +611,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void drawTabForMenu() {
-		tabForMenu = new GLabel("Press [Q] for menu", 115, WINDOW_HEIGHT - 7);
+		tabForMenu = new GLabel("Press [ESC] for pause / [Q] for objective", 115, WINDOW_HEIGHT - 7);
 		tabForMenu.setFont("Arial-Bold-22");
 		tabForMenu.setColor(Color.green);
 		add(tabForMenu);
