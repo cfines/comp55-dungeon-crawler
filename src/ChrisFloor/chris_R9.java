@@ -21,7 +21,7 @@ import removeLater.User;
 
 public class chris_R9 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage cheese1, cheese2, cheese3,E1, E3, E4, blue1,blue2,blue3,blue4,blue5,blue6,blue7,blue8, background,userRep, userWeapon;
+	private GImage cheese1, cheese2, cheese3,E3, E4, blue1,blue2,blue3,blue4,blue5,blue6,blue7,blue8, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -34,14 +34,13 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 	private int timerCont = 0;
 	private boolean move = true;
 	private KeyPressedManager mover;
-	
+
 
 	public chris_R9(MainApplication app) {
 		this.program = app;
 		user = program.getUser();
 
 		//Interactions
-		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions iblue1 = new Interactions(interactionType.blueboi,65,35);
@@ -62,7 +61,6 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		background = new GImage("background_figures.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		E1 = iE1.getImage();
 		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 		blue1 = iblue1.getImage();
@@ -78,7 +76,6 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		cheese3 = icheese3.getImage();
 
 		//listOfInter.add();
-		listOfInter.add(iE1);
 		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 		listOfInter.add(iblue1);
@@ -102,7 +99,6 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 
 		//elements.add();
 		elements.add(background);
-		elements.add(E1);
 		elements.add(E3);
 		elements.add(E4);
 		elements.add(blue1);
@@ -114,7 +110,7 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		elements.add(blue7);
 		elements.add(blue8);
 		elements.add(userRep);
-		
+
 		enemyImages.add(cheese1);
 		enemyImages.add(cheese2);
 		enemyImages.add(cheese3);
@@ -178,7 +174,7 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		userRep.setLocation(user.getX(), user.getY());
 		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
-	
+
 	public void deleteEnemy() {
 		mover.setDeleteEnemy(false);
 		for(int i = 0; i < listOfEnemies.size(); i++) {
@@ -196,13 +192,7 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX >= E1.getX() && userY >= E1.getY() && userX <= E1.getX() + 85 && userY <= E1.getY() + 85) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR3();
-		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
+		if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -223,15 +213,15 @@ public class chris_R9 extends GraphicsPane implements ActionListener{
 	public void enemyMovement() {
 		for (Enemy enem : listOfEnemies) {
 			if(enem.getEnemyType() == enemyType.EARTHCheese) {
-					degree+=5;
-					degree%=360;
-					enem.getImage().movePolar(2, degree);
-					double distX = enem.getImage().getX() - userRep.getX();
-					double distY = enem.getImage().getY() - userRep.getY();
-					double moveX = (distX * 5) / 100;
-					double moveY = (distY * 5) / 100;
-					enem.getImage().move(-moveX, -moveY);
-				}
+				degree+=5;
+				degree%=360;
+				enem.getImage().movePolar(2, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 5) / 100;
+				double moveY = (distY * 5) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
 			else if(enem.getEnemyType() == enemyType.FIRECheese) {
 				degree+=2;
 				degree%=360;

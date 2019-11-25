@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R6 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, E4,egg, color1,color2,color3,color4, background,userRep, userWeapon;
+	private GImage E3, E4,egg, color1,color2,color3,color4, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -36,7 +36,7 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 	private int timerCont = 0;
 	private boolean move = true;
 	private KeyPressedManager mover;
-	
+
 
 	public chris_R6(MainApplication app) {
 		this.program = app;
@@ -44,7 +44,6 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 
 
 		//Interactions
-		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
 		Interactions iegg = new Interactions(interactionType.Buyo_buyo_Egg, 578,225);
@@ -52,7 +51,7 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 		Interactions icolor2 = new Interactions(interactionType.color1, 577, 277);
 		Interactions icolor3 = new Interactions(interactionType.color1, 503, 225);
 		Interactions icolor4 = new Interactions(interactionType.color1, 653, 225);
-		
+
 
 		//Enemies
 
@@ -60,7 +59,6 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 		background = new GImage("background_sky.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
-		E2 = iE2.getImage();
 		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 		egg = iegg.getImage();
@@ -68,10 +66,9 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 		color2 = icolor2.getImage();
 		color3 = icolor3.getImage();
 		color4 = icolor4.getImage();
-		
+
 
 		//listOfInter.add();
-		listOfInter.add(iE2);
 		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 		listOfInter.add(iegg);
@@ -89,7 +86,6 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 
 		//elements.add();
 		elements.add(background);
-		elements.add(E2);
 		elements.add(E3);
 		elements.add(E4);
 		elements.add(egg);
@@ -155,7 +151,6 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -167,13 +162,7 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 		double userY = userRep.getY();
 		double userX2 = userRep.getX() + 80;
 		double userY2 = userRep.getY() + 80;
-		if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
-			user.setX(575);
-			user.setY(110);
-			userRep.setLocation(user.getX(),user.getY());
-			program.switchToChrisR3();
-		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
+		if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
@@ -189,28 +178,5 @@ public class chris_R6 extends GraphicsPane implements ActionListener{
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
-	}
-
-	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
 	}
 }

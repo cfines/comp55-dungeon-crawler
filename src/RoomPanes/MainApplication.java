@@ -115,7 +115,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private MenuPane menu;
 	private MenuPane_LightsOff lightsoff;
 	private CreditsPane creditsPane;
-	private AudioPlayer audio;
+	private AudioPlayer audio = AudioPlayer.getInstance();
 	private fe_R1 feR1;
 	private fe_R2 feR2;
 	private fe_R3 feR3;
@@ -277,6 +277,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
+		audio.playSoundWithOptions(MUSIC_FOLDER,"20 ray of hope.mp3",true);
 		switchToScreen(somePane);
 	}
 	
@@ -327,18 +328,27 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR1() {
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R1);
 	}
 	
 	public void switchToChrisR2() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R2);
 	}
 	
 	public void switchToChrisR3() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R3);
 	}
 	
 	public void switchToChrisR4() {
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
 		switchToScreen(chris_R4);
 	}
 	
@@ -347,13 +357,21 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR6() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3" );
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
 		switchToScreen(chris_R6);
 	}
 	public void switchToChrisR7() {
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R7);
 	}
 	
 	public void switchToChrisR8() {
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Dark Water.mp3", true);
 		switchToScreen(chris_R8);
 	}
 	
@@ -362,6 +380,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR10() {
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Dark Water.mp3", true);
 		switchToScreen(chris_R10);
 	}
 	
@@ -390,6 +410,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToBombRoomR1() {
+		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
 		switchToScreen(bombRoom_R1);
 	}
 	
@@ -430,7 +451,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToFeR1() {
-		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
@@ -499,7 +519,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	private void playRandomSoundForever() {
-		audio = AudioPlayer.getInstance();
 		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length],true);
 	}
 	
