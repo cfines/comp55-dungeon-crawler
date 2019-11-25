@@ -66,7 +66,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
 	
 	////////////////ALMIGHT DEVELOPER MODE///////////////////////////
-	public boolean DEVELOPER_MODE = true;
+	public boolean DEVELOPER_MODE = false;
 	/////////////////////////////////////////////////////////////////	
 	
 	private pausePane pausePane;
