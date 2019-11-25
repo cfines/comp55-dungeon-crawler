@@ -41,10 +41,10 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 	{
 		this.program = app;
 		user = program.getUser();
-		Enemy ienemy1 = new Enemy(5,5,2,2,575,216, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy2 = new Enemy(5,5,2,2,775,300, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy3 = new Enemy(5,5,2,2,120,200, ElementType.FIRE, enemyType.Deadass);
-		Enemy ienemy4 = new Enemy(5,5,2,2,120,400,ElementType.FIRE,enemyType.Deadass);
+		Enemy ienemy1 = new Enemy(5,5,2,2,205,400, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy2 = new Enemy(5,5,2,2,109,400, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy3 = new Enemy(5,5,2,2,120,350, ElementType.FIRE, enemyType.Deadass);
+		Enemy ienemy4 = new Enemy(5,5,2,2,100,500,ElementType.FIRE,enemyType.Deadass);
 		Enemy ienemy5 = new Enemy(5,5,2,2,120,300,ElementType.FIRE,enemyType.Deadass);
 		
 		Interactions iE11 = new Interactions(interactionType.entry_door_EAST,1050,300);
