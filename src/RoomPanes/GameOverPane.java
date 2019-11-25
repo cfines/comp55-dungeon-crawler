@@ -23,7 +23,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		this.program = app;
 		gameOver = new GImage ("Game Over Screen.png",0,0);
 		gameOver.setSize(1150,650);
-		returnMenu = new GButton("Return to main menu", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
+		returnMenu = new GButton("Exit game", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 	}
 	
 	@Override
@@ -41,9 +41,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == returnMenu) {
-			program.setBossRun(false);
-			//program.resetRooms();
-			program.switchToTitleScreen();
+			System.exit(0);
 		}
 	}
 
