@@ -286,11 +286,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 
 	public void switchToSome() {
 		stopAllSound();
-		audio.playSoundWithOptions(MUSIC_FOLDER,"20 ray of hope.mp3",true);
 		switchToScreen(somePane);
 	}
 	
 	public void switchToR2() {
+		audio.playSoundWithOptions(MUSIC_FOLDER,"20 ray of hope.mp3",true);
 		switchToScreen(mapbase_R2);
 	}
 	
@@ -339,7 +339,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToChrisR1() {
 		stopAllSound();
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
-		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R1);
 	}
 	
