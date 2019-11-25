@@ -222,6 +222,7 @@ public class fe_R3 extends GraphicsPane implements ActionListener{
 		}
 	}
 	public void enemyCombat() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfProjectiles.size(); i++) {
 			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
