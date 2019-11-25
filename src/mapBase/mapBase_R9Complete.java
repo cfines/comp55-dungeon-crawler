@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 	private MainApplication program;
-	private GImage E16, ENext,background,userRep, userWeapon; 
+	private GImage overlay,E16, ENext,background,userRep, userWeapon; 
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private GRect voidSpace;
@@ -47,6 +47,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 		background = new GImage("Fire_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -60,6 +61,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 		elements.add(E16);
 		elements.add(ENext);
 		elements.add(userRep);
+		elements.add(overlay);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -132,7 +134,7 @@ public class mapBase_R9Complete extends GraphicsPane implements ActionListener {
 			user.setY(325);
 			userRep.setLocation(user.getX(), user.getY());
 			program.setBossDefeated(false);
-			program.switchToSome();
+			program.switchToOsvaldoR1();
 		} else if (userX <= E16.getX() && userY <= E16.getY() && userY2 >= E16.getY() - 30  && userX >= E16.getX() - 30) {
 			user.setX(575);
 			user.setY(130);

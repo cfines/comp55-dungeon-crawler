@@ -22,7 +22,7 @@ import removeLater.User;
 
 public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage rock1, E11, key1, background,userRep,userWeapon;
+	private GImage overlay,rock1, E11, key1, background,userRep,userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -38,7 +38,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Interactions irock1 = new Interactions(interactionType.obstacle_rock,900,150);
-		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,-3);
+		Interactions iE11 = new Interactions(interactionType.entry_door_NORTH,575,30);
 		Interactions ikey1 = new Interactions(interactionType.item_gif_key,575,300);
 		rock1 = irock1.getImage();
 		E11 = iE11.getImage();
@@ -47,6 +47,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
@@ -61,6 +62,7 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 		elements.add(E11);
 		elements.add(key1);
 		elements.add(userRep);
+		elements.add(overlay);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -115,26 +117,10 @@ public class mapBase_R6 extends GraphicsPane implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 	}
-	
-	public void enemyMovement() {
-		for (Enemy enem : listOfEnemies) {
-			double distX = enem.getImage().getX() - userRep.getX();
-			double distY = enem.getImage().getY() - userRep.getY();
-			enem.setStartX(enem.getImage().getX());
-			enem.setStartY(enem.getImage().getY());
-			double moveX = (distX * 2) / 100;
-			double moveY = (distY * 2) / 100;
-			enem.getImage().move(-moveX, -moveY);
-			enem.getImage().movePolar(4, degree);
-			degree+=50;
-			degree%=360;
-			}
-		}
 	
 	private void nextRoom() {
 		double userX = userRep.getX();

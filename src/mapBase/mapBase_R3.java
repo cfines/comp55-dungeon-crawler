@@ -25,7 +25,7 @@ import removeLater.User;
 public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private User user;
-	private GImage enemy1, enemy2, E4, E5, rock1, rock2, hole1, background, userRep, userWeapon;
+	private GImage overlay,enemy1, enemy2, E4, E5, rock1, rock2, hole1, background, userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -58,8 +58,8 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		hole1 = ihole1.getImage();
 		background = new GImage("Base_Floor (Regular Floor).png", 15,30);
 
-		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy1);
+		listOfEnemies.add(ienemy2);
 
 		listOfInter.add(ihole1);
 		listOfInter.add(iE5);
@@ -69,6 +69,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		
 		userRep = new GImage("Rogue_(Sample User).gif", user.getX(), user.getY());
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -78,10 +79,11 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(rock1);
 		elements.add(hole1);
+		elements.add(rock2);
 		elements.add(E4);
 		elements.add(E5);
 		elements.add(userRep);
-		elements.add(rock2);
+		elements.add(overlay);
 		
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
@@ -99,7 +101,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 		}
 		
 		if(listOfEnemies.size() >= 1) {
-			for(int i = 0; i < enemyImages.size(); i++) {
+			for(int i = 0; i < listOfEnemies.size(); i++) {
 					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 						enemyImages.remove(i);
 						listOfEnemies.remove(i);
@@ -125,6 +127,7 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -210,6 +213,18 @@ public class mapBase_R3 extends GraphicsPane implements ActionListener{
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
 	}
 }
 

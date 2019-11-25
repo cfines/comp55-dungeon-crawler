@@ -23,7 +23,7 @@ import removeLater.User;
 
 public class chris_R8 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
+	private GImage cheese1, cheese2, cheese3,E1, E3, egg, candle1, candle2, candle3, candle4, blueboi1, blueboi2, blueboi3, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -45,28 +45,56 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
-		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
-		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
-
+		Interactions icandle1 = new Interactions(interactionType.candle2,65,440);
+		Interactions icandle2 = new Interactions(interactionType.candle1,65,35);
+		Interactions icandle3 = new Interactions(interactionType.candle2,1005,35);
+		Interactions icandle4 = new Interactions(interactionType.candle1,1005,440);
+		Interactions iblue1 = new Interactions(interactionType.blueboi, 575,440);
+		Interactions iblue2 = new Interactions(interactionType.blueboi, 535,480);
+		Interactions iblue3 = new Interactions(interactionType.blueboi, 615,480);
+		Interactions iegg = new Interactions(interactionType.Long_Hair_Egg, 578,225);
+		
 		//Enemies
+		Enemy icheese1 = new Enemy(5,5,2,2,145,350,ElementType.EARTH,enemyType.EARTHCheese);
+		Enemy icheese2 = new Enemy(5,5,2,2,665,390,ElementType.FIRE,enemyType.FIRECheese);
+		Enemy icheese3 = new Enemy(5,5,2,2,565,340,ElementType.WATER,enemyType.WATERCheese);
 
+		
 		//gImages
-		background = new GImage("background_block.gif", 15,30);
+		background = new GImage("background_figures.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
-		E2 = iE2.getImage();
 		E3 = iE3.getImage();
-		E4 = iE4.getImage();
+		blueboi1 = iblue1.getImage();
+		blueboi2 = iblue2.getImage();
+		blueboi3 = iblue3.getImage();
+		candle1 = icandle1.getImage();
+		candle2 = icandle2.getImage();
+		candle3 = icandle3.getImage();
+		candle4 = icandle4.getImage();
+		cheese1 = icheese1.getImage();
+		cheese2 = icheese2.getImage();
+		cheese3 = icheese3.getImage();
+		egg = iegg.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
-		listOfInter.add(iE2);
 		listOfInter.add(iE3);
-		listOfInter.add(iE4);
+		listOfInter.add(iblue1);
+		listOfInter.add(iblue2);
+		listOfInter.add(iblue3);
+		listOfInter.add(icandle1);
+		listOfInter.add(icandle2);
+		listOfInter.add(icandle3);
+		listOfInter.add(icandle4);
+		listOfInter.add(iegg);
 
 		//listOfEnemies.add)();
+		listOfEnemies.add(icheese1);
+		listOfEnemies.add(icheese2);
+		listOfEnemies.add(icheese3);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -76,10 +104,20 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 		//elements.add();
 		elements.add(background);
 		elements.add(E1);
-		elements.add(E2);
 		elements.add(E3);
-		elements.add(E4);
+		elements.add(blueboi1);
+		elements.add(blueboi2);
+		elements.add(blueboi3);
+		elements.add(candle1);
+		elements.add(candle2);
+		elements.add(candle3);
+		elements.add(candle4);
+		elements.add(egg);
 		elements.add(userRep);
+		
+		enemyImages.add(cheese1);
+		enemyImages.add(cheese2);
+		enemyImages.add(cheese3);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -103,8 +141,49 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 				}
 			}
 		}
-		program.drawOverlay(3, program.getFloorNum());
+		program.drawOverlay(8, program.getFloorNum());
 	}
+	
+	public void enemyMovement() {
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.EARTHCheese) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}
+			else if(enem.getEnemyType() == enemyType.FIRECheese) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(6, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * 2) / 100;
+				double moveY = (distY * 2) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			else if(enem.getEnemyType() == enemyType.WATERCheese) {
+				degree+=2;
+				degree%=360;
+				enem.getImage().movePolar(1, degree);
+				double distX = enem.getImage().getX() - userRep.getX();
+				double distY = enem.getImage().getY() - userRep.getY();
+				double moveX = (distX * .5) / 100;
+				double moveY = (distY * .5) / 100;
+				enem.getImage().move(-moveX, -moveY);
+			}
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
+	}
+	
 
 
 	@Override
@@ -127,9 +206,6 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) { 
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			t.stop();
-		}
 		mover.notReallyKeyReleased(e);
 	}
 
@@ -137,10 +213,11 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+		//System.out.println("x: "+ user.getX() + " y: " + user.getY());	
 	}
 
 	private void nextRoom() {
@@ -152,52 +229,29 @@ public class chris_R8 extends GraphicsPane implements ActionListener{
 			user.setX(575);
 			user.setY(410);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR6();
-		}
-		else if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
-//			user.setX(575);
-//			user.setY(110);
-//			userRep.setLocation(user.getX(),user.getY());
-//			program.switchToChrisR1();
+			program.switchToChrisR2();
 		}
 		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
 			user.setX(150);
 			user.setY(300);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR4();
+			program.switchToChrisR9();
 		}
-		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
-			user.setX(900);
-			user.setY(300);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToChrisR2();
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
 		}
 	}
 
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
-	}
-
-	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
 	}
 }

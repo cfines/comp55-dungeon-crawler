@@ -54,10 +54,10 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 
-		boss = osvaldoom.getImage();
+		boss = plant.getImage();
 		boss.setSize(100, 100);
 		
-		shoot = new GImage("leg.gif");
+		shoot = new GImage("");
 
 		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -68,7 +68,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 
-		listOfEnemies.add(osvaldoom);
+		listOfEnemies.add(plant);
 
 		elements.add(background);
 		elements.add(boss);
@@ -81,7 +81,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	@Override
 	public void showContents() {
 		
-		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
+		if(plant.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}
@@ -92,7 +92,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 			program.add(elements.get(i));
 		}
 		program.drawOverlay(2, program.getFloorNum());
-		program.bossOverlay(osvaldoom);
+		program.bossOverlay(plant);
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(osvaldoom.getEnemyStats().getHP_cur() <= 0) {
+		if(plant.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}
@@ -149,7 +149,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 			attack = !attack;
 			if(attack) {
 				generateRandom();
-				shot = new Enemy(100, 100, 2, 2, (int)osvaldoom.getCoordX(), (int)osvaldoom.getCoordY() + 75, ElementType.FIRE, enemyType.projectile);
+				shot = new Enemy(100, 100, 2, 2, (int)plant.getCoordX(), (int)plant.getCoordY() + 75, ElementType.FIRE, enemyType.projectile);
 				listOfProjectiles.add(shot);
 			} else {
 				listOfProjectiles.remove(shot);
@@ -178,8 +178,8 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		if(listOfProjectiles.size() >= 1) {
 			for(Enemy arr : listOfProjectiles) {
 				
-				arr.getEnemyStats().setCoordX(osvaldoom.getCoordX());
-				arr.getEnemyStats().setCoordY(osvaldoom.getCoordY());
+				arr.getEnemyStats().setCoordX(plant.getCoordX());
+				arr.getEnemyStats().setCoordY(plant.getCoordY());
 				
 				
 				if(checkHitBack(arr, userWeapon) && atkUp) { 
@@ -235,11 +235,11 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	
 	public void userCombat() {
 		for(int i = 0; i < listOfProjectiles.size(); i++) {
-			if(checkHitBack(listOfProjectiles.get(i), osvaldoom.getImage())) { 
+			if(checkHitBack(listOfProjectiles.get(i), plant.getImage())) { 
 				System.out.println("You killed Osvaldoom!");
-				osvaldoom.getEnemyStats().setHP_cur(0);
+				plant.getEnemyStats().setHP_cur(0);
 				listOfProjectiles.remove(listOfProjectiles.get(i));
-				program.bossOverlay(osvaldoom);
+				program.bossOverlay(plant);
 				program.remove(shot.getImage());
 			}
 		}

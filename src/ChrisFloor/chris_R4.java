@@ -23,7 +23,8 @@ import removeLater.User;
 
 public class chris_R4 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E1, E2, E3, E4, background,userRep, userWeapon;
+	private GImage E1, E2, E4, color1,color2,color3,color4,color7,color8,
+	color9,color10,color11,color12,color13,color14,color15,color16,pacific1,pacific2,background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -46,27 +47,72 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		//Interactions
 		Interactions iE1 = new Interactions(interactionType.chrisEntry_NORTH, 575,-3);
 		Interactions iE2 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
-		Interactions iE3 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions icolor1 = new Interactions(interactionType.color2,140,35);
+		Interactions icolor2 = new Interactions(interactionType.color1,215,35);
+		Interactions icolor3 = new Interactions(interactionType.color2,930,35);
+		Interactions icolor4 = new Interactions(interactionType.color1,855,35);
+		Interactions icolor7 = new Interactions(interactionType.color2,65,184);
+		Interactions icolor8 = new Interactions(interactionType.color1,65,444);
+		Interactions icolor9 = new Interactions(interactionType.color2,930,500);
+		Interactions icolor11 = new Interactions(interactionType.color1,855,500);
+		Interactions icolor10 = new Interactions(interactionType.color2,140,500);
+		Interactions icolor12 = new Interactions(interactionType.color1,215,500);
+		Interactions icolor13 = new Interactions(interactionType.color2,1005,191);
+		Interactions icolor14 = new Interactions(interactionType.color1,1005,243);
+		Interactions icolor15 = new Interactions(interactionType.color2,1005,295);
+		Interactions icolor16 = new Interactions(interactionType.color1,1005,347);
 
 		//Enemies
+		Enemy ipacific1 = new Enemy(5,5,2,2,855,120,ElementType.WATER,enemyType.insidePacific);
+		Enemy ipacific2 = new Enemy(5,5,2,2,855,390,ElementType.WATER,enemyType.insidePacific);
 
 		//gImages
-		background = new GImage("background_block.gif", 15,30);
+		background = new GImage("background_sky.gif", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
 		E1 = iE1.getImage();
 		E2 = iE2.getImage();
-		E3 = iE3.getImage();
 		E4 = iE4.getImage();
+		color1 = icolor1.getImage();
+		color2 = icolor2.getImage();
+		color3 = icolor3.getImage();
+		color4 = icolor4.getImage();
+		color7 = icolor7.getImage();
+		color8 = icolor8.getImage();
+		color9 = icolor9.getImage();
+		color10 = icolor10.getImage();
+		color11 = icolor11.getImage();
+		color12 = icolor12.getImage();
+		color13 = icolor13.getImage();
+		color14 = icolor14.getImage();
+		color15 = icolor15.getImage();
+		color16 = icolor16.getImage();
+		pacific1 = ipacific1.getImage();
+		pacific2 = ipacific2.getImage();
 
 		//listOfInter.add();
 		listOfInter.add(iE1);
 		listOfInter.add(iE2);
-		listOfInter.add(iE3);
 		listOfInter.add(iE4);
+		listOfInter.add(icolor1);
+		listOfInter.add(icolor2);
+		listOfInter.add(icolor3);
+		listOfInter.add(icolor4);
+		listOfInter.add(icolor7);
+		listOfInter.add(icolor8);
+		listOfInter.add(icolor9);
+		listOfInter.add(icolor10);
+		listOfInter.add(icolor11);
+		listOfInter.add(icolor12);
+		listOfInter.add(icolor13);
+		listOfInter.add(icolor14);
+		listOfInter.add(icolor15);
+		listOfInter.add(icolor16);
 
 		//listOfEnemies.add)();
+		listOfEnemies.add(ipacific1);
+		listOfEnemies.add(ipacific2);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -77,9 +123,25 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(E1);
 		elements.add(E2);
-		elements.add(E3);
 		elements.add(E4);
+		elements.add(color1);
+		elements.add(color2);
+		elements.add(color3);
+		elements.add(color4);
+		elements.add(color7);
+		elements.add(color8);
+		elements.add(color9);
+		elements.add(color10);
+		elements.add(color11);
+		elements.add(color12);
+		elements.add(color13);
+		elements.add(color14);
+		elements.add(color15);
+		elements.add(color16);
 		elements.add(userRep);
+		
+		enemyImages.add(pacific1);
+		enemyImages.add(pacific2);
 
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
@@ -138,10 +200,23 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
 		System.out.println("x: "+ user.getX() + " y: " + user.getY());	
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
+		}
 	}
 
 	private void nextRoom() {
@@ -156,17 +231,12 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 			program.switchToChrisR5();
 		}
 		else if(userX <= E2.getX() && userY <= E2.getY() && userY2 >= E2.getY() - 30  && userX >= E2.getX() - 30) {
-//			user.setX(575);
-//			user.setY(110);
-//			userRep.setLocation(user.getX(),user.getY());
-//			program.switchToChrisR1();
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(),user.getY());
+			program.switchToChrisR10();
 		}
-		else if(userX <= E3.getX() && userY <= E3.getY() && userX2 >= E3.getX() && userY2 >= E3.getY()) {
-//			user.setX(150);
-//			user.setY(300);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToChrisR1();
-		}
+
 		else if(userX >= E4.getX() && userY >= E4.getY() && userX <= E4.getX() + 75 && userY <= E4.getY() + 75) {
 			user.setX(900);
 			user.setY(300);
@@ -180,25 +250,23 @@ public class chris_R4 extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-//		if(everyXSeconds(20)) {
-//			move = !move;
-//		}
-//		for (Enemy enem : listOfEnemies) {
-//
-//			enem.getImage().movePolar(5, degree);
-//			degree+=5;
-//			degree%=360;
-//			if(move) {
-//				if(enem.getEnemyType() == enemyType.FIREDeath) {
-//					double distX = enem.getImage().getX() - userRep.getX();
-//					double distY = enem.getImage().getY() - userRep.getY();
-//					double moveX = (distX * 1) / 100;
-//					double moveY = (distY * 1) / 100;
-//					enem.getImage().move(-moveX, -moveY);
-//				}
-//			}else {enem.getImage().move(0, 0);}
-//			enem.setStartX(enem.getImage().getX());
-//			enem.setStartY(enem.getImage().getY());
-//		}
+		if(everyXSeconds(20)) {
+			move = !move;
+		}
+		for (Enemy enem : listOfEnemies) {
+			if(enem.getEnemyType() == enemyType.insidePacific) {
+					degree+=5;
+					degree%=360;
+					enem.getImage().movePolar(2, degree);
+					double distX = enem.getImage().getX() - userRep.getX();
+					double distY = enem.getImage().getY() - userRep.getY();
+					double moveX = (distX * 5) / 100;
+					double moveY = (distY * 5) / 100;
+					enem.getImage().move(-moveX, -moveY);
+				}
+
+			enem.setStartX(enem.getImage().getX());
+			enem.setStartY(enem.getImage().getY());
+		}
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import ChrisFloor.chris_R1;
+import ChrisFloor.chris_R10;
 import ChrisFloor.chris_R2;
 import ChrisFloor.chris_R3;
 import ChrisFloor.chris_R4;
@@ -15,11 +16,38 @@ import earthFloor.earth_boss;
 import ChrisFloor.chris_R6;
 import ChrisFloor.chris_R7;
 import ChrisFloor.chris_R8;
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
+=======
+import ChrisFloor.chris_R9;
+import ChrisFloor.poniko;
 >>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 import FyiahEmburemFloor.fe_R1;
+import FyiahEmburemFloor.fe_R10;
+import FyiahEmburemFloor.fe_R11;
+import FyiahEmburemFloor.fe_R12;
+import FyiahEmburemFloor.fe_R12Complete;
+import FyiahEmburemFloor.fe_R2;
+import FyiahEmburemFloor.fe_R3;
+import FyiahEmburemFloor.fe_R4;
+import FyiahEmburemFloor.fe_R5;
+import FyiahEmburemFloor.fe_R6;
+import FyiahEmburemFloor.fe_R7;
+import FyiahEmburemFloor.fe_R8;
+import FyiahEmburemFloor.fe_R9;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
+import bombRoom.bombRoom_BOMB1;
+import bombRoom.bombRoom_BOMB2;
+import bombRoom.bombRoom_BOMB3;
+import bombRoom.bombRoom_KEY;
+import bombRoom.bombRoom_R1;
+import bombRoom.bombRoom_R10;
+import bombRoom.bombRoom_R2;
+import bombRoom.bombRoom_R3;
+import bombRoom.bombRoom_R6;
+import bombRoom.bombRoom_R8;
 import enemyInteraction.Enemy;
 import mapBase.SomePane;
 import mapBase.mapBase_R2;
@@ -43,7 +71,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public static final int WINDOW_HEIGHT = 650;
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "main_menu_background.mp3" };
-
+	
+	////////////////ALMIGHT DEVELOPER MODE///////////////////////////
+	public static final boolean DEVELOPER_MODE = true;
+	/////////////////////////////////////////////////////////////////	
+	
 	private pausePane pausePane;
 	private instructionsPane QPane;
 	private SomePane somePane; 
@@ -68,10 +100,26 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private chris_R6 chris_R6;
 	private chris_R7 chris_R7;
 	private chris_R8 chris_R8;
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
+=======
+	private chris_R9 chris_R9;
+	private chris_R10 chris_R10;
+	private poniko Poniko;
 >>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	private osvaldoFloor_R1 osvaldoFloor_R1;
 	private osvaldoFloor_bossRoom osvaldoFloor_bossRoom;
 	private osvaldoFloor_bossRoomComplete osvaldoFloor_bossRoomComplete;
+	private bombRoom_R1 bombRoom_R1;
+	private bombRoom_R2 bombRoom_R2;
+	private bombRoom_R3 bombRoom_R3;
+	private bombRoom_R6 bombRoom_R6;
+	private bombRoom_R8 bombRoom_R8;
+	private bombRoom_R10 bombRoom_R10;
+	private bombRoom_BOMB1 bombRoom_BOMB1;
+	private bombRoom_BOMB2 bombRoom_BOMB2;
+	private bombRoom_BOMB3 bombRoom_BOMB3;
+	private bombRoom_KEY bombRoom_KEY;
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
@@ -79,7 +127,20 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private CreditsPane creditsPane;
 	private AudioPlayer audio;
 	private fe_R1 feR1;
+	private fe_R2 feR2;
+	private fe_R3 feR3;
+	private fe_R4 feR4;
+	private fe_R5 feR5;
+	private fe_R6 feR6;
+	private fe_R7 feR7;
+	private fe_R8 feR8;
+	private fe_R9 feR9;
+	private fe_R10 feR10;
+	private fe_R11 feR11;
+	private fe_R12 feR12;
+	private fe_R12Complete feR12C;
 	public boolean bossRun = false;
+	public int bombCounter = 90;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -94,6 +155,11 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		public GLabel levelLabel;
 		public GLabel roomLabel;
 		public GLabel tabForMenu;
+		public GLabel bombTimer;
+		public GRect bombRect = new GRect(695, 37, 245, 50);
+		public GRect bombRect2 = new GRect(700, 70, 75, 10);
+		public GRect bombRect3= new GRect(780, 70, 75, 10);
+		public GRect bombRect4 = new GRect(860, 70, 75, 10);
 		public GRect weaponBox;
 		public GRect weaponBoxOutline;
 		public GRect emptySpace;
@@ -108,6 +174,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private User user;
 	public boolean comingFromBoss = false;
 	public boolean bossDefeated = false;
+	public boolean bomb1Dead = false;
+	public boolean bomb2Dead = false;
+	public boolean bomb3Dead = false;
+	public boolean bombsDeactivated = false;
 	private int floorNum = 0;
 	
 	public void init() {
@@ -117,6 +187,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void run() {
 		user = new User(5, 5, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
+		bombRect.setFilled(true);
+		bombRect2.setColor(Color.red);
+		bombRect3.setColor(Color.red);
+		bombRect4.setColor(Color.red);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -142,14 +216,40 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		chris_R6 = new chris_R6(this);
 		chris_R7 = new chris_R7(this);
 		chris_R8 = new chris_R8(this);
+		chris_R9 = new chris_R9(this);
+		chris_R10 = new chris_R10(this);
+		Poniko = new poniko(this);
 		
 >>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		
+		bombRoom_R1 = new bombRoom_R1(this);
+		bombRoom_R2 = new bombRoom_R2(this);
+		bombRoom_R3 = new bombRoom_R3(this);
+		bombRoom_R6 = new bombRoom_R6(this);
+		bombRoom_R8 = new bombRoom_R8(this);
+		bombRoom_R10 = new bombRoom_R10(this);
+		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
+		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
+		bombRoom_BOMB3 = new bombRoom_BOMB3(this);
+		bombRoom_KEY = new bombRoom_KEY(this);
+		
 		tittle = new TitleScreenPane(this);
 		feR1 = new fe_R1(this);
-		
+		feR2 = new fe_R2(this);
+		feR3 = new fe_R3(this);
+		feR4 = new fe_R4(this);
+		feR5 = new fe_R5(this);
+		feR6 = new fe_R6(this);
+		feR7 = new fe_R7(this);
+		feR8 = new fe_R8(this);
+		feR9 = new fe_R9(this);
+		feR10 = new fe_R10(this);
+		feR11 = new fe_R11(this);
+		feR12 = new fe_R12(this);
+		feR12C = new fe_R12Complete(this);
 		try {
 			playerDied = new GameOverPane(this);
 		} catch (IOException e) {
@@ -158,7 +258,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		pausePane = new pausePane(this);
 		QPane = new instructionsPane(this);
 		
-		user.setHasKey(true);
+		//user.setHasKey(true);
 		//bossDefeated = true;
 	
 		switchToTest(); //change which screen you want to switch to
@@ -186,56 +286,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
-		
-		if(restartGame || comingFromBoss) {
-			user = new User(5, 5, 1000, 1, 300, 300);
-			System.out.println("Hello, world! New game!");
-			somePane = new SomePane(this);
-			menu = new MenuPane(this);
-			lightsoff = new MenuPane_LightsOff(this);
-			creditsPane = new CreditsPane(this);
-			mapbase_R2 = new mapBase_R2(this);
-			testPane = new mapBase_R2TEST(this);
-			mapbase_R3 = new mapBase_R3(this);
-			mapbase_R4 = new mapBase_R4(this);
-			mapbase_R5 = new mapBase_R5(this);
-			mapbase_R6 = new mapBase_R6(this);
-			mapbase_R7 = new mapBase_R7(this);
-			mapbase_R8 = new mapBase_R8(this);
-			mapbase_R9 = new mapBase_R9(this);
-			mapbase_R9Complete = new mapBase_R9Complete(this);
-			chris_R1 = new chris_R1(this);
-			chris_R2 = new chris_R2(this);
-			chris_R4 = new chris_R4(this);
-			chris_R5 = new chris_R5(this);
-			chris_R6 = new chris_R6(this);
-			chris_R7 = new chris_R7(this);
-			chris_R8 = new chris_R8(this);
-			feR1 = new fe_R1(this);
-			tittle = new TitleScreenPane(this);
-			bossDefeated = false;
-			try {
-				playerDied = new GameOverPane(this);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			if(comingFromBoss) {
-				floorNum++;
-				user.setHasKey(false);
-				comingFromBoss = false;
-				combatRefreshOverlay();
-			} else {
-				floorNum = 1;
-				restartGame = false;
-			}
-		}
-		
-		
-		
 		switchToScreen(somePane);
-//		audio = AudioPlayer.getInstance();
-//		audio.playSoundWithOptions(MUSIC_FOLDER,"Corpse Party BCR (PSP) Chapter 1 Main Theme.mp3",true);
 	}
 	
 	public void switchToR2() {
@@ -271,6 +322,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToR9() {
+		if(bossRun) {
+			user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
+			user.setX(800);
+			user.setY(WINDOW_HEIGHT/2 - 40);
+			resetBosses();
+		}
 		switchToScreen(mapbase_R9);
 	}
 	
@@ -309,6 +366,18 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(chris_R8);
 	}
 	
+	public void switchToChrisR9() {
+		switchToScreen(chris_R9);
+	}
+	
+	public void switchToChrisR10() {
+		switchToScreen(chris_R10);
+	}
+	
+	public void switchToPoniko() {
+		switchToScreen(Poniko);
+	}
+	
 	public void switchToOsvaldoR1() {
 		switchToScreen(osvaldoFloor_R1);
 	}
@@ -321,14 +390,116 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(osvaldoFloor_bossRoomComplete);
 	}
 	
+<<<<<<< HEAD
 	public void switchToEarthBoss() {
 		switchToScreen(earth_boss);
+=======
+	public void switchToBombRoomR1() {
+		switchToScreen(bombRoom_R1);
+	}
+	
+	public void switchToBombRoomR2() {
+		switchToScreen(bombRoom_R2);
+	}
+	
+	public void switchToBombRoomR3() {
+		switchToScreen(bombRoom_R3);
+	}
+	
+	public void switchToBombRoomR6() {
+		switchToScreen(bombRoom_R6);
+	}
+	
+	public void switchToBombRoomR8() {
+		switchToScreen(bombRoom_R8);
+	}
+	
+	public void switchToBombRoomR10() {
+		switchToScreen(bombRoom_R10);
+	}
+	
+	public void switchToBombRoomBOMB1() {
+		switchToScreen(bombRoom_BOMB1);
+	}
+	
+	public void switchToBombRoomBOMB2() {
+		switchToScreen(bombRoom_BOMB2);
+	}
+	
+	public void switchToBombRoomBOMB3() {
+		switchToScreen(bombRoom_BOMB3);
+	}
+	
+	public void switchToBombRoomKEY() {
+		switchToScreen(bombRoom_KEY);
+>>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
 	}
 	
 	public void switchToFeR1() {
+		audio = AudioPlayer.getInstance();
+		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
 	
+	public void switchToFeR2() 
+	{
+		switchToScreen(feR2);
+	}
+	
+	public void switchToFeR3() 
+	{
+		switchToScreen(feR3);
+	}
+	
+	public void switchToFeR4() 
+	{
+		switchToScreen(feR4);
+	}
+	
+	public void switchToFeR5() 
+	{
+		switchToScreen(feR5);
+	}
+	
+	public void switchToFeR6() 
+	{
+		switchToScreen(feR6);
+	}
+	
+	public void switchToFeR7() 
+	{
+		switchToScreen(feR7);
+	}
+	
+	public void switchToFeR8() 
+	{
+		switchToScreen(feR8);
+	}
+	
+	public void switchToFeR9() 
+	{
+		switchToScreen(feR9);
+	}
+	
+	public void switchToFeR10() 
+	{
+		switchToScreen(feR10);
+	}
+	
+	public void switchToFeR11() 
+	{
+		switchToScreen(feR11);
+	}
+	
+	public void switchToFeR12() 
+	{
+		switchToScreen(feR12);
+	}
+	
+	public void switchToFeR12Complete() 
+	{
+		switchToScreen(feR12C);
+	}
 	public void switchToLightsOff() {
 		switchToScreen(lightsoff);
 	}
@@ -477,6 +648,33 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		
 	}
 	
+	public void bombOverlay() {
+		
+		if(bombsDeactivated) {return;}
+		
+		combatRefreshOverlay();
+		
+		add(bombRect);
+		add(bombRect2);
+		add(bombRect3);
+		add(bombRect4);
+		
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 60);
+		bombTimer.setColor(Color.black);
+		add(bombTimer);
+		
+		bombTimer = new GLabel("TIME REMAINING:" + bombCounter, 700, 60);
+		bombTimer.setFont("Arial-Bold-24");
+		bombTimer.setColor(Color.red);
+
+		add(bombTimer);
+		
+		if(bombCounter == 0) {
+			switchToGameOver();
+		}
+		
+	}
+	
 	public int getFloorNum() {
 		return floorNum;
 	}
@@ -500,5 +698,194 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public boolean getBossRun() {
 		return bossRun;
 	}
+	
+	public void setBombCounter(int count) {
+		bombCounter = count;
+	}
+	
+	public int getBombCounter() {
+		return bombCounter;
+	}
+	
+	public boolean getBombsDeactivated() {
+		return bombsDeactivated;
+	}
+	
+	public void setBombsDeactivated(boolean bomb) {
+		this.bombsDeactivated = bomb;
+	}
+	
+	public boolean getDeveloperMode() {
+		return DEVELOPER_MODE;
+	}
+	
+	public void checkForBombsDestroyed() {
+		if(bomb1Dead && bomb2Dead && bomb3Dead) {
+			bombsDeactivated = true;
+		}
+	}
+	
+	public boolean getBomb1() {
+		return bomb1Dead;
+	}
+	
+	public void setBomb1(boolean bomb) {
+		this.bomb1Dead = bomb;
+		if(bomb1Dead) {bombRect2.setFilled(true);}
+		checkForBombsDestroyed();
+	}
+	
+	public boolean getBomb2() {
+		return bomb2Dead;
+	}
+	
+	public void setBomb2(boolean bomb) {
+		this.bomb2Dead = bomb;
+		if(bomb2Dead) {bombRect3.setFilled(true);}
+		checkForBombsDestroyed();
+	}
+	
+	public boolean getBomb3() {
+		return bomb3Dead;
+	}
+	
+	public void setBomb3(boolean bomb) {
+		this.bomb3Dead = bomb;
+		if(bomb3Dead) {bombRect4.setFilled(true);}
+		checkForBombsDestroyed();
+	}
+	
+	public void resetBombs() {
+		bombCounter = 90;
+		bomb1Dead = false;
+		bomb2Dead = false;
+		bomb3Dead = false;
+		bombsDeactivated = false;
+	}
+	
+	public void resetRooms() {
+		user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
+		user.setX(300);
+		user.setY(300);
+		somePane = new SomePane(this);
+		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
+		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
+		mapbase_R3 = new mapBase_R3(this);
+		mapbase_R4 = new mapBase_R4(this);
+		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
+		mapbase_R8 = new mapBase_R8(this);
+		mapbase_R9 = new mapBase_R9(this);
+		mapbase_R9Complete = new mapBase_R9Complete(this);
+		chris_R1 = null;
+		chris_R2 = null;
+		chris_R3 = null;
+		chris_R4 = null;
+		chris_R5 = null;
+		chris_R6 = null;
+		chris_R7 = null;
+		chris_R8 = null;
+		chris_R9 = null;
+		chris_R10 = null;
+		Poniko = null;
+		osvaldoFloor_R1 = null;
+		osvaldoFloor_bossRoom = null;
+		osvaldoFloor_bossRoomComplete = null;
+		bombRoom_R1 = null;
+		bombRoom_R2 = null;
+		bombRoom_R3 = null;
+		bombRoom_R6 = null;
+		bombRoom_R8 = null;
+		bombRoom_R10 = null;
+		bombRoom_BOMB1 = null;
+		bombRoom_BOMB2 = null;
+		bombRoom_BOMB3 = null;
+		bombRoom_KEY = null;
+		tittle = null;
+		feR1 = null;
+		feR2 = null;
+		feR3 = null;
+		feR4 = null;
+		feR5 = null;
+		feR6 = null;
+		feR7 = null;
+		feR8 = null;
+		feR9 = null;
+		feR10 = null;
+		feR11 = null;
+		feR12 = null;
+		feR12C = null;
+		///////////////////////////////
+		somePane = new SomePane(this);
+		menu = new MenuPane(this);
+		lightsoff = new MenuPane_LightsOff(this);
+		creditsPane = new CreditsPane(this);
+		mapbase_R2 = new mapBase_R2(this);
+		testPane = new mapBase_R2TEST(this);
+		mapbase_R3 = new mapBase_R3(this);
+		mapbase_R4 = new mapBase_R4(this);
+		mapbase_R5 = new mapBase_R5(this);
+		mapbase_R6 = new mapBase_R6(this);
+		mapbase_R7 = new mapBase_R7(this);
+		mapbase_R8 = new mapBase_R8(this);
+		mapbase_R9 = new mapBase_R9(this);
+		mapbase_R9Complete = new mapBase_R9Complete(this);
+		chris_R1 = new chris_R1(this);
+		chris_R2 = new chris_R2(this);
+		chris_R3 = new chris_R3(this);
+		chris_R4 = new chris_R4(this);
+		chris_R5 = new chris_R5(this);
+		chris_R6 = new chris_R6(this);
+		chris_R7 = new chris_R7(this);
+		chris_R8 = new chris_R8(this);
+		chris_R9 = new chris_R9(this);
+		chris_R10 = new chris_R10(this);
+		Poniko = new poniko(this);
+		osvaldoFloor_R1 = new osvaldoFloor_R1(this);
+		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		osvaldoFloor_bossRoomComplete = new osvaldoFloor_bossRoomComplete(this);
+		bombRoom_R1 = new bombRoom_R1(this);
+		bombRoom_R2 = new bombRoom_R2(this);
+		bombRoom_R3 = new bombRoom_R3(this);
+		bombRoom_R6 = new bombRoom_R6(this);
+		bombRoom_R8 = new bombRoom_R8(this);
+		bombRoom_R10 = new bombRoom_R10(this);
+		bombRoom_BOMB1 = new bombRoom_BOMB1(this);
+		bombRoom_BOMB2 = new bombRoom_BOMB2(this);
+		bombRoom_BOMB3 = new bombRoom_BOMB3(this);
+		bombRoom_KEY = new bombRoom_KEY(this);
+		tittle = new TitleScreenPane(this);
+		feR1 = new fe_R1(this);
+		feR2 = new fe_R2(this);
+		feR3 = new fe_R3(this);
+		feR4 = new fe_R4(this);
+		feR5 = new fe_R5(this);
+		feR6 = new fe_R6(this);
+		feR7 = new fe_R7(this);
+		feR8 = new fe_R8(this);
+		feR9 = new fe_R9(this);
+		feR10 = new fe_R10(this);
+		feR11 = new fe_R11(this);
+		feR12 = new fe_R12(this);
+		feR12C = new fe_R12Complete(this);
+		resetBombs();
+	}
+	
+	public void resetBosses() {
+		mapbase_R9 = null;
+		osvaldoFloor_bossRoom = null;
+		Poniko = null;
+		feR12 = null;
+		////////////////////////////////
+		mapbase_R9 = new mapBase_R9(this);
+		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
+		Poniko = new poniko(this);
+		feR12 = new fe_R12(this);
+	}
+	
 	
 }

@@ -18,6 +18,7 @@ public class User {
 	private double dy = 0;
 	private double x;
 	private double y;
+	private boolean invincibile = false;
 	
 	//Weapon Inventory variables
 	private int weaponEquiped;
@@ -222,6 +223,14 @@ public class User {
 	
 	public void setCurrRoom(String currRoom) {
 		this.currRoom = currRoom;
+	}
+	
+	public void setInvincibility(boolean god) {
+		invincibile = god;
+	}
+	
+	public boolean getInvincibility() {
+		return invincibile;
 	}
 
 }

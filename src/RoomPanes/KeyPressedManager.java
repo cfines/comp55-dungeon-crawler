@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-
+import ChrisFloor.poniko;
 import acm.graphics.GImage;
 import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
@@ -24,6 +24,8 @@ public class KeyPressedManager {
 	private boolean atkUp,atkLeft,atkRight,atkDown;
 	boolean keyDeleted = false;
 	boolean deleteEnemy = false;
+	private AudioPlayer audio;
+	public static final String MUSIC_FOLDER = "sounds";
 	
 	public KeyPressedManager(MainApplication program, User user, GImage userRep,
 			ArrayList<Enemy> listOfEnemies, ArrayList<Interactions> listOfInter, ArrayList<GImage> elements,
@@ -51,9 +53,6 @@ public class KeyPressedManager {
 		checkCollision();
 		knockBack();
 		
-		if(deleteEnemy) {
-			//removeEnemyFromElementList();
-		}
 		if(program.getUser().getHasKey() && !keyDeleted) {
 			removeKeyFromInteractionList();
 		}
@@ -164,6 +163,13 @@ public class KeyPressedManager {
 					//damage dealt to enemy
 					newHealth = listOfEnemies.get(i).getEnemyStats().getHP_cur() - (int)program.getUser().getPowerStat();
 					listOfEnemies.get(i).getEnemyStats().setHP_cur(newHealth);
+					
+					if(program.getUser().getInvincibility()) {listOfEnemies.get(i).getEnemyStats().setHP_cur(0);}
+					
+					if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {
+						weMinecraftUpInHere(listOfEnemies.get(i));
+					}
+					
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
 						deleteEnemy = true;
@@ -172,7 +178,9 @@ public class KeyPressedManager {
 						listOfEnemies.get(i).setImage(enemyType.rip);
 						program.add(listOfEnemies.get(i).getImage());
 						
-						listOfEnemies.remove(i);
+						//listOfEnemies.remove(i);
+						audio = AudioPlayer.getInstance();
+						audio.playSound(MUSIC_FOLDER, "Heavy says Dead.mp3");
 					}
 				}
 				//TODO insert user getting hurt here
@@ -185,7 +193,7 @@ public class KeyPressedManager {
 
 		}
 	}
-
+	
 	private void userUP() {
 		user.setDY(-user.getMoveSpeedStat());
 	}
@@ -201,6 +209,7 @@ public class KeyPressedManager {
 
 	public void checkCollision() {
 		for(Interactions inter : listOfInter) {	
+			if(program.getUser().getInvincibility()) {return;}
 			if(intCollisionTest(inter.getImage())) {
 				//TODO Set these comparisons to booleans
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
@@ -227,22 +236,24 @@ public class KeyPressedManager {
 		}
 
 		for(Enemy enem : listOfEnemies) {
+			if(program.getUser().getInvincibility()) {return;}
 			if(enemyCollisionTest(enem, userRep)) {
+				if(enem.getEnemyType() == enemyType.bomb) {user.setY(user.getY()); user.setX(user.getX());}
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
-					user.setY(user.getY() + 50); 
+					user.setY(user.getY() + 100); 
 				} 
 				if (user.getDY() > 0 || user.getDY() > 0 && user.getDX() < 0 || user.getDY() > 0 && user.getDX() > 0) {
 					//System.out.println("top"); 
-					user.setY(user.getY() - 50);
+					user.setY(user.getY() - 100);
 				}
 				if (user.getDX() < 0 || user.getDX() < 0 && user.getDY() < 0 || user.getDX() < 0 && user.getDY() > 0) { 
 					//System.out.println("right"); 
-					user.setX(user.getX() + 50); 
+					user.setX(user.getX() + 100); 
 				} 
 				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
 					//System.out.println("left"); 
-					user.setX(user.getX() - 50);
+					user.setX(user.getX() - 100);
 				} 
 			}
 		}
@@ -333,8 +344,10 @@ public class KeyPressedManager {
 	}
 
 	public void knockBack() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
+				if(enem.getEnemyType() == enemyType.bomb) {return;}
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
 					enem.getImage().setLocation(tempEnem.getX(), tempEnem.getY() - 50);
@@ -352,8 +365,10 @@ public class KeyPressedManager {
 	}
 
 	public void enemyCombat() {
+		if(program.getUser().getInvincibility()) {return;}
 		for(int i = 0; i < listOfEnemies.size(); i++) {
 			if(enemyCollisionTest(listOfEnemies.get(i), userRep)) { 
+				if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {return;}
 				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
 				program.getUser().getUserStats().setHP_cur(newHealth);
 				//System.out.println("User takes 1 damage, ouch.");
@@ -388,8 +403,37 @@ public class KeyPressedManager {
 		for(int i = 0; i < elements.size(); i++) {
 			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 				elements.remove(i);
+				listOfEnemies.remove(i);
 			}
 		}
+	}
+	
+	public void weMinecraftUpInHere(Enemy enem) {
+		if(enem.getEnemyStats().getHP_cur() < 20) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.FIREFish);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 40) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.momoko);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 60) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.leg);
+			program.add(enem.getImage());
+		} else if (enem.getEnemyStats().getHP_cur() < 80) {
+			program.remove(enem.getImage());
+			enem.setImage(enemyType.insidePacific);
+			program.add(enem.getImage());
+		}
+	}
+	
+	public boolean getDeleteEnemy() {
+		return deleteEnemy;
+	}
+	
+	public void setDeleteEnemy(boolean prettyPlease) {
+		this.deleteEnemy = prettyPlease;
 	}
 	
 }

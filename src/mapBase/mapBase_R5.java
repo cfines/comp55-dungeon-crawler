@@ -24,7 +24,7 @@ import removeLater.User;
 
 public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage enemy1, hole1, E8, E9, E10, background,userRep, userWeapon, temp;
+	private GImage overlay,enemy1, hole1, E8, E9, E10, background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
@@ -44,13 +44,9 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(40,40,2,999999,1000,500, ElementType.FIRE, enemyType.FIREDeath);
 		Interactions ihole1 = new Interactions(interactionType.obstacle_hole, 230,325);
-		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,-3);
+		Interactions iE8 = new Interactions(interactionType.entry_door_NORTH, 575,30);
 		Interactions iE9 = new Interactions(interactionType.entry_door_SOUTH, 575,535);
 		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
-		
-		Interactions iEtest = new Interactions(interactionType.entry_door_WEST,27,300);
-		temp = iEtest.getImage();
-		listOfInter.add(iEtest);
 		
 		enemy1 = ienemy1.getImage();
 		hole1 = ihole1.getImage();
@@ -60,6 +56,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
+		overlay = new GImage("dark_overlay.png",15,30);
 		
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
@@ -77,8 +74,8 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		elements.add(E8);
 		elements.add(E9);
 		elements.add(E10);
-		elements.add(temp);
 		elements.add(userRep);
+		elements.add(overlay);
 		
 		enemyImages.add(enemy1);
 
@@ -95,7 +92,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 		}
 		
 		if(listOfEnemies.size() >= 1) {
-			for(int i = 0; i < enemyImages.size(); i++) {
+			for(int i = 0; i < listOfEnemies.size(); i++) {
 					if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
 						enemyImages.remove(i);
 						listOfEnemies.remove(i);
@@ -152,6 +149,7 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		timerCont++;
 		enemyMovement();
+		if(mover.getDeleteEnemy()) { deleteEnemy(); }
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
@@ -180,13 +178,6 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToR7();
 		}
-		if(userX >= temp.getX() && userY >= temp.getY() && userX <= temp.getX() + 75 && userY <= temp.getY() + 75) {
-			System.out.println("west");
-//			user.setX(900);
-//			user.setY(300);
-//			userRep.setLocation(user.getX(), user.getY());
-//			program.switchToR5();
-		}
 	}
 
 	public boolean everyXSeconds(double x) {
@@ -213,6 +204,18 @@ public class mapBase_R5 extends GraphicsPane implements ActionListener{
 			}else {enem.getImage().move(0, 0);}
 			enem.setStartX(enem.getImage().getX());
 			enem.setStartY(enem.getImage().getY());
+		}
+	}
+	
+	public void deleteEnemy() {
+		mover.setDeleteEnemy(false);
+		for(int i = 0; i < listOfEnemies.size(); i++) {
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.rip) {
+				enemyImages.remove(i);
+				listOfEnemies.remove(i);
+			} else {
+				program.add(enemyImages.get(i));
+			}
 		}
 	}
 }

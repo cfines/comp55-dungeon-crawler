@@ -21,7 +21,7 @@ import removeLater.User;
 
 public class chris_R2 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage E2, E3, E4, E5, background,userRep, userWeapon;
+	private GImage E2, E3, E4, E5, candle1, candle2, candle3, candle4, candle5, candle6, candle7, candle8, candle9, candle10, candle11, candle12, madotsuki, background,userRep, userWeapon;
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -41,8 +41,22 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		Interactions iE3 = new Interactions(interactionType.chrisEntry_SOUTH, 575,535);
 		Interactions iE4 = new Interactions(interactionType.chrisEntry_EAST,1050,300);
 		Interactions iE5 = new Interactions(interactionType.chrisEntry_WEST,27,300);
+		Interactions icandle1 = new Interactions(interactionType.candle1, 165,35);
+		Interactions icandle2 = new Interactions(interactionType.candle2, 125,95);
+		Interactions icandle3 = new Interactions(interactionType.candle2, 65,95);
+		Interactions icandle4 = new Interactions(interactionType.candle1, 945,35);
+		Interactions icandle5 = new Interactions(interactionType.candle2, 945,95);
+		Interactions icandle6 = new Interactions(interactionType.candle1, 1005,95);
+		Interactions icandle7 = new Interactions(interactionType.candle1, 1005,400);
+		Interactions icandle8 = new Interactions(interactionType.candle2, 945,400);
+		Interactions icandle9 = new Interactions(interactionType.candle1, 945,440);
+		Interactions icandle10 = new Interactions(interactionType.candle2, 65,390);
+		Interactions icandle11 = new Interactions(interactionType.candle1, 125,390);
+		Interactions icandle12 = new Interactions(interactionType.candle1, 125,440);
+		Interactions imadotsuki = new Interactions(interactionType.madotsuki, 665,35);
 		
 		//Enemies
+		
 		
 		//gImages
 		background = new GImage("background_block.gif", 15,30);
@@ -52,11 +66,37 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		E3 = iE3.getImage();
 		E4 = iE4.getImage();
 		E5 = iE5.getImage();
+		candle1 = icandle1.getImage();
+		candle2 = icandle2.getImage();
+		candle3 = icandle3.getImage();
+		candle4 = icandle4.getImage();
+		candle5 = icandle5.getImage();
+		candle6 = icandle6.getImage();
+		candle7 = icandle7.getImage();
+		candle8 = icandle8.getImage();
+		candle9 = icandle9.getImage();
+		candle10 = icandle10.getImage();
+		candle11 = icandle11.getImage();
+		candle12 = icandle12.getImage();
+		madotsuki = imadotsuki.getImage();
 		
 		listOfInter.add(iE2);
 		listOfInter.add(iE3);
 		listOfInter.add(iE4);
 		listOfInter.add(iE5);
+		listOfInter.add(icandle1);
+		listOfInter.add(icandle2);
+		listOfInter.add(icandle3);
+		listOfInter.add(icandle4);
+		listOfInter.add(icandle5);
+		listOfInter.add(icandle6);
+		listOfInter.add(icandle7);
+		listOfInter.add(icandle8);
+		listOfInter.add(icandle9);
+		listOfInter.add(icandle10);
+		listOfInter.add(icandle11);
+		listOfInter.add(icandle12);
+		listOfInter.add(imadotsuki);
 		
 		//listOfEnemies.add)();
 		
@@ -70,6 +110,19 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		elements.add(E3);
 		elements.add(E4);
 		elements.add(E5);
+		elements.add(candle1);
+		elements.add(candle2);
+		elements.add(candle3);
+		elements.add(candle4);
+		elements.add(candle5);
+		elements.add(candle6);
+		elements.add(candle7);
+		elements.add(candle8);
+		elements.add(candle9);
+		elements.add(candle10);
+		elements.add(candle11);
+		elements.add(candle12);
+		elements.add(madotsuki);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements, 
@@ -82,7 +135,6 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 		mover.notReallyActionPerformed(e);
 		nextRoom();
 		userRep.setLocation(user.getX(), user.getY());
-		System.out.println("x: "+ user.getX() + " y: " + user.getY());		
 	}
 
 	@Override
@@ -142,7 +194,7 @@ public class chris_R2 extends GraphicsPane implements ActionListener{
 			user.setX(575);
 			user.setY(110);
 			userRep.setLocation(user.getX(),user.getY());
-			//program.switchToChrisR8();
+			program.switchToChrisR8();
 		}
 		else if(userX <= E4.getX() && userY <= E4.getY() && userX2 >= E4.getX() && userY2 >= E4.getY()) {
 			user.setX(150);

@@ -26,7 +26,8 @@ public class Interactions {
 	public void setImage(interactionType inter) {
 		if(inter == interactionType.item_gif_key || inter == interactionType.color1 || inter == interactionType.color2 || inter == interactionType.face ||
 				inter == interactionType.candle1 || inter == interactionType.candle2 || inter == interactionType.candle3 || inter == interactionType.momoko ||
-				inter == interactionType.monoe || inter == interactionType.poniko) {
+				inter == interactionType.monoe || inter == interactionType.poniko || inter == interactionType.blueboi || inter == interactionType.schlept ||
+				inter == interactionType.madotsuki) {
 			image = new GImage(inter + ".gif", coordX, coordY);
 		}
 		else {
