@@ -55,7 +55,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 
 		boss = plant.getImage();
-		boss.setSize(100, 100);
+		boss.setSize(500, 500);
 		
 		shoot = new GImage("");
 
