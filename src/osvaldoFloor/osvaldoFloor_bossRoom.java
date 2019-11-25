@@ -104,7 +104,7 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 		listOfInter.add(ihole15);
 		
 		boss = osvaldoom.getImage();
-		boss.setSize(100, 100);
+		boss.setSize(200, 150);
 		background = new GImage("Water_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);

@@ -65,7 +65,7 @@ public class Enemy {
 				type == enemyType.Deadass || type == enemyType.Dread || type == enemyType.bomb) {
 			image = new GImage(type + ".gif", dx, dy);
 		} else if(type == enemyType.electric) {
-			image = new GImage(type + ".jpg", dx, dy);
+			image = new GImage("osvaldoom_small.png", dx, dy);
 		} else if(type == enemyType.projectile) {
 			image = new GImage("ghost_enemy.gif", dx, dy);
 			image.setSize(75, 75);
