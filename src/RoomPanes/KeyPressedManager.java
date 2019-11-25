@@ -18,6 +18,9 @@ public class KeyPressedManager {
 	private MainApplication program;
 	private User user;
 	private GImage userRep, userWeapon;
+	private GImage breaking1 = new GImage("breaking1.png", 0, 0);
+	private GImage breaking2 = new GImage("breaking2.png", 0, 0);
+	private GImage breaking3 = new GImage("breaking3.png", 0, 0);
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
@@ -172,6 +175,7 @@ public class KeyPressedManager {
 					
 					if(listOfEnemies.get(i).getEnemyStats().getHP_cur() <= 0) 
 					{
+						if(listOfEnemies.get(i).getEnemyType() == enemyType.bomb) {program.remove(breaking1);program.remove(breaking2);program.remove(breaking3);}
 						deleteEnemy = true;
 						program.remove(listOfEnemies.get(i).getImage());
 						listOfEnemies.get(i).setEnemyType(enemyType.rip);
@@ -409,22 +413,21 @@ public class KeyPressedManager {
 	}
 	
 	public void weMinecraftUpInHere(Enemy enem) {
-		if(enem.getEnemyStats().getHP_cur() < 20) {
-			program.remove(enem.getImage());
-			enem.setImage(enemyType.FIREFish);
-			program.add(enem.getImage());
-		} else if (enem.getEnemyStats().getHP_cur() < 40) {
-			program.remove(enem.getImage());
-			enem.setImage(enemyType.momoko);
-			program.add(enem.getImage());
-		} else if (enem.getEnemyStats().getHP_cur() < 60) {
-			program.remove(enem.getImage());
-			enem.setImage(enemyType.leg);
-			program.add(enem.getImage());
-		} else if (enem.getEnemyStats().getHP_cur() < 80) {
-			program.remove(enem.getImage());
-			enem.setImage(enemyType.insidePacific);
-			program.add(enem.getImage());
+		if (enem.getEnemyStats().getHP_cur() < 33) {
+			program.remove(breaking3);
+			breaking3 = new GImage("breaking3.png", enem.getCoordX(), enem.getCoordY());
+			breaking3.setSize(75, 75);
+			program.add(breaking3);
+		} else if (enem.getEnemyStats().getHP_cur() < 66) {
+			program.remove(breaking2);
+			breaking2 = new GImage("breaking2.png", enem.getCoordX(), enem.getCoordY());
+			breaking2.setSize(75, 75);
+			program.add(breaking2);
+		} else if (enem.getEnemyStats().getHP_cur() < 100) {
+			program.remove(breaking1);
+			breaking1 = new GImage("breaking1.png", enem.getCoordX(), enem.getCoordY());
+			breaking1.setSize(75, 75);
+			program.add(breaking1);
 		}
 	}
 	
