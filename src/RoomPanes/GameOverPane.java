@@ -42,7 +42,7 @@ public class GameOverPane extends GraphicsPane implements ActionListener {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == returnMenu) {
 			program.setBossRun(false);
-			program.resetRooms();
+			//program.resetRooms();
 			program.switchToTitleScreen();
 		}
 	}
