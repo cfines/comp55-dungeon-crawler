@@ -178,6 +178,9 @@ public class fe_R6 extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
 		}
+		for (int i = 0; i <= enemyImages.size() - 1; i++) {
+			program.remove(enemyImages.get(i));
+		}
 		program.refreshOverlay();
 	}
 	
