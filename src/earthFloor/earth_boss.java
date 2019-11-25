@@ -24,19 +24,14 @@ import miscMechanics.User;
 
 public class earth_boss extends GraphicsPane implements ActionListener{
 	private MainApplication program;
-	private GImage background,userRep, userWeapon, shoot; 
-	private GImage boss = new GImage("electric.jpg", 100, 100); 
+	private GImage background,userRep, userWeapon; 
+	private GImage boss = new GImage("plant_NORTH.gif", 100, 100); 
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
-	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	private int degree;
 	private User user;
-	private Enemy plant = new Enemy(1,1,2,2,100,100, ElementType.EARTH, enemyType.insidePacific);
-	private Enemy shot = new Enemy(100, 100, 5, 1, 0, 0, ElementType.EARTH, enemyType.projectile);
-	private enemyType attk = enemyType.electric;
-	private enemyType still = enemyType.electric;
+	private Enemy plant = new Enemy(1,1,2,2,100,100, ElementType.EARTH, enemyType.plant_NORTH);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
@@ -55,10 +50,8 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 
 		boss = plant.getImage();
-		boss.setSize(500, 500);
+		boss.setSize(1000, 500);
 		
-		shoot = new GImage("");
-
 		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -77,7 +70,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
-
+	
 	@Override
 	public void showContents() {
 		
@@ -110,13 +103,8 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		
 		if(plant.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
-			program.switchToOsvaldoBossComplete();
 		}
-		
-		userCombat();
-		enemyCombat();
 		timerCont++;
-		enemyMovement();
 		mover.notReallyActionPerformed(e);
 		userRep.setLocation(user.getX(), user.getY());
 	}
@@ -143,106 +131,12 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		}
 		mover.notReallyKeyReleased(e);
 	}
-
-	public void enemyMovement() {
-		if(everyXSeconds(80)) {
-			attack = !attack;
-			if(attack) {
-				generateRandom();
-				shot = new Enemy(100, 100, 2, 2, (int)plant.getCoordX(), (int)plant.getCoordY() + 75, ElementType.FIRE, enemyType.projectile);
-				listOfProjectiles.add(shot);
-			} else {
-				listOfProjectiles.remove(shot);
-				program.remove(shot.getImage());
-				hit = false;
-			}
-		}
-		
-		for(Enemy enem : listOfEnemies) {
-			if(enem.getCoordX() > 970) {
-				move = false;
-			} else if (enem.getCoordX() < 100) {
-				move = true;
-			}
-			
-			if(move) { enem.getImage().move(8, 0); }
-			else { enem.getImage().move(-8, 0); }
-			
-			enem.setStartX(enem.getImage().getX());
-			enem.setStartY(enem.getImage().getY());
-			enem.getEnemyStats().setCoordX(enem.getImage().getX());
-			enem.getEnemyStats().setCoordY(enem.getImage().getY());
-			
-		}
-		
-		if(listOfProjectiles.size() >= 1) {
-			for(Enemy arr : listOfProjectiles) {
-				
-				arr.getEnemyStats().setCoordX(plant.getCoordX());
-				arr.getEnemyStats().setCoordY(plant.getCoordY());
-				
-				
-				if(checkHitBack(arr, userWeapon) && atkUp) { 
-					hit = true; 
-				}
-				
-				program.add(arr.getImage());
-				
-				if(hit) { 
-					
-					arr.getImage().move(random, -10);
-					
-				} else { 
-					
-					arr.getImage().move(0, 10); 
-					
-				}
-			
-			
-			}
-		}
-		
-	}
-	
-	public void generateRandom() {
-		randomNum = new Random();
-		random = randomNum.nextInt(10);
-		
-		Random determineNegative = new Random();
-		dN = determineNegative.nextInt(5);
-		
-		if(dN < 2) {
-			random *= -1;
-		}
-	}
 	
 	public boolean checkHitBack(Enemy enem, GImage image) {
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
-	}
-	
-	public void enemyCombat() {
-		for(int i = 0; i < listOfProjectiles.size(); i++) {
-			if(checkHitBack(listOfProjectiles.get(i), userRep)) { 
-				int newHealth = program.getUser().getUserStats().getHP_cur() - 1;
-				program.getUser().getUserStats().setHP_cur(newHealth);
-				program.combatRefreshOverlay();
-			}
-		}
-	}
-	
-	public void userCombat() {
-		for(int i = 0; i < listOfProjectiles.size(); i++) {
-			if(checkHitBack(listOfProjectiles.get(i), plant.getImage())) { 
-				System.out.println("You killed Osvaldoom!");
-				plant.getEnemyStats().setHP_cur(0);
-				listOfProjectiles.remove(listOfProjectiles.get(i));
-				program.bossOverlay(plant);
-				program.remove(shot.getImage());
-			}
-		}
 	}
 	
 }

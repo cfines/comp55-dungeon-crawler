@@ -171,7 +171,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-		user = new User(500, 500, 1000, 1, 300, 300);
+		user = new User(15, 15, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
 		bombRect.setFilled(true);
 		bombRect2.setColor(Color.red);
@@ -249,6 +249,19 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToTitleScreen(); //change which screen you want to switch to
 	}
 	
+	public void stopAllSound() {
+		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
+		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+	}
+	
 	public void switchToTitleScreen() 
 	{
 		switchToScreen(tittle);
@@ -262,6 +275,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToGameOver()  
 	{
+		//TODO: add game over music
 		restartGame = true;
 		switchToScreen(playerDied);
 	}
@@ -271,6 +285,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToSome() {
+		stopAllSound();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"20 ray of hope.mp3",true);
 		switchToScreen(somePane);
 	}
@@ -322,6 +337,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR1() {
+		stopAllSound();
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R1);
@@ -408,8 +424,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToBombRoomR1() {
+		stopAllSound();
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
-		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
 		switchToScreen(bombRoom_R1);
 	}
 	
@@ -446,14 +462,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToFeR1() {
-		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
-		audio.playSound(MUSIC_FOLDER, "1up.wav");
-		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
-		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
-		
+		stopAllSound();
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
