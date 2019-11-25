@@ -25,9 +25,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	private GImage E9, E10, wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,wall11,wall12,background,userRep, userWeapon;
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
-	private GImage badGuy1 = new GImage ("Dark Mage.gif",425,70);
-	private GImage badGuy2 = new GImage ("Dark Mage.gif",575,70);
-	private GImage badGuy3 = new GImage ("Dark Mage.gif",775,70);
+	private GImage badGuy1 = new GImage ("Dark Mage.gif",575,100);
 	private GRect voidSpace;
 	private boolean attack = false, hit = false;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
@@ -36,11 +34,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 	private int degree;
 	private int timerCont = 0;
 	private Enemy magic1 = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.Nagic);
-	private Enemy magic2 = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.Nagic);
-	private Enemy magic3 = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.Nagic);
-	private Enemy DarkMage1 = new Enemy(2,2,2,2,425,70, ElementType.FIRE, enemyType.DarkMage);
-	private Enemy DarkMage2 = new Enemy(2,2,2,2,575,70, ElementType.FIRE, enemyType.DarkMage);
-	private Enemy DarkMage3 = new Enemy(2,2,2,2,775,70, ElementType.FIRE, enemyType.DarkMage);
+	private Enemy DarkMage1 = new Enemy(2,2,2,2,575,100, ElementType.FIRE, enemyType.DarkMage);
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private User user;
 	private Timer t = new Timer(30, this);
@@ -58,7 +52,14 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
-		
+		Interactions iE9 = new Interactions(interactionType.entry_door_WEST,27,300);
+		E9 = iE9.getImage();
+		listOfInter.add(iE9);
+		Interactions iE10 = new Interactions(interactionType.entry_door_EAST,1050,300);
+		E10 = iE10.getImage();
+		listOfInter.add(iE10);
+		elements.add(E9);
+		elements.add(E10);
 		Interactions iwall1 = new Interactions(interactionType.RockWall, 130,230);
 		Interactions iwall2 = new Interactions(interactionType.RockWall, 207,230);
 		Interactions iwall3 = new Interactions(interactionType.RockWall, 284,230);
@@ -85,8 +86,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		wall11 = iwall11.getImage();
 		wall12 = iwall12.getImage();
 		badGuy1 = DarkMage1.getImage();
-		badGuy2 = DarkMage2.getImage();
-		badGuy3 = DarkMage3.getImage();
 		listOfInter.add(iwall1);
 		listOfInter.add(iwall2);
 		listOfInter.add(iwall3);
@@ -100,8 +99,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		listOfInter.add(iwall11);
 		listOfInter.add(iwall12);
 		listOfEnemies.add(DarkMage1);
-		listOfEnemies.add(DarkMage2);
-		listOfEnemies.add(DarkMage3);
 		elements.add(background);
 		elements.add(wall1);
 		elements.add(wall2);
@@ -115,9 +112,7 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 		elements.add(wall10);
 		elements.add(wall11);
 		elements.add(wall12);
-		elements.add(badGuy1);
-		elements.add(badGuy2);
-		elements.add(badGuy3);
+		enemyImages.add(badGuy1);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
@@ -165,16 +160,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 				listOfProjectiles.remove(listOfProjectiles.get(i));
 				program.remove(magic1.getImage());
 			}
-			if(checkHitBack(listOfProjectiles.get(i), DarkMage2.getImage())) { 
-				DarkMage2.getEnemyStats().setHP_cur(0);
-				listOfProjectiles.remove(listOfProjectiles.get(i));
-				program.remove(magic2.getImage());
-			}
-			if(checkHitBack(listOfProjectiles.get(i), DarkMage3.getImage())) { 
-				DarkMage3.getEnemyStats().setHP_cur(0);
-				listOfProjectiles.remove(listOfProjectiles.get(i));
-				program.remove(magic3.getImage());
-			}
 		}
 	}
 	
@@ -191,30 +176,6 @@ public class fe_R5 extends GraphicsPane implements ActionListener{
 				else {
 					listOfProjectiles.remove(magic1);
 					program.remove(magic1.getImage());
-					hit = false;
-				}
-			}
-			if(DarkMage2.getEnemyStats().getHP_cur() >0) 
-			{	
-				if(attack) {
-					magic2 = new Enemy(100, 100, 2, 2, (int)DarkMage2.getCoordX(), (int)DarkMage2.getCoordY() + 75, ElementType.FIRE, enemyType.Nagic);
-					listOfProjectiles.add(magic1);
-				}
-				else {
-					listOfProjectiles.remove(magic2);
-					program.remove(magic2.getImage());
-					hit = false;
-				}
-			}
-			if(DarkMage3.getEnemyStats().getHP_cur() >0) 
-			{	
-				if(attack) {
-					magic3 = new Enemy(100, 100, 2, 2, (int)DarkMage3.getCoordX(), (int)DarkMage3.getCoordY() + 75, ElementType.FIRE, enemyType.Nagic);
-					listOfProjectiles.add(magic3);
-				}
-				else {
-					listOfProjectiles.remove(magic3);
-					program.remove(magic3.getImage());
 					hit = false;
 				}
 			}
