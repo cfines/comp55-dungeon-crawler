@@ -44,9 +44,9 @@ public class fe_R9 extends GraphicsPane implements ActionListener{
 		Interactions iE20 = new Interactions(interactionType.entry_door_EAST,1050,300);
 		Interactions istatue1 = new Interactions(interactionType.statue, 540,35);
 		Interactions istatue2 = new Interactions(interactionType.statue, 315,105);
-		Interactions istatue3 = new Interactions(interactionType.statue, 700,175);
-		Interactions istatue4 = new Interactions(interactionType.statue, 635,235);
-		Interactions istatue5 = new Interactions(interactionType.statue, 435,285);
+		Interactions istatue3 = new Interactions(interactionType.statue, 755,105);
+		Interactions istatue4 = new Interactions(interactionType.statue, 635,175);
+		Interactions istatue5 = new Interactions(interactionType.statue, 435,175);
 		statue1 = istatue1.getImage();
 		statue2 = istatue2.getImage();
 		statue3 = istatue3.getImage();
@@ -72,17 +72,17 @@ public class fe_R9 extends GraphicsPane implements ActionListener{
 		listOfEnemies.add(ienemy2);
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
-		elements.add(statue1);
-		elements.add(statue2);
-		elements.add(statue3);
-		elements.add(statue4);
-		elements.add(statue5);
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
 		elements.add(background);
+		elements.add(statue1);
+		elements.add(statue2);
+		elements.add(statue3);
+		elements.add(statue4);
+		elements.add(statue5);
 		elements.add(E19);
 		elements.add(E20);
 		elements.add(userRep);
@@ -197,9 +197,9 @@ public class fe_R9 extends GraphicsPane implements ActionListener{
 		double userY2 = userRep.getY() + 80;
 		if(userX <= E19.getX() && userY <= E19.getY() && userY2 >= E19.getY() - 30  && userX >= E19.getX() - 30) {
 			user.setX(575);
-			user.setY(110);
+			user.setY(120);
 			userRep.setLocation(user.getX(), user.getY());
-			program.switchToFeR6();
+			program.switchToFeR7();
 		}
 		else if(userX <= E20.getX() && userY <= E20.getY() && userX2 >= E20.getX() && userY2 >= E20.getY())	{
 			user.setX(150);
