@@ -54,7 +54,7 @@ private GImage enemy1, enemy2 , enemy3 ,tree1, tree2, tree3, E6, E7, E8, backgro
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		enemy3 = ienemy3.getImage();
-		Interactions itree1 = new Interactions(interactionType.treeFell,525,375);
+		Interactions itree1 = new Interactions(interactionType.treeFell,225,375);
 		Interactions itree2 = new Interactions(interactionType.treeFell,725,69);
 		Interactions itree3 = new Interactions(interactionType.treeFell,69,569);
 		tree1 = itree1.getImage();
@@ -71,6 +71,9 @@ private GImage enemy1, enemy2 , enemy3 ,tree1, tree2, tree3, E6, E7, E8, backgro
 		listOfInter.add(itree1);
 		listOfInter.add(itree2);
 		listOfInter.add(itree3);
+		listOfInter.add(iE8);
+		listOfInter.add(iE7);
+		listOfInter.add(iE6);
 		enemyImages.add(enemy1);
 		enemyImages.add(enemy2);
 		enemyImages.add(enemy3);
