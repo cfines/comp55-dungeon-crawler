@@ -1,4 +1,4 @@
-package removeLater;
+package miscMechanics;
 
 public enum roomLayout {
 	room_Norm, room_Long, room_Large, room_Gun, room_RevGun, room_UpsideGun, room_RevUpsideGun;

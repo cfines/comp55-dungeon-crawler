@@ -20,7 +20,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 
 public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {

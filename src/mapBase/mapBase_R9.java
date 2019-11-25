@@ -20,7 +20,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 public class mapBase_R9 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
@@ -109,6 +109,8 @@ public class mapBase_R9 extends GraphicsPane implements ActionListener{
 				program.switchToOsvaldoBoss();
 				return;
 			}
+			user.setX(575);
+			user.setY(410);
 			program.setBossDefeated(true);
 			program.switchToR9Complete();
 		}

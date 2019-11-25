@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
-import removeLater.GButton;
+import miscMechanics.GButton;
 
 public class pausePane extends GraphicsPane implements ActionListener {
 	private MainApplication program;

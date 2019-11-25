@@ -18,7 +18,7 @@ import enemyInteraction.Enemy;
 import enemyInteraction.Interactions;
 import enemyInteraction.enemyType;
 import enemyInteraction.interactionType;
-import removeLater.User;
+import miscMechanics.User;
 
 public class fe_R9 extends GraphicsPane implements ActionListener{
 	private MainApplication program;
@@ -129,6 +129,9 @@ public class fe_R9 extends GraphicsPane implements ActionListener{
 		program.remove(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.remove(elements.get(i));
+		}
+		for (int i = 0; i <= enemyImages.size() - 1; i++) {
+			program.remove(enemyImages.get(i));
 		}
 		program.refreshOverlay();		
 	}
