@@ -103,7 +103,7 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 		}
 		
 		program.bombOverlay();
-		program.drawOverlay(1, program.getFloorNum());
+		program.drawOverlay(3, program.getFloorNum());
 	}
 
 	@Override
@@ -154,17 +154,6 @@ public class bombRoom_R3 extends GraphicsPane implements ActionListener {
 				program.add(enemyImages.get(i));
 			}
 		}
-	}
-	
-	public void unlockProtocol() {
-		user.setY(200);
-		program.remove(EN);
-		EN = new GImage("entry_door_NORTH.png", 575, 28);
-		program.add(EN);
-		userRep.setLocation(user.getX(), user.getY());
-		program.getUser().setHasKey(false);
-		program.combatRefreshOverlay();
-		unlocked = true;
 	}
 	
 	private void nextRoom() {

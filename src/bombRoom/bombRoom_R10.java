@@ -95,7 +95,7 @@ public class bombRoom_R10 extends GraphicsPane implements ActionListener {
 		}
 		
 		program.bombOverlay();
-		program.drawOverlay(1, program.getFloorNum());
+		program.drawOverlay(10, program.getFloorNum());
 	}
 
 	@Override
