@@ -5,7 +5,7 @@ public enum enemyType {
 	WATERSkull, rip, EARTHSpider, WATERSpider, FIRESpider, EARTHSpooder,
 	WATERSpooder, FIRESpooder, EARTHDrawing, WATERDrawing, FIREDrawing,
 	xokStill, xokAttack, EARTHDeath, WATERDeath, FIREDeath, EARTHCheese, WATERCheese, FIRECheese,
-	EARTHFish, WATERFish, FIREFish, leg, electric, projectile, insidePacific, goon1, goon2, momoko, bomb,
+	EARTHFish, WATERFish,DumaCrest, FIREFish, leg, electric, projectile, insidePacific, goon1, goon2, momoko, bomb,
 	Duma, Samurai, DarkMage, Brigand,GuyFieri,MargeStill, MMMHOMIE, Nagic, face, Rinea, Berkut, Dread, Deadass;
 	
 	public String toString() {
@@ -58,6 +58,7 @@ public enum enemyType {
 			case Dread: return "Dread";
 			case Deadass: return "Deadboi";
 			case GuyFieri : return "Fyah";
+			case DumaCrest: return "Duma Crest";
 		}
 		return "n/a";
 	}

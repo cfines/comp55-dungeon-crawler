@@ -50,7 +50,7 @@ public class bombRoom_BOMB1 extends GraphicsPane implements ActionListener {
 		Interactions irock3 = new Interactions(interactionType.obstacle_concrete_rocks,650,250);
 		
 		Enemy bomb1 = new Enemy(100,100,1,0,200,270, ElementType.FIRE, enemyType.bomb);
-		Enemy ienemy1 = new Enemy(10,10,2,2,575,70,ElementType.FIRE, enemyType.EARTHDeath);
+		Enemy ienemy1 = new Enemy(10,10,2,2,575,70,ElementType.EARTH, enemyType.EARTHDeath);
 
 		listOfInter.add(oE3);
 		listOfInter.add(irock1);

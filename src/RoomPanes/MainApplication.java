@@ -449,6 +449,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToFeR1() {
 		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
+		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
@@ -465,11 +471,15 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR4() 
 	{
+		audio.pauseSound(MUSIC_FOLDER,"y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR4);
 	}
 	
 	public void switchToFeR5() 
 	{
+		audio.pauseSound(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER ,"y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3",true);
 		switchToScreen(feR5);
 	}
 	
@@ -505,6 +515,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR12() 
 	{
+		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
+		audio.stopSound(MUSIC_FOLDER ,"y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3",true);
 		switchToScreen(feR12);
 	}
 	
