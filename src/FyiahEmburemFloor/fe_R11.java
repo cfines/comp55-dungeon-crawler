@@ -39,6 +39,7 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private boolean attack = false, hit = false;
 	private Enemy fire = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.GuyFieri);
+	private boolean unlocked = false;
 	
 	private KeyPressedManager mover;
 
@@ -49,7 +50,7 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(50,50,2,3,575,100, ElementType.FIRE, enemyType.Berkut);
 		Interactions iE22 = new Interactions(interactionType.entry_door_SOUTH,575,535);
-		Interactions iE23 = new Interactions(interactionType.entry_door_NORTH,575,30);
+		Interactions iE23 = new Interactions(interactionType.entry_bossDoor,575,30);
 		E22 = iE22.getImage();
 		E23 = iE23.getImage();
 		background = new GImage("FE Room.png",15,30);
@@ -126,14 +127,25 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.switchToFeR4();
 		}
-		if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 95 && userY <= E23.getY() + 90) {
-			user.setX(575);
-			user.setY(410);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToFeR12();
+		else if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 85 && userY <= E23.getY() + 85) {
+			if(!unlocked) {
+				if(program.getUser().getHasKey()) {
+					unlockProtocol();
+				}
+			}else if (program.getBossDefeated()) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToFeR12Complete();
+			}
+			if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 95 && userY <= E23.getY() + 90) {
+				user.setX(575);
+				user.setY(410);
+				userRep.setLocation(user.getX(), user.getY());
+				program.switchToFeR12();
+			}
 		}
 	}
-	
 	public boolean everyXSeconds(double x) {
 		return(timerCont %(x) == 0);
 	}
@@ -249,5 +261,16 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 				program.remove(fire.getImage());
 			}
 		}
+	}
+	
+	public void unlockProtocol() {
+		user.setY(200);
+		program.remove(E23);
+		E23 = new GImage("entry_door_NORTH.png", 575, 28);
+		program.add(E23);
+		userRep.setLocation(user.getX(), user.getY());
+		program.getUser().setHasKey(false);
+		program.combatRefreshOverlay();
+		unlocked = true;
 	}
 }
