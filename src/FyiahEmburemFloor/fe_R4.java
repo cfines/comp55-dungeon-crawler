@@ -48,9 +48,9 @@ private GImage enemy1, enemy2 , enemy3 ,tree1, tree2, tree3, E6, E7, E8, backgro
 		E6 = iE6.getImage();
 		E7 = iE7.getImage();
 		E8 = iE8.getImage();
-		Enemy ienemy1 = new Enemy (4,4,2,1,500,400, ElementType.FIRE, enemyType.Brigand);
-		Enemy ienemy2 = new Enemy (4,4,2,1,600,300, ElementType.FIRE, enemyType.Brigand);
-		Enemy ienemy3 = new Enemy (4,4,2,1,800,200, ElementType.FIRE, enemyType.Brigand);
+		Enemy ienemy1 = new Enemy (4,4,2,1,200,200, ElementType.FIRE, enemyType.Brigand);
+		Enemy ienemy2 = new Enemy (4,4,2,1,300,90, ElementType.FIRE, enemyType.Brigand);
+		Enemy ienemy3 = new Enemy (4,4,2,1,500,200, ElementType.FIRE, enemyType.Brigand);
 		enemy1 = ienemy1.getImage();
 		enemy2 = ienemy2.getImage();
 		enemy3 = ienemy3.getImage();
