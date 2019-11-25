@@ -218,7 +218,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 1) { program.getUser().setHasKey(true); }
 				if(i == 2) { program.resetBosses(); }
 				if(i == 3) { program.setBombsDeactivated(true); }
-				if(i == 4) { program.setBombCounter(180); }
+				if(i == 4) { program.setBombCounter(90); }
 				if(i == 5) { program.resetRooms(); program.switchToMenu(); }
 			}
 		}
