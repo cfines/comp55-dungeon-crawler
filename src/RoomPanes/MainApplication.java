@@ -448,6 +448,12 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR1() {
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
+		audio.stopSound(MUSIC_FOLDER,"20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
