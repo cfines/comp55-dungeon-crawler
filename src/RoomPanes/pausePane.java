@@ -21,7 +21,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	
 	///////DEVELOPER_MODE_LABELS_AND_BUTTONS/////////////////
 	private GRect devBox = new GRect(0, 80, 490, 470);
-	private GRect devBox2 = new GRect(915, 80, 235, 470);
+	private GRect devBox2 = new GRect(915, 80, 235, 540);
 	private ArrayList<GButton> buttonArr = new ArrayList<GButton>();
 	private ArrayList<GButton> buttonGod = new ArrayList<GButton>();
 	private ArrayList<GLabel> labelArr = new ArrayList<GLabel>();
@@ -51,13 +51,13 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton BOMB_Bomb3 = new GButton("BOMB3", 120, 475, 50, 50);
 	
 	private GButton invincibility = new GButton("GOD_MODE", 925, 100, 215, 50); 
-	private GButton giveKey = new GButton("GIVE_KEY", 925, 175, 215, 50); 
-	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 250, 215, 50); 
-	private GButton stopBombs = new GButton("DEACTIVATE_BOMBS", 925, 325, 215, 50);
-	private GButton resetTimer = new GButton("RESET_BOMB_TIMER", 925, 400, 215, 50);
-	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 475, 215, 50);
-	private GButton resetHealth = new GButton("RESET_HEALTH", 925, 550, 215, 50);
-	private GButton devMode = new GButton("ACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
+	private GButton resetHealth = new GButton("RESET_HEALTH", 925, 175, 215, 50);
+	private GButton giveKey = new GButton("GIVE_KEY", 925, 250, 215, 50); 
+	private GButton bossRespawn = new GButton("RESPAWN_BOSSES", 925, 325, 215, 50); 
+	private GButton stopBombs = new GButton("DEACTIVATE_BOMBS", 925, 400, 215, 50);
+	private GButton resetTimer = new GButton("RESET_BOMB_TIMER", 925, 475, 215, 50);
+	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 550, 215, 50); 
+	private GButton devMode;
 	
 	private boolean exit = false;
 	
@@ -69,6 +69,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		pauseLabel = new GLabel("PAUSED", program.WINDOW_WIDTH / 2 - 135 ,85);
 		pauseLabel.setColor(Color.red);
 		pauseLabel.setFont("Arial-Bold-64");
+		devMode = new GButton("ACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
 		
 		devBox.setColor(Color.lightGray);
 		devBox.setFilled(true);
@@ -112,6 +113,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonArr.add(BOMB_Bomb3);
 		
 		buttonGod.add(invincibility);
+		buttonGod.add(resetHealth);
 		buttonGod.add(giveKey);
 		buttonGod.add(bossRespawn);
 		buttonGod.add(stopBombs);
@@ -210,18 +212,20 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 15) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
 				if(i == 16) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
 				if(i == 17) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
-				exit = true;
+				refreshColors();
 			}
 		}
 		
 		for(int i = 0; i < buttonGod.size(); i++) {
 			if(obj == buttonGod.get(i)) {
 				if(i == 0) { program.getUser().setInvincibility(!program.getUser().getInvincibility()); }
-				if(i == 1) { program.getUser().setHasKey(true); }
-				if(i == 2) { program.resetBosses(); }
-				if(i == 3) { program.setBombsDeactivated(true); }
-				if(i == 4) { program.setBombCounter(90); }
-				if(i == 5) { program.resetRooms(); program.switchToMenu(); }
+				if(i == 1) { program.getUser().getUserStats().setHP_cur(program.getUser().getUserStats().getHP_tot()); }
+				if(i == 2) { program.getUser().setHasKey(true); }
+				if(i == 3) { program.resetBosses(); }
+				if(i == 4) { program.setBombsDeactivated(true); }
+				if(i == 5) { program.setBombCounter(90); }
+				if(i == 6) { program.resetRooms(); program.switchToMenu(); }
+				refreshColors();
 			}
 		}
 		
@@ -230,15 +234,12 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		if (obj == pauseButton) {
 			program.switchToMenu();
 		} else if (obj == resumeButton) {
+			removeColors(true);
 			program.noLongerPaused();
 		} else if (obj == devMode) {
 			program.setDeveloperMode(!program.getDeveloperMode());
-			program.noLongerPaused();
-			program.pauseScreenSwitch();
+			refreshColors();
 		}
-		
-		refreshColors();
-		removeColors(exit);
 		
 	}
 	
@@ -263,11 +264,16 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		}
 		
 		if(program.getDeveloperMode()) {
-			devMode = new GButton("DEACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
+			program.remove(devMode);
 			devMode.setFillColor(Color.green);
+			program.add(devMode);
+			showDevMenu();
 		} else {
-			devMode = new GButton("ACTIVATE_DEVMODE", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 70, 150, 50);
+			program.remove(devMode);
 			devMode.setFillColor(Color.red);
+			program.add(devMode);
+			removeColors(true);
+			hideDevMenu();
 		}
 		
 		program.remove(stopBombs);
@@ -282,6 +288,34 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			program.remove(giveKey);
 			program.remove(stopBombs);
 			exit = false;
+		}
+	}
+	
+	public void showDevMenu() {
+		program.add(devBox);
+		program.add(devBox2);
+		for(int i = 0; i < buttonArr.size(); i++) {
+			program.add(buttonArr.get(i));
+		}
+		for(int i = 0; i < labelArr.size(); i++) {
+			program.add(labelArr.get(i));
+		}
+		for(int i = 0; i < buttonGod.size(); i++) {
+			program.add(buttonGod.get(i));
+		}
+	}
+	
+	public void hideDevMenu() {
+		program.remove(devBox);
+		program.remove(devBox2);
+		for(int i = 0; i < buttonArr.size(); i++) {
+			program.remove(buttonArr.get(i));
+		}
+		for(int i = 0; i < labelArr.size(); i++) {
+			program.remove(labelArr.get(i));
+		}
+		for(int i = 0; i < buttonGod.size(); i++) {
+			program.remove(buttonGod.get(i));
 		}
 	}
 	
