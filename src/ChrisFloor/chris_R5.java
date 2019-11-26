@@ -81,10 +81,10 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		listOfInter.add(icolor4);
 
 		//listOfEnemies.add)();
-		listOfEnemies.add(igoon4);
-		listOfEnemies.add(igoon3);
-		listOfEnemies.add(igoon2);
 		listOfEnemies.add(igoon1);
+		listOfEnemies.add(igoon2);
+		listOfEnemies.add(igoon3);
+		listOfEnemies.add(igoon4);
 
 		voidSpace = new GRect(0,0);
 		voidSpace.setSize(1150,650);
