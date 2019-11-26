@@ -58,6 +58,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton resetTimer = new GButton("RESET_BOMB_TIMER", 925, 475, 215, 50);
 	private GButton roomReset = new GButton("RESET_ALL_FLOORS", 925, 550, 215, 50); 
 	private GButton devMode;
+	private AudioPlayer audio = AudioPlayer.getInstance();
+	public static final String MUSIC_FOLDER = "sounds";
 	
 	private boolean exit = false;
 	
@@ -192,6 +194,17 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		for(int i = 0; i < buttonArr.size(); i++) {
 			if(obj == buttonArr.get(i)) {
+				audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+				audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
+				audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
+				audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
+				audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+				audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+				audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
+				audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+				audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
+				audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+				audio.stopSound(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3");
 				if(i == 0) { program.switchToSome(); }			//BASE-R1
 				if(i == 1) { program.switchToR6(); }			//BASE-KEY
 				if(i == 2) { program.switchToR9(); }			//BASE-BOSS
