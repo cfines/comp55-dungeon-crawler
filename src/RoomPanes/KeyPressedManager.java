@@ -158,7 +158,9 @@ public class KeyPressedManager {
 	public void userCombat() 
 	{
 		for(int i = 0; i < listOfEnemies.size(); i++) {
-			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon)) 
+			boolean tempCheck = false;
+			if(listOfEnemies.get(i).getEnemyType() == enemyType.Pright) { if(plantCollisionTest(listOfEnemies.get(i), userWeapon)) {tempCheck = true;} }
+			if(enemyCollisionTest(listOfEnemies.get(i), userWeapon) || tempCheck) 
 			{
 				//if the user is fighting
 				if(atkUp || atkDown || atkLeft || atkRight) 
@@ -257,6 +259,9 @@ public class KeyPressedManager {
 					//System.out.println("left"); 
 					user.setX(user.getX() - 100);
 				} 
+				if(user.getDX() == 0 && user.getDY() == 0) {
+					user.setX(user.getX() - 100);
+				}
 			}
 		}
 	}
@@ -273,6 +278,13 @@ public class KeyPressedManager {
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
+	}
+	
+	public boolean plantCollisionTest(Enemy enem, GImage image) {
+		return (enem.getImage().getY() - image.getY() <= 50
+				&& enem.getImage().getY() - image.getY() >= -500
+				&& enem.getImage().getX() - image.getX() <= 50
+				&& enem.getImage().getX() - image.getX() >= -50);
 	}
 
 	private void attackUp() {
@@ -450,5 +462,6 @@ public class KeyPressedManager {
 		if(enem.getElementType() == ElementType.EARTH && program.getUser().getWeaponEquiped() == 0) { newHealth -= 1;}
 		return newHealth;
 	}
+	
 	
 }

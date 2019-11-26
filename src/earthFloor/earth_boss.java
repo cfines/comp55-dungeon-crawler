@@ -31,7 +31,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private User user;
-	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
+	private Enemy plant = new Enemy(53,53,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
@@ -106,7 +106,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 				user.setX(150);
 				user.setY(300);
 				program.setFloorNum(program.getFloorNum() + 1);
-				program.switchToTitleScreen();
+				program.switchToGameWin();
 				program.setBossRun(false);
 				return;
 			}
@@ -116,12 +116,14 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		}
 		
 		timerCont++;
+		checkCollision();
 		mover.notReallyActionPerformed(e);
 		enemyMovement();
 		userRep.setLocation(user.getX(), user.getY());
 	}
 
 	public boolean everyXSeconds(double x) {
+		program.bossOverlay(plant);
 		return(timerCont %(x) == 0);
 	}
 
@@ -155,22 +157,41 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		int counter = 2;
 		if(everyXSeconds(5)) {
 			if(enemyCollisionTest(plant, userWeapon)) {
+				program.bossOverlay(plant);
 				attack = true;
 			}
+		}
+		if(plant.getImage().getX() > 1155) {
+			attack = false;
 		}
 		if(attack) {
 			plant.getImage().move(10, 0); 		
 		}
 		else {
-			plant.getImage().move(-10, 0);
+				plant.getImage().move(-10, 0);
 		}
 
 	}
 
 	public boolean enemyCollisionTest(Enemy plant, GImage image) {
-		return (plant.getImage().getY() - plant.getImage().getY() <= 100
-				&& plant.getImage().getY() - plant.getImage().getY() >= -100
-				&& plant.getImage().getX() - plant.getImage().getX() <= 100
-				&& plant.getImage().getX() - plant.getImage().getX() >= -100);
+		return (plant.getImage().getY() - image.getY() <= 50
+				&& plant.getImage().getY() - image.getY() >= -500
+				&& plant.getImage().getX() - image.getX() <= 50
+				&& plant.getImage().getX() - image.getX() >= -50);
+	}
+	
+	public void checkCollision() {
+			if(program.getUser().getInvincibility()) {return;}
+			if(enemyCollisionTest(plant, userRep)) {
+				if(user.getDX() > 0 || user.getDX() > 0 && user.getDY() < 0 || user.getDX() > 0 && user.getDY() > 0) {
+					//System.out.println("left"); 
+					user.setX(user.getX() - 100);
+				} 
+				if(user.getDX() == 0 && user.getDY() == 0) {
+					user.setX(user.getX() - 100);
+				}
+				program.getUser().getUserStats().setHP_cur(program.getUser().getUserStats().getHP_cur() - 5);
+			}
+		
 	}
 }
