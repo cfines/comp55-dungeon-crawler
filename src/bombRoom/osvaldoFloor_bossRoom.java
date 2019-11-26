@@ -307,7 +307,6 @@ public class osvaldoFloor_bossRoom extends GraphicsPane implements ActionListene
 	public void userCombat() {
 		for(int i = 0; i < listOfProjectiles.size(); i++) {
 			if(checkHitBack(listOfProjectiles.get(i), osvaldoom.getImage())) { 
-				System.out.println("You killed Osvaldoom!");
 				osvaldoom.getEnemyStats().setHP_cur(0);
 				listOfProjectiles.remove(listOfProjectiles.get(i));
 				program.bossOverlay(osvaldoom);
