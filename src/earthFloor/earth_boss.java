@@ -149,7 +149,9 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 			//			} else{
 			//				move = true;
 			//			}
-			if(enemyCollisionTest(plant, userWeapon))
+			if(enemyCollisionTest(plant, userWeapon)) {
+				attack = true;
+			}
 		}
 //		plant.getImage().movePolar(1, degree);
 //		degree+=80;
@@ -165,7 +167,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 //		else { plant.getImage().move(-8, 0); }
 //		
 		
-		if(enemyCollisionTest(plant, userWeapon)) {
+		if(attack) {
 			plant.getImage().move(10, 0); 		
 		}
 		else {
