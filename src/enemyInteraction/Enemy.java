@@ -68,6 +68,7 @@ public class Enemy {
 			image = new GImage("osvaldoom_small.png", dx, dy);
 		} else if(type == enemyType.plant_NORTH) {
 			image = new GImage("plant_NORTH.gif", dx, dy);
+			image.setSize(1000,500);
 		} 
 		else if(type == enemyType.projectile) {
 			image = new GImage("ghost_enemy.gif", dx, dy);

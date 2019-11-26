@@ -142,54 +142,19 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
+		int counter = 2;
 		if(everyXSeconds(5)) {
-			//			move = !move;
-			//			if(plant.getCoordX() < 400) {
-			//				move = false;
-			//			} else{
-			//				move = true;
-			//			}
 			if(enemyCollisionTest(plant, userWeapon)) {
 				attack = true;
 			}
 		}
-//		plant.getImage().movePolar(1, degree);
-//		degree+=80;
-//		degree%=360;
-//		//		if(move) {
-//		if(plant.getCoordX() > 900) {
-//			move = false;
-//		} else if (plant.getCoordX() < 100) {
-//			move = true;
-//		}
-//
-//		if(move) { plant.getImage().move(8, 0); }
-//		else { plant.getImage().move(-8, 0); }
-//		
-		
+
 		if(attack) {
 			plant.getImage().move(10, 0); 		
 		}
 		else {
 			plant.getImage().move(-10, 0);
 		}
-		//		}
-		//		else {
-		//			
-		//		}
-		//plant.getImage().setLocation(1155, 100);
-		//plant.setStartY(100);
-		//plant.setStartX(1155);
-		//			}else {
-		//				double distX = enem.getImage().getX() - userRep.getX();
-		//				double distY = enem.getImage().getY() - userRep.getY();
-		//				double moveX = (distX * 1) / 100;
-		//				double moveY = (distY * 1) / 100;
-		//				enem.getImage().move(-moveX, -moveY);
-		//				enem.setStartY(enem.getImage().getY());
-		//				enem.setStartX(enem.getImage().getX());
-		//				}
-
 
 	}
 
