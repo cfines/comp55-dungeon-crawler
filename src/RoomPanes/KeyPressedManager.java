@@ -83,6 +83,9 @@ public class KeyPressedManager {
 			program.getUser().cycleWeapon();
 			program.drawSword();
 			break;
+		case KeyEvent.VK_G:
+			program.getUser().setInvincibility(!program.getUser().getInvincibility());
+			break;
 		case KeyEvent.VK_UP:
 			atkUp = true;
 			attackUp();

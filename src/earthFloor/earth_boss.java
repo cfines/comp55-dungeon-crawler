@@ -31,7 +31,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private User user;
-	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
+	private Enemy plant = new Enemy(100,100,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
