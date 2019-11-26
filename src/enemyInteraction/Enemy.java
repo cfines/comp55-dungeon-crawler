@@ -62,13 +62,11 @@ public class Enemy {
 				type == enemyType.FIREFish || type == enemyType.leg || type == enemyType.goon1 || type == enemyType.goon2 || type == enemyType.insidePacific || 
 				type == enemyType.momoko  || type == enemyType.Brigand||
 				type == enemyType.Samurai || type == enemyType.DarkMage || type == enemyType.face || type == enemyType.Berkut || type == enemyType.Rinea ||
-				type == enemyType.Deadass || type == enemyType.Dread || type == enemyType.bomb) {
+				type == enemyType.Deadass||type == enemyType.Pleft || type == enemyType.Pright || type == enemyType.Dread || type == enemyType.bomb) {
 			image = new GImage(type + ".gif", dx, dy);
 		} else if(type == enemyType.electric) {
 			image = new GImage("osvaldoom_small.png", dx, dy);
-		} else if(type == enemyType.plant_NORTH) {
-			image = new GImage("plant_NORTH.gif", dx, dy);
-		} 
+		}
 		else if(type == enemyType.projectile) {
 			image = new GImage("ghost_enemy.gif", dx, dy);
 			image.setSize(75, 75);
