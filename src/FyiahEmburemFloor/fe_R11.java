@@ -70,8 +70,8 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 		elements.add(background);
 		elements.add(E22);
 		elements.add(E23);
-		enemyImages.add(enemy1);
 		enemyImages.add(burned);
+		enemyImages.add(enemy1);
 		elements.add(userRep);
 		
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
@@ -117,17 +117,12 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 		}
 		program.refreshOverlay();		
 	}
+	
 	private void nextRoom() {
 		double userX = userRep.getX();
 		double userY = userRep.getY();
 		double userY2 = userRep.getY() + 80;
-		if(userX <= E22.getX() && userY <= E22.getY() && userY2 >= E22.getY() - 30  && userX >= E22.getX() - 30) {
-			user.setX(575);
-			user.setY(110);
-			userRep.setLocation(user.getX(), user.getY());
-			program.switchToFeR4();
-		}
-		else if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 85 && userY <= E23.getY() + 85) {
+		if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 85 && userY <= E23.getY() + 85) {
 			if(!unlocked) {
 				if(program.getUser().getHasKey()) {
 					unlockProtocol();
@@ -144,6 +139,12 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 				userRep.setLocation(user.getX(), user.getY());
 				program.switchToFeR12();
 			}
+		}
+		else if(userX <= E22.getX() && userY <= E22.getY() && userY2 >= E22.getY() - 30  && userX >= E22.getX() - 30) {
+			user.setX(575);
+			user.setY(110);
+			userRep.setLocation(user.getX(), user.getY());
+			program.switchToFeR4();
 		}
 	}
 	public boolean everyXSeconds(double x) {
