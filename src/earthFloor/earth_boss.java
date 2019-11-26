@@ -84,7 +84,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		for (int i = 0; i <= elements.size() - 1; i++) {
 			program.add(elements.get(i));
 		}
-		program.drawOverlay(2, program.getFloorNum());
+		program.drawOverlay(0, 5);
 		program.bossOverlay(plant);
 	}
 
@@ -102,17 +102,14 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(plant.getEnemyStats().getHP_cur() <= 0) {
-			if(program.getBossRun()) {
+				t.stop();
 				user.setX(150);
 				user.setY(300);
 				program.setFloorNum(program.getFloorNum() + 1);
-				program.switchToGameWin();
 				program.setBossRun(false);
+				program.setWonGame(true);
+				program.switchToGameWin();
 				return;
-			}
-			t.stop();
-			program.setBossDefeated(true);
-			program.switchToTitleScreen();
 		}
 		
 		timerCont++;
