@@ -70,6 +70,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	/////////////////////////////////////////////////////////////////	
 	
 	private pausePane pausePane;
+	private GameWinPane gameWin;
 	private instructionsPane QPane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
@@ -177,6 +178,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		bombRect2.setColor(Color.red);
 		bombRect3.setColor(Color.red);
 		bombRect4.setColor(Color.red);
+		gameWin = new GameWinPane(this);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -246,10 +248,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-		//switchToTitleScreen(); //change which screen you want to switch to
-//		switchToEarthBoss();
 		switchToTitleScreen(); //change which screen you want to switch to
-		//switchToTitleScreen();
 	}
 	
 	public void stopSound() {
@@ -269,6 +268,10 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	public void switchToTitleScreen() 
 	{
 		switchToScreen(tittle);
+	}
+	
+	public void switchToGameWin() {
+		switchToScreen(gameWin);
 	}
 
 	public void switchToMenu() {

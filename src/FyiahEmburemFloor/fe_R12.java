@@ -97,7 +97,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 			if(program.getBossRun()) {
 				user.setX(150);
 				user.setY(300);
-				program.switchToTitleScreen(); //TODO change when next boss is implemented
+				program.switchToEarthBoss(); 
 				program.setBossRun(false);
 				return;
 			}
