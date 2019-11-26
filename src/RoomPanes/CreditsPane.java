@@ -31,7 +31,7 @@ public class CreditsPane extends GraphicsPane{
 		
 		this.program = app;
 		creditsImg = new GImage("Credits.gif", 25,0);
-		text = new GImage("Credits text.png", 10,0);
+		text = new GImage("Credits text.png", 10,-61);
 		creditsImg.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
 		AudioPlayer audio = AudioPlayer.getInstance();
