@@ -20,7 +20,7 @@ public class GameWinPane extends GraphicsPane implements ActionListener {
 	
 	public GameWinPane(MainApplication app){
 		this.program = app;
-		gameWin = new GImage ("Game Over Screen.png",0,0);
+		gameWin = new GImage ("Victory Screen.png",0,0);
 		gameWin.setSize(1150,650);
 		returnMenu = new GButton("Congratualtions!", program.WINDOW_WIDTH/2 - 75, program.WINDOW_HEIGHT - 150, 150, 50);
 		returnMenu.setFillColor(Color.green);
