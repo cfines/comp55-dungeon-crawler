@@ -272,12 +272,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToGameWin() {
+		audio.playSoundWithOptions(MUSIC_FOLDER, "p3credits.mp3", true);
 		switchToScreen(gameWin);
 	}
 
 	public void switchToMenu() {
 		stopSound();
 		count++;
+		audio.stopSound(MUSIC_FOLDER, "Patrick on a seahorse listening to fly me to the moon.mp3");
 		audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 		switchToScreen(menu);
 	}
@@ -290,6 +292,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToCreditsPane() {
+	audio.stopSound(MUSIC_FOLDER, "p3credits.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Patrick on a seahorse listening to fly me to the moon.mp3", true);
 		switchToScreen(creditsPane);
 	}
 

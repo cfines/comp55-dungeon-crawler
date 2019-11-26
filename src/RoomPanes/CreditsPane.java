@@ -47,7 +47,6 @@ public class CreditsPane extends GraphicsPane{
 		program.add(creditsImg);
 		program.add(goBack);
 		program.add(text);
-		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public class CreditsPane extends GraphicsPane{
 		program.remove(creditsImg);
 		program.remove(goBack);
 		program.remove(text);
-		audio.stopSound("sounds", "Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 
 	@Override
