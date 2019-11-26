@@ -103,8 +103,19 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(plant.getEnemyStats().getHP_cur() <= 0) {
+			if(program.getBossRun()) {
+				user.setX(150);
+				user.setY(300);
+				program.setFloorNum(program.getFloorNum() + 1);
+				program.switchToTitleScreen();
+				program.setBossRun(false);
+				return;
+			}
+			t.stop();
 			program.setBossDefeated(true);
+			program.switchToTitleScreen();
 		}
+		
 		timerCont++;
 		mover.notReallyActionPerformed(e);
 		enemyMovement();
