@@ -5,11 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Timer;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import miscMechanics.GButton;
 
-public class MenuPane extends GraphicsPane /*implements ActionListener*/{
+public class MenuPane extends GraphicsPane implements ActionListener{
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	public static final int WINDOW_WIDTH = 1155;
@@ -18,9 +20,11 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 	public GButton play, bossRush, credits, exit;
 	public static final String MUSIC_FOLDER = "sounds";
 	private AudioPlayer audio = AudioPlayer.getInstance();
-	//public Timer timer = new Timer(5000, this);
+	public Timer timer = new Timer(30, this);
+	private int timerCont = 0;
+	public boolean swapBack = false, move = false;
 
-	public MenuPane(MainApplication app) {
+	public MenuPane(MainApplication app){
 		super();
 		program = app;
 		menuScreen = new GImage("Main Menu (Lights on without koolaid).png", 0, 0);
@@ -31,19 +35,51 @@ public class MenuPane extends GraphicsPane /*implements ActionListener*/{
 		credits = new GButton("Credits", 575, WINDOW_HEIGHT - 75, 150, 50);
 		exit = new GButton("Exit", 762.5, WINDOW_HEIGHT - 75, 150, 50);
 	}
+	
+	public boolean everyXSeconds(double x) {
+		return(timerCont %(x) == 0);
+	}
+	
+	public void backgroundSwap(boolean swap) {
+		if(!move) {
+			audio.playSound(MUSIC_FOLDER, "flicker.mp3");
+			menuScreen.setImage("Main Menu (Lights off).png");
+			}
+		else{
+			audio.playSound(MUSIC_FOLDER, "flicker.mp3");
+			menuScreen.setImage("Main Menu (Lights on without koolaid).png");
+			}
+		hideContents();
+		showContents();
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		timerCont++;
+		if(everyXSeconds(50)){
+			move =! move;
+		}
+		if(move) {
+			backgroundSwap(move);
+			swapBack =! swapBack;
+			move =! move;
+			if(swapBack) {backgroundSwap(move);}
+		}
+	}
 
 	@Override
 	public void showContents() {
+		timer.start();
 		program.add(menuScreen);
 		program.add(play);
 		program.add(bossRush);
 		program.add(credits);
 		program.add(exit);
-		//timer.start();
 	}
 
 	@Override
 	public void hideContents() {
+		timer.stop();
 		program.remove(menuScreen);
 		program.remove(play);
 		program.remove(bossRush);
