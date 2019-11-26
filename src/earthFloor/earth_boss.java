@@ -52,7 +52,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 
 		boss = plant.getImage();
 		boss.setSize(1000, 500);
-		
+
 		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -71,15 +71,15 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		mover = new KeyPressedManager(program, user, userRep, listOfEnemies, listOfInter, elements,
 				atkUp, atkLeft, atkRight, atkDown, userWeapon);
 	}
-	
+
 	@Override
 	public void showContents() {
-		
+
 		if(plant.getEnemyStats().getHP_cur() <= 0) {
 			program.setBossDefeated(true);
 			program.switchToOsvaldoBossComplete();
 		}
-		
+
 		t.start();
 		program.add(voidSpace);
 		for (int i = 0; i <= elements.size() - 1; i++) {
@@ -101,10 +101,21 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if(plant.getEnemyStats().getHP_cur() <= 0) {
+			if(program.getBossRun()) {
+				user.setX(150);
+				user.setY(300);
+				program.setFloorNum(program.getFloorNum() + 1);
+				program.switchToTitleScreen();
+				program.setBossRun(false);
+				return;
+			}
+			t.stop();
 			program.setBossDefeated(true);
+			program.switchToTitleScreen();
 		}
+		
 		timerCont++;
 		mover.notReallyActionPerformed(e);
 		enemyMovement();
@@ -133,41 +144,64 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		}
 		mover.notReallyKeyReleased(e);
 	}
-	
+
 	public boolean checkHitBack(Enemy enem, GImage image) {
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60
 				&& enem.getImage().getX() - image.getX() <= 60
 				&& enem.getImage().getX() - image.getX() >= -60);
 	}
-	
+
 	public void enemyMovement() {
 		if(everyXSeconds(5)) {
-			plant.getImage().movePolar(1, degree);
-			degree+=80;
-			degree%=360;
-			if(enemyCollisionTest(plant, userWeapon)) {
-				plant.getImage().move(20, 0);
-			}
-			else {
-				plant.getImage().move(-20, 0);				
-			}
-			//plant.getImage().setLocation(1155, 100);
-			//plant.setStartY(100);
-			//plant.setStartX(1155);
-//			}else {
-//				double distX = enem.getImage().getX() - userRep.getX();
-//				double distY = enem.getImage().getY() - userRep.getY();
-//				double moveX = (distX * 1) / 100;
-//				double moveY = (distY * 1) / 100;
-//				enem.getImage().move(-moveX, -moveY);
-//				enem.setStartY(enem.getImage().getY());
-//				enem.setStartX(enem.getImage().getX());
-//				}
-	
+			//			move = !move;
+			//			if(plant.getCoordX() < 400) {
+			//				move = false;
+			//			} else{
+			//				move = true;
+			//			}
+			if(enemyCollisionTest(plant, userWeapon))
 		}
+//		plant.getImage().movePolar(1, degree);
+//		degree+=80;
+//		degree%=360;
+//		//		if(move) {
+//		if(plant.getCoordX() > 900) {
+//			move = false;
+//		} else if (plant.getCoordX() < 100) {
+//			move = true;
+//		}
+//
+//		if(move) { plant.getImage().move(8, 0); }
+//		else { plant.getImage().move(-8, 0); }
+//		
+		
+		if(enemyCollisionTest(plant, userWeapon)) {
+			plant.getImage().move(10, 0); 		
+		}
+		else {
+			plant.getImage().move(-10, 0);
+		}
+		//		}
+		//		else {
+		//			
+		//		}
+		//plant.getImage().setLocation(1155, 100);
+		//plant.setStartY(100);
+		//plant.setStartX(1155);
+		//			}else {
+		//				double distX = enem.getImage().getX() - userRep.getX();
+		//				double distY = enem.getImage().getY() - userRep.getY();
+		//				double moveX = (distX * 1) / 100;
+		//				double moveY = (distY * 1) / 100;
+		//				enem.getImage().move(-moveX, -moveY);
+		//				enem.setStartY(enem.getImage().getY());
+		//				enem.setStartX(enem.getImage().getX());
+		//				}
+
+
 	}
-	
+
 	public boolean enemyCollisionTest(Enemy enem, GImage image) {
 		return (enem.getImage().getY() - image.getY() <= 60
 				&& enem.getImage().getY() - image.getY() >= -60

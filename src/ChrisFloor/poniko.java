@@ -75,8 +75,8 @@ public class poniko extends GraphicsPane implements ActionListener{
 			if(program.getBossRun()) {
 				user.setX(150);
 				user.setY(300);
-				program.switchToTitleScreen(); //TODO change when next boss is implemented
-				program.setBossRun(false);
+				program.setFloorNum(program.getFloorNum() + 1);
+				program.switchToFeR12(); 
 				return;
 			}
 			t.stop();
