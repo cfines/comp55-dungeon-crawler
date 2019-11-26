@@ -275,6 +275,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void switchToMenu() {
+		stopSound();
 		count++;
 		audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 		switchToScreen(menu);
@@ -381,6 +382,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(chris_R6);
 	}
 	public void switchToChrisR7() {
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R7);
 	}
