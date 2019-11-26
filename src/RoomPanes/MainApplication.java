@@ -114,7 +114,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private TitleScreenPane tittle; 
 	private GameOverPane playerDied;
 	private MenuPane menu;
-	private MenuPane_LightsOff lightsoff;
 	private CreditsPane creditsPane;
 	private AudioPlayer audio = AudioPlayer.getInstance();
 	private fe_R1 feR1;
@@ -186,7 +185,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		gameWin = new GameWinPane(this);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
-		lightsoff = new MenuPane_LightsOff(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
 		testPane = new mapBase_R2TEST(this);
@@ -627,9 +625,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		audio.playSoundWithOptions(MUSIC_FOLDER,"Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3",true);
 		switchToScreen(feR12C);
 	}
-	public void switchToLightsOff() {
-		switchToScreen(lightsoff);
-	}
 
 	private void playRandomSoundForever() {
 		audio.playSoundWithOptions(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length],true);
@@ -903,7 +898,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		user.setY(300);
 		somePane = null;
 		menu = null;
-		lightsoff = null;
 		creditsPane = null;
 		mapbase_R2 = null;
 		testPane = null;
@@ -956,7 +950,6 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		///////////////////////////////
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
-		lightsoff = new MenuPane_LightsOff(this);
 		creditsPane = new CreditsPane(this);
 		mapbase_R2 = new mapBase_R2(this);
 		testPane = new mapBase_R2TEST(this);
