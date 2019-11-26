@@ -528,6 +528,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToFeR1() {
 		if(DEVELOPER_MODE) {stopSound();}
+		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}
