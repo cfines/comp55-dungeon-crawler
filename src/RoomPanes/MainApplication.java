@@ -272,6 +272,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToGameWin() {
+		audio.stopSound(MUSIC_FOLDER,"Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "p3credits.mp3", true);
 		switchToScreen(gameWin);
 	}
@@ -292,7 +293,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToCreditsPane() {
-	audio.stopSound(MUSIC_FOLDER, "p3credits.mp3");
+		audio.stopSound(MUSIC_FOLDER, "p3credits.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Patrick on a seahorse listening to fly me to the moon.mp3", true);
 		switchToScreen(creditsPane);
 	}
