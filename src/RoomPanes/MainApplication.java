@@ -247,7 +247,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//bossDefeated = true;
 	
 		//switchToTitleScreen(); //change which screen you want to switch to
-		switchToEarthBoss();
+		switchToTitleScreen();
 	}
 	
 	public void stopSound() {
@@ -337,6 +337,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 			user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
 			user.setX(800);
 			user.setY(WINDOW_HEIGHT/2 - 40);
+			floorNum = 1;
 			resetBosses();
 		}
 		switchToScreen(mapbase_R9);
