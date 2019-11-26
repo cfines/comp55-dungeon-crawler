@@ -154,10 +154,10 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		if(everyXSeconds(5)) {
 			if(enemyCollisionTest(plant, userWeapon) && atkRight) {
 				program.bossOverlay(plant);
-				System.out.println("attack = true");
+				//System.out.println("attack = true");
 				attack = true;
 			} else {
-				System.out.println("attack = false");
+				//System.out.println("attack = false");
 				attack = false;
 			}
 		}
