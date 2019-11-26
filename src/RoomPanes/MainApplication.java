@@ -246,13 +246,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//user.setHasKey(true);
 		//bossDefeated = true;
 	
-<<<<<<< HEAD
-		//switchToTitleScreen(); //change which screen you want to switch to
-		switchToEarthBoss();
-=======
 		switchToTitleScreen(); //change which screen you want to switch to
-		//switchToTitleScreen();
->>>>>>> branch 'master' of https://github.com/comp55/group-project-stacked_overflow.git
+
 	}
 	
 	public void stopSound() {

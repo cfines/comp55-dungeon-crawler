@@ -43,9 +43,7 @@ public class pausePane extends GraphicsPane implements ActionListener {
 	private GButton LD_R1 = new GButton("R1", 10, 325, 50, 50);
 	private GButton LD_RKey = new GButton("KEY", 65, 325, 50, 50);
 	private GButton LD_RBoss = new GButton("BOSS", 120, 325, 50, 50);
-	private GButton SP_R1 = new GButton("R1", 10, 400, 50, 50);
-	private GButton SP_RKey = new GButton("KEY", 65, 400, 50, 50);
-	private GButton SP_RBoss = new GButton("BOSS", 120, 400, 50, 50);
+	private GButton SP_RBoss = new GButton("BOSS", 10, 400, 50, 50);
 	private GButton BOMB_Bomb1 = new GButton("BOMB1", 10, 475, 50, 50);
 	private GButton BOMB_Bomb2 = new GButton("BOMB2", 65, 475, 50, 50);
 	private GButton BOMB_Bomb3 = new GButton("BOMB3", 120, 475, 50, 50);
@@ -107,8 +105,6 @@ public class pausePane extends GraphicsPane implements ActionListener {
 		buttonArr.add(LD_R1);
 		buttonArr.add(LD_RKey);
 		buttonArr.add(LD_RBoss);
-		buttonArr.add(SP_R1);
-		buttonArr.add(SP_RKey);
 		buttonArr.add(SP_RBoss);
 		buttonArr.add(BOMB_Bomb1);
 		buttonArr.add(BOMB_Bomb2);
@@ -129,8 +125,8 @@ public class pausePane extends GraphicsPane implements ActionListener {
 			if(i == 3 || i == 4 || i == 5) { buttonArr.get(i).setFillColor(Color.cyan); }
 			if(i == 6 || i == 7 || i == 8) { buttonArr.get(i).setFillColor(Color.black); buttonArr.get(i).setColor(Color.white); }
 			if(i == 9 || i == 10 || i == 11) { buttonArr.get(i).setFillColor(pink); }
-			if(i == 12 || i == 13 || i == 14) { buttonArr.get(i).setFillColor(Color.gray); }
-			if(i == 15 || i == 16 || i == 17 || i == 18) { buttonArr.get(i).setFillColor(Color.red); }
+			if(i == 12) { buttonArr.get(i).setFillColor(Color.gray); }
+			if(i == 13 || i == 14 || i == 15) { buttonArr.get(i).setFillColor(Color.red); }
 		}
 		
 	}
@@ -217,12 +213,10 @@ public class pausePane extends GraphicsPane implements ActionListener {
 				if(i == 9) { program.switchToFeR1(); }			//FIRE-R1
 				if(i == 10) { program.switchToFeR10(); }			//FIRE-KEY
 				if(i == 11) { program.switchToFeR12(); }			//FIRE-BOSS
-				if(i == 12) { /*TODO add*/ }			//STAN-R1
-				if(i == 13) { /*TODO add*/ }			//STAN-KEY
-				if(i == 14) { program.switchToEarthBoss(); }			//STAN-BOSS
-				if(i == 15) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
-				if(i == 16) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
-				if(i == 17) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
+				if(i == 12) { program.switchToEarthBoss(); }			//STAN-BOSS
+				if(i == 13) { program.switchToBombRoomBOMB1(); }			//BOMB-BOMB1
+				if(i == 14) { program.switchToBombRoomBOMB2(); }			//BOMB-BOMB2
+				if(i == 15) { program.switchToBombRoomBOMB3(); }			//BOMB-BOMB3
 			}
 		}
 		
