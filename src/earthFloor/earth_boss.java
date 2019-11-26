@@ -25,13 +25,13 @@ import miscMechanics.User;
 public class earth_boss extends GraphicsPane implements ActionListener{
 	private MainApplication program;
 	private GImage background,userRep, userWeapon; 
-	private GImage boss = new GImage("plant_NORTH.gif", 1155, 100); 
+	private GImage boss;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<GImage> elements = new ArrayList<GImage>();
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private User user;
-	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.plant_NORTH);
+	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
@@ -51,7 +51,6 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		user = program.getUser();
 
 		boss = plant.getImage();
-		boss.setSize(1000, 500);
 
 		background = new GImage("Earth_Floor (Regular Floor).png", 15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
@@ -159,7 +158,6 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 				attack = true;
 			}
 		}
-
 		if(attack) {
 			plant.getImage().move(10, 0); 		
 		}
@@ -169,10 +167,10 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 
 	}
 
-	public boolean enemyCollisionTest(Enemy enem, GImage image) {
-		return (enem.getImage().getY() - image.getY() <= 60
-				&& enem.getImage().getY() - image.getY() >= -60
-				&& enem.getImage().getX() - image.getX() <= 60
-				&& enem.getImage().getX() - image.getX() >= -60);
+	public boolean enemyCollisionTest(Enemy plant, GImage image) {
+		return (plant.getImage().getY() - plant.getImage().getY() <= 100
+				&& plant.getImage().getY() - plant.getImage().getY() >= -100
+				&& plant.getImage().getX() - plant.getImage().getX() <= 100
+				&& plant.getImage().getX() - plant.getImage().getX() >= -100);
 	}
 }

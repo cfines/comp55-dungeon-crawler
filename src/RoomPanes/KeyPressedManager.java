@@ -350,7 +350,7 @@ public class KeyPressedManager {
 		for(Enemy enem : listOfEnemies)
 			if(enemyCollisionTest(enem, userWeapon)) {
 				if(enem.getEnemyType() == enemyType.bomb) {return;}
-				if(enem.getEnemyType() == enemyType.plant_NORTH) {return;}
+				if(enem.getEnemyType() == enemyType.Pright) {return;}
 				GImage tempEnem = enem.getImage();
 				if(atkUp) {
 					audio.playSound(MUSIC_FOLDER, "sword hit.wav");

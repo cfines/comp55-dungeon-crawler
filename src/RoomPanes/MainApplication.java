@@ -247,7 +247,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//bossDefeated = true;
 	
 		//switchToTitleScreen(); //change which screen you want to switch to
-		switchToTitleScreen();
+		switchToEarthBoss();
 	}
 	
 	public void stopSound() {
