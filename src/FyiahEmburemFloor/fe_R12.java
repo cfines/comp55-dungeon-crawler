@@ -26,7 +26,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	private Enemy iDuma = new Enemy (69,69,2,4,600,100, ElementType.FIRE, enemyType.Duma);
+	private Enemy iDuma = new Enemy (71,71,4,4,600,100, ElementType.FIRE, enemyType.Duma);
 	private User user;
 	private GImage Duma = new GImage ("Duma.png",600,100);
 	private int degree;
@@ -36,7 +36,7 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 	private ArrayList<GImage> enemyImages = new ArrayList<GImage>();
 	private KeyPressedManager mover;
 	private int timerCont = 0;
-	private Enemy crest = new Enemy(100,100,99999,1,0,0,ElementType.FIRE, enemyType.DumaCrest);
+	private Enemy crest = new Enemy(100,100,3,1,0,0,ElementType.FIRE, enemyType.DumaCrest);
 	private ArrayList<Enemy> listOfProjectiles = new ArrayList<Enemy>();
 	private boolean attack = false, hit = false;
 	private boolean move = true;

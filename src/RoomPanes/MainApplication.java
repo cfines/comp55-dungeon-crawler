@@ -173,7 +173,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 
 	public void run() {
-		user = new User(15, 15, 1000, 1, 300, 300);
+		user = new User(30, 30, 1000, 1, 300, 300);
 		System.out.println("Hello, world!");
 		bombRect.setFilled(true);
 		bombRect2.setColor(Color.red);
@@ -948,6 +948,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		feR11 = null;
 		feR12 = null;
 		feR12C = null;
+		earth_boss = null;
 		///////////////////////////////
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
@@ -1000,6 +1001,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		feR11 = new fe_R11(this);
 		feR12 = new fe_R12(this);
 		feR12C = new fe_R12Complete(this);
+		earth_boss = new earth_boss(this);
 		resetBombs();
 	}
 	
@@ -1008,11 +1010,13 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = null;
 		Poniko = null;
 		feR12 = null;
+		earth_boss = null;
 		////////////////////////////////
 		mapbase_R9 = new mapBase_R9(this);
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		Poniko = new poniko(this);
 		feR12 = new fe_R12(this);
+		earth_boss = new earth_boss(this);
 	}
 	
 	public void setWonGame(boolean bruh) {
