@@ -1,3 +1,6 @@
+/*Immortalize:*/
+//Alan Barragan <3\\ 
+
 package RoomPanes;
 
 import java.awt.Color;
