@@ -75,10 +75,10 @@ public class fe_R12 extends GraphicsPane implements ActionListener{
 		voidSpace.setColor(Color.BLACK);
 		voidSpace.setFilled(true);
 		
-		listOfEnemies.add(iDuma);
 		listOfEnemies.add(ienemy1);
 		listOfEnemies.add(ienemy2);
 		listOfEnemies.add(ienemy3);
+		listOfEnemies.add(iDuma);
 		elements.add(background);
 		elements.add(wall1);
 		elements.add(wall2);
