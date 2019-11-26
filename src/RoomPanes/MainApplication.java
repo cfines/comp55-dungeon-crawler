@@ -249,6 +249,20 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToTitleScreen(); //change which screen you want to switch to
 	}
 	
+	public void stopSound() {
+		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
+		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
+		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3");
+	}
+	
 	public void switchToTitleScreen() 
 	{
 		switchToScreen(tittle);
@@ -471,17 +485,9 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToBombRoomR1() {
-		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
-		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
-		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		if(DEVELOPER_MODE) {stopSound();}
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3", true);
 		switchToScreen(bombRoom_R1);
 	}
 	
@@ -502,41 +508,26 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToBombRoomBOMB1() {
+		if(DEVELOPER_MODE) {stopSound();}
 		switchToScreen(bombRoom_BOMB1);
 	}
 	
 	public void switchToBombRoomBOMB2() {
+		if(DEVELOPER_MODE) {stopSound();}
 		switchToScreen(bombRoom_BOMB2);
 	}
 	
 	public void switchToBombRoomBOMB3() {
+		if(DEVELOPER_MODE) {stopSound();}
 		switchToScreen(bombRoom_BOMB3);
 	}
 	
 	public void switchToBombRoomKEY() {
-		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
-		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
-		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
 		switchToScreen(bombRoom_KEY);
 	}
 	
 	public void switchToFeR1() {
-		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
-		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Barracks Settlement.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dark Water.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
-		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
-		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
-		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		if(DEVELOPER_MODE) {stopSound();}
 		audio.playSoundWithOptions(MUSIC_FOLDER,"y2mate.com - dumas_ordeal_fire_emblem_echoes_shadows_of_valentia_EDYJ7KkJx7s.mp3",true);
 		switchToScreen(feR1);
 	}

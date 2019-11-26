@@ -49,10 +49,10 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 		this.program = app;
 		user = program.getUser();
 		Enemy ienemy1 = new Enemy(50,50,2,3,575,100, ElementType.FIRE, enemyType.Berkut);
-		Interactions iE22 = new Interactions(interactionType.entry_door_SOUTH,575,535);
 		Interactions iE23 = new Interactions(interactionType.entry_bossDoor,575,30);
-		E22 = iE22.getImage();
+		Interactions iE22 = new Interactions(interactionType.entry_door_SOUTH,575,535);
 		E23 = iE23.getImage();
+		E22 = iE22.getImage();
 		background = new GImage("FE Room.png",15,30);
 		userRep = new GImage("Rogue_(Sample User).gif");
 		userWeapon = new GImage("Fire Sword(RIGHT).png", 0, 0);
@@ -65,11 +65,11 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 		
 		listOfEnemies.add(Rinea);
 		listOfEnemies.add(ienemy1);
-		listOfInter.add(iE22);
 		listOfInter.add(iE23);
+		listOfInter.add(iE22);
 		elements.add(background);
-		elements.add(E22);
 		elements.add(E23);
+		elements.add(E22);
 		enemyImages.add(burned);
 		enemyImages.add(enemy1);
 		elements.add(userRep);
@@ -133,7 +133,7 @@ public class fe_R11 extends GraphicsPane implements ActionListener{
 				userRep.setLocation(user.getX(), user.getY());
 				program.switchToFeR12Complete();
 			}
-			if(userX >= E23.getX() && userY >= E23.getY() && userX <= E23.getX() + 95 && userY <= E23.getY() + 90) {
+			else {
 				user.setX(575);
 				user.setY(410);
 				userRep.setLocation(user.getX(), user.getY());
