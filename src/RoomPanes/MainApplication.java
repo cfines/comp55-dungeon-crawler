@@ -70,6 +70,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	/////////////////////////////////////////////////////////////////	
 	
 	private pausePane pausePane;
+	private GameWinPane gameWin;
 	private instructionsPane QPane;
 	private SomePane somePane; 
 	private mapBase_R2 mapbase_R2; 
@@ -127,6 +128,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private fe_R12Complete feR12C;
 	public boolean bossRun = false;
 	public int bombCounter = 90;
+	public boolean wonGame = false;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -177,6 +179,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		bombRect2.setColor(Color.red);
 		bombRect3.setColor(Color.red);
 		bombRect4.setColor(Color.red);
+		gameWin = new GameWinPane(this);
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		lightsoff = new MenuPane_LightsOff(this);
@@ -247,7 +250,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		//bossDefeated = true;
 	
 		//switchToTitleScreen(); //change which screen you want to switch to
-		switchToEarthBoss();
+		switchToTitleScreen(); //change which screen you want to switch to
 	}
 	
 	public void stopSound() {
@@ -268,9 +271,17 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	{
 		switchToScreen(tittle);
 	}
+	
+	public void switchToGameWin() {
+		audio.stopSound(MUSIC_FOLDER,"Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "p3credits.mp3", true);
+		switchToScreen(gameWin);
+	}
 
 	public void switchToMenu() {
+		stopSound();
 		count++;
+		audio.stopSound(MUSIC_FOLDER, "Patrick on a seahorse listening to fly me to the moon.mp3");
 		audio.playSound(MUSIC_FOLDER, "menu_select.wav");
 		switchToScreen(menu);
 	}
@@ -283,6 +294,8 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToCreditsPane() {
+		audio.stopSound(MUSIC_FOLDER, "p3credits.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Patrick on a seahorse listening to fly me to the moon.mp3", true);
 		switchToScreen(creditsPane);
 	}
 
@@ -376,6 +389,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		switchToScreen(chris_R6);
 	}
 	public void switchToChrisR7() {
+		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R7);
 	}
@@ -991,6 +1005,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		Poniko = new poniko(this);
 		feR12 = new fe_R12(this);
+	}
+	
+	public void setWonGame(boolean bruh) {
+		this.wonGame = bruh;
+	}
+	
+	public boolean getWonGame() {
+		return wonGame;
 	}
 	
 	

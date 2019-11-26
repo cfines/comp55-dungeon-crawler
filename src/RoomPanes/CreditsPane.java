@@ -31,7 +31,7 @@ public class CreditsPane extends GraphicsPane{
 		
 		this.program = app;
 		creditsImg = new GImage("Credits.gif", 25,0);
-		text = new GImage("Credits text.png", 10,0);
+		//text = new GImage("Credits text.png", 10,0);
 		creditsImg.setSize(WINDOW_WIDTH-50, WINDOW_HEIGHT);
 		goBack = new GButton("Return", 1000,0, 150,50);
 		AudioPlayer audio = AudioPlayer.getInstance();
@@ -47,7 +47,6 @@ public class CreditsPane extends GraphicsPane{
 		program.add(creditsImg);
 		program.add(goBack);
 		program.add(text);
-		audio.playSound("sounds","Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public class CreditsPane extends GraphicsPane{
 		program.remove(creditsImg);
 		program.remove(goBack);
 		program.remove(text);
-		audio.stopSound("sounds", "Patrick on a seahorse listening to fly me to the moon.mp3");
 	}
 
 	@Override
@@ -65,6 +63,9 @@ public class CreditsPane extends GraphicsPane{
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == goBack) 
 		{
+			if(program.getWonGame()) {
+				System.exit(0);
+			}
 			program.switchToMenu();
 		}
 	}

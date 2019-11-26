@@ -31,7 +31,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
 	private User user;
-	private Enemy plant = new Enemy(53,53,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
+	private Enemy plant = new Enemy(50,50,2,2,1155,100, ElementType.EARTH, enemyType.Pright);
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
 	private int timerCont = 0;
@@ -132,16 +132,16 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 		if((e.getKeyCode() == KeyEvent.VK_ESCAPE) || (e.getKeyCode() == KeyEvent.VK_Q)) {
 			t.stop();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			atkUp = true;
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			atkRight = true;
 		}
 		mover.notReallyKeyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			atkUp = false;
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			atkRight = false;
 		}
 		mover.notReallyKeyReleased(e);
 	}
@@ -154,21 +154,33 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 	}
 
 	public void enemyMovement() {
-		int counter = 2;
 		if(everyXSeconds(5)) {
-			if(enemyCollisionTest(plant, userWeapon)) {
+			if(enemyCollisionTest(plant, userWeapon) && atkRight) {
 				program.bossOverlay(plant);
+				System.out.println("attack = true");
 				attack = true;
+			} else {
+				System.out.println("attack = false");
+				attack = false;
 			}
 		}
-		if(plant.getImage().getX() > 1155) {
-			attack = false;
-		}
+		
 		if(attack) {
-			plant.getImage().move(10, 0); 		
+			move = true;
 		}
-		else {
-				plant.getImage().move(-10, 0);
+		
+		if(plant.getImage().getX() > 1155) {
+			plant.getImage().move(-10, 0);
+			move = false;
+		} else if(plant.getImage().getX() < 250) {
+			plant.getImage().move(10, 0);
+			move = true;
+		} 
+		
+		if(move) {
+			plant.getImage().move(10, 0); 		
+		} else {
+			plant.getImage().move(-10, 0);
 		}
 
 	}
@@ -190,7 +202,7 @@ public class earth_boss extends GraphicsPane implements ActionListener{
 				if(user.getDX() == 0 && user.getDY() == 0) {
 					user.setX(user.getX() - 100);
 				}
-				program.getUser().getUserStats().setHP_cur(program.getUser().getUserStats().getHP_cur() - 5);
+				program.getUser().getUserStats().setHP_cur(program.getUser().getUserStats().getHP_cur() - 3);
 			}
 		
 	}

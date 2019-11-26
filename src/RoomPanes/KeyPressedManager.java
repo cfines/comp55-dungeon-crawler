@@ -243,6 +243,7 @@ public class KeyPressedManager {
 			if(program.getUser().getInvincibility()) {return;}
 			if(enemyCollisionTest(enem, userRep)) {
 				if(enem.getEnemyType() == enemyType.bomb) {user.setY(user.getY()); user.setX(user.getX());}
+				if(enem.getEnemyType() == enemyType.Pright) {break;}
 				if (user.getDY() < 0 || user.getDY() < 0 && user.getDX() < 0 || user.getDY() < 0 && user.getDX() > 0) {
 					//System.out.println("bottom"); 
 					user.setY(user.getY() + 100); 
