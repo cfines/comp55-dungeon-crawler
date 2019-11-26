@@ -18,8 +18,7 @@ public class GameWinPane extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private GButton returnMenu;
 	
-	public GameWinPane(MainApplication app) throws IOException 
-	{
+	public GameWinPane(MainApplication app){
 		this.program = app;
 		gameWin = new GImage ("Game Over Screen.png",0,0);
 		gameWin.setSize(1150,650);
