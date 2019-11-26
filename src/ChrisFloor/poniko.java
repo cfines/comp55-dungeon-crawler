@@ -28,7 +28,7 @@ public class poniko extends GraphicsPane implements ActionListener{
 	private GRect voidSpace;
 	private ArrayList<Enemy> listOfEnemies = new ArrayList<Enemy>();
 	private ArrayList<Interactions> listOfInter = new ArrayList<Interactions>();
-	Enemy ibossFace = new Enemy (50,50,2,2,805,375,ElementType.WATER, enemyType.face);
+	Enemy ibossFace = new Enemy (70,70,3,2,805,375,ElementType.WATER, enemyType.face);
 	private User user;
 	private boolean atkUp,atkDown,atkLeft,atkRight;
 	private Timer t = new Timer(30, this);
@@ -40,11 +40,8 @@ public class poniko extends GraphicsPane implements ActionListener{
 	public poniko(MainApplication app) {
 		this.program = app;
 		user = program.getUser(); 
-		
 		//Interactions
 		//Enemies
-		
-		
 		//gImages
 		background = new GImage("ponikos_room.png", 15,-30);
 		userRep = new GImage("Rogue_(Sample User).gif");

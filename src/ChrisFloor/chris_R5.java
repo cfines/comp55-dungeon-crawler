@@ -52,10 +52,10 @@ public class chris_R5 extends GraphicsPane implements ActionListener{
 		Interactions icolor4 = new Interactions(interactionType.color2,1005,490);
 
 		//Enemies
-		Enemy igoon1 = new Enemy(5,5,2,2,925,110,ElementType.EARTH,enemyType.goon1);
-		Enemy igoon2 = new Enemy(5,5,2,2,1005,230,ElementType.WATER,enemyType.goon1);
+		Enemy igoon1 = new Enemy(6,6,2,2,925,110,ElementType.EARTH,enemyType.goon1);
+		Enemy igoon2 = new Enemy(7,7,2,2,1005,230,ElementType.WATER,enemyType.goon1);
 		Enemy igoon3 = new Enemy(5,5,2,2,175,85,ElementType.WATER,enemyType.goon2);
-		Enemy igoon4 = new Enemy(5,5,2,2,115,175,ElementType.FIRE,enemyType.goon2);
+		Enemy igoon4 = new Enemy(8,8,2,2,115,175,ElementType.FIRE,enemyType.goon2);
 
 		//gImages
 		background = new GImage("background_sky.gif", 15,30);
