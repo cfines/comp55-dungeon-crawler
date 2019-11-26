@@ -474,7 +474,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToEarthBoss() {
-		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
+		audio.stopSound(MUSIC_FOLDER, "y2mate.com - twilight_of_the_gods_fire_emblem_echoes_shadows_of_valentia_S5YGxMjywSk.mp3");
 		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "megaroachania.mp3", true);
 		switchToScreen(earth_boss);
