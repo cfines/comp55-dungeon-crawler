@@ -115,6 +115,7 @@ public class fe_R12Complete  extends GraphicsPane implements ActionListener{
 			userRep.setLocation(user.getX(), user.getY());
 			program.setBossDefeated(false);
 			program.setFloorNum(program.getFloorNum() + 1);
+			program.setWonGame(true);
 			program.switchToGameWin();
 		}
 		if(userX <= E24.getX() && userY <= E24.getY() && userY2 >= E24.getY() - 30  && userX >= E24.getX() - 30) {

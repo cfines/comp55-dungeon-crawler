@@ -65,6 +65,9 @@ public class CreditsPane extends GraphicsPane{
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == goBack) 
 		{
+			if(program.getWonGame()) {
+				System.exit(0);
+			}
 			program.switchToMenu();
 		}
 	}

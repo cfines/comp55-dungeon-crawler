@@ -128,6 +128,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	private fe_R12Complete feR12C;
 	public boolean bossRun = false;
 	public int bombCounter = 90;
+	public boolean wonGame = false;
 	
 	//GRAPHICS Overlay Stuff
 		public GImage creditsImg;
@@ -996,6 +997,14 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		osvaldoFloor_bossRoom = new osvaldoFloor_bossRoom(this);
 		Poniko = new poniko(this);
 		feR12 = new fe_R12(this);
+	}
+	
+	public void setWonGame(boolean bruh) {
+		this.wonGame = bruh;
+	}
+	
+	public boolean getWonGame() {
+		return wonGame;
 	}
 	
 	
