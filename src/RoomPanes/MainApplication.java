@@ -339,6 +339,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	
 	public void switchToR9() {
 		if(bossRun) {
+			audio.playSoundWithOptions(MUSIC_FOLDER,"20 ray of hope.mp3",true);
 			user.getUserStats().setHP_cur(user.getUserStats().getHP_tot());
 			user.setX(800);
 			user.setY(WINDOW_HEIGHT/2 - 40);
@@ -353,6 +354,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToChrisR1() {
+		audio.stopSound(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3");
 		audio.playSound(MUSIC_FOLDER, "1up.wav");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Barracks Settlement.mp3", true);
 		switchToScreen(chris_R1);
@@ -423,6 +425,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		audio.stopSound(MUSIC_FOLDER, "Dense Woods.mp3");
 		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
 		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.stopSound(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3", true);
 		switchToScreen(Poniko);
 	}
@@ -452,6 +455,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 		audio.stopSound(MUSIC_FOLDER, "Once-_There_Was_an_Explosion_.mp3");
 		audio.stopSound(MUSIC_FOLDER, "yume nikki title .mp3");
 		audio.stopSound(MUSIC_FOLDER, "20 ray of hope.mp3");
+		audio.playSoundWithOptions(MUSIC_FOLDER, "Jet Set Radio Future - Fly Like a Butterfly.mp3", true);
 		switchToScreen(osvaldoFloor_bossRoom);
 	}
 	
@@ -470,6 +474,7 @@ public class MainApplication extends GraphicsApplication implements ActionListen
 	}
 	
 	public void switchToEarthBoss() {
+		audio.stopSound(MUSIC_FOLDER, "Fire Emblem Echoes Shadows of Valentia (OST) - The Heritors of Arcadia (English Credits Theme).mp3");
 		audio.stopSound(MUSIC_FOLDER, "y2mate.com - milas_ordeal_fire_emblem_echoes_shadows_of_valentia_r6ATWTZJmac.mp3");
 		audio.playSoundWithOptions(MUSIC_FOLDER, "megaroachania.mp3", true);
 		switchToScreen(earth_boss);
